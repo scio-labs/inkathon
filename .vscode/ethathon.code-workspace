@@ -1,0 +1,44 @@
+{
+  "folders": [
+    {
+      "name": "_ROOT",
+      "path": "../"
+    },
+    {
+      "name": "Frontend",
+      "path": "../packages/frontend"
+    },
+    {
+      "name": "Hardhat",
+      "path": "../packages/hardhat"
+    }
+  ],
+  "settings": {
+    "files.exclude": {
+      "**/node_modules/": true,
+      "**/package-lock.json": true,
+      "**/pnpm-lock.yaml": true,
+      "**/yarn.lock": true,
+      "**/yarn-error.log": true,
+      "**/.yarn": true,
+      "**/.turbo": true,
+      "**/.next": true,
+      "packages/hardhat/cache": true
+    },
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true,
+      "source.fixAll.eslint": true
+    },
+    "peacock.color": "#00f5d4",
+    "workbench.colorCustomizations": {
+      "sash.hoverBorder": "#29ffe2",
+      "statusBar.background": "#00f5d4",
+      "statusBar.foreground": "#15202b",
+      "statusBarItem.hoverBackground": "#00c2a8",
+      "statusBarItem.remoteBackground": "#00f5d4",
+      "statusBarItem.remoteForeground": "#15202b"
+    }
+  }
+}
