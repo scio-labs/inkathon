@@ -17,6 +17,7 @@ This is **work-in-progress** and there are many open tasks:
 - [ ] Give in instructions on how to initialize this (where to replace placeholder string etc.)
 - [ ] Show a sample contract-interaction and build a very basic default layout
 - [ ] Make Turborepo Configuration less verbose
+- [ ] Optionally integrate Chakra
 
 ## The Stack
 
