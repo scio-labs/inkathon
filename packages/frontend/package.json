@@ -36,7 +36,7 @@
     "framer-motion": "^6.5.1",
     "graphql": "^16.5.0",
     "graphql-request": "^4.3.0",
-    "next": "^12.2.0",
+    "next": "^12.2.2",
     "next-seo": "^5.4.0",
     "next-themes": "^0.2.0",
     "nprogress": "^0.2.0",
@@ -48,7 +48,7 @@
     "react-tippy": "^1.4.0",
     "sharp": "^0.30.7",
     "use-async-effect": "^2.2.6",
-    "wagmi": "^0.5.9"
+    "wagmi": "^0.5.10"
   },
   "devDependencies": {
     "@babel/core": "^7.18.9",
