@@ -1,7 +1,10 @@
-node_modules
-.next
-yarn.lock
-package-lock.json
-src/public
-src/types/typechain
-src/artifacts
+**/package-lock.json
+**/pnpm-lock.yaml
+**/node_modules
+**/out
+**/.next
+**/public
+
+# Typechain
+**/types/typechain
+**/artifacts

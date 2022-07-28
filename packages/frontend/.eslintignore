@@ -1,7 +1,8 @@
-**/node_modules/*
-**/out/*
-**/.next/*
-**/artifacts/*
-**/sql/*
-**/public/*
-**/types/typechain/*
+**/node_modules
+**/out
+**/.next
+**/public
+
+# Typechain
+**/types/typechain
+**/artifacts

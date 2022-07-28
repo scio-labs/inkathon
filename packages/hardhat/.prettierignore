@@ -1,6 +1,5 @@
-node_modules
-cache 
-contracts
-yarn.lock
-package-lock.json
-public
+**/package-lock.json
+**/pnpm-lock.yaml
+**/node_modules
+**/cache 
+**/contracts
