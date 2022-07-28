@@ -166,7 +166,7 @@ importers:
       eslint-config-prettier: ^8.5.0
       ethers: ^5.6.9
       hardhat: ^2.10.1
-      hardhat-address-exporter: ^0.0.3
+      hardhat-address-exporter: ^0.0.4
       hardhat-gas-reporter: ^1.0.8
       solhint: ^3.3.7
       solidity-coverage: ^0.7.21
@@ -195,7 +195,7 @@ importers:
       eslint-config-prettier: 8.5.0_eslint@8.20.0
       ethers: 5.6.9
       hardhat: 2.10.1_6oasmw356qmm23djlsjgkwvrtm
-      hardhat-address-exporter: 0.0.3_xybcfnc63cvmijounjrsafs3fq
+      hardhat-address-exporter: 0.0.4_xybcfnc63cvmijounjrsafs3fq
       hardhat-gas-reporter: 1.0.8_hardhat@2.10.1
       solhint: 3.3.7
       solidity-coverage: 0.7.21
@@ -7421,8 +7421,8 @@ packages:
       har-schema: 2.0.0
     dev: true
 
-  /hardhat-address-exporter/0.0.3_xybcfnc63cvmijounjrsafs3fq:
-    resolution: {integrity: sha512-1gTdfU8qDarmJrX+C+wp4jk5UzatL7z8+b9rJFtnVxo7eRIxTQS2yVsy7ZKVt24bvP7nXuTvF6PrF5eXT1ODug==}
+  /hardhat-address-exporter/0.0.4_xybcfnc63cvmijounjrsafs3fq:
+    resolution: {integrity: sha512-h6m3DeG/pG3MBZPWkh6hlwGQh8meB1BFIMxqBIizomjJSOqXf3gLUvLBv4o3DfXvPp1JoECTy0bYD/1mgZEoJA==}
     peerDependencies:
       '@nomiclabs/hardhat-ethers': ^2.1.0
       ethers: ^5.6.9
