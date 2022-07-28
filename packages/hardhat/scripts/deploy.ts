@@ -1,6 +1,5 @@
 import '@nomicfoundation/hardhat-toolbox'
-import { ethers } from 'hardhat'
-import { saveFrontendAddressFiles } from '../shared/saveFrontendAddressFiles'
+import hre, { ethers } from 'hardhat'
 
 async function main() {
   const currentTimestampInSeconds = Math.round(Date.now() / 1000)
@@ -16,7 +15,7 @@ async function main() {
 
   console.log('Lock with 1 ETH deployed to:', lock.address)
 
-  saveFrontendAddressFiles({
+  hre.addressExporter.save({
     Lock: lock.address,
   })
 }

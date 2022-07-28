@@ -1,6 +1,7 @@
 import '@nomicfoundation/hardhat-toolbox'
 import '@nomiclabs/hardhat-vyper'
 import * as dotenv from 'dotenv'
+import 'hardhat-address-exporter'
 import { HardhatUserConfig } from 'hardhat/config'
 import path from 'path'
 dotenv.config()
@@ -45,6 +46,10 @@ const config: HardhatUserConfig = {
   // typechain: {
   //   outDir: path.resolve('../frontend/src/types/typechain'),
   // },
+  addressExporter: {
+    outDir: path.resolve('../frontend/src/addresses'),
+    runPrettier: true,
+  },
 }
 
 export default config
