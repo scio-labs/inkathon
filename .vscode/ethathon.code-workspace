@@ -23,7 +23,8 @@
       "**/.yarn": true,
       "**/.turbo": true,
       "**/.next": true,
-      "packages/hardhat/cache": true
+      "packages/hardhat/cache/": true,
+      "packages/hardhat/deployments/": true
     },
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true,

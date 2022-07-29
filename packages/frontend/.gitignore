@@ -35,6 +35,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 
-# typechain
+# Hardhat & Typechain
 src/artifacts
 src/types/typechain/**
+src/deployments/1337.json

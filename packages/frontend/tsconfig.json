@@ -21,7 +21,7 @@
       "@models/*": ["./src/models/*"],
       "@styles/*": ["./src/styles/*"],
       "@artifacts/*": ["./src/artifacts/*"],
-      "@addresses": ["./src/addresses/addresses"]
+      "@deployments/*": ["./src/deployments/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.js", "**/*.ts", "**/*.tsx", "**/*.json"],

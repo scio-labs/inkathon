@@ -10,8 +10,9 @@ export const env = {
   supportedChains: JSON.parse(process.env.NEXT_PUBLIC_SUPPORTED_CHAINS!),
 
   rpc: {
-    hardhat: process.env.NEXT_PUBLIC_RPC_HARDHAT!,
-    rinkeby: process.env.NEXT_PUBLIC_RPC_RINKEBY!,
-    mainnet: process.env.NEXT_PUBLIC_RPC_MAINNET!,
+    [1337]: process.env.NEXT_PUBLIC_RPC_1337!, // Hardhat
+    [1]: process.env.NEXT_PUBLIC_RPC_1!, // Mainnet
+    [5]: process.env.NEXT_PUBLIC_RPC_5!, // Goerli
+    [80001]: process.env.NEXT_PUBLIC_RPC_80001!, // Polygon Mumbai
   },
 }

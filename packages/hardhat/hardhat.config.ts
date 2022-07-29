@@ -2,17 +2,19 @@ import '@nomicfoundation/hardhat-toolbox'
 import '@nomiclabs/hardhat-vyper'
 import * as dotenv from 'dotenv'
 import 'hardhat-address-exporter'
+import 'hardhat-deploy'
 import { HardhatUserConfig } from 'hardhat/config'
-import path from 'path'
 dotenv.config()
+
+const accounts = [
+  ...(process.env.PRIVATE_KEY_01 ? [`${process.env.PRIVATE_KEY_01}`] : []),
+  ...(process.env.PRIVATE_KEY_02 ? [`${process.env.PRIVATE_KEY_02}`] : []),
+]
 
 const config: HardhatUserConfig = {
   solidity: '0.8.9',
   vyper: {
     version: '0.3.3',
-  },
-  paths: {
-    artifacts: path.resolve('../frontend/src/artifacts'),
   },
   networks: {
     hardhat: {
@@ -26,29 +28,24 @@ const config: HardhatUserConfig = {
       //     url: "https://eth-mainnet.alchemyapi.io/v2/${process.env.ALCHEMY_API_MAINNET}",
       //   },
     },
-    rinkeby: {
-      chainId: 4,
-      url: `https://eth-rinkeby.alchemyapi.io/v2/${process.env.ALCHEMY_API_RINKEBY}`,
-      accounts: [
-        ...(process.env.PRIVATE_KEY_RINKEBY ? [`${process.env.PRIVATE_KEY_RINKEBY}`] : []),
-      ],
-    },
     mumbai: {
       chainId: 80001,
-      url: `https://polygon-mumbai.g.alchemy.com/v2/${process.env.ALCHEMY_API_MUMBAI}`,
-      accounts: [...(process.env.PRIVATE_KEY_MUMBAI ? [`${process.env.PRIVATE_KEY_MUMBAI}`] : [])],
+      url: process.env.RPC_80001,
+      accounts,
+    },
+    goerli: {
+      chainId: 5,
+      url: process.env.RPC_5,
+      accounts,
+    },
+  },
+  namedAccounts: {
+    deployer: {
+      default: 0,
     },
   },
   etherscan: {
     apiKey: `${process.env.ETHERSCAN_API_KEY}`,
-  },
-  // NOTE: typechain command is called manually as it currently ignores vyper contracts
-  // typechain: {
-  //   outDir: path.resolve('../frontend/src/types/typechain'),
-  // },
-  addressExporter: {
-    outDir: path.resolve('../frontend/src/addresses'),
-    runPrettier: true,
   },
 }
 

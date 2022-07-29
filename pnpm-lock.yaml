@@ -31,8 +31,8 @@ importers:
       '@ethersproject/abi': ^5.6.4
       '@ethersproject/providers': ^5.6.8
       '@headlessui/react': ^1.6.6
-      '@rainbow-me/rainbowkit': ^0.4.2
-      '@supabase/gotrue-js': ^1.22.20
+      '@rainbow-me/rainbowkit': ^0.4.5
+      '@supabase/gotrue-js': ^1.22.21
       '@supabase/supabase-js': ^1.35.4
       '@tailwindcss/typography': ^0.5.4
       '@testing-library/react': ^13.3.0
@@ -49,27 +49,26 @@ importers:
       babel-plugin-macros: ^3.1.0
       cookies-next: ^2.1.1
       copy-to-clipboard: ^3.3.1
-      dayjs: ^1.11.3
+      dayjs: ^1.11.4
       eslint: ^8.20.0
       eslint-config-next: ^12.2.3
       eslint-config-prettier: ^8.5.0
       eslint-plugin-react: ^7.30.1
       ethereumjs-util: ^7.1.5
       ethers: ^5.6.9
-      framer-motion: ^6.5.1
       graphql: ^16.5.0
       graphql-request: ^4.3.0
       jest: ^28.1.3
       jest-watch-typeahead: ^2.0.0
-      next: ^12.2.2
-      next-seo: ^5.4.0
+      next: ^12.2.3
+      next-seo: ^5.5.0
       next-sitemap: ^3.1.15
       next-themes: ^0.2.0
       nprogress: ^0.2.0
       prettier: ^2.7.1
       react: ^18.2.0
       react-dom: ^18.2.0
-      react-hook-form: ^7.33.1
+      react-hook-form: ^7.34.0
       react-hot-toast: ^2.3.0
       react-icons: ^4.4.0
       react-tippy: ^1.4.0
@@ -78,7 +77,7 @@ importers:
       twin.macro: 3.0.0-rc.3
       typescript: ^4.7.4
       use-async-effect: ^2.2.6
-      wagmi: ^0.5.10
+      wagmi: ^0.6.0
     dependencies:
       '@apollo/client': 3.6.9_aez2jvt6lsvokp3l4ousdbdxf4
       '@chakra-ui/react': 2.2.4_tij2njokttso6734ktuzwjh5a4
@@ -87,7 +86,7 @@ importers:
       '@emotion/server': 11.4.0_@emotion+css@11.9.0
       '@emotion/styled': 11.9.3_y2x62d5bbinncmisoeyv36jqse
       '@headlessui/react': 1.6.6_biqbaboplfbrettd7655fr4n2y
-      '@rainbow-me/rainbowkit': 0.4.4_v7nnu6dra2tbybqyt3gkgm7c5a
+      '@rainbow-me/rainbowkit': 0.4.5_nvyuxgmwrnmxsyegmvf37enoie
       '@supabase/gotrue-js': 1.22.21
       '@supabase/supabase-js': 1.35.4
       axios: 0.27.2
@@ -96,7 +95,6 @@ importers:
       dayjs: 1.11.4
       ethereumjs-util: 7.1.5
       ethers: 5.6.9
-      framer-motion: 6.5.1_biqbaboplfbrettd7655fr4n2y
       graphql: 16.5.0
       graphql-request: 4.3.0_graphql@16.5.0
       next: 12.2.3_cocqldgf3qmhxqn5eddd5ybavq
@@ -105,13 +103,13 @@ importers:
       nprogress: 0.2.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      react-hook-form: 7.33.1_react@18.2.0
+      react-hook-form: 7.34.0_react@18.2.0
       react-hot-toast: 2.3.0_vt6aeitzauirmcdhimiad2yjxy
       react-icons: 4.4.0_react@18.2.0
       react-tippy: 1.4.0
       sharp: 0.30.7
       use-async-effect: 2.2.6_react@18.2.0
-      wagmi: 0.5.12_w3nw2bpaojq3mlwhwp6lup3gdy
+      wagmi: 0.6.0_w3nw2bpaojq3mlwhwp6lup3gdy
     devDependencies:
       '@babel/core': 7.18.9
       '@babel/preset-react': 7.18.6_@babel+core@7.18.9
@@ -150,7 +148,7 @@ importers:
       '@nomicfoundation/hardhat-chai-matchers': ^1.0.2
       '@nomicfoundation/hardhat-network-helpers': ^1.0.3
       '@nomicfoundation/hardhat-toolbox': ^1.0.2
-      '@nomiclabs/hardhat-ethers': ^2.1.0
+      '@nomiclabs/hardhat-ethers': npm:hardhat-deploy-ethers@0.3.0-beta.13
       '@nomiclabs/hardhat-etherscan': ^3.1.0
       '@nomiclabs/hardhat-vyper': ^3.0.0
       '@openzeppelin/contracts': ^4.7.2
@@ -167,6 +165,7 @@ importers:
       ethers: ^5.6.9
       hardhat: ^2.10.1
       hardhat-address-exporter: ^0.0.4
+      hardhat-deploy: ^0.11.12
       hardhat-gas-reporter: ^1.0.8
       solhint: ^3.3.7
       solidity-coverage: ^0.7.21
@@ -176,10 +175,10 @@ importers:
     devDependencies:
       '@ethersproject/abi': 5.6.4
       '@ethersproject/providers': 5.6.8
-      '@nomicfoundation/hardhat-chai-matchers': 1.0.2_oin356m5e66skg2hzbk6qckp7a
+      '@nomicfoundation/hardhat-chai-matchers': 1.0.2_i37hrdxy2xmi6mell77ljfcceu
       '@nomicfoundation/hardhat-network-helpers': 1.0.3_hardhat@2.10.1
-      '@nomicfoundation/hardhat-toolbox': 1.0.2_jpdhvofq2jq5sqaj74zkdlj2ym
-      '@nomiclabs/hardhat-ethers': 2.1.0_72jgnctblym52z6vqt46lbuldu
+      '@nomicfoundation/hardhat-toolbox': 1.0.2_ge2qabilnxoddkijsobtesldme
+      '@nomiclabs/hardhat-ethers': /hardhat-deploy-ethers/0.3.0-beta.13_72jgnctblym52z6vqt46lbuldu
       '@nomiclabs/hardhat-etherscan': 3.1.0_hardhat@2.10.1
       '@nomiclabs/hardhat-vyper': 3.0.0_hardhat@2.10.1
       '@openzeppelin/contracts': 4.7.2
@@ -195,7 +194,8 @@ importers:
       eslint-config-prettier: 8.5.0_eslint@8.20.0
       ethers: 5.6.9
       hardhat: 2.10.1_6oasmw356qmm23djlsjgkwvrtm
-      hardhat-address-exporter: 0.0.4_xybcfnc63cvmijounjrsafs3fq
+      hardhat-address-exporter: 0.0.4_oukawimyu5jrne7jgnhraza3o4
+      hardhat-deploy: 0.11.12
       hardhat-gas-reporter: 1.0.8_hardhat@2.10.1
       solhint: 3.3.7
       solidity-coverage: 0.7.21
@@ -2283,7 +2283,7 @@ packages:
     resolution: {integrity: sha512-/l/VWsdt/aBXgjshLWOFyFt3IVdYypu5y2Wn2rOO1un6nkqIn8SLXzgIMYXFyYsRWDyF5EthmKJMIdJvk08grg==}
     engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
     dependencies:
-      '@sinclair/typebox': 0.24.21
+      '@sinclair/typebox': 0.24.22
     dev: true
 
   /@jest/source-map/28.1.2:
@@ -2626,7 +2626,7 @@ packages:
       fastq: 1.13.0
     dev: true
 
-  /@nomicfoundation/hardhat-chai-matchers/1.0.2_oin356m5e66skg2hzbk6qckp7a:
+  /@nomicfoundation/hardhat-chai-matchers/1.0.2_i37hrdxy2xmi6mell77ljfcceu:
     resolution: {integrity: sha512-ZPcruE17yv8M/d9GYGz7l/iYEycwlA3t7rq1cfUEWPj7kIxJ5tSJEzPi2SqHj8LZdcsiU5FF/y/9W8ZFk0FHfw==}
     peerDependencies:
       '@nomiclabs/hardhat-ethers': ^2.0.0
@@ -2635,7 +2635,7 @@ packages:
       hardhat: ^2.9.4
     dependencies:
       '@ethersproject/abi': 5.6.4
-      '@nomiclabs/hardhat-ethers': 2.1.0_72jgnctblym52z6vqt46lbuldu
+      '@nomiclabs/hardhat-ethers': /hardhat-deploy-ethers/0.3.0-beta.13_72jgnctblym52z6vqt46lbuldu
       '@types/chai-as-promised': 7.1.5
       chai: 4.3.6
       chai-as-promised: 7.1.1_chai@4.3.6
@@ -2655,7 +2655,7 @@ packages:
       hardhat: 2.10.1_6oasmw356qmm23djlsjgkwvrtm
     dev: true
 
-  /@nomicfoundation/hardhat-toolbox/1.0.2_jpdhvofq2jq5sqaj74zkdlj2ym:
+  /@nomicfoundation/hardhat-toolbox/1.0.2_ge2qabilnxoddkijsobtesldme:
     resolution: {integrity: sha512-8CEgWSKUK2aMit+76Sez8n7UB0Ze1lwT+LcWxj4EFP30lQWOwOws048t6MTPfThH0BlSWjC6hJRr0LncIkc1Sw==}
     peerDependencies:
       '@ethersproject/abi': ^5.4.7
@@ -2680,9 +2680,9 @@ packages:
     dependencies:
       '@ethersproject/abi': 5.6.4
       '@ethersproject/providers': 5.6.8
-      '@nomicfoundation/hardhat-chai-matchers': 1.0.2_oin356m5e66skg2hzbk6qckp7a
+      '@nomicfoundation/hardhat-chai-matchers': 1.0.2_i37hrdxy2xmi6mell77ljfcceu
       '@nomicfoundation/hardhat-network-helpers': 1.0.3_hardhat@2.10.1
-      '@nomiclabs/hardhat-ethers': 2.1.0_72jgnctblym52z6vqt46lbuldu
+      '@nomiclabs/hardhat-ethers': /hardhat-deploy-ethers/0.3.0-beta.13_72jgnctblym52z6vqt46lbuldu
       '@nomiclabs/hardhat-etherscan': 3.1.0_hardhat@2.10.1
       '@typechain/ethers-v5': 10.1.0_3a2z4xo3ofaclmnvqkkolsxa2u
       '@typechain/hardhat': 6.1.2_hiuzc7rf2hnnjtqpezkxy3qeb4
@@ -2697,16 +2697,6 @@ packages:
       ts-node: 10.9.1_nffhatmfv277bvws7shomq2g3e
       typechain: 8.1.0_typescript@4.7.4
       typescript: 4.7.4
-    dev: true
-
-  /@nomiclabs/hardhat-ethers/2.1.0_72jgnctblym52z6vqt46lbuldu:
-    resolution: {integrity: sha512-vlW90etB3675QWG7tMrHaDoTa7ymMB7irM4DAQ98g8zJoe9YqEggeDnbO6v5b+BLth/ty4vN6Ko/kaqRN1krHw==}
-    peerDependencies:
-      ethers: ^5.0.0
-      hardhat: ^2.0.0
-    dependencies:
-      ethers: 5.6.9
-      hardhat: 2.10.1_6oasmw356qmm23djlsjgkwvrtm
     dev: true
 
   /@nomiclabs/hardhat-etherscan/3.1.0_hardhat@2.10.1:
@@ -2756,14 +2746,14 @@ packages:
     resolution: {integrity: sha512-9X2obfABZuDVLCgPK9aX0a/x4jaOEweTTWE2+9sr0Qqqevj2Uv5XorvusThmc9XGYpS9yI+fhh8RTafBtGposw==}
     dev: false
 
-  /@rainbow-me/rainbowkit/0.4.4_v7nnu6dra2tbybqyt3gkgm7c5a:
-    resolution: {integrity: sha512-TlTCzGF5ELRGBVS6qlwGRTWnlZ1wyj1jtXUiCDyAspjYWp6VHCom0vRaAUNaFMFvFaqANR+1zrmyqpOMFWwYng==}
+  /@rainbow-me/rainbowkit/0.4.5_nvyuxgmwrnmxsyegmvf37enoie:
+    resolution: {integrity: sha512-9JikVOkkaK41T3a1Tg8VK1h92QDJsC9Fk7vSkEmNI99gM9MKRdbsrHyRwM1Z1U/0I/PnYAi8CvShfjwfNw5jAg==}
     engines: {node: '>=12.4'}
     peerDependencies:
       ethers: '>=5.5.1'
       react: '>=17'
       react-dom: '>=17'
-      wagmi: 0.5.x
+      wagmi: 0.5.x || 0.6.x
     dependencies:
       '@vanilla-extract/css': 1.7.0
       '@vanilla-extract/dynamic': 2.0.2
@@ -2774,7 +2764,7 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-remove-scroll: 2.5.4_3hx2ussxxho4jajbwrd6gq34qe
-      wagmi: 0.5.12_w3nw2bpaojq3mlwhwp6lup3gdy
+      wagmi: 0.6.0_w3nw2bpaojq3mlwhwp6lup3gdy
     transitivePeerDependencies:
       - '@types/react'
     dev: false
@@ -2872,8 +2862,8 @@ packages:
       tslib: 1.14.1
     dev: true
 
-  /@sinclair/typebox/0.24.21:
-    resolution: {integrity: sha512-II2SIjvxBVJmrGkkZYza/BqNjwx3PWROIA8CZ0/Hn7LV0Mv0CVpZxoyHGBVsQqfFLMv9DmArIeRHTwo76bE6oA==}
+  /@sinclair/typebox/0.24.22:
+    resolution: {integrity: sha512-JsBe3cOFpNZ6yjBYnXKhcENWy5qZE3PQZwExQ5ksA/h8qp4bwwxFmy07A6bC2R6qv6+RF3SfrbQTskTwYNTXUQ==}
     dev: true
 
   /@sindresorhus/is/0.14.0:
@@ -3519,8 +3509,8 @@ packages:
       '@vanilla-extract/css': 1.7.0
     dev: false
 
-  /@wagmi/core/0.4.9_mrjqywl7zbaqq6hcega5ku3yee:
-    resolution: {integrity: sha512-V/1PgetbA0PcIT6FJxDnCwRU/MZhecHVu1/7+QMncdxUQykyDd8MGlx0b8EjitMLLqzuD9kcx7sQpfS0gk5rZg==}
+  /@wagmi/core/0.5.0_mrjqywl7zbaqq6hcega5ku3yee:
+    resolution: {integrity: sha512-bh4cI7WaBDtEM8E7KPCLnK5PfmBPg5iIUydTw5DTX2yo6BiRhcFIflRn/Bg9IJCFq3SGhW6Zmpu+jHHeH9ZELQ==}
     peerDependencies:
       '@coinbase/wallet-sdk': '>=3.3.0'
       '@walletconnect/ethereum-provider': '>=1.7.5'
@@ -4330,10 +4320,18 @@ packages:
   /axios/0.21.4:
     resolution: {integrity: sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==}
     dependencies:
-      follow-redirects: 1.15.1_debug@4.3.4
+      follow-redirects: 1.15.1
     transitivePeerDependencies:
       - debug
     dev: false
+
+  /axios/0.21.4_debug@4.3.4:
+    resolution: {integrity: sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==}
+    dependencies:
+      follow-redirects: 1.15.1_debug@4.3.4
+    transitivePeerDependencies:
+      - debug
+    dev: true
 
   /axios/0.27.2:
     resolution: {integrity: sha512-t+yRIyySRTp/wua5xEr+z1q60QmLq8ABsS5O9Me1AsE5dfKqgnCFzwiCZZ/cGNd1lq4/7akDWMxdhVlucjmnOQ==}
@@ -4663,7 +4661,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001373
-      electron-to-chromium: 1.4.204
+      electron-to-chromium: 1.4.206
       node-releases: 2.0.6
       update-browserslist-db: 1.0.5_browserslist@4.21.3
 
@@ -5723,8 +5721,8 @@ packages:
       - utf-8-validate
     dev: false
 
-  /electron-to-chromium/1.4.204:
-    resolution: {integrity: sha512-5Ojjtw9/c9HCXtMVE6SXVSHSNjmbFOXpKprl6mY/5moLSxLeWatuYA7KTD+RzJMxLRH6yNNQrqGz9p6IoNBMgw==}
+  /electron-to-chromium/1.4.206:
+    resolution: {integrity: sha512-h+Fadt1gIaQ06JaIiyqPsBjJ08fV5Q7md+V8bUvQW/9OvXfL2LRICTz2EcnnCP7QzrFTS6/27MRV6Bl9Yn97zA==}
 
   /elliptic/6.5.4:
     resolution: {integrity: sha512-iLhC6ULemrljPZb+QutR5TQGB+pdW6KGD5RSegS+8sorOZT+rdQFbsQFJgvN3eRqNALqJer4oQ16YvJHlU8hzQ==}
@@ -5759,7 +5757,6 @@ packages:
 
   /encode-utf8/1.0.3:
     resolution: {integrity: sha512-ucAnuBEhUK4boH2HjVYG5Q2mQyPorvv0u/ocS+zhdw0S8AlHYY+GOFhP1Gio5z4icpP2ivFSvhtFjQi8+T9ppw==}
-    dev: false
 
   /encodeurl/1.0.2:
     resolution: {integrity: sha512-TPJXq8JqFaVYm2CWmPvnP2Iyo4ZSM7/QKcSmuMLDObfpH5fi7RUGmd/rTDf+rut/saiDiQEeVTNgAmJEdAOx0w==}
@@ -6884,11 +6881,27 @@ packages:
     resolution: {integrity: sha512-0sQoMh9s0BYsm+12Huy/rkKxVu4R1+r96YX5cG44rHV0pQ6iC3Q+mkoMFaGWObMFYQxCVT+ssG1ksneA2MI9KQ==}
     dev: true
 
+  /fmix/0.1.0:
+    resolution: {integrity: sha512-Y6hyofImk9JdzU8k5INtTXX1cu8LDlePWDFU5sftm9H+zKCr5SGrVjdhkvsim646cw5zD0nADj8oHyXMZmCZ9w==}
+    dependencies:
+      imul: 1.0.1
+    dev: true
+
   /focus-lock/0.11.2:
     resolution: {integrity: sha512-pZ2bO++NWLHhiKkgP1bEXHhR1/OjVcSvlCJ98aNJDFeb7H5OOQaO+SKOZle6041O9rv2tmbrO4JzClAvDUHf0g==}
     engines: {node: '>=10'}
     dependencies:
       tslib: 2.4.0
+    dev: false
+
+  /follow-redirects/1.15.1:
+    resolution: {integrity: sha512-yLAMQs+k0b2m7cVxpS1VKJVvoz7SS9Td1zss3XRwXj+ZDH00RJgnuLx7E44wx02kQLrdM3aOOy+FpzS7+8OizA==}
+    engines: {node: '>=4.0'}
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
     dev: false
 
   /follow-redirects/1.15.1_debug@4.3.4:
@@ -6945,7 +6958,6 @@ packages:
       asynckit: 0.4.0
       combined-stream: 1.0.8
       mime-types: 2.1.35
-    dev: false
 
   /forwarded/0.2.0:
     resolution: {integrity: sha512-buRG0fpBtRHSTCOASe6hD258tEubFoRLb4ZNA6NxMVHNw2gOcwHo9wyablzMzOA5z9xA9L1KNjk/Nt6MT9aYow==}
@@ -6954,10 +6966,6 @@ packages:
 
   /fp-ts/1.19.3:
     resolution: {integrity: sha512-H5KQDspykdHuztLTg+ajGN0Z2qUjcEf3Ybxc6hLt0k7/zPkn29XnKnxlBPyW2XIddWrGaJBzBl4VLYOtk39yZg==}
-    dev: true
-
-  /fp-ts/1.19.5:
-    resolution: {integrity: sha512-wDNqTimnzs8QqpldiId9OavWK2NptormjXnRJTQecNjzwfyp6P/8s/zG8e4h3ja3oqkKaY72UlTjQYt/1yXf9A==}
     dev: true
 
   /framer-motion/6.5.1_biqbaboplfbrettd7655fr4n2y:
@@ -7007,6 +7015,15 @@ packages:
       klaw: 1.3.1
       path-is-absolute: 1.0.1
       rimraf: 2.7.1
+    dev: true
+
+  /fs-extra/10.1.0:
+    resolution: {integrity: sha512-oRXApq54ETRj4eMiFzGnHWGy+zo5raudjuxN0b8H7s/RU2oW0Wvsx9O0ACRN/kRq9E8Vu/ReskGB5o3ji+FzHQ==}
+    engines: {node: '>=12'}
+    dependencies:
+      graceful-fs: 4.2.10
+      jsonfile: 6.1.0
+      universalify: 2.0.0
     dev: true
 
   /fs-extra/4.0.3:
@@ -7421,16 +7438,48 @@ packages:
       har-schema: 2.0.0
     dev: true
 
-  /hardhat-address-exporter/0.0.4_xybcfnc63cvmijounjrsafs3fq:
+  /hardhat-address-exporter/0.0.4_oukawimyu5jrne7jgnhraza3o4:
     resolution: {integrity: sha512-h6m3DeG/pG3MBZPWkh6hlwGQh8meB1BFIMxqBIizomjJSOqXf3gLUvLBv4o3DfXvPp1JoECTy0bYD/1mgZEoJA==}
     peerDependencies:
       '@nomiclabs/hardhat-ethers': ^2.1.0
       ethers: ^5.6.9
       hardhat: ^2.10.1
     dependencies:
-      '@nomiclabs/hardhat-ethers': 2.1.0_72jgnctblym52z6vqt46lbuldu
+      '@nomiclabs/hardhat-ethers': /hardhat-deploy-ethers/0.3.0-beta.13_72jgnctblym52z6vqt46lbuldu
       ethers: 5.6.9
       hardhat: 2.10.1_6oasmw356qmm23djlsjgkwvrtm
+    dev: true
+
+  /hardhat-deploy-ethers/0.3.0-beta.13_72jgnctblym52z6vqt46lbuldu:
+    resolution: {integrity: sha512-PdWVcKB9coqWV1L7JTpfXRCI91Cgwsm7KLmBcwZ8f0COSm1xtABHZTyz3fvF6p42cTnz1VM0QnfDvMFlIRkSNw==}
+    peerDependencies:
+      ethers: ^5.0.0
+      hardhat: ^2.0.0
+    dependencies:
+      ethers: 5.6.9
+      hardhat: 2.10.1_6oasmw356qmm23djlsjgkwvrtm
+    dev: true
+
+  /hardhat-deploy/0.11.12:
+    resolution: {integrity: sha512-Wv0BqzwW4mz78raxkfQtBbkhZwZTRWXwRbEwgkTUimD3MX/0Z9+D4O+s1zHJlG0zwZvJMbwxPOrOHQm4NZ3JAQ==}
+    dependencies:
+      '@types/qs': 6.9.7
+      axios: 0.21.4_debug@4.3.4
+      chalk: 4.1.2
+      chokidar: 3.5.3
+      debug: 4.3.4
+      enquirer: 2.3.6
+      ethers: 5.6.9
+      form-data: 4.0.0
+      fs-extra: 10.1.0
+      match-all: 1.2.6
+      murmur-128: 0.2.1
+      qs: 6.11.0
+      zksync-web3: 0.7.9_ethers@5.6.9
+    transitivePeerDependencies:
+      - bufferutil
+      - supports-color
+      - utf-8-validate
     dev: true
 
   /hardhat-gas-reporter/1.0.8_hardhat@2.10.1:
@@ -7753,6 +7802,11 @@ packages:
       resolve-cwd: 3.0.0
     dev: true
 
+  /imul/1.0.1:
+    resolution: {integrity: sha512-WFAgfwPLAjU66EKt6vRdTlKj4nAgIDQzh29JonLa4Bqtl6D8JrIMvWjCnx7xEjVNmP3U0fM5o8ZObk7d0f62bA==}
+    engines: {node: '>=0.10.0'}
+    dev: true
+
   /imurmurhash/0.1.4:
     resolution: {integrity: sha512-JmXMZ6wuvDmLiHEml9ykzqO6lwFbof0GG4IkcGaENdCRDDmMVnny7s5HsIgHCbaq0w2MyPhDqkhTUgS2LU2PHA==}
     engines: {node: '>=0.8.19'}
@@ -7816,7 +7870,7 @@ packages:
   /io-ts/1.10.4:
     resolution: {integrity: sha512-b23PteSnYXSONJ6JQXRAlvJhuw8KOtkqa87W4wDtvMrud/DTJd5X+NpOOI+O/zZwVq6v0VLAaJ+1EDViKEuN9g==}
     dependencies:
-      fp-ts: 1.19.5
+      fp-ts: 1.19.3
     dev: true
 
   /ipaddr.js/1.9.1:
@@ -9049,6 +9103,10 @@ packages:
     resolution: {integrity: sha512-1RUZVgQlpJSPWYbFSpmudq5nHY1doEIv89gBtF0s4gW1GF2XorxcA/70M5vq7rLv0a6mhOUccRsqkwhwLCIQ2Q==}
     dev: true
 
+  /match-all/1.2.6:
+    resolution: {integrity: sha512-0EESkXiTkWzrQQntBu2uzKvLu6vVkUGz40nGPbSZuegcfE5UuSzNjLaIu76zJWuaT/2I3Z/8M06OlUOZLGwLlQ==}
+    dev: true
+
   /match-sorter/6.3.1:
     resolution: {integrity: sha512-mxybbo3pPNuA+ZuCUhm5bwNkXrJTbsk5VWbR5wiwz/GC6LIiegBGn2w3O08UG/jdbYLinw51fSQ5xNU1U3MgBw==}
     dependencies:
@@ -9387,6 +9445,14 @@ packages:
       duplexer2: 0.1.4
       object-assign: 4.1.1
     dev: false
+
+  /murmur-128/0.2.1:
+    resolution: {integrity: sha512-WseEgiRkI6aMFBbj8Cg9yBj/y+OdipwVC7zUo3W2W1JAJITwouUOtpqsmGSg67EQmwwSyod7hsVsWY5LsrfQVg==}
+    dependencies:
+      encode-utf8: 1.0.3
+      fmix: 0.1.0
+      imul: 1.0.1
+    dev: true
 
   /mute-stream/0.0.7:
     resolution: {integrity: sha512-r65nCZhrbXXb6dXOACihYApHw2Q6pV0M3V0PSxd74N0+D8nzAdEAITq2oAjA1jVnKI+tGvEBUpqiMh0+rW6zDQ==}
@@ -10474,8 +10540,8 @@ packages:
       use-sidecar: 1.1.2_3hx2ussxxho4jajbwrd6gq34qe
     dev: false
 
-  /react-hook-form/7.33.1_react@18.2.0:
-    resolution: {integrity: sha512-ydTfTxEJdvgjCZBj5DDXRc58oTEfnFupEwwTAQ9FSKzykEJkX+3CiAkGtAMiZG7IPWHuzgT6AOBfogiKhUvKgg==}
+  /react-hook-form/7.34.0_react@18.2.0:
+    resolution: {integrity: sha512-s0/TJ09NVlEk2JPp3yit1WnMuPNBXFmUKEQPulgDi9pYBw/ZmmAFHe6AXWq73Y+kp8ye4OcMf0Jv+i/qLPektg==}
     engines: {node: '>=12.22.0'}
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18
@@ -12536,14 +12602,14 @@ packages:
       extsprintf: 1.3.0
     dev: true
 
-  /wagmi/0.5.12_w3nw2bpaojq3mlwhwp6lup3gdy:
-    resolution: {integrity: sha512-Y7eGKYhgNw6fohiXBE4uak/lotfgB+KaANqok16ORqwBFV+zaByMYWCrOIYlk1/6ngSyW1dcSVCU8djjh+RNtg==}
+  /wagmi/0.6.0_w3nw2bpaojq3mlwhwp6lup3gdy:
+    resolution: {integrity: sha512-Jyj22eQNoNcs9DoLDhD+foF5skEc7XPAZjqZ7GK+rVzxWVlA6Vx+qrcAALNGnxayE6H+CYVKWGtTK8PPN/WHOw==}
     peerDependencies:
       ethers: '>=5.5.1'
       react: '>=17.0.0'
     dependencies:
       '@coinbase/wallet-sdk': 3.4.0_@babel+core@7.18.9
-      '@wagmi/core': 0.4.9_mrjqywl7zbaqq6hcega5ku3yee
+      '@wagmi/core': 0.5.0_mrjqywl7zbaqq6hcega5ku3yee
       '@walletconnect/ethereum-provider': 1.7.8
       ethers: 5.6.9
       react: 18.2.0
@@ -13260,6 +13326,14 @@ packages:
   /zen-observable/0.8.15:
     resolution: {integrity: sha512-PQ2PC7R9rslx84ndNBZB/Dkv8V8fZEpk83RLgXtYd0fwUgEjseMn1Dgajh2x6S8QbZAFa9p2qVCEuYZNgve0dQ==}
     dev: false
+
+  /zksync-web3/0.7.9_ethers@5.6.9:
+    resolution: {integrity: sha512-B0pitKvEQGJuWkY2UWjXrL1YgHghXEoDaq6acVZnB62TRF099GV58Fzi7Fnqt+Nw14A7Wc9iJ2AHD4GBTLFgkg==}
+    peerDependencies:
+      ethers: ~5.5.0
+    dependencies:
+      ethers: 5.6.9
+    dev: true
 
   /zustand/4.0.0_react@18.2.0:
     resolution: {integrity: sha512-OrsfQTnRXF1LZ9/vR/IqN9ws5EXUhb149xmPjErZnUrkgxS/gAHGy2dPNIVkVvoxrVe1sIydn4JjF0dYHmGeeQ==}

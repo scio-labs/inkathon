@@ -1,5 +1,5 @@
 import { getDefaultWallets } from '@rainbow-me/rainbowkit'
-import { allChains, Chain, chain, configureChains, createClient } from 'wagmi'
+import { allChains, Chain, configureChains, createClient } from 'wagmi'
 import { jsonRpcProvider } from 'wagmi/providers/jsonRpc'
 import { publicProvider } from 'wagmi/providers/public'
 import { env } from './environment'
@@ -7,14 +7,6 @@ import { env } from './environment'
 /**
  * Wagmi.sh Configuration (https://wagmi.sh/docs)
  */
-
-export const rpcsByChainId: {
-  [chainId: number]: string
-} = {
-  [1337]: env.rpc.hardhat,
-  [chain.rinkeby.id]: env.rpc.rinkeby,
-  [chain.mainnet.id]: env.rpc.mainnet,
-}
 
 export const defaultChain: Chain = allChains.filter((chain) => env.defaultChain === chain.id)[0]
 
@@ -27,8 +19,12 @@ export const { chains, provider } = configureChains(
   [
     jsonRpcProvider({
       rpc: (chain) => {
-        const rpcUrl = rpcsByChainId?.[chain.id]
-        return rpcUrl ? { http: rpcUrl } : null
+        const chainId = chain.id as keyof typeof env.rpc
+        const rpcUrl = env.rpc[chainId]
+        if (!rpcUrl) {
+          throw new Error(`No RPC provided for chain ${chainId}`)
+        }
+        return { http: rpcUrl }
       },
     }),
     publicProvider(),
@@ -36,7 +32,7 @@ export const { chains, provider } = configureChains(
 )
 
 const { connectors } = getDefaultWallets({
-  appName: 'TODO',
+  appName: 'Ethathon',
   chains,
 })
 

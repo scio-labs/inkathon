@@ -5,6 +5,7 @@
 **/.next
 **/public
 
-# Typechain
+# Hardhat & Typechain
 **/types/typechain
 **/artifacts
+**/deployments/*.json
