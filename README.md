@@ -54,6 +54,8 @@ cp packages/hardhat/.env.example packages/hardhat/.env
 
 ## Development
 
+I reommend developing in VSCode by opening the workspace file located at `.vscode/ethathon.code-workspace` and installing all recommended plugins under `extensions.json`.
+
 ```bash
 # Generate contract-types & start frontend with turborepo
 pnpm dev
