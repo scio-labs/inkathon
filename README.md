@@ -1,22 +1,26 @@
-# ETHathon Smart Contract & dApp Development Boilerplate
+# ETHathon – Smart Contract & DApp Development Boilerplate
 
 ![Typescript](https://img.shields.io/badge/Typescript-blue)
 ![Hardhat](https://img.shields.io/badge/Hardhat-yellow)
 ![Next.js](https://img.shields.io/badge/Next.js-gray)
 ![Tailwind](https://img.shields.io/badge/Tailwind-pink)
 
-This is a very opinionated boilerplate/starterkit/scaffold to get up and running with smart contract & dApp development. Comes in handy for hackathons. 👀
+This is an opinionated boilerplate/starterkit/scaffold to get up and running with smart contract & dApp development. Also comes in handy for hackathons. 👀
 
-By [Dennis Zoma](https://twitter.com/dennis_zoma) 🤠
+By [Dennis Zoma](https://twitter.com/dennis_zoma) 🧙‍♂️
+
+![Cover Image](packages/frontend/public/images/cover.jpg)
 
 ## Disclaimer
 
 This is **work-in-progress** and there are many open tasks:
 
+- [ ] Give better instructions on how to initialize this:
+  - [ ] Where to replace name/placeholders
+  - [ ] What & Where to setup environment variabled
+  - [ ] How to deploy (to Vercel)
 - [ ] Remove packages that are not actually used
-- [ ] Give in instructions on how to initialize this (where to replace placeholder string etc.)
-- [ ] Show a sample contract-interaction and build a very basic default layout
-- [ ] Make Turborepo Configuration less verbose
+- [ ] Make Turborepo configuration less verbose
 - [ ] Optionally integrate Chakra
 
 ## The Stack
@@ -24,12 +28,15 @@ This is **work-in-progress** and there are many open tasks:
 - Package-Manager: `pnpm`
 - Monorepo Tooling: `turborepo`
 - Smart Contract Development: `hardhat`
-  - TS-Types: `typechain`
+  - Deploy & Address-Export: `hardhat-deploy`
+  - Typescript-Types: `typechain`
 - Frontend: `next`
   - Contract Interactions: `wagmi`, `rainbowkit`
   - Styling: `tailwindcss`
   - Styled Components: `twin.macro`, `emotion`
-- Linting on Git Hooks: `husky`, `lint-staged`
+- Misc:
+  - Linting & Formatting: `eslint`, `prettier`
+  - Actions on Git Hooks: `husky`, `lint-staged`
 
 ## Getting Started
 
