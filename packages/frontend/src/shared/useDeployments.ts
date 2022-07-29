@@ -1,4 +1,4 @@
-import { deploymentsByChainId } from '@deployments/deployments'
+import { deployments } from '@deployments/deployments'
 import { useState } from 'react'
 import { HardhatExportContracts } from 'src/types/hardhat'
 import { useAsyncEffect } from 'use-async-effect'
@@ -15,7 +15,7 @@ export const useDeployments = () => {
   useAsyncEffect(async () => {
     const useDefaultChain = !chain?.id || chain.unsupported
     const contractsChain: Chain = useDefaultChain ? defaultChain : chain
-    const contracts = (await deploymentsByChainId[contractsChain.id]).contracts
+    const contracts = (await deployments[contractsChain.id]).contracts
 
     setUseDefaultChain(useDefaultChain)
     setContractsChain(contractsChain)

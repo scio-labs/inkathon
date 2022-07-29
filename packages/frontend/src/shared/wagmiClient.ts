@@ -19,10 +19,9 @@ export const { chains, provider } = configureChains(
   [
     jsonRpcProvider({
       rpc: (chain) => {
-        const chainId = chain.id as keyof typeof env.rpc
-        const rpcUrl = env.rpc[chainId]
+        const rpcUrl = env.rpcUrls[chain.id as keyof typeof env.rpcUrls]
         if (!rpcUrl) {
-          throw new Error(`No RPC provided for chain ${chainId}`)
+          throw new Error(`No RPC provided for chain ${chain.id}`)
         }
         return { http: rpcUrl }
       },

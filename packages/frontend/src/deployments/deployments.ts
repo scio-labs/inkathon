@@ -1,14 +1,14 @@
+import { env } from '@shared/environment'
 import { HardhatExport } from 'src/types/hardhat'
 
 /**
- * Aggregating all deployments in one object.
- * NOTE: After deploying to a new chain, a new entry has to be entered _manually_ here!
+ * Dynamically aggregating all deployments (addresses, abis)
  */
-
-export const deploymentsByChainId: {
-  [chainId: number]: Promise<HardhatExport>
-} = {
-  [1337]: import(`src/deployments/1337.json`),
-  [5]: import(`src/deployments/5.json`),
-  [80001]: import(`src/deployments/80001.json`),
-}
+export type DeploymentsType = { [_: number]: Promise<HardhatExport> }
+export const deployments: DeploymentsType = env.supportedChains.reduce(
+  (acc: DeploymentsType, chainId: number) => ({
+    ...acc,
+    [chainId]: import(`src/deployments/${chainId}.json`),
+  }),
+  {}
+)
