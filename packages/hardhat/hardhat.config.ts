@@ -1,7 +1,6 @@
 import '@nomicfoundation/hardhat-toolbox'
 import '@nomiclabs/hardhat-vyper'
 import * as dotenv from 'dotenv'
-import 'hardhat-address-exporter'
 import 'hardhat-deploy'
 import { HardhatUserConfig } from 'hardhat/config'
 dotenv.config()
