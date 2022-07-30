@@ -8,14 +8,16 @@ import { env } from './environment'
  * Wagmi.sh Configuration (https://wagmi.sh/docs)
  */
 
-export const defaultChain: Chain = allChains.filter((chain) => env.defaultChain === chain.id)[0]
+export const defaultChain: Chain | undefined = allChains.find(
+  (chain) => env.defaultChain === chain.id
+)
 
 export const supportedChains: Chain[] = allChains.filter((chain) =>
   env.supportedChains.includes(chain.id)
 )
 
 export const { chains, provider } = configureChains(
-  Array.from(new Set([defaultChain, ...supportedChains])),
+  Array.from(new Set([defaultChain, ...supportedChains])).filter(Boolean) as Chain[],
   [
     jsonRpcProvider({
       rpc: (chain) => {

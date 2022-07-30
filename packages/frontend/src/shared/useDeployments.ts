@@ -14,13 +14,19 @@ export const useDeployments = () => {
 
   useAsyncEffect(async () => {
     const useDefaultChain = !chain?.id || chain.unsupported
-    const contractsChain: Chain = useDefaultChain ? defaultChain : chain
-    const contracts = (await deployments[contractsChain.id]).contracts
-
-    setUseDefaultChain(useDefaultChain)
-    setContractsChain(contractsChain)
-    setContractsChainId(contractsChain.id)
-    setContracts(contracts)
+    const contractsChain = useDefaultChain ? defaultChain : chain
+    if (contractsChain) {
+      const contracts = (await deployments[contractsChain.id]).contracts
+      setUseDefaultChain(useDefaultChain)
+      setContractsChain(contractsChain)
+      setContractsChainId(contractsChain.id)
+      setContracts(contracts)
+    } else {
+      setUseDefaultChain(undefined)
+      setContractsChain(undefined)
+      setContractsChainId(undefined)
+      setContracts(undefined)
+    }
   }, [chain])
 
   return {
