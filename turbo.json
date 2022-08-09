@@ -32,11 +32,10 @@
         "src/deployments/1337.json"
       ]
     },
-    "format": {
-      "dependsOn": [
-        "^format"
-      ]
-    }
+    "lint": {
+      "outputs": []
+    },
+    "lint:fix": {}
   },
   "globalDependencies": [
     ".env",

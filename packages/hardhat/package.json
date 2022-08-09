@@ -11,10 +11,10 @@
     "deploy": "pnpm hardhat node --export '../frontend/src/deployments/1337.json' --write true",
     "deploy:mumbai": "pnpm hardhat deploy --network mumbai --export '../frontend/src/deployments/80001.json' --write true",
     "deploy:goerli": "pnpm hardhat deploy --network goerli --export '../frontend/src/deployments/5.json' --write true",
-    "lint": "pnpm eslint && pnpm solhint",
-    "eslint": "eslint --ext .js,.jsx,.ts,.tsx --fix .",
-    "solhint": "solhint 'contracts/**/*.sol'",
-    "format": "prettier --write ."
+    "lint": "prettier . --check && pnpm eslint",
+    "lint:fix": "prettier . --write && pnpm eslint --fix",
+    "eslint": "eslint . --ext .js,.ts",
+    "solhint": "solhint 'contracts/**/*.sol'"
   },
   "devDependencies": {
     "@ethersproject/abi": "^5.6.4",

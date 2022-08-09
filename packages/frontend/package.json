@@ -12,8 +12,9 @@
     "build": "NODE_ENV=production next build",
     "start": "NODE_ENV=production next start",
     "type-check": "tsc --pretty --noEmit",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx --fix .",
-    "format": "prettier --write .",
+    "lint": "prettier . --check && pnpm eslint",
+    "lint:fix": "prettier . --write && pnpm eslint --fix",
+    "eslint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "test": "jest --passWithNoTests"
   },
   "dependencies": {

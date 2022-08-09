@@ -9,7 +9,8 @@
   "scripts": {
     "dev": "turbo run dev",
     "build": "turbo run build",
-    "format": "turbo run format",
+    "lint": "turbo run lint",
+    "lint:fix": "turbo run lint:fix",
     "frontend:dev": "pnpm --filter frontend dev",
     "frontend:start": "pnpm --filter frontend start",
     "prepare": "husky install"
