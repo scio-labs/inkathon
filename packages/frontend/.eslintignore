@@ -1,9 +1,7 @@
-**/node_modules
-**/out
-**/.next
-**/public
+node_modules
+out
+.next
+public
 
 # Hardhat & Typechain
-**/types/typechain
-**/artifacts
-**/deployments/*.json
+deployments/*.json
