@@ -1,9 +1,8 @@
 import { CenterBody } from '@components/layout/CenterBody'
+import { Lock__factory } from '@ethathon/contracts/typechain-types'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { useDeployments } from '@shared/useDeployments'
-import { ethers } from 'ethers'
 import type { NextPage } from 'next'
-import { Lock } from 'src/types/typechain'
 import 'twin.macro'
 import tw from 'twin.macro'
 import { useSigner } from 'wagmi'
@@ -16,7 +15,7 @@ const HomePage: NextPage = () => {
 
   const getOwner = async () => {
     if (!signer || !contracts) return
-    const contract = new ethers.Contract(contracts.Lock.address, contracts.Lock.abi, signer) as Lock
+    const contract = Lock__factory.connect(contracts.Lock.address, signer)
     try {
       const owner = await contract.owner()
       console.log({ owner })
@@ -27,7 +26,7 @@ const HomePage: NextPage = () => {
 
   const withdraw = async () => {
     if (!signer || !contracts) return
-    const contract = new ethers.Contract(contracts.Lock.address, contracts.Lock.abi, signer) as Lock
+    const contract = Lock__factory.connect(contracts.Lock.address, signer)
     try {
       const tsx = await contract.withdraw({ gasLimit: 50000 })
       const receipt = await tsx.wait()
