@@ -13,8 +13,7 @@ export const useDeployments = () => {
   const [contracts, setContracts] = useState<HardhatExportContracts>()
 
   useAsyncEffect(async () => {
-    const useDefaultChain = !chain?.id || chain.unsupported
-    const contractsChain = useDefaultChain ? defaultChain : chain
+    const contractsChain = !chain || chain.unsupported ? defaultChain : chain
     if (contractsChain) {
       const contracts = (await deployments[contractsChain.id]).contracts
       setUseDefaultChain(useDefaultChain)
