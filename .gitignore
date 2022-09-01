@@ -32,6 +32,11 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+dist
 
 # turbo
 .turbo
+
+# coverage
+coverage
+coverage.json

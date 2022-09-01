@@ -1,5 +1,5 @@
 {
-  "name": "@ethathon/hardhat",
+  "name": "@ethathon/contracts",
   "license": "MIT",
   "version": "0.0.1",
   "scripts": {
@@ -7,14 +7,16 @@
     "compile": "pnpm hardhat compile --no-typechain",
     "build": "pnpm clean && pnpm compile && pnpm types",
     "dev": "pnpm run build && pnpm run deploy",
-    "types": "pnpm typechain --target=ethers-v5 './artifacts/contracts/**/+([a-zA-Z0-9_]).json' --out-dir '../frontend/src/types/typechain/'",
-    "deploy": "pnpm hardhat node --export '../frontend/src/deployments/1337.json' --write true",
-    "deploy:mumbai": "pnpm hardhat deploy --network mumbai --export '../frontend/src/deployments/80001.json' --write true",
-    "deploy:goerli": "pnpm hardhat deploy --network goerli --export '../frontend/src/deployments/5.json' --write true",
+    "types": "pnpm typechain --target=ethers-v5 './artifacts/contracts/**/+([a-zA-Z0-9_]).json' --out-dir './typechain-types'",
     "lint": "prettier . --check && pnpm eslint",
     "lint:fix": "prettier . --write && pnpm eslint --fix",
     "eslint": "eslint . --ext .js,.ts",
-    "solhint": "solhint 'contracts/**/*.sol'"
+    "solhint": "solhint 'contracts/**/*.sol'",
+    "deploy": "pnpm hardhat node --export '../frontend/src/deployments/1337.json' --write true",
+    "deploy:mumbai": "pnpm hardhat deploy --network mumbai --export '../frontend/src/deployments/80001.json' --write true",
+    "deploy:goerli": "pnpm hardhat deploy --network goerli --export '../frontend/src/deployments/5.json' --write true",
+    "verify:mumbai": "source .env && pnpm hardhat etherscan-verify --network mumbai --api-key $POLYGONSCAN_API_KEY",
+    "verify:goerli": "pnpm hardhat etherscan-verify --network goerli"
   },
   "devDependencies": {
     "@ethersproject/abi": "^5.7.0",

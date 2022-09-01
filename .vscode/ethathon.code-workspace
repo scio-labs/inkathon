@@ -9,8 +9,8 @@
       "path": "../packages/frontend"
     },
     {
-      "name": "Hardhat",
-      "path": "../packages/hardhat"
+      "name": "Contracts",
+      "path": "../packages/contracts"
     }
   ],
   "settings": {
@@ -23,9 +23,11 @@
       "**/.yarn": true,
       "**/.turbo": true,
       "**/.next": true,
-      "packages/hardhat/cache/": true,
-      "packages/hardhat/deployments/": true
+      "**/packages/contracts/deployments": true
     },
+    "search.useIgnoreFiles": true,
+    "search.useGlobalIgnoreFiles": true,
+    "search.useParentIgnoreFiles": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {

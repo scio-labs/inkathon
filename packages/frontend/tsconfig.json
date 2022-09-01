@@ -20,10 +20,10 @@
       "@shared/*": ["./src/shared/*"],
       "@models/*": ["./src/models/*"],
       "@styles/*": ["./src/styles/*"],
-      "@artifacts/*": ["./src/artifacts/*"],
       "@deployments/*": ["./src/deployments/*"]
     }
   },
+  "references": [{ "path": "../contracts" }],
   "include": ["next-env.d.ts", "**/*.js", "**/*.ts", "**/*.tsx", "**/*.json"],
   "exclude": ["node_modules", ".next", "out"],
   "types": ["src/types"]

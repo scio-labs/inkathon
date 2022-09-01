@@ -4,10 +4,20 @@
     "module": "commonjs",
     "strict": true,
     "esModuleInterop": true,
+    "outDir": "dist",
+    "declaration": true,
+    "declarationMap": true,
     "resolveJsonModule": true,
-    "baseUrl": "."
+    "baseUrl": ".",
+    "composite": true
   },
   "exclude": ["dist", "node_modules", "cache", "artifacts", "deployments"],
-  "include": ["./scripts/**/*.ts", "./deploy/**/*.ts", "./shared/**/*.ts", "./test/**/*.ts"],
+  "include": [
+    "./scripts/**/*.ts",
+    "./deploy/**/*.ts",
+    "./shared/**/*.ts",
+    "./test/**/*.ts",
+    "./typechain-types"
+  ],
   "files": ["./hardhat.config.ts"]
 }

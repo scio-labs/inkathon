@@ -18,9 +18,8 @@ const config: HardhatUserConfig = {
   networks: {
     hardhat: {
       chainId: 1337,
-      //   chainId: 80001,
-      //   allowUnlimitedContractSize: false,
-      //   blockGasLimit: 20000000, // 20 million
+      // allowUnlimitedContractSize: false,
+      // blockGasLimit: 20000000,
       //   forking: {
       //     url: "https://polygon-mumbai.g.alchemy.com/v2/${process.env.ALCHEMY_API_MUMBAI}",
       //     url: "https://eth-rinkeby.alchemyapi.io/v2/${process.env.ALCHEMY_API_RINKEBY}",
@@ -43,8 +42,10 @@ const config: HardhatUserConfig = {
       default: 0,
     },
   },
-  etherscan: {
-    apiKey: `${process.env.ETHERSCAN_API_KEY}`,
+  verify: {
+    etherscan: {
+      apiKey: `${process.env.ETHERSCAN_API_KEY}`,
+    },
   },
 }
 

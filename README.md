@@ -49,7 +49,7 @@ pnpm install
 
 # Copy & fill environments
 cp packages/frontend/.env.local.example packages/frontend/.env.local
-cp packages/hardhat/.env.example packages/hardhat/.env
+cp packages/contracts/.env.example packages/contracts/.env
 ```
 
 ## Development

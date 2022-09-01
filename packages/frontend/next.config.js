@@ -8,4 +8,7 @@ const nextConfig = {
   /* config options here */
 }
 
-module.exports = nextConfig
+// eslint-disable-next-line
+const withTM = require('next-transpile-modules')(['@yieldgate/contracts'])
+
+module.exports = withTM(nextConfig)

@@ -3,34 +3,16 @@
   "baseBranch": "origin/main",
   "pipeline": {
     "build": {
-      "dependsOn": [
-        "^build"
-      ],
-      "outputs": [
-        ".next/**",
-        "src/types/typechain/**"
-      ]
+      "dependsOn": ["^build"],
+      "outputs": [".next/**", "deployments/**", "artifacts/**", "typechain-types/**"]
     },
     "@ethathon/frontend#build": {
-      "dependsOn": [
-        "@ethathon/hardhat#build"
-      ],
-      "outputs": [
-        ".next/**",
-        "src/types/typechain/**"
-      ]
+      "dependsOn": ["@ethathon/contracts#build"],
+      "outputs": [".next/**", "deployments/**", "artifacts/**", "typechain-types/**"]
     },
-    "dev": {
-      "dependsOn": [
-        "@ethathon/hardhat#build",
-        "^dev"
-      ],
-      "outputs": [
-        ".next/**",
-        "src/types/typechain/**",
-        "artifacts/**",
-        "src/deployments/1337.json"
-      ]
+    "@ethathon/frontend#dev": {
+      "dependsOn": ["@ethathon/contracts#build"],
+      "outputs": [".next/**", "deployments/**", "artifacts/**", "typechain-types/**"]
     },
     "lint": {
       "outputs": []
