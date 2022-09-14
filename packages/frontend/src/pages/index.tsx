@@ -44,7 +44,7 @@ const HomePage: NextPage = () => {
       <CenterBody>
         {/* Title */}
         <div tw="flex flex-col items-center text-center font-mono mb-10">
-          <Link href="github.com/ethathon/ethathon" passHref>
+          <Link href="https://github.com/ethathon/ethathon" passHref>
             <a target="_blank" tw="mb-2 opacity-50 cursor-pointer hover:opacity-100">
               <Image src={githubIcon} width={32} height={32} alt="Github Logo" />
             </a>
