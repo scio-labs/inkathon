@@ -13,7 +13,7 @@ By [Dennis Zoma](https://twitter.com/dennis_zoma) 🧙‍♂️
 
 ## Disclaimer
 
-This is **work-in-progress** and there are many open tasks:
+This is **work-in-progress** and there are open tasks:
 
 - [ ] Give better instructions on how to initialize this:
   - [ ] Where to replace name/placeholders
@@ -63,3 +63,14 @@ pnpm dev
 # Only start frontend
 pnpm frontend:dev
 ```
+
+## Deployment
+
+This boilerplate repository is currently deployed under [ethathon.xyz](https://ethathon.xyz) via Vercel. Setting up a deployment via Vercel is pretty straightforward, only a few things have to be configured differently (as it's a monorepo structure):
+
+- Set a custom output directory `./packages/frontend/.next`
+- Set a custom install command `pnpm install --frozen-lockfile`
+- Leave the root directory as `./`
+- Initialize all the necessary environment variables (see `packages/frontend/.env.local.example`)
+
+![Vercel Screenshot](packages/frontend/public/images/vercel.jpg)
