@@ -1,5 +1,4 @@
 import '@nomicfoundation/hardhat-toolbox'
-import '@nomiclabs/hardhat-vyper'
 import * as dotenv from 'dotenv'
 import 'hardhat-deploy'
 import { HardhatUserConfig } from 'hardhat/config'
@@ -12,9 +11,6 @@ const accounts = [
 
 const config: HardhatUserConfig = {
   solidity: '0.8.9',
-  vyper: {
-    version: '0.3.3',
-  },
   networks: {
     hardhat: {
       chainId: 1337,

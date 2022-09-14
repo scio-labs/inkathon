@@ -25,7 +25,6 @@ importers:
       '@nomicfoundation/hardhat-toolbox': ^1.0.2
       '@nomiclabs/hardhat-ethers': npm:hardhat-deploy-ethers@0.3.0-beta.13
       '@nomiclabs/hardhat-etherscan': ^3.1.0
-      '@nomiclabs/hardhat-vyper': ^3.0.1
       '@openzeppelin/contracts': ^4.7.3
       '@typechain/ethers-v5': ^10.1.0
       '@typechain/hardhat': ^6.1.3
@@ -55,7 +54,6 @@ importers:
       '@nomicfoundation/hardhat-toolbox': 1.0.2_goltqmdfzblgk5xrke4wmbi5la
       '@nomiclabs/hardhat-ethers': /hardhat-deploy-ethers/0.3.0-beta.13_m6mqkssayq57in66acoqjc722q
       '@nomiclabs/hardhat-etherscan': 3.1.0_hardhat@2.11.1
-      '@nomiclabs/hardhat-vyper': 3.0.1_hardhat@2.11.1
       '@openzeppelin/contracts': 4.7.3
       '@typechain/ethers-v5': 10.1.0_jpp32cod7a5h3newawdecnvgum
       '@typechain/hardhat': 6.1.3_mkwimbuszwotyzdwiq46qmr7ny
@@ -4026,21 +4024,6 @@ packages:
       - supports-color
     dev: true
 
-  /@nomiclabs/hardhat-vyper/3.0.1_hardhat@2.11.1:
-    resolution: {integrity: sha512-FpRBxbOqLWg1n44qsBLWbvw09LVA2U7r7D1M0IsNpMe9QRa/aRYlRh8ine8Fr2KQl+k/NMZDZD4AKSKGPfm7lg==}
-    peerDependencies:
-      hardhat: ^2.8.3
-    dependencies:
-      debug: 4.3.4
-      fs-extra: 7.0.1
-      hardhat: 2.11.1_qv3zdqwr5cvvfboiktsp7a3dfa
-      io-ts: 1.10.4
-      lodash: 4.17.21
-      semver: 6.3.0
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
   /@openzeppelin/contracts/4.7.3:
     resolution: {integrity: sha512-dGRS0agJzu8ybo44pCIf3xBaPQN/65AIXNgK8+4gzKd5kbvlqyxryUYVLJv7fK98Seyd2hDZzVEHSWAh0Bt1Yw==}
     dev: true
@@ -5961,7 +5944,7 @@ packages:
   /axios/0.21.4_debug@4.3.4:
     resolution: {integrity: sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==}
     dependencies:
-      follow-redirects: 1.15.2_debug@4.3.4
+      follow-redirects: 1.15.2
     transitivePeerDependencies:
       - debug
     dev: true
@@ -8927,19 +8910,6 @@ packages:
     peerDependenciesMeta:
       debug:
         optional: true
-    dev: false
-
-  /follow-redirects/1.15.2_debug@4.3.4:
-    resolution: {integrity: sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==}
-    engines: {node: '>=4.0'}
-    peerDependencies:
-      debug: '*'
-    peerDependenciesMeta:
-      debug:
-        optional: true
-    dependencies:
-      debug: 4.3.4
-    dev: true
 
   /for-each/0.3.3:
     resolution: {integrity: sha512-jqYfLp7mo9vIyQf8ykW2v7A+2N4QjeCeI5+Dz9XraiO1ign81wjiH7Fb9vSOWvQfNtmSa4H2RoQTrrXivdUZmw==}
@@ -14356,7 +14326,7 @@ packages:
     dependencies:
       command-exists: 1.2.9
       commander: 3.0.2
-      follow-redirects: 1.15.2_debug@4.3.4
+      follow-redirects: 1.15.2
       fs-extra: 0.30.0
       js-sha3: 0.8.0
       memorystream: 0.3.1
