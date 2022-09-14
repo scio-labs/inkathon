@@ -7,20 +7,18 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // gray: colors.zinc,
-        // social: {
-        //   twitter: '#1DA1F2',
-        //   discord: '#EB459E',
-        // },
+        gray: colors.zinc,
+        social: {
+          twitter: '#1DA1F2',
+          discord: '#EB459E',
+        },
       },
-      // fontFamily: {
-      //   display: ['Block Marys', 'Arial', 'serif'],
-      //   'display-outline': ['Block Marys Outline', 'Block Marys', 'Arial', 'serif'],
-      //   mono: ['Inconsolata', 'Menlo', 'monospace'],
-      // },
-      // animation: {
-      //   'spin-custom': '800ms ease-in-out infinite spin',
-      // },
+      fontFamily: {
+        mono: ['Inconsolata', 'Menlo', 'monospace'],
+      },
+      animation: {
+        'spin-custom': '800ms ease-in-out infinite spin',
+      },
     },
   },
   plugins: [

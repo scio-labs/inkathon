@@ -3,6 +3,9 @@ import { Lock__factory } from '@ethathon/contracts/typechain-types'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { useDeployments } from '@shared/useDeployments'
 import type { NextPage } from 'next'
+import Image from 'next/image'
+import Link from 'next/link'
+import githubIcon from 'public/icons/social/github.svg'
 import 'twin.macro'
 import tw from 'twin.macro'
 import { useSigner } from 'wagmi'
@@ -39,9 +42,19 @@ const HomePage: NextPage = () => {
   return (
     <>
       <CenterBody>
+        {/* Title */}
+        <div tw="flex flex-col items-center text-center font-mono mb-10">
+          <Link href="github.com/ethathon/ethathon" passHref>
+            <a target="_blank" tw="mb-2 opacity-50 cursor-pointer hover:opacity-100">
+              <Image src={githubIcon} width={32} height={32} alt="Github Logo" />
+            </a>
+          </Link>
+          <h1 tw="text-2xl font-bold">ETHathon</h1>
+          <p tw="text-sm text-gray-400">Smart Contract & DApp Development Boilerplate</p>
+        </div>
+
         {/* Rainbowkit Connect Button */}
         <ConnectButton />
-
         {/* Lock.sol Contract Interactions */}
         {signer && (
           <div tw="flex mt-8 items-center text-sm">
