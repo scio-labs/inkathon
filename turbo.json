@@ -1,6 +1,5 @@
 {
   "$schema": "https://turborepo.org/schema.json",
-  "baseBranch": "origin/main",
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],
@@ -26,5 +25,16 @@
     ".eslintrc.json",
     ".prettierrc.json",
     ".solhint.json"
+  ],
+  "globalEnv": [
+    "NEXT_PUBLIC_PRODUCTION_MODE",
+    "NEXT_PUBLIC_URL",
+    "NEXT_PUBLIC_DEFAULT_CHAIN",
+    "NEXT_PUBLIC_SUPPORTED_CHAINS",
+    "NEXT_PUBLIC_RPC_1337",
+    "NEXT_PUBLIC_RPC_1",
+    "NEXT_PUBLIC_RPC_5",
+    "NEXT_PUBLIC_RPC_137",
+    "NEXT_PUBLIC_RPC_80001"
   ]
 }
