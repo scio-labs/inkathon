@@ -16,11 +16,7 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@components/*": ["./src/components/*"],
-      "@shared/*": ["./src/shared/*"],
-      "@models/*": ["./src/models/*"],
-      "@styles/*": ["./src/styles/*"],
-      "@deployments/*": ["./src/deployments/*"]
+      "@*": ["./src/*"]
     }
   },
   "references": [{ "path": "../contracts" }],
