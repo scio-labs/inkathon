@@ -22,7 +22,10 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        <Head>{/* Import local or Google Fonts TODO */}</Head>
+        <Head>
+          {/* Favicons TODO */}
+          {/* TIP: Generate it at https://realfavicongenerator.net/ */}
+        </Head>
 
         <body>
           <Main />

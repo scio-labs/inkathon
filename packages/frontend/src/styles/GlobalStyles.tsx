@@ -1,6 +1,5 @@
 import { Global } from '@emotion/react'
 import 'nprogress/nprogress.css'
-import 'react-tippy/dist/tippy.css'
 import tw, { css, GlobalStyles as BaseStyles } from 'twin.macro'
 
 const customStyles = css`
@@ -8,13 +7,15 @@ const customStyles = css`
     scroll-behavior: smooth;
   }
   body {
-    ${tw`antialiased bg-black text-white`}
-    ${tw`min-h-screen h-screen relative`}
+    ${tw`antialiased bg-black text-white font-mono`}
+    ${tw`h-screen min-h-screen relative`}
   }
   #__next,
   #__next > div {
-    ${tw`h-full relative flex flex-col`}
+    ${tw`h-full min-h-full flex flex-col relative`}
   }
+
+  /* Progress Bar */
   #nprogress > .bar {
     ${tw`bg-white`}
   }
