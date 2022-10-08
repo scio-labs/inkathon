@@ -13,15 +13,7 @@ By [Dennis Zoma](https://twitter.com/dennis_zoma) 🧙‍♂️
 
 ## Disclaimer
 
-This is **work-in-progress** and there are open tasks:
-
-- [ ] Give better instructions on how to initialize this:
-  - [ ] Where to replace name/placeholders
-  - [ ] What & Where to setup environment variabled
-  - [ ] How to deploy (to Vercel)
-- [ ] Remove packages that are not actually used
-- [ ] Make Turborepo configuration less verbose
-- [ ] Optionally integrate Chakra
+This is **work-in-progress**, there are open tasks, and there is no full documentation available yet.
 
 ## The Stack
 
@@ -54,7 +46,7 @@ cp packages/contracts/.env.example packages/contracts/.env
 
 ## Development
 
-I reommend developing in VSCode by opening the workspace file located at `.vscode/ethathon.code-workspace` and installing recommended plugins listed in `.vscode/extensions.json`.
+I reommend developing in VSCode by opening the workspace file located at `.vscode/ethathon.code-workspace` and installing recommended plugins listed in `.vscode/extensions.json`. Especially [my very own plugin](https://marketplace.visualstudio.com/items?itemName=zoma.vscode-auto-open-workspace&ssr=false#review-details) helps in using workspace-files instead of normal folders.
 
 ```bash
 # Generate contract-types, start local hardhat node, and start frontend with turborepo
@@ -71,6 +63,6 @@ This boilerplate repository is currently deployed under [ethathon.xyz](https://e
 - Set a custom output directory `./packages/frontend/.next`
 - Set a custom install command `pnpm install --frozen-lockfile`
 - Leave the root directory as `./`
-- Initialize all the necessary environment variables (see `packages/frontend/.env.local.example`)
+- Initialize all the necessary environment variables (see `packages/frontend/.env.local.example` for documentation)
 
 ![Vercel Screenshot](packages/frontend/public/images/vercel.jpg)
