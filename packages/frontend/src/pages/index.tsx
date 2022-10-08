@@ -6,6 +6,7 @@ import type { NextPage } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import githubIcon from 'public/icons/social/github.svg'
+import vercelIcon from 'public/icons/vercel.svg'
 import toast from 'react-hot-toast'
 import tw from 'twin.macro'
 import { useSigner } from 'wagmi'
@@ -47,14 +48,18 @@ const HomePage: NextPage = () => {
     <>
       <CenterBody>
         {/* Title */}
-        <div tw="flex flex-col items-center text-center mb-14">
+        <div tw="flex flex-col items-center text-center">
           <Link href="https://github.com/ethathon/ethathon" passHref>
             <a target="_blank" tw="mb-2 opacity-50 cursor-pointer hover:opacity-100">
-              <Image src={githubIcon} width={42} height={42} alt="Github Logo" />
+              <Image src={githubIcon} priority width={42} height={42} alt="Github Logo" />
             </a>
           </Link>
           <h1 tw="text-3xl font-bold tracking-tight">ETHathon</h1>
           <p tw="text-gray-400 mt-1">Smart Contract & DApp Development Boilerplate</p>
+          <a tw="mt-4" href="https://github.com/ethathon/ethathon#deployment">
+            <Image src={vercelIcon} priority width={92} height={32} alt="Deploy with Vercel" />
+          </a>
+          <div tw="w-14 h-[2px] bg-gray-800 my-14" />
         </div>
 
         {/* Rainbowkit Connect Button */}
