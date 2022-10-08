@@ -16,13 +16,13 @@
   "settings": {
     "files.exclude": {
       "**/node_modules/": true,
-      "**/package-lock.json": true,
       "**/pnpm-lock.yaml": true,
-      "**/yarn.lock": true,
-      "**/yarn-error.log": true,
-      "**/.yarn": true,
       "**/.turbo": true,
       "**/.next": true,
+      "**/.vercel": true,
+      "**/packages/contracts/deployments": true
+    },
+    "search.exclude": {
       "**/packages/contracts/deployments": true
     },
     "search.useIgnoreFiles": true,
