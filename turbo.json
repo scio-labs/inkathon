@@ -5,18 +5,22 @@
       "dependsOn": ["^build"],
       "outputs": [".next/**", "deployments/**", "artifacts/**", "typechain-types/**"]
     },
-    "@ethathon/frontend#build": {
-      "dependsOn": ["@ethathon/contracts#build"],
-      "outputs": [".next/**", "deployments/**", "artifacts/**", "typechain-types/**"]
+    "dev": {
+      "dependsOn": ["^build"],
+      "outputs": []
     },
-    "@ethathon/frontend#dev": {
-      "dependsOn": ["@ethathon/contracts#build"],
-      "outputs": [".next/**", "deployments/**", "artifacts/**", "typechain-types/**"]
+    "start": {
+      "dependsOn": ["^build"],
+      "outputs": []
     },
     "lint": {
       "outputs": []
     },
-    "lint:fix": {}
+    "//#lint": {
+      "outputs": []
+    },
+    "lint:fix": {},
+    "//#lint:fix": {}
   },
   "globalDependencies": [
     ".env",
