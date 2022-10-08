@@ -2,6 +2,3 @@ node_modules
 out
 .next
 public
-
-# Hardhat & Typechain
-deployments/*.json

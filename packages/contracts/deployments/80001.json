@@ -1,9 +1,9 @@
 {
-  "name": "goerli",
-  "chainId": "5",
+  "name": "mumbai",
+  "chainId": "80001",
   "contracts": {
     "Lock": {
-      "address": "0x134aD00D8dc10159bbABAf19D92879c4030dBEDB",
+      "address": "0xa99b845DdfB69E54782934b1eD867ed31b751fea",
       "abi": [
         {
           "inputs": [

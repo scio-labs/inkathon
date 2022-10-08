@@ -11,10 +11,11 @@
     "baseUrl": ".",
     "composite": true
   },
-  "exclude": ["dist", "node_modules", "cache", "artifacts", "deployments"],
+  "exclude": ["dist", "node_modules", "cache", "artifacts"],
   "include": [
     "./scripts/**/*.ts",
     "./deploy/**/*.ts",
+    "./deployments/**/*.json",
     "./shared/**/*.ts",
     "./test/**/*.ts",
     "./typechain-types"
