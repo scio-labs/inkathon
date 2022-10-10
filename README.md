@@ -9,11 +9,11 @@ This is an opinionated boilerplate/starterkit/scaffold to get up and running wit
 
 By [Dennis Zoma](https://twitter.com/dennis_zoma) 🧙‍♂️
 
-![Cover Image](packages/frontend/public/images/cover.jpg)
+<img src="packages/frontend/public/images/cover.jpg" width="600" height="390" alt="Cover Image" />
 
 ## Disclaimer
 
-This is **work-in-progress**, there are open tasks, and there is no full documentation available yet.
+🚨 This project is work-in-progress, there are open tasks, and there is no full documentation available yet.
 
 ## The Stack
 
@@ -29,6 +29,14 @@ This is **work-in-progress**, there are open tasks, and there is no full documen
 - Misc:
   - Linting & Formatting: `eslint`, `prettier`
   - Actions on Git Hooks: `husky`, `lint-staged`
+
+## Projects using it
+
+Below you find a few live projects that use ETHathon, a variation of it, or have a similar setup setup that inspired it:
+
+- [Yieldgate](https://github.com/yieldgate/yieldgate) – Hackathon project that built a patreon-like platform to support projects with yield.
+- [Debate3](http://debate3.xyz/) – Hackathon project that built discourse-like forums for DAOs.
+- [Stablecoins.wtf](https://stablecoins.wtf/) (frontend only) – Crypto Stablecoin Dashboard & Resources
 
 ## Getting Started
 
@@ -73,4 +81,4 @@ Setting up a deployment via Vercel is pretty straightforward, only a few things 
 
 4. Redeploy (Press the three dots next to the latest deployment in Vercel)
 
-![Vercel Screenshot](packages/frontend/public/images/vercel.jpg)
+<img src="packages/frontend/public/images/vercel.jpg" width="600" height="558" alt="Vercel Configuration Screenshot" />
