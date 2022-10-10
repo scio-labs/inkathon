@@ -19,8 +19,7 @@
       "**/pnpm-lock.yaml": true,
       "**/.turbo": true,
       "**/.next": true,
-      "**/.vercel": true,
-      "**/packages/contracts/deployments": true
+      "**/.vercel": true
     },
     "search.exclude": {
       "**/packages/contracts/deployments": true
