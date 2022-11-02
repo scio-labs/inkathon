@@ -4,12 +4,13 @@ import tw, { css, GlobalStyles as BaseStyles } from 'twin.macro'
 
 const customStyles = css`
   html {
-    scroll-behavior: smooth;
+    ${tw`scroll-smooth antialiased`}
   }
   body {
-    ${tw`antialiased bg-black text-white font-mono`}
+    ${tw`bg-black text-white font-mono`}
     ${tw`h-screen min-h-screen relative`}
   }
+
   #__next,
   #__next > div {
     ${tw`h-full min-h-full flex flex-col relative`}
