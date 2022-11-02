@@ -49,10 +49,12 @@ const HomePage: NextPage = () => {
       <CenterBody>
         {/* Title */}
         <div tw="flex flex-col items-center text-center">
-          <Link href="https://github.com/ethathon/ethathon" passHref>
-            <a target="_blank" tw="mb-2 opacity-50 cursor-pointer hover:opacity-100">
-              <Image src={githubIcon} priority width={42} height={42} alt="Github Logo" />
-            </a>
+          <Link
+            href="https://github.com/ethathon/ethathon"
+            target="_blank"
+            tw="mb-2 opacity-50 cursor-pointer hover:opacity-100"
+          >
+            <Image src={githubIcon} priority width={42} height={42} alt="Github Logo" />
           </Link>
           <h1 tw="text-3xl font-bold tracking-tight">ETHathon</h1>
           <p tw="text-gray-400 mt-1">Smart Contract & DApp Development Boilerplate</p>
