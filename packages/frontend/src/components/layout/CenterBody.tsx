@@ -1,3 +1,3 @@
 import tw from 'twin.macro'
 
-export const CenterBody = tw.div`h-full flex flex-col justify-center items-center relative`
+export const CenterBody = tw.div`relative flex h-full flex-col items-center justify-center`

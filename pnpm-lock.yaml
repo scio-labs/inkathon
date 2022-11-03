@@ -109,6 +109,7 @@ importers:
       next-transpile-modules: ^10.0.0
       nprogress: ^0.2.0
       prettier: ^2.7.1
+      prettier-plugin-twin.macro: ^1.0.10
       react: ^18.2.0
       react-dom: ^18.2.0
       react-hot-toast: ^2.4.0
@@ -157,6 +158,7 @@ importers:
       eslint-config-prettier: 8.5.0_eslint@8.26.0
       eslint-plugin-react: 7.31.10_eslint@8.26.0
       prettier: 2.7.1
+      prettier-plugin-twin.macro: 1.0.10_nm5wsfeo4qx6r53nkafkd2jgt4
       tailwindcss: 3.2.1_postcss@8.4.18
       twin.macro: 3.0.0-rc.5_tailwindcss@3.2.1
       typescript: 4.8.4
@@ -7152,6 +7154,7 @@ packages:
       minimatch: 3.1.2
       once: 1.4.0
       path-is-absolute: 1.0.1
+    dev: true
 
   /glob/7.2.3:
     resolution: {integrity: sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==}
@@ -9285,7 +9288,7 @@ packages:
   /next-seo/5.13.0_cuttyyug54cjzme6dhlgj6veu4:
     resolution: {integrity: sha512-3n6cOjXydxXlrbMIWcU+D6TllKj72C2rg7IdgoxoKOnfC8ah3U0VUIGRApKXK0wi5ME1m+TBq9isAFFbFdbWXQ==}
     peerDependencies:
-      next: ^8.1.1-canary.54 || >=9.0.0 || ^12.0.0
+      next: ^8.1.1-canary.54 || >=9.0.0 || ^13.0.0
       react: '>=16.0.0 || ^18.0.0'
       react-dom: '>=16.0.0 || ^18.0.0'
     dependencies:
@@ -10073,6 +10076,16 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: true
 
+  /prettier-plugin-twin.macro/1.0.10_nm5wsfeo4qx6r53nkafkd2jgt4:
+    resolution: {integrity: sha512-T0YPYOGezasddOYlgLz30g1QwYO+25ZfCYmMIecNJ9Typ6LkmVWGCBAD7yiuu+O0z5kQJw/wfdakkcYVkQX7vA==}
+    peerDependencies:
+      prettier: '>=2.2.0'
+      tailwindcss: '>=3.0.24'
+    dependencies:
+      prettier: 2.7.1
+      tailwindcss: 3.2.1_postcss@8.4.18
+    dev: true
+
   /prettier/1.19.1:
     resolution: {integrity: sha512-s7PoyDv/II1ObgQunCbB9PdLmUcBZcnWOcxDh7O0N/UwDEsHyqkW+Qh28jW+mVuCdx7gLB0BotYI1Y6uI9iyew==}
     engines: {node: '>=4'}
@@ -10745,7 +10758,7 @@ packages:
     resolution: {integrity: sha512-uWjbaKIK3T1OSVptzX7Nl6PvQ3qAGtKEtVRjRuazjfL3Bx5eI409VZSqgND+4UNnmzLVdPj9FqFJNPqBZFve4w==}
     hasBin: true
     dependencies:
-      glob: 7.2.0
+      glob: 7.2.3
 
   /rimraf/3.0.2:
     resolution: {integrity: sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==}

@@ -12,5 +12,5 @@ export const deployments: DeploymentsType = env.supportedChains.reduce(
     ...acc,
     [chainId]: import(`@ethathon/contracts/deployments/${chainId}.json`),
   }),
-  {}
+  {},
 )

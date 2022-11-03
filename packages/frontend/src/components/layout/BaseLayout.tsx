@@ -4,8 +4,8 @@ import 'twin.macro'
 export const BaseLayout: FC<PropsWithChildren> = ({ children }) => {
   return (
     <>
-      <div tw="min-h-full flex flex-col relative">
-        <main tw="grow flex flex-col relative">{children}</main>
+      <div tw="relative flex min-h-full flex-col">
+        <main tw="relative flex grow flex-col">{children}</main>
       </div>
     </>
   )

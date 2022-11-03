@@ -9,7 +9,7 @@ import { env } from './environment'
  */
 
 export const defaultChain: Chain | undefined = allChains.find(
-  (chain) => env.defaultChain === chain.id
+  (chain) => env.defaultChain === chain.id,
 )
 
 export const isChainSupported = (chainId?: number): boolean => {
@@ -37,7 +37,7 @@ export const {
       },
     }),
     publicProvider(),
-  ]
+  ],
 )
 
 const { connectors } = getDefaultWallets({
