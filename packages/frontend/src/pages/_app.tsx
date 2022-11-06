@@ -6,6 +6,7 @@ import '@rainbow-me/rainbowkit/styles.css'
 import { chains, wagmiClient } from '@shared/wagmiClient'
 import GlobalStyles from '@styles/GlobalStyles'
 import type { AppProps } from 'next/app'
+import Head from 'next/head'
 import Router from 'next/router'
 import NProgress from 'nprogress'
 import { Toaster } from 'react-hot-toast'
@@ -44,6 +45,10 @@ function MyApp({ Component, pageProps }: AppProps) {
           handle: '@TODO',
         }}
       /> */}
+
+      <Head>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
 
       <CacheProvider value={cache}>
         <GlobalStyles />
