@@ -1,4 +1,5 @@
 import { BaseLayout } from '@components/layout/BaseLayout'
+import { HotToastConfig } from '@components/layout/HotToastConfig'
 import { cache } from '@emotion/css'
 import { CacheProvider } from '@emotion/react'
 import { darkTheme, RainbowKitProvider } from '@rainbow-me/rainbowkit'
@@ -9,9 +10,8 @@ import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import Router from 'next/router'
 import NProgress from 'nprogress'
-import { Toaster } from 'react-hot-toast'
 import { WagmiConfig } from 'wagmi'
-// import { DefaultSeo } from 'next-seo'
+// TODO import { DefaultSeo } from 'next-seo'
 
 // Router Loading Animation with @tanem/react-nprogress
 Router.events.on('routeChangeStart', () => NProgress.start())
@@ -61,21 +61,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           </RainbowKitProvider>
         </WagmiConfig>
 
-        <Toaster
-          toastOptions={{
-            position: 'top-center',
-            style: {
-              wordBreak: 'break-all',
-              maxWidth: '30rem',
-              background: '#1a1b1f',
-              color: 'white',
-              borderRadius: '12px',
-            },
-            success: {
-              duration: 5000,
-            },
-          }}
-        />
+        <HotToastConfig />
       </CacheProvider>
     </>
   )

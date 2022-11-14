@@ -23,8 +23,9 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          {/* Favicons TODO */}
+          {/* TODO Fonts, Manifest, and Favicons */}
           {/* TIP: Generate it at https://realfavicongenerator.net/ */}
+          {/* TIP: Generate font-face rules & subsets at https://transfonter.org/ */}
         </Head>
 
         <body>
