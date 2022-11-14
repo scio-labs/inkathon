@@ -41,7 +41,7 @@ export const {
 )
 
 const { connectors } = getDefaultWallets({
-  appName: 'Ethathon',
+  appName: 'INK!athon',
   chains,
 })
 

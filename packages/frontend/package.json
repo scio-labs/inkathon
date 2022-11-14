@@ -1,5 +1,5 @@
 {
-  "name": "@ethathon/frontend",
+  "name": "@inkathon/frontend",
   "license": "MIT",
   "version": "0.0.1",
   "babelMacros": {
@@ -21,7 +21,7 @@
     "@emotion/react": "^11.10.5",
     "@emotion/server": "^11.10.0",
     "@emotion/styled": "^11.10.5",
-    "@ethathon/contracts": "workspace:*",
+    "@inkathon/contracts": "workspace:*",
     "@rainbow-me/rainbowkit": "^0.7.4",
     "ethers": "^5.7.2",
     "next": "^13.0.3",

@@ -1,5 +1,5 @@
 import { CenterBody } from '@components/layout/CenterBody'
-import { Lock__factory } from '@ethathon/contracts/typechain-types'
+import { Lock__factory } from '@inkathon/contracts/typechain-types'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { useDeployments } from '@shared/useDeployments'
 import type { NextPage } from 'next'
@@ -50,15 +50,15 @@ const HomePage: NextPage = () => {
         {/* Title */}
         <div tw="flex flex-col items-center text-center">
           <Link
-            href="https://github.com/ethathon/ethathon"
+            href="https://github.com/scio-labs/inkathon"
             target="_blank"
             tw="mb-2 cursor-pointer opacity-50 hover:opacity-100"
           >
             <Image src={githubIcon} priority width={42} height={42} alt="Github Logo" />
           </Link>
-          <h1 tw="font-bold text-3xl tracking-tight">ETHathon</h1>
+          <h1 tw="font-bold text-3xl tracking-tight">INK!athon</h1>
           <p tw="mt-1 text-gray-400">Smart Contract & DApp Development Boilerplate</p>
-          <a tw="mt-4" href="https://github.com/ethathon/ethathon#deployment">
+          <a tw="mt-4" href="https://github.com/scio-labs/inkathon#deployment">
             <Image src={vercelIcon} priority width={92} height={32} alt="Deploy with Vercel" />
           </a>
           <div tw="my-14 w-14 bg-gray-800 h-[2px]" />

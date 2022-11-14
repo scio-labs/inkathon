@@ -33,14 +33,14 @@
       "source.organizeImports": true,
       "source.fixAll.eslint": true
     },
-    "peacock.color": "#00f5d4",
+    "peacock.color": "#8758FF",
     "workbench.colorCustomizations": {
-      "sash.hoverBorder": "#29ffe2",
-      "statusBar.background": "#00f5d4",
-      "statusBar.foreground": "#15202b",
-      "statusBarItem.hoverBackground": "#00c2a8",
-      "statusBarItem.remoteBackground": "#00f5d4",
-      "statusBarItem.remoteForeground": "#15202b"
+      "sash.hoverBorder": "#ac8bff",
+      "statusBar.background": "#8758ff",
+      "statusBar.foreground": "#e7e7e7",
+      "statusBarItem.hoverBackground": "#ac8bff",
+      "statusBarItem.remoteBackground": "#8758ff",
+      "statusBarItem.remoteForeground": "#e7e7e7"
     }
   }
 }

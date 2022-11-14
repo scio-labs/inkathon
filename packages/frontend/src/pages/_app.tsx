@@ -26,14 +26,14 @@ function MyApp({ Component, pageProps }: AppProps) {
       <DefaultSeo
         dangerouslySetAllPagesToNoFollow={!env.isProduction}
         dangerouslySetAllPagesToNoIndex={!env.isProduction}
-        defaultTitle="ETHathon" // TODO
-        titleTemplate="%s | ETHathon" // TODO
-        description="Smart Contract & DApp Development Boilerplate" // TODO
+        defaultTitle="INK!athon" // TODO
+        titleTemplate="%s | INK!athon" // TODO
+        description="Substrate-based Smart Contract & DApp Development Boilerplate" // TODO
         openGraph={{
           type: 'website',
           locale: 'en',
           url: env.url,
-          site_name: 'ETHathon', // TODO
+          site_name: 'INK!athon', // TODO
           images: [
             {
               url: `${env.url}/images/cover.jpg`, // TODO

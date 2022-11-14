@@ -10,7 +10,7 @@ export type DeploymentsType = { [_: number]: Promise<HardhatExport> }
 export const deployments: DeploymentsType = env.supportedChains.reduce(
   (acc: DeploymentsType, chainId: number) => ({
     ...acc,
-    [chainId]: import(`@ethathon/contracts/deployments/${chainId}.json`),
+    [chainId]: import(`@inkathon/contracts/deployments/${chainId}.json`),
   }),
   {},
 )
