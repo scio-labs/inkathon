@@ -2,9 +2,12 @@
   "recommendations": [
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
-    "mikestead.dotenv",
     "NomicFoundation.hardhat-solidity",
+    "bradlc.vscode-tailwindcss",
     "lightyen.tailwindcss-intellisense-twin",
-    "zoma.vscode-auto-open-workspace"
+    "zoma.vscode-auto-open-workspace",
+    "wayou.vscode-todo-highlight",
+    "gruntfuggly.todo-tree",
+    "mikestead.dotenv"
   ]
 }
