@@ -1,18 +1,15 @@
 import { BaseLayout } from '@components/layout/BaseLayout'
 import { HotToastConfig } from '@components/layout/HotToastConfig'
+import { PolkadotProvider } from '@components/web3/PolkadotProvider'
 import { cache } from '@emotion/css'
 import { CacheProvider } from '@emotion/react'
-import { darkTheme, RainbowKitProvider } from '@rainbow-me/rainbowkit'
-import '@rainbow-me/rainbowkit/styles.css'
 import { env } from '@shared/environment'
-import { chains, wagmiClient } from '@shared/wagmiClient'
 import GlobalStyles from '@styles/GlobalStyles'
 import { DefaultSeo } from 'next-seo'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import Router from 'next/router'
 import NProgress from 'nprogress'
-import { WagmiConfig } from 'wagmi'
 
 // Router Loading Animation with @tanem/react-nprogress
 Router.events.on('routeChangeStart', () => NProgress.start())
@@ -54,13 +51,11 @@ function MyApp({ Component, pageProps }: AppProps) {
       <CacheProvider value={cache}>
         <GlobalStyles />
 
-        <WagmiConfig client={wagmiClient}>
-          <RainbowKitProvider chains={chains} theme={darkTheme()} coolMode={true}>
-            <BaseLayout>
-              <Component {...pageProps} />
-            </BaseLayout>
-          </RainbowKitProvider>
-        </WagmiConfig>
+        <PolkadotProvider>
+          <BaseLayout>
+            <Component {...pageProps} />
+          </BaseLayout>
+        </PolkadotProvider>
 
         <HotToastConfig />
       </CacheProvider>

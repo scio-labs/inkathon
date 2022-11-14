@@ -37,11 +37,9 @@ By [Dennis Zoma](https://twitter.com/dennis_zoma) 🧙‍♂️ & [Scio Labs](ht
 
 - Package-Manager: `pnpm`
 - Monorepo Tooling: `turborepo`
-- Smart Contract Development: `hardhat`
-  - Deploy & Address-Export: `hardhat-deploy`
-  - Typescript-Types: `typechain`
+- Smart Contract Development: `ink!`, `cargo`
 - Frontend: `next`
-  - Contract Interactions: `wagmi`, `rainbowkit`
+  - Contract Interactions: `polkadot-js`
   - Styling: `tailwindcss`, `twin.macro`, `emotion`
 - Misc:
   - Linting & Formatting: `eslint`, `prettier`, `husky`, `lint-staged`
