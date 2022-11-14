@@ -4,14 +4,15 @@ import { cache } from '@emotion/css'
 import { CacheProvider } from '@emotion/react'
 import { darkTheme, RainbowKitProvider } from '@rainbow-me/rainbowkit'
 import '@rainbow-me/rainbowkit/styles.css'
+import { env } from '@shared/environment'
 import { chains, wagmiClient } from '@shared/wagmiClient'
 import GlobalStyles from '@styles/GlobalStyles'
+import { DefaultSeo } from 'next-seo'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import Router from 'next/router'
 import NProgress from 'nprogress'
 import { WagmiConfig } from 'wagmi'
-// TODO import { DefaultSeo } from 'next-seo'
 
 // Router Loading Animation with @tanem/react-nprogress
 Router.events.on('routeChangeStart', () => NProgress.start())
@@ -21,30 +22,30 @@ Router.events.on('routeChangeError', () => NProgress.done())
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
-      {/* SEO TODO */}
-      {/* <DefaultSeo
+      {/* TODO SEO */}
+      <DefaultSeo
         dangerouslySetAllPagesToNoFollow={!env.isProduction}
         dangerouslySetAllPagesToNoIndex={!env.isProduction}
-        defaultTitle="TODO"
-        titleTemplate="%s | TODO"
-        description="TODO"
+        defaultTitle="ETHathon" // TODO
+        titleTemplate="%s | ETHathon" // TODO
+        description="Smart Contract & DApp Development Boilerplate" // TODO
         openGraph={{
           type: 'website',
           locale: 'en',
           url: env.url,
-          site_name: 'TODO',
+          site_name: 'ETHathon', // TODO
           images: [
             {
-              url: `${env.url}/og/TODO.jpg`,
+              url: `${env.url}/images/cover.jpg`, // TODO
               width: 1200,
               height: 670,
             },
           ],
         }}
         twitter={{
-          handle: '@TODO',
+          handle: '@scio_xyz', // TODO
         }}
-      /> */}
+      />
 
       <Head>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />

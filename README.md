@@ -5,11 +5,13 @@
 ![Next.js](https://img.shields.io/badge/Next.js-gray)
 ![Tailwind](https://img.shields.io/badge/Tailwind-pink)
 
+<img src="packages/frontend/public/images/cover.jpg" width="500" height="280" alt="Cover Image" />
+
+---
+
 This is an opinionated boilerplate/starterkit/scaffold to get up and running with smart contract & dApp development. Also comes in handy for hackathons. 👀
 
 By [Dennis Zoma](https://twitter.com/dennis_zoma) 🧙‍♂️
-
-<img src="packages/frontend/public/images/cover.jpg" width="600" height="390" alt="Cover Image" />
 
 ---
 
@@ -38,11 +40,9 @@ By [Dennis Zoma](https://twitter.com/dennis_zoma) 🧙‍♂️
   - Typescript-Types: `typechain`
 - Frontend: `next`
   - Contract Interactions: `wagmi`, `rainbowkit`
-  - Styling: `tailwindcss`
-  - Styled Components: `twin.macro`, `emotion`
+  - Styling: `tailwindcss`, `twin.macro`, `emotion`
 - Misc:
-  - Linting & Formatting: `eslint`, `prettier`
-  - Actions on Git Hooks: `husky`, `lint-staged`
+  - Linting & Formatting: `eslint`, `prettier`, `husky`, `lint-staged`
 
 ## Projects using it
 
