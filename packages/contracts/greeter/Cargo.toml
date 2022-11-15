@@ -1,7 +1,7 @@
 [package]
-name = "azd_registry"
+name = "greeter"
 version = "0.0.1"
-authors = ["Azero Domains Team <hello@azero.domains>", "Parity Technologies <admin@parity.io>"]
+authors = ["Scio Labs <hello@scio.xyz>"]
 edition = "2021"
 publish = false
 
@@ -11,16 +11,12 @@ ink_metadata = { version = "3.3", default-features = false, features = ["derive"
 ink_env = { version = "3.3", default-features = false }
 ink_storage = { version = "3.3", default-features = false }
 ink_lang = { version = "3.3", default-features = false }
-ink_prelude = { version = "~3.3.0", default-features = false }
-ink_engine = { version = "~3.3.0", default-features = false, optional = true }
 
 scale = { package = "parity-scale-codec", version = "3", default-features = false, features = ["derive"] }
 scale-info = { version = "2", default-features = false, features = ["derive"], optional = true }
 
-openbrush = { version = "~2.2.0", default-features = false, features = ["psp34"] }
-
 [lib]
-name = "azd_registry"
+name = "greeter"
 path = "lib.rs"
 crate-type = ["cdylib"]
 
@@ -36,6 +32,5 @@ std = [
     "scale/std",
     "scale-info",
     "scale-info/std",
-    "openbrush/std",
 ]
 ink-as-dependency = []
