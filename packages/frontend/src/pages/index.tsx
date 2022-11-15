@@ -18,7 +18,7 @@ const HomePage: NextPage = () => {
             target="_blank"
             tw="mb-4 cursor-pointer opacity-50 hover:opacity-100"
           >
-            <Image src={githubIcon} priority width={42} height={42} alt="Github Logo" />
+            <Image src={githubIcon} priority width={42} alt="Github Logo" />
           </Link>
           <h1 tw="font-black text-3xl tracking-tight">INK!athon</h1>
           <p tw="mt-1 text-gray-400">

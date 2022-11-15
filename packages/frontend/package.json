@@ -42,6 +42,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.0",
+    "react-icons": "^4.6.0",
     "sharp": "^0.31.2",
     "spinners-react": "^1.0.7",
     "use-async-effect": "^2.2.7"
