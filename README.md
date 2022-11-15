@@ -92,11 +92,15 @@ cd packages/contracts
 # Build Contracts
 pnpm build
 
-# Start local Substrate node (in a different Terminal)
-pnpm node
-
 # Test Contracts
 pnpm test
+
+# Start local Substrate node (https://github.com/paritytech/substrate-contracts-node)
+pnpm node
+
+# Start local node, open contracts-ui, and polkadot.js-explorer
+# NOTE: When using Brave, shields have to be taken down for the UIs
+pnpm dev
 ```
 
 ### VSCode Setup
