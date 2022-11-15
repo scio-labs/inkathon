@@ -16,11 +16,20 @@ const HomePage: NextPage = () => {
           <Link
             href="https://github.com/scio-labs/inkathon"
             target="_blank"
-            tw="mb-4 cursor-pointer opacity-50 hover:opacity-100"
+            className="group"
+            tw="flex cursor-pointer flex-col items-center"
           >
-            <Image src={githubIcon} priority width={42} alt="Github Logo" />
+            <Image
+              src={githubIcon}
+              priority
+              width={42}
+              alt="Github Logo"
+              tw="opacity-50 group-hover:opacity-100"
+            />
+            <h1 tw="mt-4 font-black text-3xl tracking-tight underline-offset-4 group-hover:underline">
+              INK!athon
+            </h1>
           </Link>
-          <h1 tw="font-black text-3xl tracking-tight">INK!athon</h1>
           <p tw="mt-1 text-gray-400">
             Substrate-based Smart Contract & DApp Development Boilerplate
           </p>
