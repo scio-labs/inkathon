@@ -40,7 +40,7 @@ By [Dennis Zoma](https://twitter.com/dennis_zoma) 🧙‍♂️ & [Scio Labs](ht
 - Smart Contract Development: `ink!`, `cargo`
 - Frontend: `next`
   - Contract Interactions: `polkadot-js`
-  - Styling: `tailwindcss`, `twin.macro`, `emotion`
+  - Styling: `chakra`, `tailwindcss`, `twin.macro`, `emotion`
 - Misc:
   - Linting & Formatting: `eslint`, `prettier`, `husky`, `lint-staged`
 

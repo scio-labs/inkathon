@@ -1,3 +1,4 @@
+import { ChakraProvider, DarkMode } from '@chakra-ui/react'
 import { BaseLayout } from '@components/layout/BaseLayout'
 import { HotToastConfig } from '@components/layout/HotToastConfig'
 import { PolkadotProvider } from '@components/web3/PolkadotProvider'
@@ -49,15 +50,19 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
 
       <CacheProvider value={cache}>
-        <GlobalStyles />
+        <ChakraProvider>
+          <DarkMode>
+            <GlobalStyles />
 
-        <PolkadotProvider>
-          <BaseLayout>
-            <Component {...pageProps} />
-          </BaseLayout>
-        </PolkadotProvider>
+            <PolkadotProvider>
+              <BaseLayout>
+                <Component {...pageProps} />
+              </BaseLayout>
+            </PolkadotProvider>
 
-        <HotToastConfig />
+            <HotToastConfig />
+          </DarkMode>
+        </ChakraProvider>
       </CacheProvider>
     </>
   )
