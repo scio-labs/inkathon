@@ -52,23 +52,33 @@ Below you find a few projects that use this boilerplate, a variation of it, or h
 
 ## Getting Started
 
+### Frontend
+
 ```bash
 # 1. Install pnpm (https://pnpm.io/installation)
 npm i -g pnpm
 
-# 2. Install frontend dependencies
+# 2. Install dependencies
 pnpm install
 
-# 3. Install Rust & Cargo: https://docs.substrate.io/install/
-# NOTE: Leave out the "Compile a Substrate node" part
-
-# 4. Optional: Install local substrate-contracts-node (https://github.com/paritytech/substrate-contracts-node)
-cargo install contracts-node --git https://github.com/paritytech/substrate-contracts-node.git
-
-# 5. Copy & fill environments
-# NOTE: Documentation of environment variables can be found in the according `.example` files
+# 3. Copy & fill environments
+# NOTE: Documentation of environment variables can be found in the according `.example` file
 cp packages/frontend/.env.local.example packages/frontend/.env.local
-cp packages/contracts/.env.example packages/contracts/.env
+```
+
+### Contracts
+
+```bash
+# 1. Install Rust & Cargo: https://docs.substrate.io/install/
+# NOTE: Leave out the "Compile a Substrate node" part for now
+
+# 2. Install ink! CLI tooling (https://use.ink/getting-started/setup#ink-cli)
+cargo install cargo-dylint dylint-link
+cargo install cargo-contract --force --locked
+
+# 3. Optional: Install local substrate-contracts-node (https://github.com/paritytech/substrate-contracts-node)
+# NOTE: Fixed to latest release tag working with contracts-ui & cargo-contracts (v0.21.0)
+cargo install contracts-node --git https://github.com/paritytech/substrate-contracts-node.git --tag v0.21.0
 ```
 
 ## Development
@@ -92,15 +102,15 @@ cd packages/contracts
 # Build Contracts
 pnpm build
 
-# Test Contracts
-pnpm test
-
 # Start local Substrate node (https://github.com/paritytech/substrate-contracts-node)
 pnpm node
 
 # Start local node, open contracts-ui, and polkadot.js-explorer
 # NOTE: When using Brave, shields have to be taken down for the UIs
 pnpm dev
+
+# Test Contracts
+pnpm test
 ```
 
 ### VSCode Setup
