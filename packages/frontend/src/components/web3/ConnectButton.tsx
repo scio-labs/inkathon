@@ -23,7 +23,14 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
   // Connect Button
   if (!account || !accounts?.length)
     return (
-      <Button onClick={connect} isLoading={isLoading} size="lg" py={7}>
+      <Button
+        onClick={connect}
+        isLoading={isLoading}
+        size="lg"
+        py={7}
+        colorScheme="purple"
+        rounded="3xl"
+      >
         Connect Wallet
       </Button>
     )
@@ -31,11 +38,18 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
   // Account Menu & Disconnect Button
   return (
     <Menu>
-      <MenuButton as={Button} rightIcon={<BsChevronDown />} hidden={false} py={7}>
+      <MenuButton
+        as={Button}
+        rightIcon={<BsChevronDown />}
+        hidden={false}
+        py={7}
+        pl={5}
+        rounded="3xl"
+      >
         <VStack spacing={1} mr={1}>
           <Text>{account.meta?.name}</Text>
           <Text fontSize="xs" fontWeight="normal" opacity={0.75}>
-            {truncateHash(account.address, 10)}
+            {truncateHash(account.address, 8)}
           </Text>
         </VStack>
       </MenuButton>

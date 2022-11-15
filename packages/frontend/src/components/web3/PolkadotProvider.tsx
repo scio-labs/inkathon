@@ -28,11 +28,14 @@ export const usePolkadotProviderContext = () => {
   return useContext(PolkadotProviderContext)
 }
 
-export const PolkadotProvider: FC<PropsWithChildren> = ({ children }) => {
+export interface PolkadotProviderProps extends PropsWithChildren {
+  connectOnLoad?: boolean
+}
+export const PolkadotProvider: FC<PolkadotProviderProps> = ({ children, connectOnLoad }) => {
   const [api, setApi] = useState<any>()
   const [accounts, setAccounts] = useState<InjectedAccountWithMeta[]>([])
   const [account, setAccount] = useState<InjectedAccountWithMeta>()
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState<boolean>()
 
   const connect = async () => {
     setIsLoading(true)
@@ -65,7 +68,7 @@ export const PolkadotProvider: FC<PropsWithChildren> = ({ children }) => {
   }
 
   useEffect(() => {
-    connect()
+    if (connectOnLoad) connect()
   }, [])
 
   return (
