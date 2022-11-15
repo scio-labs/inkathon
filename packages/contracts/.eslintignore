@@ -1,9 +1,0 @@
-node_modules
-cache
-contracts
-artifacts
-deployments
-typechain-types
-coverage
-coverage.json
-dist

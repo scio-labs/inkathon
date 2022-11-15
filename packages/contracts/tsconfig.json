@@ -11,14 +11,7 @@
     "baseUrl": ".",
     "composite": true
   },
-  "exclude": ["dist", "node_modules", "cache", "artifacts"],
   "include": [
-    "./scripts/**/*.ts",
-    "./deploy/**/*.ts",
-    "./deployments/**/*.json",
-    "./shared/**/*.ts",
-    "./test/**/*.ts",
-    "./typechain-types"
-  ],
-  "files": ["./hardhat.config.ts"]
+    "./**/target/*.json",
+  ]
 }

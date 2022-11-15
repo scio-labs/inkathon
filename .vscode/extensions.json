@@ -7,6 +7,8 @@
     "lightyen.tailwindcss-intellisense-twin",
     "zoma.vscode-auto-open-workspace",
     "wayou.vscode-todo-highlight",
+    "bungcip.better-toml",
+    "rust-lang.rust-analyzer",
     "gruntfuggly.todo-tree",
     "mikestead.dotenv"
   ]
