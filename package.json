@@ -7,11 +7,11 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "turbo run dev --filter=frontend",
-    "build": "turbo run build --filter=frontend",
-    "start": "turbo run start --filter=frontend",
-    "lint": "turbo run lint --filter=frontend",
-    "lint:fix": "turbo run lint:fix --filter=frontend",
+    "dev": "turbo run dev --filter=...^contracts",
+    "build": "turbo run build --filter=...^contracts",
+    "start": "turbo run start --filter=...^contracts",
+    "lint": "turbo run lint --filter=...^contracts",
+    "lint:fix": "turbo run lint:fix --filter=...^contracts",
     "prepare": "husky install"
   },
   "pnpm": {
@@ -19,9 +19,7 @@
       "allowedVersions": {
         "react": "^18.0.0",
         "react-dom": "^18.0.0",
-        "next": "^13.0.0",
-        "@nomiclabs/hardhat-ethers": "0.3.0-beta.13",
-        "ethers": "^5.0.0"
+        "next": "^13.0.0"
       }
     }
   },
