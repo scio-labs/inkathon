@@ -7,11 +7,11 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "turbo run dev --filter=...^contracts",
-    "build": "turbo run build --filter=...^contracts",
-    "start": "turbo run start --filter=...^contracts",
-    "lint": "turbo run lint --filter=...^contracts",
-    "lint:fix": "turbo run lint:fix --filter=...^contracts",
+    "dev": "turbo run dev --filter=frontend",
+    "build": "turbo run build --filter=frontend",
+    "start": "turbo run start --filter=frontend",
+    "lint": "turbo run lint --filter=frontend",
+    "lint:fix": "turbo run lint:fix --filter=frontend",
     "prepare": "husky install"
   },
   "pnpm": {

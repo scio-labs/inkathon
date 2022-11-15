@@ -1,19 +1,23 @@
 {
-  "$schema": "https://turborepo.org/schema.json",
+  "$schema": "https://turbo.build/schema.json",
   "pipeline": {
     "build": {
-      "dependsOn": ["^build"],
       "outputs": [".next/**"]
     },
     "start": {
-      "dependsOn": ["build"]
+      "dependsOn": ["build"],
+      "outputs": []
     },
     "dev": {
       "cache": false
     },
-    "lint": {},
+    "lint": {
+      "outputs": []
+    },
     "//#lint": {},
-    "lint:fix": {},
+    "lint:fix": {
+      "outputs": []
+    },
     "//#lint:fix": {}
   },
   "globalDependencies": [".env", ".env.local", "tsconfig.json", ".eslintrc.json", ".prettierrc.js"],
