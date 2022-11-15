@@ -22,21 +22,22 @@ By [Dennis Zoma](https://twitter.com/dennis_zoma) 🧙‍♂️ & [Scio Labs](ht
 1. [The Stack](#the-stack)
 2. [Projects using it](#projects-using-it)
 3. [Getting Started](#getting-started)
+   1. [Frontend](#frontend)
+   2. [Contracts](#contracts)
 4. [Development](#development)
-   1. [Quickstart](#quickstart)
-   2. [VSCode Setup](#vscode-setup)
+   1. [Frontend Quickstart](#frontend-quickstart)
+   2. [Contracts Quickstart](#contracts-quickstart)
+   3. [VSCode Setup](#vscode-setup)
 5. [Deployment](#deployment)
 6. [FAQs & Troubleshooting](#faqs--troubleshooting)
    1. [What is Pnpm and do I really need it?](#what-is-pnpm-and-do-i-really-need-it)
-   2. [What is Turborepo and do I really need it?](#what-is-turborepo-and-do-i-really-need-it)
-   3. [What is twin.macro? How can I just use plain TailwindCSS?](#what-is-twinmacro-how-can-i-just-use-plain-tailwindcss)
+   2. [What is twin.macro? How can I just use plain TailwindCSS?](#what-is-twinmacro-how-can-i-just-use-plain-tailwindcss)
 
 ---
 
 ## The Stack
 
 - Package-Manager: `pnpm`
-- Monorepo Tooling: `turborepo`
 - Smart Contract Development: `ink!`, `cargo`
 - Frontend: `next`
   - Contract Interactions: `polkadot-js`
@@ -157,10 +158,6 @@ Setting up a deployment via Vercel is pretty straightforward, only a few things 
 ### What is Pnpm and do I really need it?
 
 [Pnpm](https://pnpm.io/) works in my experience way faster and more reliable within monorepos than npm or yarn. When using it though, it's strongly recommended everyone in the team uses it. No installs should perform be performed nor any other lockfiles should be commited.
-
-### What is Turborepo and do I really need it?
-
-[Turborepo](https://turbo.build/repo) can drastically speed up your incremental builds in monorepos. But you don't have to use it. This is an example on how to rewrite the `build` task in the root `package.json` w/o Turborepo: `turbo run build` → `pnpm --filter contracts build && pnpm --filter frontend build`.
 
 ### What is twin.macro? How can I just use plain TailwindCSS?
 
