@@ -1,3 +1,4 @@
+import { HomeTopBar } from '@components/home/HomeTopBar'
 import { CenterBody } from '@components/layout/CenterBody'
 import { ConnectButton } from '@components/web3/ConnectButton'
 import type { NextPage } from 'next'
@@ -10,6 +11,12 @@ import 'twin.macro'
 const HomePage: NextPage = () => {
   return (
     <>
+      {/* Top Bar */}
+      <HomeTopBar href="https://ethathon.xyz">
+        <div tw="font-bold">ETHathon</div>
+        <div tw="hidden sm:inline"> – EVM-based DApp Boilerplate</div>
+      </HomeTopBar>
+
       <CenterBody>
         {/* Title */}
         <div tw="flex flex-col items-center text-center font-mono">
