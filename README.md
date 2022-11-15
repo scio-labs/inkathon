@@ -30,8 +30,6 @@ By [Dennis Zoma](https://twitter.com/dennis_zoma) 🧙‍♂️ & [Scio Labs](ht
    3. [VSCode Setup](#vscode-setup)
 5. [Deployment](#deployment)
 6. [FAQs & Troubleshooting](#faqs--troubleshooting)
-   1. [What is Pnpm and do I really need it?](#what-is-pnpm-and-do-i-really-need-it)
-   2. [What is twin.macro? How can I just use plain TailwindCSS?](#what-is-twinmacro-how-can-i-just-use-plain-tailwindcss)
 
 ---
 
@@ -155,10 +153,29 @@ Setting up a deployment via Vercel is pretty straightforward, only a few things 
 
 ## FAQs & Troubleshooting
 
-### What is Pnpm and do I really need it?
+<details>
+<summary><strong>What is pnpm and do I really need it?</strong></summary>
 
 [Pnpm](https://pnpm.io/) works in my experience way faster and more reliable within monorepos than npm or yarn. When using it though, it's strongly recommended everyone in the team uses it. No installs should perform be performed nor any other lockfiles should be commited.
 
-### What is twin.macro? How can I just use plain TailwindCSS?
+</details>
 
-[twin.macro](https://github.com/ben-rogerson/twin.macro) blends Styled Components with TailwindCSS. I really learned to appreciate it, but can understand that it's not everyones taste. It can be easily switched out with plain TailwindCSS, a detailed guide on that is coming very soon. In the meantime, open an issue to get guidance.
+<details>
+<summary><strong>How to approach styling?</strong></summary>
+
+This boilerplate currently offers styling via the following options.
+
+- [Chakra UI](https://chakra-ui.com/) – Component library for quick prototyping e.g. during hackathons)
+- [twin.macro](https://github.com/ben-rogerson/twin.macro) – [Tailwindcss](https://tailwindcss.com/) within Styled Components via [Emotion](https://emotion.sh/docs/styled) (see [snippets](#snippets))
+- Standard (S)CSS styles via `className` and `*.module.(s)css` files.
+
+Important, in production it's recommended to use at most one of 1. and 2. to reduce bundle size.
+
+</details>
+
+<details>
+<summary><strong>Can I just use plain TailwindCSS?</strong></summary>
+
+The packages above can be easily switched out with plain TailwindCSS, a detailed guide on that is coming very soon. In the meantime, open an issue to get guidance.
+
+</details>
