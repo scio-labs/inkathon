@@ -53,16 +53,19 @@ Below you find a few projects that use this boilerplate, a variation of it, or h
 ## Getting Started
 
 ```bash
-# Install pnpm (https://pnpm.io/installation)
+# 1. Install pnpm (https://pnpm.io/installation)
 npm i -g pnpm
 
-# Install Rust & Cargo (https://doc.rust-lang.org/cargo/getting-started/installation.html)
-curl https://sh.rustup.rs -sSf | sh
-
-# Install dependencies
+# 2. Install frontend dependencies
 pnpm install
 
-# Copy & fill environments
+# 3. Install Rust & Cargo: https://docs.substrate.io/install/
+# NOTE: Leave out the "Compile a Substrate node" part
+
+# 4. Optional: Install local substrate-contracts-node (https://github.com/paritytech/substrate-contracts-node)
+cargo install contracts-node --git https://github.com/paritytech/substrate-contracts-node.git
+
+# 5. Copy & fill environments
 # NOTE: Documentation of environment variables can be found in the according `.example` files
 cp packages/frontend/.env.local.example packages/frontend/.env.local
 cp packages/contracts/.env.example packages/contracts/.env
@@ -70,15 +73,30 @@ cp packages/contracts/.env.example packages/contracts/.env
 
 ## Development
 
-### Quickstart
+### Frontend Quickstart
 
 ```bash
-# Generate contract-types, start local hardhat node, and start frontend with turborepo
-pnpm dev
+# NOTE: Can be executed in both, the root-dir or in `packages/frontend/`
 
-# Only start frontend (from root-dir)
-# NOTE: Alternatively it can just be started via `pnpm dev` inside `packages/frontend`
-pnpm frontend:dev
+# Start Frontend (Next.js)
+pnpm dev
+```
+
+### Contracts Quickstart
+
+```bash
+# NOTE: Can only be executed in `packages/contracts`
+# NOTE²: I created shorthand npm-scripts. The full commands can be found in `package.json`.
+cd packages/contracts
+
+# Build Contracts
+pnpm build
+
+# Start local Substrate node (in a different Terminal)
+pnpm node
+
+# Test Contracts
+pnpm test
 ```
 
 ### VSCode Setup

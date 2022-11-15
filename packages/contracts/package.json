@@ -4,6 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "build": "cargo +nightly contract build --manifest-path ${CONTRACT:azd_registry}/Cargo.toml",
-    "test": "cargo +nightly contract test --manifest-path ${CONTRACT:azd_registry}/Cargo.toml"
+    "test": "cargo +nightly contract test --manifest-path ${CONTRACT:azd_registry}/Cargo.toml",
+    "node": "substrate-contracts-node"
   }
 }
