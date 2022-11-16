@@ -8,8 +8,12 @@ export const ChainInfo: FC = () => {
   const [chainInfo, setChainInfo] = useState<{ [_: string]: any }>()
 
   // Fetch Chain Info
-  const fetchBalance = async () => {
-    if (!api || !account?.address) return
+  const fetchChainInfo = async () => {
+    if (!api) {
+      setChainInfo(undefined)
+      return
+    }
+
     const chain = (await api.rpc.system.chain())?.toString() || ''
     const version = (await api.rpc.system.version())?.toString() || ''
     const properties = ((await api.rpc.system.properties())?.toHuman() as any) || {}
@@ -17,13 +21,13 @@ export const ChainInfo: FC = () => {
     const tokenDecimals = properties?.tokenDecimals?.[0] || 12
     const chainInfo = {
       Chain: chain,
-      Token: `$${tokenSymbol} (${tokenDecimals} Decimals)`,
+      Token: `${tokenSymbol} (${tokenDecimals} Decimals)`,
       Version: version,
     }
     setChainInfo(chainInfo)
   }
   useEffect(() => {
-    fetchBalance()
+    fetchChainInfo()
   }, [api])
 
   if (!api || !Object.keys(chainInfo || {}).length) return null

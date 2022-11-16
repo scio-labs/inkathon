@@ -1,5 +1,6 @@
 import {
   Button,
+  HStack,
   Menu,
   MenuButton,
   MenuDivider,
@@ -8,8 +9,9 @@ import {
   Text,
   VStack,
 } from '@chakra-ui/react'
+import { formatBalance } from '@polkadot/util'
 import { truncateHash } from '@shared/truncateHash'
-import { FC } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { AiOutlineDisconnect } from 'react-icons/ai'
 import { BsChevronDown } from 'react-icons/bs'
 import 'twin.macro'
@@ -17,8 +19,31 @@ import { usePolkadotProviderContext } from './PolkadotProvider'
 
 export interface ConnectButtonProps {}
 export const ConnectButton: FC<ConnectButtonProps> = () => {
-  const { connect, disconnect, isLoading, account, accounts, setAccount } =
+  const { api, connect, disconnect, isLoading, account, accounts, setAccount } =
     usePolkadotProviderContext()
+
+  // Fetch & update Account Balance
+  const [balanceFormatted, setBalanceFormatted] = useState<string>()
+  const fetchBalance = async () => {
+    if (!api || !account?.address) {
+      setBalanceFormatted(undefined)
+      return
+    }
+
+    const properties = ((await api.rpc.system.properties())?.toHuman() as any) || {}
+    const tokenSymbol = properties?.tokenSymbol?.[0] || 'UNIT'
+    const result: any = await api.query.system.account(account.address)
+    const fullBalance = result?.data?.reserved?.add(result?.data?.free) || 0
+    const balance = formatBalance(fullBalance, {
+      decimals: 12,
+      forceUnit: '-',
+      withUnit: false,
+    }).split('.')[0]
+    setBalanceFormatted(`${balance} ${tokenSymbol}`)
+  }
+  useEffect(() => {
+    fetchBalance()
+  }, [api, account])
 
   // Connect Button
   if (!account)
@@ -37,56 +62,52 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
 
   // Account Menu & Disconnect Button
   return (
-    <Menu>
-      <MenuButton
-        as={Button}
-        rightIcon={<BsChevronDown />}
-        hidden={false}
-        py={7}
-        pl={5}
-        rounded="3xl"
-      >
-        <VStack spacing={0.5} mr={0.5}>
-          <Text>{account.meta?.name}</Text>
-          <Text fontSize="xs" fontWeight="normal" opacity={0.75}>
-            {truncateHash(account.address, 8)}
-          </Text>
-        </VStack>
-      </MenuButton>
-      <MenuList>
-        <MenuItem onClick={disconnect} icon={<AiOutlineDisconnect />}>
-          Disconnect
-        </MenuItem>
-        <MenuDivider />
-        {(accounts || []).map((acc) => (
-          <MenuItem
-            key={acc.address}
-            isDisabled={acc.address === account.address}
-            onClick={() => {
-              setAccount?.(acc)
-            }}
+    <>
+      <Menu>
+        <HStack>
+          {balanceFormatted !== undefined && (
+            <Button py={7} pl={5} rounded="3xl" pointerEvents={'none'}>
+              {balanceFormatted}
+            </Button>
+          )}
+          <MenuButton
+            as={Button}
+            rightIcon={<BsChevronDown />}
+            hidden={false}
+            py={7}
+            pl={5}
+            rounded="3xl"
           >
-            <VStack align="start" spacing={0}>
-              <Text>{acc.meta?.name}</Text>
-              <Text fontSize="xs">{truncateHash(acc.address, 10)}</Text>
+            <VStack spacing={0.5} mr={0.5}>
+              <Text>{account.meta?.name}</Text>
+              <Text fontSize="xs" fontWeight="normal" opacity={0.75}>
+                {truncateHash(account.address, 8)}
+              </Text>
             </VStack>
+          </MenuButton>
+        </HStack>
+
+        <MenuList>
+          <MenuItem onClick={disconnect} icon={<AiOutlineDisconnect />}>
+            Disconnect
           </MenuItem>
-        ))}
-      </MenuList>
-    </Menu>
+          <MenuDivider />
+          {(accounts || []).map((acc) => (
+            <MenuItem
+              key={acc.address}
+              isDisabled={acc.address === account.address}
+              onClick={() => {
+                setAccount?.(acc)
+              }}
+            >
+              <VStack align="start" spacing={0}>
+                <Text>{acc.meta?.name}</Text>
+                <Text fontSize="xs">{truncateHash(acc.address, 10)}</Text>
+              </VStack>
+            </MenuItem>
+          ))}
+        </MenuList>
+      </Menu>
+    </>
   )
-  // return (
-  //   <>
-  //     <Button onClick={account ? disconnect : connect} isLoading={isLoading} size="lg">
-  //       {!!account ? (
-  //         <div tw="flex flex-col space-y-0.5">
-  //           <div tw="text-sm">{account.meta?.name}</div>
-  //           <div tw="font-normal text-xs opacity-75">{truncateHash(account.address, 42)}</div>
-  //         </div>
-  //       ) : (
-  //         <>Connect Wallet</>
-  //       )}
-  //     </Button>
-  //   </>
-  // )
 }
