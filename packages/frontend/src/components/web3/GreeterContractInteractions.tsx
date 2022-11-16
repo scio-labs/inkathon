@@ -78,6 +78,28 @@ export const GreeterContractInteractions: FC = () => {
     }
   }
 
+  // Fetch & update Account Balance
+
+  const fetchBalance = async () => {
+    if (!api || !account?.address) return
+    const chainMetadata = await Promise.all([
+      api.rpc.system.chain(),
+      api.rpc.system.name(),
+      api.rpc.system.version(),
+      api.rpc.system.localPeerId(),
+      api.rpc.system.properties(),
+    ])
+    console.log(chainMetadata)
+
+    const result: any = await api.query.system.account(account.address)
+    const balance = result?.data?.free
+
+    console.log('a', a)
+  }
+  useEffect(() => {
+    fetchBalance()
+  }, [api, account])
+
   // RPC Connection Message
   if (!api)
     return (
