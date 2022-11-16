@@ -21,7 +21,7 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
     usePolkadotProviderContext()
 
   // Connect Button
-  if (!account || !accounts?.length)
+  if (!account)
     return (
       <Button
         onClick={connect}
@@ -46,7 +46,7 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
         pl={5}
         rounded="3xl"
       >
-        <VStack spacing={1} mr={1}>
+        <VStack spacing={0.5} mr={0.5}>
           <Text>{account.meta?.name}</Text>
           <Text fontSize="xs" fontWeight="normal" opacity={0.75}>
             {truncateHash(account.address, 8)}
@@ -58,7 +58,7 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
           Disconnect
         </MenuItem>
         <MenuDivider />
-        {accounts.map((acc) => (
+        {(accounts || []).map((acc) => (
           <MenuItem
             key={acc.address}
             isDisabled={acc.address === account.address}

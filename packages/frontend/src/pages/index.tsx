@@ -1,6 +1,7 @@
 import { HomeTopBar } from '@components/home/HomeTopBar'
 import { CenterBody } from '@components/layout/CenterBody'
 import { ConnectButton } from '@components/web3/ConnectButton'
+import { GreeterContractInteractions } from '@components/web3/GreeterContractInteractions'
 import type { NextPage } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -17,7 +18,7 @@ const HomePage: NextPage = () => {
         <div tw="hidden sm:inline"> – EVM-based DApp Boilerplate</div>
       </HomeTopBar>
 
-      <CenterBody>
+      <CenterBody tw="my-12">
         {/* Title */}
         <div tw="flex flex-col items-center text-center font-mono">
           <Link
@@ -46,8 +47,11 @@ const HomePage: NextPage = () => {
           <div tw="my-14 w-14 bg-gray-800 h-[2px]" />
         </div>
 
-        {/* Web3 Connect Button */}
+        {/* Connect Wallet Button */}
         <ConnectButton />
+
+        {/* Greeter Contract Interactions */}
+        <GreeterContractInteractions />
       </CenterBody>
     </>
   )

@@ -7,6 +7,7 @@ export const HotToastConfig: FC = () => {
       toastOptions={{
         position: 'top-center',
         style: {
+          marginTop: '2rem',
           wordBreak: 'break-all',
           maxWidth: '30rem',
           background: '#1a1b1f',

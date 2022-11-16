@@ -19,19 +19,29 @@ By [Dennis Zoma](https://twitter.com/dennis_zoma) 🧙‍♂️ & [Scio Labs](ht
 
 **Table of Contents:**
 
-1. [The Stack](#the-stack)
-2. [Projects using it](#projects-using-it)
-3. [Getting Started](#getting-started)
+1. [Disclaimer](#disclaimer)
+2. [The Stack](#the-stack)
+3. [Projects using it](#projects-using-it)
+4. [Getting Started](#getting-started)
    1. [Frontend](#frontend)
    2. [Contracts](#contracts)
-4. [Development](#development)
+5. [Development](#development)
    1. [Frontend Quickstart](#frontend-quickstart)
    2. [Contracts Quickstart](#contracts-quickstart)
    3. [VSCode Setup](#vscode-setup)
-5. [Deployment](#deployment)
-6. [FAQs & Troubleshooting](#faqs--troubleshooting)
+6. [Deployment](#deployment)
+7. [FAQs & Troubleshooting](#faqs--troubleshooting)
 
 ---
+
+## Disclaimer
+
+This repository is still work-in-progress. There are many more things to do:
+
+- [] Type-safe contract interactions via `@polkadot/typegen`
+- [] Multiple deployments per chain-id
+- [] Show users balance
+- [] Show connected chain and testnet-faucet
 
 ## The Stack
 

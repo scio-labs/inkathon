@@ -54,7 +54,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           <DarkMode>
             <GlobalStyles />
 
-            <PolkadotProvider>
+            <PolkadotProvider connectOnInit={true}>
               <BaseLayout>
                 <Component {...pageProps} />
               </BaseLayout>
