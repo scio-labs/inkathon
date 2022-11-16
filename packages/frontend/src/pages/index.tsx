@@ -1,7 +1,11 @@
+import { Spinner } from '@chakra-ui/react'
 import { HomeTopBar } from '@components/home/HomeTopBar'
 import { CenterBody } from '@components/layout/CenterBody'
+import { ChainInfo } from '@components/web3/ChainInfo'
 import { ConnectButton } from '@components/web3/ConnectButton'
 import { GreeterContractInteractions } from '@components/web3/GreeterContractInteractions'
+import { usePolkadotProviderContext } from '@components/web3/PolkadotProvider'
+import { env } from '@shared/environment'
 import type { NextPage } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -10,6 +14,8 @@ import vercelIcon from 'public/icons/vercel.svg'
 import 'twin.macro'
 
 const HomePage: NextPage = () => {
+  const { api } = usePolkadotProviderContext()
+
   return (
     <>
       {/* Top Bar */}
@@ -50,8 +56,17 @@ const HomePage: NextPage = () => {
         {/* Connect Wallet Button */}
         <ConnectButton />
 
-        {/* Greeter Contract Interactions */}
-        <GreeterContractInteractions />
+        {!!api ? (
+          <>
+            <ChainInfo />
+            <GreeterContractInteractions />
+          </>
+        ) : (
+          <div tw="mt-8 mb-4 flex items-center space-x-3 text-gray-400">
+            <Spinner size="sm" />
+            <div tw="font-mono">Connecting to RPC ({env.rpcEndpoint})</div>
+          </div>
+        )}
       </CenterBody>
     </>
   )

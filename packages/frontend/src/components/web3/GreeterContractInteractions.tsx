@@ -1,7 +1,6 @@
-import { Button, Card, FormControl, FormLabel, Input, Spinner, Stack, Wrap } from '@chakra-ui/react'
+import { Button, Card, FormControl, FormLabel, Input, Stack, Wrap } from '@chakra-ui/react'
 import { deployments } from '@deployments/deployments'
 import { ContractPromise } from '@polkadot/api-contract'
-import { env } from '@shared/environment'
 import { FC, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
@@ -78,40 +77,11 @@ export const GreeterContractInteractions: FC = () => {
     }
   }
 
-  // Fetch & update Account Balance
-
-  const fetchBalance = async () => {
-    if (!api || !account?.address) return
-    const chainMetadata = await Promise.all([
-      api.rpc.system.chain(),
-      api.rpc.system.name(),
-      api.rpc.system.version(),
-      api.rpc.system.localPeerId(),
-      api.rpc.system.properties(),
-    ])
-    console.log(chainMetadata)
-
-    const result: any = await api.query.system.account(account.address)
-    const balance = result?.data?.free
-
-    console.log('a', a)
-  }
-  useEffect(() => {
-    fetchBalance()
-  }, [api, account])
-
-  // RPC Connection Message
-  if (!api)
-    return (
-      <div tw="mt-8 mb-4 flex items-center space-x-3 text-gray-400">
-        <Spinner size="sm" />
-        <div tw="font-mono">Connecting to RPC ({env.rpcEndpoint})</div>
-      </div>
-    )
+  if (!api) return null
 
   return (
     <>
-      <div tw="mt-8 mb-4 font-mono text-gray-400">Greeter Smart Contract</div>
+      <h2 tw="mt-10 mb-4 font-mono text-gray-400">Greeter Smart Contract</h2>
       <Wrap>
         <Card variant="outline" p={4}>
           <FormControl>
