@@ -34,14 +34,9 @@ By [Dennis Zoma](https://twitter.com/dennis_zoma) 🧙‍♂️ & [Scio Labs](ht
 
 ---
 
-## Disclaimer
+## Disclaimer 🚨
 
-This repository is still work-in-progress. There are many more things to do:
-
-- [] Type-safe contract interactions via `@polkadot/typegen`
-- [] Multiple deployments per chain-id
-- [] Show users balance
-- [] Show connected chain and testnet-faucet
+This repository is still work-in-progress and there are many things that need to be improved.
 
 ## The Stack
 
