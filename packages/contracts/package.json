@@ -5,9 +5,9 @@
   "scripts": {
     "build": "cargo +nightly contract build --manifest-path ${CONTRACT:-greeter}/Cargo.toml",
     "test": "cargo +nightly contract test --manifest-path ${CONTRACT:-greeter}/Cargo.toml",
-    "node": "substrate-contracts-node --dev --port 9944",
+    "node": "substrate-contracts-node --dev --port 9944 --base-path ./.node-data",
     "contracts-ui": "open https://contracts-ui.substrate.io/?rpc=ws://127.0.0.1:9944",
     "explorer-ui": "open https://polkadot.js.org/apps/#/explorer?rpc=ws://127.0.0.1:9944",
-    "dev": "pnpm contracts-ui && pnpm explorer-ui && pnpm node"
+    "dev": "pnpm contracts-ui && pnpm node"
   }
 }
