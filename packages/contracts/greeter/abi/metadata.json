@@ -1,0 +1,114 @@
+{
+  "source": {
+    "hash": "0xa038ee59d6c54212d895acb5a313a91fd16774045943f37bc3e5868c90dc0984",
+    "language": "ink! 3.4.0",
+    "compiler": "rustc 1.67.0-nightly"
+  },
+  "contract": {
+    "name": "greeter",
+    "version": "0.0.1",
+    "authors": [
+      "Scio Labs <hello@scio.xyz>"
+    ]
+  },
+  "V3": {
+    "spec": {
+      "constructors": [
+        {
+          "args": [
+            {
+              "label": "init_value",
+              "type": {
+                "displayName": [
+                  "String"
+                ],
+                "type": 0
+              }
+            }
+          ],
+          "docs": [
+            "Creates a new greeter contract initialized with the given value."
+          ],
+          "label": "new",
+          "payable": false,
+          "selector": "0x9bae9d5e"
+        },
+        {
+          "args": [],
+          "docs": [
+            "Creates a new greeter contract initialized to 'Hello ink!'."
+          ],
+          "label": "default",
+          "payable": false,
+          "selector": "0xed4b9d1b"
+        }
+      ],
+      "docs": [],
+      "events": [],
+      "messages": [
+        {
+          "args": [
+            {
+              "label": "new_value",
+              "type": {
+                "displayName": [
+                  "String"
+                ],
+                "type": 0
+              }
+            }
+          ],
+          "docs": [
+            " Sets `message` to the given value."
+          ],
+          "label": "set_message",
+          "mutates": true,
+          "payable": false,
+          "returnType": null,
+          "selector": "0x1fe7426f"
+        },
+        {
+          "args": [],
+          "docs": [
+            " Returns the current value of `message`."
+          ],
+          "label": "greet",
+          "mutates": false,
+          "payable": false,
+          "returnType": {
+            "displayName": [
+              "String"
+            ],
+            "type": 0
+          },
+          "selector": "0x052cda08"
+        }
+      ]
+    },
+    "storage": {
+      "struct": {
+        "fields": [
+          {
+            "layout": {
+              "cell": {
+                "key": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                "ty": 0
+              }
+            },
+            "name": "message"
+          }
+        ]
+      }
+    },
+    "types": [
+      {
+        "id": 0,
+        "type": {
+          "def": {
+            "primitive": "str"
+          }
+        }
+      }
+    ]
+  }
+}
