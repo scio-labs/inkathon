@@ -35,8 +35,9 @@ export const usePolkadotProviderContext = () => {
 export interface PolkadotProviderChain {
   network: string
   name: string
-  testnet?: boolean
   rpcUrls: [string, ...string[]]
+  testnet?: boolean
+  faucetUrls?: string[]
 }
 export interface PolkadotProviderProps extends PropsWithChildren {
   connectOnInit?: boolean

@@ -1,10 +1,12 @@
 import { Card, Wrap } from '@chakra-ui/react'
+import Link from 'next/link'
 import { FC, useEffect, useState } from 'react'
+import { HiOutlineExternalLink } from 'react-icons/hi'
 import 'twin.macro'
 import { usePolkadotProviderContext } from './PolkadotProvider'
 
 export const ChainInfo: FC = () => {
-  const { api } = usePolkadotProviderContext()
+  const { api, activeChain } = usePolkadotProviderContext()
   const [chainInfo, setChainInfo] = useState<{ [_: string]: any }>()
 
   // Fetch Chain Info
@@ -38,11 +40,26 @@ export const ChainInfo: FC = () => {
       <Wrap>
         <Card variant="outline" p={4}>
           <div tw="text-sm leading-6">
+            {/* Metadata */}
             {Object.entries(chainInfo || {}).map(([key, value]) => (
               <div key={key}>
-                {key}: <strong tw="float-right ml-4">{value}</strong>
+                {key}:{' '}
+                <strong tw="float-right ml-6 truncate max-w-[15rem]" title={value}>
+                  {value}
+                </strong>
               </div>
             ))}
+
+            {/* Faucet Link */}
+            {!!activeChain?.faucetUrls?.length && (
+              <Link
+                href={activeChain.faucetUrls[0]}
+                target="_blank"
+                tw="mt-2 flex items-center justify-center text-center text-xs text-gray-400 hover:text-white"
+              >
+                Faucet <HiOutlineExternalLink tw="ml-1" />
+              </Link>
+            )}
           </div>
         </Card>
       </Wrap>
