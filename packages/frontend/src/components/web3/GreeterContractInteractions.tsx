@@ -1,6 +1,5 @@
 import { Button, Card, FormControl, FormLabel, Input, Stack, Wrap } from '@chakra-ui/react'
-import { deployments } from '@deployments/deployments'
-import { ContractPromise } from '@polkadot/api-contract'
+import { ContractKeys, useDeployment } from '@deployments/deployments'
 import { FC, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
@@ -8,7 +7,8 @@ import 'twin.macro'
 import { usePolkadotProviderContext } from './PolkadotProvider'
 
 export const GreeterContractInteractions: FC = () => {
-  const { account, signer, api } = usePolkadotProviderContext()
+  const { activeChain, account, signer } = usePolkadotProviderContext()
+  const { contract } = useDeployment(ContractKeys.Greeter)
   const [greeterMessage, setGreeterMessage] = useState<string>()
   const [fetchIsLoading, setFetchIsLoading] = useState<boolean>()
   const [updateIsLoading, setUpdateIsLoading] = useState<boolean>()
@@ -16,17 +16,12 @@ export const GreeterContractInteractions: FC = () => {
 
   // Fetch Greeting
   const fetchGreeting = async () => {
-    if (!api) return
+    if (!contract) return
     setFetchIsLoading(true)
     try {
-      const contract = new ContractPromise(
-        api,
-        await deployments.greeter.abi,
-        deployments.greeter.address,
-      )
       const { result, output } = await contract.query.greet('', {})
       const message = output?.toString()
-      if (!result?.isOk) throw new Error()
+      if (!result?.isOk) throw new Error(result.toString())
       setGreeterMessage(message)
     } catch (e) {
       console.error(e)
@@ -38,22 +33,18 @@ export const GreeterContractInteractions: FC = () => {
   }
   useEffect(() => {
     fetchGreeting()
-  }, [api])
+  }, [contract])
 
   // Update Greeting
   const updateGreeting = async () => {
-    if (!account || !api || !signer) {
+    if (!account || !contract || !signer) {
       toast.error('Wallet not connected. Try again…')
       return
     }
 
     setUpdateIsLoading(true)
     try {
-      const contract = new ContractPromise(
-        api,
-        await deployments.greeter.abi,
-        deployments.greeter.address,
-      )
+      // Gather form value
       const newMessage = form.getValues('newMessage')
 
       // Estimate gas
@@ -65,10 +56,12 @@ export const GreeterContractInteractions: FC = () => {
       const gasLimit = gasRequired.toNumber() * 1.5
 
       // Execute transaction
-      const a = await contract.tx.setMessage({ gasLimit }, newMessage).signAndSend(account.address)
-
+      await contract.tx
+        .setMessage({ gasLimit }, newMessage)
+        .signAndSend(account.address, (result) => {
+          if (result?.status?.isInBlock) fetchGreeting()
+        })
       toast.success(`Successfully updated metadata`)
-      fetchGreeting()
     } catch (e) {
       console.error(e)
       toast.error('Error while updating greeting. Try again.')
@@ -77,7 +70,7 @@ export const GreeterContractInteractions: FC = () => {
     }
   }
 
-  if (!api) return null
+  if (!contract) return null
 
   return (
     <>

@@ -1,5 +1,6 @@
 import {
   Button,
+  CheckboxIcon,
   HStack,
   Menu,
   MenuButton,
@@ -10,17 +11,27 @@ import {
   VStack,
 } from '@chakra-ui/react'
 import { formatBalance } from '@polkadot/util'
+import { supportedChains } from '@shared/chains'
 import { truncateHash } from '@shared/truncateHash'
 import { FC, useEffect, useState } from 'react'
-import { AiOutlineDisconnect } from 'react-icons/ai'
+import { AiOutlineCheckCircle, AiOutlineDisconnect } from 'react-icons/ai'
 import { BsChevronDown } from 'react-icons/bs'
 import 'twin.macro'
 import { usePolkadotProviderContext } from './PolkadotProvider'
 
 export interface ConnectButtonProps {}
 export const ConnectButton: FC<ConnectButtonProps> = () => {
-  const { api, connect, disconnect, isLoading, account, accounts, setAccount } =
-    usePolkadotProviderContext()
+  const {
+    activeChain,
+    setActiveChain,
+    api,
+    connect,
+    disconnect,
+    isLoading,
+    account,
+    accounts,
+    setAccount,
+  } = usePolkadotProviderContext()
 
   // Fetch & update Account Balance
   const [balanceFormatted, setBalanceFormatted] = useState<string>()
@@ -88,9 +99,31 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
         </HStack>
 
         <MenuList>
-          <MenuItem onClick={disconnect} icon={<AiOutlineDisconnect />}>
+          <MenuItem onClick={disconnect} icon={<AiOutlineDisconnect tw="h-4 w-4" />}>
             Disconnect
           </MenuItem>
+
+          {/* Supported Chains */}
+          <MenuDivider />
+          {(supportedChains || []).map((chain) => (
+            <MenuItem
+              key={chain.network}
+              isDisabled={chain.network === activeChain?.network}
+              onClick={() => {
+                setActiveChain?.(chain)
+              }}
+            >
+              <CheckboxIcon />
+              <VStack align="start" spacing={0}>
+                <HStack>
+                  <Text>{chain.name}</Text>
+                  {chain.network === activeChain?.network && <AiOutlineCheckCircle tw="h-4 w-4" />}
+                </HStack>
+              </VStack>
+            </MenuItem>
+          ))}
+
+          {/* Available Accounts/Wallets */}
           <MenuDivider />
           {(accounts || []).map((acc) => (
             <MenuItem
@@ -100,8 +133,12 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
                 setAccount?.(acc)
               }}
             >
+              <CheckboxIcon />
               <VStack align="start" spacing={0}>
-                <Text>{acc.meta?.name}</Text>
+                <HStack>
+                  <Text>{acc.meta?.name}</Text>
+                  {acc.address === account.address && <AiOutlineCheckCircle tw="h-4 w-4" />}
+                </HStack>
                 <Text fontSize="xs">{truncateHash(acc.address, 10)}</Text>
               </VStack>
             </MenuItem>

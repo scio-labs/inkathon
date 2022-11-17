@@ -1,7 +1,6 @@
 import { ApiPromise, HttpProvider, WsProvider } from '@polkadot/api'
 import { InjectedAccountWithMeta } from '@polkadot/extension-inject/types'
 import { Signer } from '@polkadot/types/types'
-import { env } from '@shared/environment'
 import {
   createContext,
   Dispatch,
@@ -15,6 +14,8 @@ import {
 import toast from 'react-hot-toast'
 
 export type PolkadotProviderContextType = {
+  activeChain?: PolkadotProviderChain
+  setActiveChain?: Dispatch<SetStateAction<PolkadotProviderChain>>
   api?: ApiPromise
   provider?: WsProvider | HttpProvider
   connect?: () => Promise<void>
@@ -31,10 +32,22 @@ export const usePolkadotProviderContext = () => {
   return useContext(PolkadotProviderContext)
 }
 
+export interface PolkadotProviderChain {
+  network: string
+  name: string
+  testnet?: boolean
+  rpcUrls: [string, ...string[]]
+}
 export interface PolkadotProviderProps extends PropsWithChildren {
   connectOnInit?: boolean
+  defaultChain: PolkadotProviderChain
 }
-export const PolkadotProvider: FC<PolkadotProviderProps> = ({ children, connectOnInit }) => {
+export const PolkadotProvider: FC<PolkadotProviderProps> = ({
+  children,
+  connectOnInit,
+  defaultChain,
+}) => {
+  const [activeChain, setActiveChain] = useState<PolkadotProviderChain>(defaultChain)
   const [api, setApi] = useState<ApiPromise>()
   const [provider, setProvider] = useState<WsProvider | HttpProvider>()
   const [accounts, setAccounts] = useState<InjectedAccountWithMeta[]>([])
@@ -45,7 +58,7 @@ export const PolkadotProvider: FC<PolkadotProviderProps> = ({ children, connectO
   const initialize = async () => {
     // Initialize polkadot-js/api
     try {
-      const provider = new WsProvider(env.rpcEndpoint)
+      const provider = new WsProvider(activeChain.rpcUrls[0])
       setProvider(provider)
       const api = await ApiPromise.create({ provider })
       setApi(api)
@@ -88,7 +101,7 @@ export const PolkadotProvider: FC<PolkadotProviderProps> = ({ children, connectO
   // Initialze
   useEffect(() => {
     initialize()
-  }, [])
+  }, [activeChain?.network])
 
   // Update signer
   const udpateSigner = async () => {
@@ -115,6 +128,8 @@ export const PolkadotProvider: FC<PolkadotProviderProps> = ({ children, connectO
   return (
     <PolkadotProviderContext.Provider
       value={{
+        activeChain,
+        setActiveChain,
         api,
         provider,
         connect,

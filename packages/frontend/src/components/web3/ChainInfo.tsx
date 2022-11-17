@@ -4,7 +4,7 @@ import 'twin.macro'
 import { usePolkadotProviderContext } from './PolkadotProvider'
 
 export const ChainInfo: FC = () => {
-  const { account, api } = usePolkadotProviderContext()
+  const { api } = usePolkadotProviderContext()
   const [chainInfo, setChainInfo] = useState<{ [_: string]: any }>()
 
   // Fetch Chain Info

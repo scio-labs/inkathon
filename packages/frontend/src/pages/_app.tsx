@@ -4,6 +4,7 @@ import { HotToastConfig } from '@components/layout/HotToastConfig'
 import { PolkadotProvider } from '@components/web3/PolkadotProvider'
 import { cache } from '@emotion/css'
 import { CacheProvider } from '@emotion/react'
+import { defaultChain } from '@shared/chains'
 import { env } from '@shared/environment'
 import GlobalStyles from '@styles/GlobalStyles'
 import { DefaultSeo } from 'next-seo'
@@ -54,7 +55,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           <DarkMode>
             <GlobalStyles />
 
-            <PolkadotProvider connectOnInit={true}>
+            <PolkadotProvider connectOnInit={true} defaultChain={defaultChain}>
               <BaseLayout>
                 <Component {...pageProps} />
               </BaseLayout>
