@@ -15,7 +15,7 @@ import { supportedChains } from '@shared/chains'
 import { truncateHash } from '@shared/truncateHash'
 import { FC, useEffect, useState } from 'react'
 import { AiOutlineCheckCircle, AiOutlineDisconnect } from 'react-icons/ai'
-import { BsChevronDown } from 'react-icons/bs'
+import { FiChevronDown } from 'react-icons/fi'
 import 'twin.macro'
 import { usePolkadotProviderContext } from './PolkadotProvider'
 
@@ -62,10 +62,11 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
       <Button
         onClick={connect}
         isLoading={isLoading}
-        size="lg"
-        py={7}
+        size="md"
+        py={6}
+        fontWeight="bold"
+        rounded="2xl"
         colorScheme="purple"
-        rounded="3xl"
       >
         Connect Wallet
       </Button>
@@ -77,20 +78,28 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
       <Menu>
         <HStack>
           {balanceFormatted !== undefined && (
-            <Button py={7} pl={5} rounded="3xl" pointerEvents={'none'}>
+            <Button
+              py={6}
+              pl={5}
+              rounded="2xl"
+              fontWeight="bold"
+              fontSize="sm"
+              pointerEvents="none"
+            >
               {balanceFormatted}
             </Button>
           )}
           <MenuButton
             as={Button}
-            rightIcon={<BsChevronDown />}
+            rightIcon={<FiChevronDown size={22} />}
             hidden={false}
-            py={7}
+            py={6}
             pl={5}
-            rounded="3xl"
+            rounded="2xl"
+            fontWeight="bold"
           >
-            <VStack spacing={0.5} mr={0.5}>
-              <Text>{account.meta?.name}</Text>
+            <VStack spacing={0.5}>
+              <Text fontSize="sm">{account.meta?.name}</Text>
               <Text fontSize="xs" fontWeight="normal" opacity={0.75}>
                 {truncateHash(account.address, 8)}
               </Text>
@@ -99,7 +108,7 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
         </HStack>
 
         <MenuList>
-          <MenuItem onClick={disconnect} icon={<AiOutlineDisconnect tw="h-4 w-4" />}>
+          <MenuItem onClick={disconnect} icon={<AiOutlineDisconnect size={18} />}>
             Disconnect
           </MenuItem>
 
@@ -117,7 +126,7 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
               <VStack align="start" spacing={0}>
                 <HStack>
                   <Text>{chain.name}</Text>
-                  {chain.network === activeChain?.network && <AiOutlineCheckCircle tw="h-4 w-4" />}
+                  {chain.network === activeChain?.network && <AiOutlineCheckCircle size={16} />}
                 </HStack>
               </VStack>
             </MenuItem>
@@ -137,7 +146,7 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
               <VStack align="start" spacing={0}>
                 <HStack>
                   <Text>{acc.meta?.name}</Text>
-                  {acc.address === account.address && <AiOutlineCheckCircle tw="h-4 w-4" />}
+                  {acc.address === account.address && <AiOutlineCheckCircle size={16} />}
                 </HStack>
                 <Text fontSize="xs">{truncateHash(acc.address, 10)}</Text>
               </VStack>
