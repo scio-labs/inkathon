@@ -19,7 +19,7 @@ By [Dennis Zoma](https://twitter.com/dennis_zoma) 🧙‍♂️ & [Scio Labs](ht
 
 **Table of Contents:**
 
-1. [Disclaimer](#disclaimer)
+1. [Disclaimer 🚨](#disclaimer-)
 2. [The Stack](#the-stack)
 3. [Projects using it](#projects-using-it)
 4. [Getting Started](#getting-started)

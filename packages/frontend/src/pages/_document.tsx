@@ -25,7 +25,13 @@ export default class MyDocument extends Document {
         <Head>
           {/* TODO Fonts, Manifest, and Favicons */}
           {/* TIP: Generate it at https://realfavicongenerator.net/ */}
-          {/* TIP: Generate font-face rules & subsets at https://transfonter.org/ */}
+          {/* TIP: Generate locally served font-face rules & subsets at https://transfonter.org/ */}
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;600;700;900&display=swap"
+            rel="stylesheet"
+          />
         </Head>
 
         <body>

@@ -1,4 +1,4 @@
-import { Card, Wrap } from '@chakra-ui/react'
+import { Card, Spinner, Wrap } from '@chakra-ui/react'
 import Link from 'next/link'
 import { FC, useEffect, useState } from 'react'
 import { HiOutlineExternalLink } from 'react-icons/hi'
@@ -23,8 +23,8 @@ export const ChainInfo: FC = () => {
     const tokenDecimals = properties?.tokenDecimals?.[0] || 12
     const chainInfo = {
       Chain: chain,
-      Token: `${tokenSymbol} (${tokenDecimals} Decimals)`,
       Version: version,
+      Token: `${tokenSymbol} (${tokenDecimals} Decimals)`,
     }
     setChainInfo(chainInfo)
   }
@@ -32,35 +32,42 @@ export const ChainInfo: FC = () => {
     fetchChainInfo()
   }, [api])
 
-  if (!api || !Object.keys(chainInfo || {}).length) return null
+  // Connection Loading Indicator
+  if (!api)
+    return (
+      <div tw="mt-8 mb-4 flex flex-col items-center justify-center space-y-3 text-center font-mono text-sm text-gray-400 sm:(flex-row space-x-3 space-y-0)">
+        <Spinner size="sm" />
+        <div>
+          Connecting to {activeChain?.name} ({activeChain?.rpcUrls?.[0]})
+        </div>
+      </div>
+    )
 
   return (
     <>
       <h2 tw="mt-10 mb-4 font-mono text-gray-400">Chain Info</h2>
       <Wrap>
         <Card variant="outline" p={4}>
-          <div tw="text-sm leading-6">
-            {/* Metadata */}
-            {Object.entries(chainInfo || {}).map(([key, value]) => (
-              <div key={key}>
-                {key}:{' '}
-                <strong tw="float-right ml-6 truncate max-w-[15rem]" title={value}>
-                  {value}
-                </strong>
-              </div>
-            ))}
+          {/* Metadata */}
+          {Object.entries(chainInfo || {}).map(([key, value]) => (
+            <div key={key} tw="text-sm leading-6">
+              {key}:{' '}
+              <strong tw="float-right ml-6 truncate max-w-[15rem]" title={value}>
+                {value}
+              </strong>
+            </div>
+          ))}
 
-            {/* Faucet Link */}
-            {!!activeChain?.faucetUrls?.length && (
-              <Link
-                href={activeChain.faucetUrls[0]}
-                target="_blank"
-                tw="mt-2 flex items-center justify-center text-center text-xs text-gray-400 hover:text-white"
-              >
-                Faucet <HiOutlineExternalLink tw="ml-1" />
-              </Link>
-            )}
-          </div>
+          {/* Faucet Link */}
+          {!!activeChain?.faucetUrls?.length && (
+            <Link
+              href={activeChain.faucetUrls[0]}
+              target="_blank"
+              tw="mt-2 flex items-center justify-center text-center text-xs text-gray-400 hover:text-white"
+            >
+              Faucet <HiOutlineExternalLink tw="ml-1" />
+            </Link>
+          )}
         </Card>
       </Wrap>
     </>
