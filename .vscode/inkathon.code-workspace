@@ -33,6 +33,9 @@
       "source.organizeImports": true,
       "source.fixAll.eslint": true
     },
+    "files.associations": {
+      ".env.*": "dotenv"
+    },
     "peacock.color": "#8758FF",
     "workbench.colorCustomizations": {
       "sash.hoverBorder": "#ac8bff",
