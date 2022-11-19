@@ -117,6 +117,16 @@ pnpm dev
 pnpm test
 ```
 
+### Customization Quickstart
+
+There are multiple places where you need to insert your actual project name/identifier. I've highlighted most of these occurences with a `/* TODO */` comment in the code. When installing the `todo-tree` plugin [listed below](#vscode-setup) you can easily replace them one by one.
+
+Additionally, there are the following un-highlighted occurences:
+
+- The name of the `.vscode/*.code-workspace` file
+- The package names within `package.json`, `packages/frontend/package.json`, and `packages/contracts/package.json`
+- The workspace dependency defined in `packages/frontend/package.json`
+
 ### VSCode Setup
 
 #### Workspace

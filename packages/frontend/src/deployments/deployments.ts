@@ -24,11 +24,10 @@ export const allAddresses: AllAddressesType = {
 
 /**
  * (Deployed) contract abis
- * TODO Consider differentiation by network identifier as well
  */
 export type AllABIsType = { [_ in ContractKeys]?: Promise<object> }
 export const allABIs = {
-  [ContractKeys.Greeter]: import('@inkathon/contracts/greeter/abi/metadata.json'),
+  [ContractKeys.Greeter]: import('@inkathon/contracts/greeter/abi/metadata.json'), // TODO
 }
 
 /**
