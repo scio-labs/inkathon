@@ -2,8 +2,8 @@ import { PolkadotProviderChain } from '@components/web3/PolkadotProvider'
 import { env } from '@shared/environment'
 
 /**
- * Defined Chain Constants#
- * TODO Add more chains and outsource in own repository
+ * Defined Chain Constants
+ * NOTE: You can add chains and update RPCs yourself.
  */
 export const development: PolkadotProviderChain = {
   network: 'development',

@@ -158,19 +158,18 @@ The file [`packages/frontend/.vscode/frontend.code-snippets`](https://github.com
 
 ## Deployment
 
-Setting up a deployment via Vercel is pretty straightforward, only a few things have to be configured differently (as it's a monorepo structure):
+Setting up a deployment via Vercel is pretty straightforward as build settings are preconfigured in `vercel.json`. To get started, press the **Deploy** button and enter the default environment variables listed below.
 
-1. Press the **Deploy** button below:
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fscio-labs%2Finkathon%2F&env=NEXT_PUBLIC_PRODUCTION_MODE,NEXT_PUBLIC_URL,NEXT_PUBLIC_DEFAULT_CHAIN,NEXT_PUBLIC_SUPPORTED_CHAINS&envDescription=Environment%20Variables%20Documentation&envLink=https%3A%2F%2Fgithub.com%2Fscio-labs%2Finkathon%2Fblob%2Fmain%2Fpackages%2Ffrontend%2F.env.local.example&redirect-url=https%3A%2F%2Fgithub.com%2Fscio-labs%2Finkathon%2F&demo-url=https%3A%2F%2Finkathon.xyz)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fscio-labs%2Finkathon%2F&env=NEXT_PUBLIC_PRODUCTION_MODE,NEXT_PUBLIC_URL,NEXT_PUBLIC_RPC_ENDPOINT&envDescription=Environment%20Variables%20Documentation&envLink=https%3A%2F%2Fgithub.com%2Fscio-labs%2Finkathon%2Fblob%2Fmain%2Fpackages%2Ffrontend%2F.env.local.example&redirect-url=https%3A%2F%2Fgithub.com%2Fscio-labs%2Finkathon%2F&demo-url=https%3A%2F%2Finkathon.xyz)
+| Environment Variable          | Value                          |
+| ----------------------------- | ------------------------------ |
+| `NEXT_PUBLIC_PRODUCTION_MODE` | `true`                         |
+| `NEXT_PUBLIC_URL`             | `https://your-repo.vercel.app` |
+| `NEXT_PUBLIC_DEFAULT_CHAIN`   | `alephzero-testnet`            |
+| `NEXT_PUBLIC_DEFAULT_CHAIN`   | `["alephzero-testnet"]`        |
 
-2. Configure the environment variables (see [`packages/frontend/.env.local.example`](https://github.com/scio-labs/inkathon/blob/main/packages/frontend/.env.local.example) for documentation) and wait for the first build to finish.
-3. Wait for the first build (which will fail) and overwrite the project settings as follows:
-
-   - Set custom "Output Directory": `./packages/frontend/.next`
-   - Optionally set custom "Install Command": `pnpm install --no-frozen-lockfile` to enforce a less strict behavior when lock-files are not in sync.
-
-4. Redeploy (Press the three dots next to the latest deployment in Vercel)
+You can find mode documentation on those environment variables in [`packages/frontend/.env.local.example`](https://github.com/scio-labs/inkathon/blob/main/packages/frontend/.env.local.example) and all available blockchain network identifiers in [`packages/frontend/src/shared/chains.ts`](https://github.com/scio-labs/inkathon/blob/main/packages/frontend/src/shared/chains.ts).
 
 ## FAQs & Troubleshooting
 
