@@ -199,3 +199,15 @@ Important, in production it's recommended to use at most one of 1. and 2. to red
 The packages above can be easily switched out with plain TailwindCSS, a detailed guide on that is coming very soon. In the meantime, open an issue to get guidance.
 
 </details>
+
+<details>
+<summary><strong>Resources to learn more about Substrate, ink!, and polkadot.js</strong></summary>
+
+- [Polkadot Bulder's Guide](https://wiki.polkadot.network/docs/build-index)
+- [Substrate Documentation](https://docs.substrate.io/)
+- [Awesome Substrate](https://github.com/substrate-developer-hub/awesome-substrate)
+- [ink! Documentation](https://use.ink/)
+- [OpenBrush Documentation](https://docs.openbrush.io/)
+- [polkadot.js Documentation](https://polkadot.js.org/docs/)
+
+</details>
