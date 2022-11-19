@@ -29,6 +29,7 @@ By [Dennis Zoma](https://twitter.com/dennis_zoma) 🧙‍♂️ & [Scio Labs](ht
    1. [Frontend Quickstart](#frontend-quickstart)
    2. [Contracts Quickstart](#contracts-quickstart)
    3. [VSCode Setup](#vscode-setup)
+   4. [Customization](#customization)
 6. [Deployment](#deployment)
 7. [FAQs & Troubleshooting](#faqs--troubleshooting)
 
@@ -117,16 +118,6 @@ pnpm dev
 pnpm test
 ```
 
-### Customization Quickstart
-
-There are multiple places where you need to insert your actual project name/identifier. I've highlighted most of these occurences with a `/* TODO */` comment in the code. When installing the `todo-tree` plugin [listed below](#vscode-setup) you can easily replace them one by one.
-
-Additionally, there are the following un-highlighted occurences:
-
-- The name of the `.vscode/*.code-workspace` file
-- The package names within `package.json`, `packages/frontend/package.json`, and `packages/contracts/package.json`
-- The workspace dependency defined in `packages/frontend/package.json`
-
 ### VSCode Setup
 
 #### Workspace
@@ -135,7 +126,10 @@ I strongly reommend developing in VSCode by opening the workspace file located a
 
 #### Plugins
 
-I strongly recommend installing all the plugins listed below. They should be suggested automatically by VSCode as they are contained in `.vscode/extensions.json`.
+I strongly recommend installing all plugins listed inside `.vscode/extensions.json`. They should be suggested automatically by VSCode.
+
+<details>
+<summary><strong>Plugin Details</strong></summary>
 
 1. [`zoma.vscode-auto-open-workspace`](https://marketplace.visualstudio.com/items?itemName=zoma.vscode-auto-open-workspace) – Automatically suggests opening the according `.code-workspace` file.
 2. [`dbaeumer.vscode-eslint`](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) – Adds ESLint editor support.
@@ -145,6 +139,18 @@ I strongly recommend installing all the plugins listed below. They should be sug
 6. [`rust-lang.rust-analyzer`](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer) – Adds Rust language support.
 7. Optional: [`gruntfuggly.todo-tree`](https://marketplace.visualstudio.com/items?itemName=gruntfuggly.todo-tree) & [`wayou.vscode-todo-highlight`](https://marketplace.visualstudio.com/items?itemName=wayou.vscode-todo-highlight) – Lists all `TODO` comments in your workspace.
 8. Optional: [`mikestead.dotenv`](https://marketplace.visualstudio.com/items?itemName=mikestead.dotenv) – Adds syntax highlighting for `.env` files.
+
+</details>
+
+### Customization
+
+There are multiple places where you need to insert your actual project name/identifier. I've highlighted most of these occurences with a `/* TODO */` comment in the code. When installing the `todo-tree` plugin [listed above](#vscode-setup) you can easily replace them one by one.
+
+Additionally, there are the following un-highlighted occurences:
+
+- The name of the `.vscode/*.code-workspace` file
+- The package names within `package.json`, `packages/frontend/package.json`, and `packages/contracts/package.json`
+- The workspace dependency defined in `packages/frontend/package.json`
 
 #### Snippets
 
