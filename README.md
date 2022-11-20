@@ -82,8 +82,7 @@ cargo install cargo-dylint dylint-link
 cargo install cargo-contract --force --locked
 
 # 3. Optional: Install local substrate-contracts-node (https://github.com/paritytech/substrate-contracts-node)
-# NOTE: Fixed to latest release tag working with contracts-ui & cargo-contracts (v0.21.0)
-cargo install contracts-node --git https://github.com/paritytech/substrate-contracts-node.git --tag v0.21.0
+cargo install contracts-node --git https://github.com/paritytech/substrate-contracts-node.git
 ```
 
 ## Development
