@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "build": "cargo +nightly contract build --manifest-path ${CONTRACT:-greeter}/Cargo.toml && pnpm copy-abi",
-    "copy-abi": "mkdir -p ./${CONTRACT:-greeter}/abi/ && cp ./${CONTRACT:-greeter}/target/ink/metadata.json ./${CONTRACT:-greeter}/abi/",
+    "copy-abi": "mkdir -p ${CONTRACT:-greeter}/deployments/ && cp ${CONTRACT:-greeter}/target/ink/metadata.json ${CONTRACT:-greeter}/deployments/",
     "test": "cargo +nightly contract test --manifest-path ${CONTRACT:-greeter}/Cargo.toml",
     "node": "substrate-contracts-node --dev --port 9944 --base-path ./.node-data",
     "write-address": "mkdir -p ${CONTRACT:-greeter}/deployments/ && echo \"{\n  \\x22address\\x22: \\x22$ADDRESS\\x22\n}\" >${CONTRACT:-greeter}/deployments/${CHAIN:-development}.json",

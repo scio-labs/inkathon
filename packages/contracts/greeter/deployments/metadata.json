@@ -1,6 +1,6 @@
 {
   "source": {
-    "hash": "0x4a740cbe9554575ac1d008174a4ffcabbbf9addc95a14713d76f6cd1cbef13df",
+    "hash": "0xe77ce2871f2aaaecedd2b5cb83cd72ccefe17a42239eef11ee09e960f5a90e35",
     "language": "ink! 3.4.0",
     "compiler": "rustc 1.67.0-nightly"
   },
@@ -47,6 +47,22 @@
       "events": [],
       "messages": [
         {
+          "args": [],
+          "docs": [
+            " Returns the current value of `message`."
+          ],
+          "label": "greet",
+          "mutates": false,
+          "payable": false,
+          "returnType": {
+            "displayName": [
+              "String"
+            ],
+            "type": 0
+          },
+          "selector": "0x052cda08"
+        },
+        {
           "args": [
             {
               "label": "new_value",
@@ -66,22 +82,6 @@
           "payable": false,
           "returnType": null,
           "selector": "0x1fe7426f"
-        },
-        {
-          "args": [],
-          "docs": [
-            " Returns the current value of `message`."
-          ],
-          "label": "greet",
-          "mutates": false,
-          "payable": false,
-          "returnType": {
-            "displayName": [
-              "String"
-            ],
-            "type": 0
-          },
-          "selector": "0x052cda08"
         }
       ]
     },

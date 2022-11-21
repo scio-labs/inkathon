@@ -27,16 +27,16 @@ pub mod greeter {
             Self::new(default_message)
         }
 
-        /// Sets `message` to the given value.
-        #[ink(message)]
-        pub fn set_message(&mut self, new_value: String) {
-            self.message = new_value;
-        }
-
         /// Returns the current value of `message`.
         #[ink(message)]
         pub fn greet(&self) -> String {
             self.message.clone()
+        }
+
+        /// Sets `message` to the given value.
+        #[ink(message)]
+        pub fn set_message(&mut self, new_value: String) {
+            self.message = new_value;
         }
     }
 
@@ -53,7 +53,7 @@ pub mod greeter {
         }
 
         #[ink::test]
-        fn it_works() {
+        fn set_message_works() {
             let message_1 = String::from("gm ink!");
             let mut greeter = Greeter::new(message_1.clone());
             assert_eq!(greeter.greet(), message_1);

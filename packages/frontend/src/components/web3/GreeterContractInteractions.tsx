@@ -61,7 +61,7 @@ export const GreeterContractInteractions: FC = () => {
         .signAndSend(account.address, (result) => {
           if (result?.status?.isInBlock) fetchGreeting()
         })
-      toast.success(`Successfully updated metadata`)
+      toast.success(`Successfully updated greeting`)
     } catch (e) {
       console.error(e)
       toast.error('Error while updating greeting. Try again.')
@@ -76,12 +76,15 @@ export const GreeterContractInteractions: FC = () => {
     <>
       <h2 tw="mt-10 mb-4 font-mono text-gray-400">Greeter Smart Contract</h2>
       <Wrap>
+        {/* Fetched Greeting */}
         <Card variant="outline" p={4}>
           <FormControl>
             <FormLabel>Fetched Greeting</FormLabel>
             <Input placeholder={fetchIsLoading ? 'Loading…' : greeterMessage} disabled={true} />
           </FormControl>
         </Card>
+
+        {/* Update Greeting */}
         {!!signer && (
           <Card variant="outline" p={4}>
             <form>
@@ -94,6 +97,7 @@ export const GreeterContractInteractions: FC = () => {
                   mt={4}
                   colorScheme="purple"
                   isLoading={updateIsLoading}
+                  disabled={updateIsLoading}
                   type="button"
                   onClick={updateGreeting}
                 >
