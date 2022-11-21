@@ -37,7 +37,10 @@ By [Dennis Zoma](https://twitter.com/dennis_zoma) 🧙‍♂️ & [Scio Labs](ht
 
 ## Disclaimer 🚨
 
-This repository is still work-in-progress and there are many things that need to be improved.
+This repository is still work-in-progress and there are probably bugs. Open tasks include:
+
+- [ ] Typesafe contract interactions with `@polkadot/typegen`
+- [ ] Upgrade to ink! v4
 
 ## The Stack
 
