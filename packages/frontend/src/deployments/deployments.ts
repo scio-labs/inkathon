@@ -1,34 +1,52 @@
 import { usePolkadotProviderContext } from '@components/web3/PolkadotProvider'
-import { ContractPromise } from '@polkadot/api-contract'
-import { alephzeroTestnet, development } from '@shared/chains'
+import { Abi, ContractPromise } from '@polkadot/api-contract'
+import { env } from '@shared/environment'
 import { useEffect, useState } from 'react'
 
 /**
  * All deployed contracts for ABIs and/or addresses below
+ * NOTE: Add new contracts here
+ * IMPORTANT: The respective abi & address jsons must be under `/packages/contracts/${contract}/deployments/`
  */
 export enum ContractKeys {
-  Greeter = 'Greeter',
+  greeter = 'greeter',
 }
+
+/**
+ * IMPORTANT: CHANGE NOTHING BELOW JUST FOR ADDING CONTRACTS
+ * Imports are inferred dynamically from `ContractKeys` and `supportedChains` from the environment.
+ */
 
 /**
  * (Deployed) contract addresses by network identifier
  */
-export type AddressesType = { [_ in ContractKeys]?: string }
-export type AllAddressesType = { [_ in ContractKeys]: { [_: string]: string } }
-export const allAddresses: AllAddressesType = {
-  [ContractKeys.Greeter]: {
-    [development.network]: '5H8rGukb2DiVwXpcQ68FaNuyQHVm8tgCS6H3n71njwWiMvHu',
-    [alephzeroTestnet.network]: '5CbJV57ky3XyPi9F9rU69KYU3wNHRE3BixFDLSrgurkWQTB4',
-  },
-}
+export type AddressesType = { [_: string]: Promise<{ address: string }> }
+export type AllAddressesType = { [_ in ContractKeys]: AddressesType }
+export const allAddresses = Object.keys(ContractKeys).reduce<AllAddressesType>(
+  (acc, contract) => ({
+    ...acc,
+    [contract]: env.supportedChains.reduce(
+      (acc: AddressesType, chain: string) => ({
+        ...acc,
+        [chain]: import(`@inkathon/contracts/${contract}/deployments/${chain}.json`),
+      }),
+      {},
+    ),
+  }),
+  {} as AllAddressesType,
+)
 
 /**
  * (Deployed) contract abis
  */
-export type AllABIsType = { [_ in ContractKeys]?: Promise<object> }
-export const allABIs = {
-  [ContractKeys.Greeter]: import('@inkathon/contracts/greeter/abi/metadata.json'), // TODO
-}
+export type AllABIsType = { [_ in ContractKeys]: Promise<Abi> }
+export const allABIs = Object.keys(ContractKeys).reduce<AllABIsType>(
+  (acc, contract) => ({
+    ...acc,
+    [contract]: import(`@inkathon/contracts/${contract}/deployments/metadata.json`),
+  }),
+  {} as AllABIsType,
+)
 
 /**
  * Helper hook to access abis and addresses by active chain
@@ -48,9 +66,10 @@ export const useDeployment = (key: ContractKeys) => {
     }
     const abi = await allABIs[key]
     setContractABI(abi)
-    const address = allAddresses[key]?.[activeChain?.network]
+    const address = (await allAddresses[key]?.[activeChain?.network])?.address
     setContractAddress(address)
-    setContract(api ? new ContractPromise(api, abi, address) : undefined)
+    const contract = api && address ? new ContractPromise(api, abi, address) : undefined
+    setContract(contract)
   }
   useEffect(() => {
     update()

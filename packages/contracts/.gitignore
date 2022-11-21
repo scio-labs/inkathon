@@ -142,3 +142,6 @@ fabric.properties
 
 # Substrate Contracts Node Persistence Cache
 .node-data
+
+# Local deployments
+**/deployments/development.json

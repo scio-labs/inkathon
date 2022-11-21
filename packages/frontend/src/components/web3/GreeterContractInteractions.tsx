@@ -8,7 +8,7 @@ import { usePolkadotProviderContext } from './PolkadotProvider'
 
 export const GreeterContractInteractions: FC = () => {
   const { activeChain, account, signer } = usePolkadotProviderContext()
-  const { contract } = useDeployment(ContractKeys.Greeter)
+  const { contract } = useDeployment(ContractKeys.greeter)
   const [greeterMessage, setGreeterMessage] = useState<string>()
   const [fetchIsLoading, setFetchIsLoading] = useState<boolean>()
   const [updateIsLoading, setUpdateIsLoading] = useState<boolean>()

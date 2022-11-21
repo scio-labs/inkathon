@@ -31,7 +31,7 @@ By [Dennis Zoma](https://twitter.com/dennis_zoma) 🧙‍♂️ & [Scio Labs](ht
    3. [VSCode Setup](#vscode-setup)
    4. [Customization](#customization)
 6. [Deployment](#deployment)
-7. [FAQs & Troubleshooting](#faqs--troubleshooting)
+7. [FAQs \& Troubleshooting](#faqs--troubleshooting)
 
 ---
 
@@ -41,6 +41,7 @@ This repository is still work-in-progress and there are probably bugs. Open task
 
 - [ ] Typesafe contract interactions with `@polkadot/typegen`
 - [ ] Upgrade to ink! v4
+- [ ] Support contract deployment via CLI which auto generated address `.json`
 
 ## The Stack
 
@@ -71,6 +72,7 @@ pnpm install
 
 # 3. Copy & fill environments
 # NOTE: Documentation of environment variables can be found in the according `.example` file
+# NOTE: Start with only the alephzero-testnet
 cp packages/frontend/.env.local.example packages/frontend/.env.local
 ```
 
@@ -102,20 +104,25 @@ pnpm dev
 
 ### Contracts Quickstart
 
-```bash
-# NOTE: Can only be executed in `packages/contracts`
-# NOTE²: I created shorthand npm-scripts. The full commands can be found in `package.json`.
-cd packages/contracts
+I created sorthand npm-scripts for most interactions (e.g. build, or starting a local node). Therefore, to execute those the active terminal directory needs to be `packages/contracts`. The full commands can be found in `packages/contracts/package.json`.
 
+```bash
 # Build Contracts
 pnpm build
 
 # Start local Substrate node (https://github.com/paritytech/substrate-contracts-node)
 pnpm node
 
-# Start local node, open contracts-ui, and polkadot.js-explorer
+# Start local node with persistence & automatically open contracts-ui
 # NOTE: When using Brave, shields have to be taken down for the UIs
 pnpm dev
+
+# Now deploy the generated `greeter.contract` file via drag'n'drop in contracts-ui
+# Copy the deployed contracts address and save it via the following command
+ADDRESS=… pnpm write-address
+
+# NOTE: This command can also be adapted for different contracts and chains
+ADDRESS=123 CHAIN=alephzero-testnet CONTRACT=new_greeter pnpm write-address
 
 # Test Contracts
 pnpm test
@@ -172,7 +179,7 @@ Setting up a deployment via Vercel is pretty straightforward as build settings a
 | `NEXT_PUBLIC_DEFAULT_CHAIN`   | `alephzero-testnet`            |
 | `NEXT_PUBLIC_DEFAULT_CHAIN`   | `["alephzero-testnet"]`        |
 
-You can find mode documentation on those environment variables in [`packages/frontend/.env.local.example`](https://github.com/scio-labs/inkathon/blob/main/packages/frontend/.env.local.example) and all available blockchain network identifiers in [`packages/frontend/src/shared/chains.ts`](https://github.com/scio-labs/inkathon/blob/main/packages/frontend/src/shared/chains.ts).
+You can find mode documentation on those environment variables in [`packages/frontend/.env.local.example`](https://github.com/scio-labs/inkathon/blob/main/packages/frontend/.env.local.example) and all available blockchain network identifiers in [`packages/frontend/src/deployments/chains.ts`](https://github.com/scio-labs/inkathon/blob/main/packages/frontend/src/deployments/chains.ts).
 
 ## FAQs & Troubleshooting
 

@@ -10,8 +10,8 @@ import {
   Text,
   VStack,
 } from '@chakra-ui/react'
+import { supportedChains } from '@deployments/chains'
 import { formatBalance } from '@polkadot/util'
-import { supportedChains } from '@shared/chains'
 import { truncateHash } from '@shared/truncateHash'
 import { FC, useEffect, useState } from 'react'
 import { AiOutlineCheckCircle, AiOutlineDisconnect } from 'react-icons/ai'

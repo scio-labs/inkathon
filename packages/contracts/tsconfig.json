@@ -11,7 +11,5 @@
     "baseUrl": ".",
     "composite": true
   },
-  "include": [
-    "./**/target/*.json",
-  ]
+  "include": ["./**/deployments/*.json"]
 }
