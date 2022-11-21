@@ -79,11 +79,11 @@ cp packages/frontend/.env.local.example packages/frontend/.env.local
 
 # 2. Install ink! CLI tooling (https://use.ink/getting-started/setup#ink-cli)
 cargo install cargo-dylint dylint-link
-cargo install cargo-contract --force --locked
+cargo install cargo-contract --force --git https://github.com/paritytech/cargo-contract.git --tag v1.5.0
 
 # 3. Optional: Install local substrate-contracts-node (https://github.com/paritytech/substrate-contracts-node)
-# NOTE: Fixed to latest release tag working with contracts-ui & cargo-contracts (v0.21.0)
-cargo install contracts-node --git https://github.com/paritytech/substrate-contracts-node.git --tag v0.21.0
+# IMPORTANT: The installation is fixed to latest release tag before using WeightsV2
+cargo install contracts-node --force --git https://github.com/paritytech/substrate-contracts-node.git --tag v0.21.0
 ```
 
 ## Development

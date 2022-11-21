@@ -7,7 +7,7 @@
     "copy-abi": "mkdir -p ./${CONTRACT:-greeter}/abi/ && cp ./${CONTRACT:-greeter}/target/ink/metadata.json ./${CONTRACT:-greeter}/abi/",
     "test": "cargo +nightly contract test --manifest-path ${CONTRACT:-greeter}/Cargo.toml",
     "node": "substrate-contracts-node --dev --port 9944 --base-path ./.node-data",
-    "contracts-ui": "open https://contracts-ui.substrate.io/?rpc=ws://127.0.0.1:9944",
+    "contracts-ui": "open https://weightv1--contracts-ui.netlify.app/?rpc=ws://127.0.0.1:9944",
     "explorer-ui": "open https://polkadot.js.org/apps/#/explorer?rpc=ws://127.0.0.1:9944",
     "dev": "pnpm contracts-ui && pnpm node"
   }
