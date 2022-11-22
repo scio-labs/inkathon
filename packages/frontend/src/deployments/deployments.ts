@@ -23,10 +23,10 @@ export enum ContractKeys {
 export type AddressesType = { [_: string]: Promise<{ address: string }> }
 export type AllAddressesType = { [_ in ContractKeys]: AddressesType }
 export const allAddresses = Object.keys(ContractKeys).reduce<AllAddressesType>(
-  (acc, contract) => ({
+  (acc: any, contract: string) => ({
     ...acc,
     [contract]: env.supportedChains.reduce(
-      (acc: AddressesType, chain: string) => ({
+      (acc: any, chain: string) => ({
         ...acc,
         [chain]: import(`@inkathon/contracts/${contract}/deployments/${chain}.json`),
       }),
@@ -41,7 +41,7 @@ export const allAddresses = Object.keys(ContractKeys).reduce<AllAddressesType>(
  */
 export type AllABIsType = { [_ in ContractKeys]: Promise<Abi> }
 export const allABIs = Object.keys(ContractKeys).reduce<AllABIsType>(
-  (acc, contract) => ({
+  (acc: any, contract: string) => ({
     ...acc,
     [contract]: import(`@inkathon/contracts/${contract}/deployments/metadata.json`),
   }),

@@ -7,7 +7,7 @@ import 'twin.macro'
 import { usePolkadotProviderContext } from './PolkadotProvider'
 
 export const GreeterContractInteractions: FC = () => {
-  const { activeChain, account, signer } = usePolkadotProviderContext()
+  const { account, signer } = usePolkadotProviderContext()
   const { contract } = useDeployment(ContractKeys.greeter)
   const [greeterMessage, setGreeterMessage] = useState<string>()
   const [fetchIsLoading, setFetchIsLoading] = useState<boolean>()
