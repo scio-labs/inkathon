@@ -1,5 +1,5 @@
 import { ApiPromise, HttpProvider, WsProvider } from '@polkadot/api'
-import { InjectedAccountWithMeta } from '@polkadot/extension-inject/types'
+import { InjectedAccountWithMeta, Unsubcall } from '@polkadot/extension-inject/types'
 import { Signer } from '@polkadot/types/types'
 import {
   createContext,
@@ -55,6 +55,7 @@ export const PolkadotProvider: FC<PolkadotProviderProps> = ({
   const [account, setAccount] = useState<InjectedAccountWithMeta>()
   const [signer, setSigner] = useState<Signer>()
   const [isLoading, setIsLoading] = useState<boolean>()
+  const [unsubscribeAccounts, setUnsubscribeAccounts] = useState<Unsubcall>()
 
   const initialize = async () => {
     // Initialize polkadot-js/api
@@ -76,17 +77,23 @@ export const PolkadotProvider: FC<PolkadotProviderProps> = ({
   const connect = async () => {
     setIsLoading(true)
     try {
-      // Initialize polkadot/extension-dapp
-      const { web3Accounts, web3Enable } = await import('@polkadot/extension-dapp')
-      const extensions = await web3Enable('Azero Domains')
+      // Dynamically import polkadot/extension-dapp (hydration error otherwise)
+      const { web3AccountsSubscribe, web3Enable } = await import('@polkadot/extension-dapp')
+
+      // Initialize web3 extension
+      const extensions = await web3Enable('INK!athon') // TODO
       if (!extensions?.length) {
         toast.error('No Substrate-compatible extension detected.')
       }
 
-      // Query & set connected web3 accounts
-      const _accounts = await web3Accounts()
-      setAccounts(_accounts || [])
-      setAccount(!!_accounts?.length ? _accounts[0] : undefined)
+      // Query & keep listening to web3 accounts
+      unsubscribeAccounts?.()
+      const unsubscribe = await web3AccountsSubscribe((injectedAccounts) => {
+        console.log('accounts update:', injectedAccounts)
+        setAccounts(injectedAccounts || [])
+        setAccount(!!injectedAccounts?.length ? injectedAccounts[0] : undefined)
+      })
+      setUnsubscribeAccounts(unsubscribe)
     } catch (e) {
       console.error('Error while fetching accounts with polkadot/extension-dapp:', e)
     } finally {
@@ -97,11 +104,14 @@ export const PolkadotProvider: FC<PolkadotProviderProps> = ({
   const disconnect = () => {
     setAccounts([])
     setAccount(undefined)
+    unsubscribeAccounts?.()
+    setUnsubscribeAccounts(undefined)
   }
 
   // Initialze
   useEffect(() => {
     initialize()
+    return unsubscribeAccounts
   }, [activeChain?.network])
 
   // Update signer
