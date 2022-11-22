@@ -36,6 +36,9 @@
     "files.associations": {
       ".env.*": "dotenv"
     },
+    "[rust]": {
+      "editor.defaultFormatter": "rust-lang.rust-analyzer"
+    },
     "peacock.color": "#8758FF",
     "workbench.colorCustomizations": {
       "sash.hoverBorder": "#ac8bff",

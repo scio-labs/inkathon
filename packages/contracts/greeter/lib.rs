@@ -17,7 +17,9 @@ pub mod greeter {
         /// Creates a new greeter contract initialized with the given value.
         #[ink(constructor)]
         pub fn new(init_value: String) -> Self {
-            Self { message: init_value }
+            Self {
+                message: init_value,
+            }
         }
 
         /// Creates a new greeter contract initialized to 'Hello ink!'.
