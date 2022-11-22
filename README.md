@@ -29,9 +29,9 @@ By [Dennis Zoma](https://twitter.com/dennis_zoma) 🧙‍♂️ & [Scio Labs](ht
    1. [Frontend Quickstart](#frontend-quickstart)
    2. [Contracts Quickstart](#contracts-quickstart)
    3. [VSCode Setup](#vscode-setup)
-   4. [Customization](#customization)
-6. [Deployment](#deployment)
-7. [FAQs \& Troubleshooting](#faqs--troubleshooting)
+6. [Customization](#customization)
+7. [Deployment](#deployment)
+8. [FAQs \& Troubleshooting](#faqs--troubleshooting)
 
 ---
 
@@ -40,8 +40,8 @@ By [Dennis Zoma](https://twitter.com/dennis_zoma) 🧙‍♂️ & [Scio Labs](ht
 This repository is still work-in-progress and there are probably bugs. Open tasks include:
 
 - [ ] Typesafe contract interactions with `@polkadot/typegen`
-- [ ] Upgrade to ink! v4
-- [ ] Support contract deployment via CLI which auto generated address `.json`
+- [ ] Upgrade to WeightsV2 & ink! v4
+- [ ] Support contract deployment via CLI that generates abi & address in one single `.json`
 
 ## The Stack
 
@@ -152,19 +152,19 @@ I strongly recommend installing all plugins listed inside `.vscode/extensions.js
 
 </details>
 
-### Customization
+#### Snippets
 
-There are multiple places where you need to insert your actual project name/identifier. I've highlighted most of these occurences with a `/* TODO */` comment in the code. When installing the `todo-tree` plugin [listed above](#vscode-setup) you can easily replace them one by one.
+The file [`packages/frontend/.vscode/frontend.code-snippets`](https://github.com/scio-labs/inkathon/blob/main/packages/frontend/.vscode/frontend.code-snippets) contains useful snippets for quickly creating components & pages with Next.js, React, Typescript, and twin.macro. Example: Enter "Function Component with Props" in an empty `.tsx` file to get a `FC` component boilerplate with an empty TypeScript interface declaration and already imported 'twin.macro'. Check out the snippet-file itself to get a full overview.
+
+## Customization
+
+There are multiple places where you need to insert your actual project name & identifier. I highlighted most of these occurences with a `/* TODO */` comment in the code. When installing the `todo-tree` plugin [listed above](#vscode-setup) you can easily replace them one by one.
 
 Additionally, there are the following un-highlighted occurences:
 
 - The name of the `.vscode/*.code-workspace` file
 - The package names within `package.json`, `packages/frontend/package.json`, and `packages/contracts/package.json`
 - The workspace dependency defined in `packages/frontend/package.json`
-
-#### Snippets
-
-The file [`packages/frontend/.vscode/frontend.code-snippets`](https://github.com/scio-labs/inkathon/blob/main/packages/frontend/.vscode/frontend.code-snippets) contains useful snippets for quickly creating components & pages with Next.js, React, Typescript, and twin.macro. Example: Enter "Function Component with Props" in an empty `.tsx` file to get a `FC` component boilerplate with an empty TypeScript interface declaration and already imported 'twin.macro'. Check out the snippet-file itself to get a full overview.
 
 ## Deployment
 
@@ -187,6 +187,8 @@ You can find mode documentation on those environment variables in [`packages/fro
 <summary><strong>What is pnpm and do I really need it?</strong></summary>
 
 [Pnpm](https://pnpm.io/) works in my experience way faster and more reliable within monorepos than npm or yarn. When using it though, it's strongly recommended everyone in the team uses it. No installs should perform be performed nor any other lockfiles should be commited.
+
+Also, esp. the `contracts` package has multiple shorthand npm scripts defined in its `package.json` that are recommended to use.
 
 </details>
 
