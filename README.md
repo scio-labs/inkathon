@@ -40,8 +40,9 @@ By [Dennis Zoma](https://twitter.com/dennis_zoma) 🧙‍♂️ & [Scio Labs](ht
 This repository is still work-in-progress and there are probably bugs. Open tasks include:
 
 - [ ] Typesafe contract interactions with `@polkadot/typegen`
-- [ ] Upgrade to WeightsV2 & ink! v4
+- [ ] Upgrade to WeightsV2 & [ink! v4](https://github.com/paritytech/ink/issues/1343)
 - [ ] Support contract deployment via CLI that generates abi & address in one single `.json`
+- [ ] Offer alternative way of using cargo contract [with a docker container](https://github.com/paritytech/cargo-contract#installation-using-docker-image)
 
 ## The Stack
 
@@ -79,14 +80,16 @@ cp packages/frontend/.env.local.example packages/frontend/.env.local
 ### Contracts
 
 ```bash
-# 1. Install Rust & Cargo: https://docs.substrate.io/install/
+# 1. Install Rust (i.e. nightly): https://docs.substrate.io/install/
 # NOTE: Leave out the "Compile a Substrate node" part for now
+rustup component add rust-src --toolchain nightly
+rustup target add wasm32-unknown-unknown --toolchain nightly
 
-# 2. Install ink! CLI tooling (https://use.ink/getting-started/setup#ink-cli)
-cargo install cargo-dylint dylint-link
-cargo install cargo-contract --force --git https://github.com/paritytech/cargo-contract.git --tag v1.5.0
+# 2. Install ink! tooling (https://use.ink/getting-started/setup#ink-cli)
+cargo +nightly install cargo-dylint dylint-link --force --locked
+cargo +nightly install cargo-contract --force --locked --git https://github.com/paritytech/cargo-contract.git --tag v1.5.0
 
-# 3. Optional: Install local substrate-contracts-node (https://github.com/paritytech/substrate-contracts-node)
+# 3. Install local substrate-contracts-node (https://github.com/paritytech/substrate-contracts-node)
 # IMPORTANT: The installation is fixed to latest release tag before using WeightsV2
 cargo install contracts-node --force --git https://github.com/paritytech/substrate-contracts-node.git --tag v0.21.0
 ```
@@ -107,17 +110,17 @@ pnpm dev
 I created sorthand npm-scripts for most interactions (e.g. build, or starting a local node). Therefore, to execute those the active terminal directory needs to be `packages/contracts`. The full commands can be found in `packages/contracts/package.json`.
 
 ```bash
+# Start local node with persistence & open contracts-ui
+# NOTE: When using Brave, shields have to be taken down for the UIs
+# NOTE: Just use `pnpm node` to not automatically open contracts-ui
+pnpm dev
+
 # Build Contracts
 pnpm build
 
-# Start local Substrate node (https://github.com/paritytech/substrate-contracts-node)
-pnpm node
+# Deploy Contracts with the generated `*.contract` file
+# via drag'n'drop in contracts-ui in the browser
 
-# Start local node with persistence & automatically open contracts-ui
-# NOTE: When using Brave, shields have to be taken down for the UIs
-pnpm dev
-
-# Now deploy the generated `greeter.contract` file via drag'n'drop in contracts-ui
 # Copy the deployed contracts address and save it via the following command
 ADDRESS=… pnpm write-address
 
