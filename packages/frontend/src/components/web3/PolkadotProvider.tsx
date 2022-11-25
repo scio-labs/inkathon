@@ -90,7 +90,6 @@ export const PolkadotProvider: FC<PolkadotProviderProps> = ({
       // Query & keep listening to web3 accounts
       unsubscribeAccounts?.()
       const unsubscribe = await web3AccountsSubscribe((injectedAccounts) => {
-        console.log('accounts update:', injectedAccounts)
         setAccounts(injectedAccounts || [])
         setAccount(!!injectedAccounts?.length ? injectedAccounts[0] : undefined)
       })
