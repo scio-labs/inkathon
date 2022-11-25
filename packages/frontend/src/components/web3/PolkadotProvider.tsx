@@ -36,6 +36,7 @@ export interface PolkadotProviderChain {
   network: string
   name: string
   rpcUrls: [string, ...string[]]
+  explorerUrls?: string[]
   testnet?: boolean
   faucetUrls?: string[]
 }
