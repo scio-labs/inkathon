@@ -37,12 +37,7 @@ By [Dennis Zoma](https://twitter.com/dennis_zoma) 🧙‍♂️ & [Scio Labs](ht
 
 ## Disclaimer 🚨
 
-This repository is still work-in-progress and there are probably bugs. Open tasks include:
-
-- [ ] Typesafe contract interactions with `@polkadot/typegen`
-- [ ] Upgrade to WeightsV2 & [ink! v4](https://github.com/paritytech/ink/issues/1343)
-- [ ] Support contract deployment via CLI that generates abi & address in one single `.json`
-- [ ] Offer alternative way of using cargo contract [with a docker container](https://github.com/paritytech/cargo-contract#installation-using-docker-image)
+This repository is still work-in-progress and there are probably bugs. See the [open issues](https://github.com/scio-labs/inkathon/issues).
 
 ## The Stack
 
