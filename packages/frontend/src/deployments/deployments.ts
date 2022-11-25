@@ -51,7 +51,7 @@ export const allABIs = Object.keys(ContractKeys).reduce<AllABIsType>(
 /**
  * Helper hook to access abis and addresses by active chain
  */
-export const useDeployment = (key: ContractKeys) => {
+export const useDeployment = (key: keyof typeof ContractKeys) => {
   const { api, activeChain } = usePolkadotProviderContext()
   const [contractABI, setContractABI] = useState<object>()
   const [contractAddress, setContractAddress] = useState<string>()
