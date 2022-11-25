@@ -1,8 +1,17 @@
 {
   "source": {
-    "hash": "0x10e113d5efd9e3411fd35ffa91e53adf4255820da8908dac4aaa8440e6d018d7",
-    "language": "ink! 3.4.0",
-    "compiler": "rustc 1.67.0-nightly"
+    "hash": "0x866c104f6421bcf4e57be3786fd41fd468beb282fe5d812c0bc15009157e0692",
+    "language": "ink! 4.0.0-beta",
+    "compiler": "rustc 1.65.0",
+    "build_info": {
+      "build_mode": "Release",
+      "cargo_contract_version": "2.0.0-beta",
+      "rust_toolchain": "stable-aarch64-apple-darwin",
+      "wasm_opt_settings": {
+        "keep_debug_symbols": false,
+        "optimization_passes": "Z"
+      }
+    }
   },
   "contract": {
     "name": "greeter",
@@ -11,104 +20,248 @@
       "Scio Labs <hello@scio.xyz>"
     ]
   },
-  "V3": {
-    "spec": {
-      "constructors": [
-        {
-          "args": [
-            {
-              "label": "init_value",
-              "type": {
-                "displayName": [
-                  "String"
-                ],
-                "type": 0
-              }
-            }
-          ],
-          "docs": [
-            "Creates a new greeter contract initialized with the given value."
-          ],
-          "label": "new",
-          "payable": false,
-          "selector": "0x9bae9d5e"
-        },
-        {
-          "args": [],
-          "docs": [
-            "Creates a new greeter contract initialized to 'Hello ink!'."
-          ],
-          "label": "default",
-          "payable": false,
-          "selector": "0xed4b9d1b"
-        }
-      ],
-      "docs": [],
-      "events": [],
-      "messages": [
-        {
-          "args": [],
-          "docs": [
-            " Returns the current value of `message`."
-          ],
-          "label": "greet",
-          "mutates": false,
-          "payable": false,
-          "returnType": {
-            "displayName": [
-              "String"
-            ],
-            "type": 0
-          },
-          "selector": "0x052cda08"
-        },
-        {
-          "args": [
-            {
-              "label": "new_value",
-              "type": {
-                "displayName": [
-                  "String"
-                ],
-                "type": 0
-              }
-            }
-          ],
-          "docs": [
-            " Sets `message` to the given value."
-          ],
-          "label": "set_message",
-          "mutates": true,
-          "payable": false,
-          "returnType": null,
-          "selector": "0x1fe7426f"
-        }
-      ]
-    },
-    "storage": {
-      "struct": {
-        "fields": [
+  "spec": {
+    "constructors": [
+      {
+        "args": [
           {
-            "layout": {
-              "cell": {
-                "key": "0x0000000000000000000000000000000000000000000000000000000000000000",
-                "ty": 0
-              }
-            },
-            "name": "message"
+            "label": "init_value",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 0
+            }
           }
+        ],
+        "docs": [
+          "Creates a new greeter contract initialized with the given value."
+        ],
+        "label": "new",
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink_primitives",
+            "ConstructorResult"
+          ],
+          "type": 1
+        },
+        "selector": "0x9bae9d5e"
+      },
+      {
+        "args": [],
+        "docs": [
+          "Creates a new greeter contract initialized to 'Hello ink!'."
+        ],
+        "label": "default",
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink_primitives",
+            "ConstructorResult"
+          ],
+          "type": 1
+        },
+        "selector": "0xed4b9d1b"
+      }
+    ],
+    "docs": [],
+    "events": [],
+    "lang_error": {
+      "displayName": [
+        "ink",
+        "LangError"
+      ],
+      "type": 3
+    },
+    "messages": [
+      {
+        "args": [],
+        "docs": [
+          " Returns the current value of `message`."
+        ],
+        "label": "greet",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 4
+        },
+        "selector": "0x052cda08"
+      },
+      {
+        "args": [
+          {
+            "label": "new_value",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "docs": [
+          " Sets `message` to the given value."
+        ],
+        "label": "set_message",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 1
+        },
+        "selector": "0x1fe7426f"
+      }
+    ]
+  },
+  "storage": {
+    "root": {
+      "layout": {
+        "struct": {
+          "fields": [
+            {
+              "layout": {
+                "leaf": {
+                  "key": "0x00000000",
+                  "ty": 0
+                }
+              },
+              "name": "message"
+            }
+          ],
+          "name": "Greeter"
+        }
+      },
+      "root_key": "0x00000000"
+    }
+  },
+  "types": [
+    {
+      "id": 0,
+      "type": {
+        "def": {
+          "primitive": "str"
+        }
+      }
+    },
+    {
+      "id": 1,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 2
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 3
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 2
+          },
+          {
+            "name": "E",
+            "type": 3
+          }
+        ],
+        "path": [
+          "Result"
         ]
       }
     },
-    "types": [
-      {
-        "id": 0,
-        "type": {
-          "def": {
-            "primitive": "str"
-          }
+    {
+      "id": 2,
+      "type": {
+        "def": {
+          "tuple": []
         }
       }
-    ]
-  }
+    },
+    {
+      "id": 3,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 1,
+                "name": "CouldNotReadInput"
+              }
+            ]
+          }
+        },
+        "path": [
+          "ink_primitives",
+          "LangError"
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 0
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 3
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 0
+          },
+          {
+            "name": "E",
+            "type": 3
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    }
+  ],
+  "version": "4"
 }
