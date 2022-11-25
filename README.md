@@ -83,11 +83,11 @@ rustup target add wasm32-unknown-unknown --toolchain nightly
 
 # 2. Install ink! tooling (https://use.ink/getting-started/setup#ink-cli)
 cargo +nightly install cargo-dylint dylint-link --force --locked
-cargo +nightly install cargo-contract --force --locked --git https://github.com/paritytech/cargo-contract.git --tag v1.5.0
+cargo +nightly install cargo-contract --force --locked --git https://github.com/paritytech/cargo-contract.git
 
 # 3. Install local substrate-contracts-node (https://github.com/paritytech/substrate-contracts-node)
 # IMPORTANT: The installation is fixed to latest release tag before using WeightsV2
-cargo install contracts-node --force --git https://github.com/paritytech/substrate-contracts-node.git --tag v0.21.0
+cargo install contracts-node --force --git https://github.com/paritytech/substrate-contracts-node.git
 ```
 
 ## Development
