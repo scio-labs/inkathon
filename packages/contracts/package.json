@@ -4,12 +4,12 @@
   "license": "GPL-3.0",
   "homepage": "https://inkathon.xyz",
   "scripts": {
-    "build": "cargo +nightly contract build --optimization-passes=0 --release --manifest-path ${CONTRACT:-greeter}/Cargo.toml && pnpm copy-build",
+    "build": "cargo contract build --release --manifest-path ${CONTRACT:-greeter}/Cargo.toml && pnpm copy-build",
     "copy-build": "mkdir -p ${CONTRACT:-greeter}/deployments/ && cp ${CONTRACT:-greeter}/target/ink/metadata.json ${CONTRACT:-greeter}/deployments/ && cp ${CONTRACT:-greeter}/target/ink/${CONTRACT:-greeter}.contract ${CONTRACT:-greeter}/deployments/",
     "test": "cargo +nightly contract test --manifest-path ${CONTRACT:-greeter}/Cargo.toml",
     "node": "substrate-contracts-node --dev --port 9944 --base-path ./.node-data",
     "write-address": "mkdir -p ${CONTRACT:-greeter}/deployments/ && echo \"{\n  \\x22address\\x22: \\x22$ADDRESS\\x22\n}\" >${CONTRACT:-greeter}/deployments/${CHAIN:-development}.json",
-    "contracts-ui": "open https://weightv1--contracts-ui.netlify.app/?rpc=ws://127.0.0.1:9944",
+    "contracts-ui": "open https://contracts-ui.substrate.io/?rpc=ws://127.0.0.1:9944",
     "explorer-ui": "open https://polkadot.js.org/apps/#/explorer?rpc=ws://127.0.0.1:9944",
     "dev": "pnpm contracts-ui && pnpm node"
   }
