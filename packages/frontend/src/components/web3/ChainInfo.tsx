@@ -58,16 +58,29 @@ export const ChainInfo: FC = () => {
             </div>
           ))}
 
-          {/* Faucet Link */}
-          {!!activeChain?.faucetUrls?.length && (
-            <Link
-              href={activeChain.faucetUrls[0]}
-              target="_blank"
-              tw="mt-2 flex items-center justify-center text-center text-xs text-gray-400 hover:text-white"
-            >
-              Faucet <HiOutlineExternalLink tw="ml-1" />
-            </Link>
-          )}
+          <div tw="mt-2 flex items-center justify-center space-x-2">
+            {/* Explorer Link */}
+            {!!activeChain?.explorerUrls?.length && (
+              <Link
+                href={activeChain.explorerUrls[0]}
+                target="_blank"
+                tw="flex items-center justify-center text-center text-xs text-gray-400 hover:text-white"
+              >
+                Explorer <HiOutlineExternalLink tw="ml-1" />
+              </Link>
+            )}
+
+            {/* Faucet Link */}
+            {!!activeChain?.faucetUrls?.length && (
+              <Link
+                href={activeChain.faucetUrls[0]}
+                target="_blank"
+                tw="flex items-center justify-center text-center text-xs text-gray-400 hover:text-white"
+              >
+                Faucet <HiOutlineExternalLink tw="ml-1" />
+              </Link>
+            )}
+          </div>
         </Card>
       </Wrap>
     </>
