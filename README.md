@@ -9,7 +9,7 @@
 
 ---
 
-This is an opinionated boilerplate/starterkit/scaffold to get up and running with smart contract & dApp development in the substrate-ecosystem.
+This is an opinionated boilerplate/starterkit/scaffold to get up and running with smart contract & dApp development in the Substrate ecosystem.
 
 It also comes in handy for hackathons. 👀
 
@@ -49,11 +49,13 @@ This repository is still work-in-progress and there are probably bugs. See the [
 - Misc:
   - Linting & Formatting: `eslint`, `prettier`, `husky`, `lint-staged`
 
+<img src="inkathon-stack.png" width="800" height="auto" alt="The Stack of INK!athon" />
+
 ## Projects using it
 
-Below you find a few projects that use this boilerplate, a variation of it, or have a similar setup setup that inspired it:
+Below you find a few projects that use this boilerplate, a variation of it, or have a similar setup that inspired it:
 
-- [Azero Domains](https://github.com/wottpal/azero.domains) – Domain Nameservice for Aleph Zero (Hackathon)
+- [AZERO Domains](https://github.com/wottpal/azero.domains) – Domain Name Service for Aleph Zero
 
 ## Getting Started
 
@@ -102,7 +104,7 @@ pnpm dev
 
 ### Contracts Quickstart
 
-I created sorthand npm-scripts for most interactions (e.g. build, or starting a local node). Therefore, to execute those the active terminal directory needs to be `packages/contracts`. The full commands can be found in `packages/contracts/package.json`.
+I created shorthand npm-scripts for most interactions (e.g. build, or starting a local node). Therefore, to execute those the active terminal directory needs to be `packages/contracts`. The full commands can be found in `packages/contracts/package.json`.
 
 ```bash
 # Start local node with persistence & open contracts-ui
@@ -130,7 +132,7 @@ pnpm test
 
 #### Workspace
 
-I strongly reommend developing in VSCode by opening the workspace file located at `.vscode/inkathon.code-workspace` instead of just the directory. This has multiple advantages and assures a more predictable monorepo configuration. The first plugin listed below will help with getting used to it.
+I strongly recommend developing in VSCode by opening the workspace file located at `.vscode/inkathon.code-workspace` instead of just the directory. This has multiple advantages and assures a more predictable monorepo configuration. The first plugin listed below will help with getting used to it.
 
 #### Plugins
 
@@ -156,9 +158,9 @@ The file [`packages/frontend/.vscode/frontend.code-snippets`](https://github.com
 
 ## Customization
 
-There are multiple places where you need to insert your actual project name & identifier. I highlighted most of these occurences with a `/* TODO */` comment in the code. When installing the `todo-tree` plugin [listed above](#vscode-setup) you can easily replace them one by one.
+There are multiple places where you need to insert your actual project name & identifier. I highlighted most of these occurrences with a `/* TODO */` comment in the code. When installing the `todo-tree` plugin [listed above](#vscode-setup) you can easily replace them one by one.
 
-Additionally, there are the following un-highlighted occurences:
+Additionally, there are the following un-highlighted occurrences:
 
 - The name of the `.vscode/*.code-workspace` file
 - The package names within `package.json`, `packages/frontend/package.json`, and `packages/contracts/package.json`
@@ -177,14 +179,14 @@ Setting up a deployment via Vercel is pretty straightforward as build settings a
 | `NEXT_PUBLIC_DEFAULT_CHAIN`   | `alephzero-testnet`            |
 | `NEXT_PUBLIC_DEFAULT_CHAIN`   | `["alephzero-testnet"]`        |
 
-You can find mode documentation on those environment variables in [`packages/frontend/.env.local.example`](https://github.com/scio-labs/inkathon/blob/main/packages/frontend/.env.local.example) and all available blockchain network identifiers in [`packages/frontend/src/deployments/chains.ts`](https://github.com/scio-labs/inkathon/blob/main/packages/frontend/src/deployments/chains.ts).
+You can find more documentation on those environment variables in [`packages/frontend/.env.local.example`](https://github.com/scio-labs/inkathon/blob/main/packages/frontend/.env.local.example) and all available blockchain network identifiers in [`packages/frontend/src/deployments/chains.ts`](https://github.com/scio-labs/inkathon/blob/main/packages/frontend/src/deployments/chains.ts).
 
 ## FAQs & Troubleshooting
 
 <details>
-<summary><strong>What is pnpm and do I really need it?</strong></summary>
+<summary><strong>What is pnpm and do I need it?</strong></summary>
 
-[Pnpm](https://pnpm.io/) works in my experience way faster and more reliable within monorepos than npm or yarn. When using it though, it's strongly recommended everyone in the team uses it. No installs should perform be performed nor any other lockfiles should be commited.
+[Pnpm](https://pnpm.io/) works in my experience way faster and more reliably within monorepos than npm or yarn. When using it though, it's strongly recommended everyone on the team uses it. No installs should perform be performed nor any other lock files should be committed.
 
 Also, esp. the `contracts` package has multiple shorthand npm scripts defined in its `package.json` that are recommended to use.
 
@@ -206,14 +208,14 @@ Important, in production it's recommended to use at most one of 1. and 2. to red
 <details>
 <summary><strong>Can I just use plain TailwindCSS?</strong></summary>
 
-The packages above can be easily switched out with plain TailwindCSS, a detailed guide on that is coming very soon. In the meantime, open an issue to get guidance.
+The packages above can be easily switched out with plain TailwindCSS, a detailed guide that is coming soon. In the meantime, open an issue to get guidance.
 
 </details>
 
 <details>
 <summary><strong>Resources to learn more about Substrate, ink!, and polkadot.js</strong></summary>
 
-- [Polkadot Bulder's Guide](https://wiki.polkadot.network/docs/build-index)
+- [Polkadot Builder's Guide](https://wiki.polkadot.network/docs/build-index)
 - [Substrate Documentation](https://docs.substrate.io/)
 - [Awesome Substrate](https://github.com/substrate-developer-hub/awesome-substrate)
 - [ink! Documentation](https://use.ink/)
