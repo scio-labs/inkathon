@@ -21,9 +21,6 @@
       "**/.next": true,
       "**/.vercel": true
     },
-    "search.exclude": {
-      "**/packages/contracts/deployments": true
-    },
     "search.useIgnoreFiles": true,
     "search.useGlobalIgnoreFiles": true,
     "search.useParentIgnoreFiles": true,
