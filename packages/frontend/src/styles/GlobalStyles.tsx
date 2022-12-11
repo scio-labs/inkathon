@@ -17,11 +17,14 @@ const customStyles = css`
   }
 
   /* Progress Bar */
-  #nprogress > .bar {
-    ${tw`bg-white`}
-  }
-  #nprogress > .spinner {
-    ${tw`hidden!`}
+  #nprogress {
+    .bar {
+      ${tw`bg-white`}
+    }
+    .peg,
+    .spinner {
+      ${tw`hidden!`}
+    }
   }
 `
 
