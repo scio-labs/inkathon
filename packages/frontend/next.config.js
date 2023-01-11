@@ -5,12 +5,11 @@
 /**
  * @type {import('next').NextConfig}
  **/
-let nextConfig = {}
+let nextConfig = {
+  transpilePackages: ['@inkathon/contracts'],
+}
 
 const withTwin = require('./withTwin.js')
 nextConfig = withTwin(nextConfig)
 
-const withTM = require('next-transpile-modules')(['@inkathon/contracts']) // TODO
-nextConfig = withTM(nextConfig)
-
-module.exports = withTM(nextConfig)
+module.exports = nextConfig
