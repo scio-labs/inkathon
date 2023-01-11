@@ -1,7 +1,16 @@
 {
   "name": "@inkathon/monorepo",
+  "description": "Full-stack dApp boilerplate for Substrate-based networks and ink! Smart Contracts",
   "version": "0.0.1",
-  "license": "MIT",
+  "license": "GPL-3.0",
+  "homepage": "https://inkathon.xyz",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scio-labs/inkathon"
+  },
+  "bugs": {
+    "url": "https://github.com/scio-labs/inkathon/issues"
+  },
   "private": true,
   "workspaces": [
     "packages/*"

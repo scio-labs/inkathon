@@ -1,7 +1,8 @@
 {
   "name": "@inkathon/contracts",
-  "license": "MIT",
   "version": "0.0.1",
+  "license": "GPL-3.0",
+  "homepage": "https://inkathon.xyz",
   "scripts": {
     "build": "cargo +nightly contract build --optimization-passes=0 --release --manifest-path ${CONTRACT:-greeter}/Cargo.toml && pnpm copy-build",
     "copy-build": "mkdir -p ${CONTRACT:-greeter}/deployments/ && cp ${CONTRACT:-greeter}/target/ink/metadata.json ${CONTRACT:-greeter}/deployments/ && cp ${CONTRACT:-greeter}/target/ink/${CONTRACT:-greeter}.contract ${CONTRACT:-greeter}/deployments/",

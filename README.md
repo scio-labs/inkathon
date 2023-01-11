@@ -1,19 +1,18 @@
-# INK!athon – Substrate-based Smart Contract & DApp Boilerplate
+# INK!athon – DApp Boilerplate for Substrate & ink!
 
 ![Typescript](https://img.shields.io/badge/Typescript-blue)
-![ink!](https://img.shields.io/badge/ink!-purple)
 ![Next.js](https://img.shields.io/badge/Next.js-gray)
 ![Tailwind](https://img.shields.io/badge/Tailwind-pink)
+![ink!](https://img.shields.io/badge/ink!-purple)
+[![Scio Labs](https://img.shields.io/badge/Scio%20Labs-We%20are%20hiring-black)](https://scio.xyz)
 
 <img src="packages/frontend/public/images/mix-cover.jpg" width="800" height="auto" alt="Cover Image" />
 
 ---
 
-This is an opinionated boilerplate/starterkit/scaffold to get up and running with smart contract & dApp development in the Substrate ecosystem.
+This is an opinionated boilerplate to get up and running with dApp development in the Substrate ecosystem, especially with ink! smart contracts. It uses custom-built [`useInkathon` React Hooks](https://github.com/scio-labs/use-inkathon) that abstract & improve the polkadot.js experience.
 
-It also comes in handy for hackathons. 👀
-
-By [Dennis Zoma](https://twitter.com/dennis_zoma) 🧙‍♂️ & [Scio Labs](https://scio.xyz) 💫.
+By [Dennis Zoma](https://zoma.dev) 💫 & [Scio Labs](https://scio.xyz) 🪐
 
 ---
 

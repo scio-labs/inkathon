@@ -1,7 +1,8 @@
 {
   "name": "@inkathon/frontend",
-  "license": "MIT",
   "version": "0.0.1",
+  "license": "GPL-3.0",
+  "homepage": "https://inkathon.xyz",
   "babelMacros": {
     "twin": {
       "preset": "emotion"
