@@ -8,7 +8,7 @@ import 'twin.macro'
 
 export const HomePageTitle: FC = () => {
   const title = 'INK!athon'
-  const desc = 'Substrate-based Smart Contract & DApp Development Boilerplate'
+  const desc = 'Full-Stack DApp Boilerplate for Substrate and ink! Smart Contracts'
   const githubHref = 'https://github.com/scio-labs/inkathon'
   const deployHref = 'https://github.com/scio-labs/inkathon#deployment'
 
@@ -21,17 +21,41 @@ export const HomePageTitle: FC = () => {
           className="group"
           tw="flex cursor-pointer flex-col items-center"
         >
+          {/* Github Icon */}
           <Image
             src={githubCircleIcon}
             priority
-            width={42}
+            width={50}
             alt="Github Logo"
             tw="opacity-50 group-hover:opacity-100"
           />
-          <h1 tw="mt-4 font-black text-3xl tracking-tight">{title}</h1>
+          {/* Title */}
+          <h1 tw="mt-4 font-black text-4xl tracking-tight">{title}</h1>
         </Link>
-        <p tw="mt-1 text-gray-400">{desc}</p>
-        <div tw="mt-6 flex space-x-2">
+
+        {/* Tagline & Links */}
+        <p tw="mt-1 text-gray-600 text-sm">
+          By{' '}
+          <a
+            href="https://zoma.dev"
+            target="_blank"
+            tw="font-semibold text-gray-500 hover:text-gray-100"
+          >
+            Dennis Zoma
+          </a>{' '}
+          &{' '}
+          <a
+            href="https://scio.xyz"
+            target="_blank"
+            tw="font-semibold text-gray-500 hover:text-gray-100"
+          >
+            Scio Labs
+          </a>
+        </p>
+        <p tw="mt-4 mb-6 text-gray-400">{desc}</p>
+
+        {/* Github & Vercel Buttons */}
+        <div tw="flex space-x-2">
           <Link tw="opacity-80 hover:opacity-100" href={githubHref} target="_blank">
             <Image src={githubIcon} priority width={92} alt="Github Repository" />
           </Link>

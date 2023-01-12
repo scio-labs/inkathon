@@ -20,11 +20,13 @@ const HomePage: NextPage = () => {
         {/* Connect Wallet Button */}
         <ConnectButton />
 
-        {/* Chain Metadata Information */}
-        <ChainInfo />
+        <div tw="mt-10 flex w-full flex-wrap items-start justify-center gap-4">
+          {/* Chain Metadata Information */}
+          <ChainInfo />
 
-        {/* Greeter Read/Write Contract Interactions */}
-        <GreeterContractInteractions />
+          {/* Greeter Read/Write Contract Interactions */}
+          <GreeterContractInteractions />
+        </div>
       </CenterBody>
     </>
   )

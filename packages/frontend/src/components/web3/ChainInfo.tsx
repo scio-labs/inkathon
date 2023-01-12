@@ -1,4 +1,4 @@
-import { Card, Spinner, Wrap } from '@chakra-ui/react'
+import { Card, Spinner } from '@chakra-ui/react'
 import { useInkathon } from '@scio-labs/use-inkathon'
 import Link from 'next/link'
 import { FC, useEffect, useState } from 'react'
@@ -45,26 +45,27 @@ export const ChainInfo: FC = () => {
 
   return (
     <>
-      <h2 tw="mt-10 mb-4 font-mono text-gray-400">Chain Info</h2>
-      <Wrap>
+      <div tw="flex grow flex-col space-y-4 max-w-[20rem]">
+        <h2 tw="text-center font-mono text-gray-400">Chain Info</h2>
+
         <Card variant="outline" p={4}>
           {/* Metadata */}
           {Object.entries(chainInfo || {}).map(([key, value]) => (
-            <div key={key} tw="text-sm leading-6">
-              {key}:{' '}
+            <div key={key} tw="text-sm leading-7">
+              {key}:
               <strong tw="float-right ml-6 truncate max-w-[15rem]" title={value}>
                 {value}
               </strong>
             </div>
           ))}
 
-          <div tw="mt-2 flex items-center justify-center space-x-2">
+          <div tw="mt-3 flex items-center justify-center space-x-2">
             {/* Explorer Link */}
             {!!activeChain?.explorerUrls?.length && (
               <Link
                 href={activeChain.explorerUrls[0]}
                 target="_blank"
-                tw="flex items-center justify-center text-center text-xs text-gray-400 hover:text-white"
+                tw="flex items-center justify-center text-center text-sm text-gray-400 hover:text-white"
               >
                 Explorer <HiOutlineExternalLink tw="ml-1" />
               </Link>
@@ -75,14 +76,14 @@ export const ChainInfo: FC = () => {
               <Link
                 href={activeChain.faucetUrls[0]}
                 target="_blank"
-                tw="flex items-center justify-center text-center text-xs text-gray-400 hover:text-white"
+                tw="flex items-center justify-center text-center text-sm text-gray-400 hover:text-white"
               >
                 Faucet <HiOutlineExternalLink tw="ml-1" />
               </Link>
             )}
           </div>
         </Card>
-      </Wrap>
+      </div>
     </>
   )
 }

@@ -1,4 +1,4 @@
-import { Button, Card, FormControl, FormLabel, Input, Stack, Wrap } from '@chakra-ui/react'
+import { Button, Card, FormControl, FormLabel, Input, Stack } from '@chakra-ui/react'
 import { ContractIds } from '@deployments/deployments'
 import { useInkathon, useRegisteredContract } from '@scio-labs/use-inkathon'
 import { FC, useEffect, useState } from 'react'
@@ -74,8 +74,9 @@ export const GreeterContractInteractions: FC = () => {
 
   return (
     <>
-      <h2 tw="mt-10 mb-4 font-mono text-gray-400">Greeter Smart Contract</h2>
-      <Wrap>
+      <div tw="flex grow flex-col space-y-4 max-w-[20rem]">
+        <h2 tw="text-center font-mono text-gray-400">Greeter Smart Contract</h2>
+
         {/* Fetched Greeting */}
         <Card variant="outline" p={4}>
           <FormControl>
@@ -107,7 +108,7 @@ export const GreeterContractInteractions: FC = () => {
             </form>
           </Card>
         )}
-      </Wrap>
+      </div>
     </>
   )
 }

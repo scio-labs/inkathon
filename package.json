@@ -1,6 +1,6 @@
 {
   "name": "@inkathon/monorepo",
-  "description": "Full-stack dApp boilerplate for Substrate-based networks and ink! Smart Contracts",
+  "description": "Full-Stack DApp Boilerplate for Substrate-based networks and ink! Smart Contracts",
   "version": "0.0.1",
   "license": "GPL-3.0",
   "homepage": "https://inkathon.xyz",
