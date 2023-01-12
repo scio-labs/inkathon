@@ -1,14 +1,14 @@
 import { Button, Card, FormControl, FormLabel, Input, Stack, Wrap } from '@chakra-ui/react'
-import { ContractKeys, useDeployment } from '@deployments/deployments'
+import { ContractIds } from '@deployments/deployments'
+import { useInkathon, useRegisteredContract } from '@scio-labs/use-inkathon'
 import { FC, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import 'twin.macro'
-import { usePolkadotProviderContext } from './PolkadotProvider'
 
 export const GreeterContractInteractions: FC = () => {
-  const { account, signer } = usePolkadotProviderContext()
-  const { contract } = useDeployment(ContractKeys.greeter)
+  const { account, signer } = useInkathon()
+  const { contract } = useRegisteredContract(ContractIds.greeter)
   const [greeterMessage, setGreeterMessage] = useState<string>()
   const [fetchIsLoading, setFetchIsLoading] = useState<boolean>()
   const [updateIsLoading, setUpdateIsLoading] = useState<boolean>()

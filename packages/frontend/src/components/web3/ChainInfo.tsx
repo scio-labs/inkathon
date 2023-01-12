@@ -1,12 +1,12 @@
 import { Card, Spinner, Wrap } from '@chakra-ui/react'
+import { useInkathon } from '@scio-labs/use-inkathon'
 import Link from 'next/link'
 import { FC, useEffect, useState } from 'react'
 import { HiOutlineExternalLink } from 'react-icons/hi'
 import 'twin.macro'
-import { usePolkadotProviderContext } from './PolkadotProvider'
 
 export const ChainInfo: FC = () => {
-  const { api, activeChain } = usePolkadotProviderContext()
+  const { api, activeChain } = useInkathon()
   const [chainInfo, setChainInfo] = useState<{ [_: string]: any }>()
 
   // Fetch Chain Info

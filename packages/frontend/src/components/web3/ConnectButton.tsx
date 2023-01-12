@@ -10,51 +10,27 @@ import {
   Text,
   VStack,
 } from '@chakra-ui/react'
-import { supportedChains } from '@deployments/chains'
-import { formatBalance } from '@polkadot/util'
+import { useBalance, useInkathon } from '@scio-labs/use-inkathon'
+import { env } from '@shared/environment'
 import { truncateHash } from '@shared/truncateHash'
-import { FC, useEffect, useState } from 'react'
+import { FC } from 'react'
 import { AiOutlineCheckCircle, AiOutlineDisconnect } from 'react-icons/ai'
 import { FiChevronDown } from 'react-icons/fi'
 import 'twin.macro'
-import { usePolkadotProviderContext } from './PolkadotProvider'
 
 export interface ConnectButtonProps {}
 export const ConnectButton: FC<ConnectButtonProps> = () => {
   const {
     activeChain,
     setActiveChain,
-    api,
     connect,
     disconnect,
     isLoading,
     account,
     accounts,
     setAccount,
-  } = usePolkadotProviderContext()
-
-  // Fetch & update Account Balance
-  const [balanceFormatted, setBalanceFormatted] = useState<string>()
-  const fetchBalance = async () => {
-    if (!api || !account?.address) {
-      setBalanceFormatted(undefined)
-      return
-    }
-
-    const properties = ((await api.rpc.system.properties())?.toHuman() as any) || {}
-    const tokenSymbol = properties?.tokenSymbol?.[0] || 'UNIT'
-    const result: any = await api.query.system.account(account.address)
-    const fullBalance = result?.data?.reserved?.add(result?.data?.free) || 0
-    const balance = formatBalance(fullBalance, {
-      decimals: 12,
-      forceUnit: '-',
-      withUnit: false,
-    }).split('.')[0]
-    setBalanceFormatted(`${balance} ${tokenSymbol}`)
-  }
-  useEffect(() => {
-    fetchBalance()
-  }, [api, account])
+  } = useInkathon()
+  const { tokenSymbol, balance, balanceFormatted } = useBalance(account?.address)
 
   // Connect Button
   if (!account)
@@ -114,7 +90,7 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
 
           {/* Supported Chains */}
           <MenuDivider />
-          {(supportedChains || []).map((chain) => (
+          {(env.supportedChains || []).map((chain) => (
             <MenuItem
               key={chain.network}
               isDisabled={chain.network === activeChain?.network}

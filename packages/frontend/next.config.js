@@ -5,9 +5,7 @@
 /**
  * @type {import('next').NextConfig}
  **/
-let nextConfig = {
-  transpilePackages: ['@inkathon/contracts'],
-}
+let nextConfig = {}
 
 const withTwin = require('./withTwin.js')
 nextConfig = withTwin(nextConfig)

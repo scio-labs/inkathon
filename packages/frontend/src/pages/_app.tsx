@@ -1,10 +1,10 @@
 import { ChakraProvider, DarkMode } from '@chakra-ui/react'
 import { BaseLayout } from '@components/layout/BaseLayout'
 import { HotToastConfig } from '@components/layout/HotToastConfig'
-import { PolkadotProvider } from '@components/web3/PolkadotProvider'
-import { defaultChain } from '@deployments/chains'
+import { getDeployments } from '@deployments/deployments'
 import { cache } from '@emotion/css'
 import { CacheProvider } from '@emotion/react'
+import { UseInkathonProvider } from '@scio-labs/use-inkathon'
 import { env } from '@shared/environment'
 import GlobalStyles from '@styles/GlobalStyles'
 import { DefaultSeo } from 'next-seo'
@@ -12,6 +12,7 @@ import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import Router from 'next/router'
 import NProgress from 'nprogress'
+import { toast } from 'react-hot-toast'
 
 // Router Loading Animation with @tanem/react-nprogress
 Router.events.on('routeChangeStart', () => NProgress.start())
@@ -50,21 +51,29 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
 
-      <CacheProvider value={cache}>
-        <ChakraProvider>
-          <DarkMode>
-            <GlobalStyles />
+      <UseInkathonProvider
+        appName="INK!athon" // TODO
+        connectOnInit={true}
+        defaultChain={env.defaultChain}
+        deployments={getDeployments()}
+        onConnectError={(e?: Error) => {
+          toast.error(e?.message || 'Error while connecting wallet')
+        }}
+      >
+        <CacheProvider value={cache}>
+          <ChakraProvider>
+            <DarkMode>
+              <GlobalStyles />
 
-            <PolkadotProvider connectOnInit={true} defaultChain={defaultChain}>
               <BaseLayout>
                 <Component {...pageProps} />
               </BaseLayout>
-            </PolkadotProvider>
 
-            <HotToastConfig />
-          </DarkMode>
-        </ChakraProvider>
-      </CacheProvider>
+              <HotToastConfig />
+            </DarkMode>
+          </ChakraProvider>
+        </CacheProvider>
+      </UseInkathonProvider>
     </>
   )
 }

@@ -43,7 +43,7 @@ This repository is still work-in-progress and there are probably bugs. See the [
 - Package-Manager: `pnpm`
 - Smart Contract Development: `ink!`, `cargo`
 - Frontend: `next`
-  - Contract Interactions: `polkadot-js`
+  - Contract Interactions: `polkadot-js`, [`useInkathon` React Hooks](https://github.com/scio-labs/use-inkathon)
   - Styling: `chakra`, `tailwindcss`, `twin.macro`, `emotion`
 - Misc:
   - Linting & Formatting: `eslint`, `prettier`, `husky`, `lint-staged`
@@ -178,7 +178,7 @@ Setting up a deployment via Vercel is pretty straightforward as build settings a
 | `NEXT_PUBLIC_DEFAULT_CHAIN`   | `alephzero-testnet`            |
 | `NEXT_PUBLIC_DEFAULT_CHAIN`   | `["alephzero-testnet"]`        |
 
-You can find more documentation on those environment variables in [`packages/frontend/.env.local.example`](https://github.com/scio-labs/inkathon/blob/main/packages/frontend/.env.local.example) and all available blockchain network identifiers in [`packages/frontend/src/deployments/chains.ts`](https://github.com/scio-labs/inkathon/blob/main/packages/frontend/src/deployments/chains.ts).
+You can find more documentation on those environment variables in [`packages/frontend/.env.local.example`](https://github.com/scio-labs/inkathon/blob/main/packages/frontend/.env.local.example) and all available blockchain network identifiers in the [`useInkathon` repository](https://github.com/scio-labs/use-inkathon/blob/45db38e/src/chains.ts).
 
 ## FAQs & Troubleshooting
 
