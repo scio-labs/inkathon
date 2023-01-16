@@ -12,7 +12,6 @@ import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import Router from 'next/router'
 import NProgress from 'nprogress'
-import { toast } from 'react-hot-toast'
 
 // Router Loading Animation with @tanem/react-nprogress
 Router.events.on('routeChangeStart', () => NProgress.start())
@@ -56,9 +55,6 @@ function MyApp({ Component, pageProps }: AppProps) {
         connectOnInit={true}
         defaultChain={env.defaultChain}
         deployments={getDeployments()}
-        onConnectError={(e?: Error) => {
-          toast.error(e?.message || 'Error while connecting wallet')
-        }}
       >
         <CacheProvider value={cache}>
           <ChakraProvider>
