@@ -7,7 +7,7 @@ import toast from 'react-hot-toast'
 import 'twin.macro'
 
 export const GreeterContractInteractions: FC = () => {
-  const { account, signer } = useInkathon()
+  const { account, isConnected, signer } = useInkathon()
   const { contract } = useRegisteredContract(ContractIds.greeter)
   const [greeterMessage, setGreeterMessage] = useState<string>()
   const [fetchIsLoading, setFetchIsLoading] = useState<boolean>()
@@ -78,7 +78,7 @@ export const GreeterContractInteractions: FC = () => {
         <h2 tw="text-center font-mono text-gray-400">Greeter Smart Contract</h2>
 
         {/* Fetched Greeting */}
-        <Card variant="outline" p={4}>
+        <Card variant="outline" p={4} bgColor="whiteAlpha.100">
           <FormControl>
             <FormLabel>Fetched Greeting</FormLabel>
             <Input placeholder={fetchIsLoading ? 'Loading…' : greeterMessage} disabled={true} />
@@ -86,8 +86,8 @@ export const GreeterContractInteractions: FC = () => {
         </Card>
 
         {/* Update Greeting */}
-        {!!signer && (
-          <Card variant="outline" p={4}>
+        {!!isConnected && (
+          <Card variant="outline" p={4} bgColor="whiteAlpha.100">
             <form>
               <Stack direction="row" spacing={2} align="end">
                 <FormControl>

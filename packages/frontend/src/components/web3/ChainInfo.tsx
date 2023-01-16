@@ -48,7 +48,7 @@ export const ChainInfo: FC = () => {
       <div tw="flex grow flex-col space-y-4 max-w-[20rem]">
         <h2 tw="text-center font-mono text-gray-400">Chain Info</h2>
 
-        <Card variant="outline" p={4}>
+        <Card variant="outline" p={4} bgColor="whiteAlpha.100">
           {/* Metadata */}
           {Object.entries(chainInfo || {}).map(([key, value]) => (
             <div key={key} tw="text-sm leading-7">

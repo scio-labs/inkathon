@@ -25,7 +25,7 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
     setActiveChain,
     connect,
     disconnect,
-    isLoading,
+    isConnecting,
     account,
     accounts,
     setAccount,
@@ -37,7 +37,7 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
     return (
       <Button
         onClick={connect}
-        isLoading={isLoading}
+        isLoading={isConnecting}
         size="md"
         py={6}
         fontWeight="bold"
@@ -83,13 +83,8 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
           </MenuButton>
         </HStack>
 
-        <MenuList>
-          <MenuItem onClick={disconnect} icon={<AiOutlineDisconnect size={18} />}>
-            Disconnect
-          </MenuItem>
-
+        <MenuList bgColor="blackAlpha.900" borderColor="whiteAlpha.300" rounded="2xl">
           {/* Supported Chains */}
-          <MenuDivider />
           {(env.supportedChains || []).map((chain) => (
             <MenuItem
               key={chain.network}
@@ -97,6 +92,7 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
               onClick={() => {
                 setActiveChain?.(chain)
               }}
+              tw="bg-transparent hocus:bg-gray-800"
             >
               <CheckboxIcon />
               <VStack align="start" spacing={0}>
@@ -117,6 +113,7 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
               onClick={() => {
                 setAccount?.(acc)
               }}
+              tw="bg-transparent hocus:bg-gray-800"
             >
               <CheckboxIcon />
               <VStack align="start" spacing={0}>
@@ -128,6 +125,16 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
               </VStack>
             </MenuItem>
           ))}
+
+          {/* Disconnect Button */}
+          <MenuDivider />
+          <MenuItem
+            onClick={disconnect}
+            icon={<AiOutlineDisconnect size={18} />}
+            tw="bg-transparent hocus:bg-gray-800"
+          >
+            Disconnect
+          </MenuItem>
         </MenuList>
       </Menu>
     </>
