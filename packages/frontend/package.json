@@ -30,7 +30,7 @@
     "@polkadot/extension-inject": "^0.44.8",
     "@polkadot/types": "^9.11.3",
     "@polkadot/util": "^10.2.6",
-    "@scio-labs/use-inkathon": "0.0.1-alpha.12",
+    "@scio-labs/use-inkathon": "0.0.1-alpha.13",
     "next": "^13.1.3",
     "next-seo": "^5.15.0",
     "nprogress": "^0.2.0",
