@@ -76,17 +76,16 @@ cp packages/frontend/.env.local.example packages/frontend/.env.local
 ### Contracts
 
 ```bash
-# 1. Install Rust (i.e. nightly): https://docs.substrate.io/install/
+# 1. Install Rust: https://docs.substrate.io/install/
 # NOTE: Leave out the "Compile a Substrate node" part for now
-rustup component add rust-src --toolchain nightly
-rustup target add wasm32-unknown-unknown --toolchain nightly
+rustup component add rust-src
+rustup target add wasm32-unknown-unknown
 
 # 2. Install ink! tooling (https://use.ink/getting-started/setup#ink-cli)
-cargo +nightly install cargo-dylint dylint-link --force --locked
-cargo +nightly install cargo-contract --force --locked --git https://github.com/paritytech/cargo-contract.git
+cargo install cargo-contract --force --locked --git https://github.com/paritytech/cargo-contract.git
+cargo install cargo-dylint dylint-link --force --locked
 
 # 3. Install local substrate-contracts-node (https://github.com/paritytech/substrate-contracts-node)
-# IMPORTANT: The installation is fixed to latest release tag before using WeightsV2
 cargo install contracts-node --force --git https://github.com/paritytech/substrate-contracts-node.git
 ```
 
