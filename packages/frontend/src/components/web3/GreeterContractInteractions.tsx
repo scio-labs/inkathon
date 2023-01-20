@@ -1,13 +1,13 @@
 import { Button, Card, FormControl, FormLabel, Input, Stack } from '@chakra-ui/react'
 import { ContractIds } from '@deployments/deployments'
-import { useInkathon, useRegisteredContract } from '@scio-labs/use-inkathon'
+import { getGasLimit, useInkathon, useRegisteredContract } from '@scio-labs/use-inkathon'
 import { FC, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import 'twin.macro'
 
 export const GreeterContractInteractions: FC = () => {
-  const { account, isConnected, signer } = useInkathon()
+  const { api, account, isConnected, signer } = useInkathon()
   const { contract } = useRegisteredContract(ContractIds.greeter)
   const [greeterMessage, setGreeterMessage] = useState<string>()
   const [fetchIsLoading, setFetchIsLoading] = useState<boolean>()
@@ -16,12 +16,17 @@ export const GreeterContractInteractions: FC = () => {
 
   // Fetch Greeting
   const fetchGreeting = async () => {
-    if (!contract) return
+    if (!contract || !api) return
     setFetchIsLoading(true)
     try {
-      const { result, output } = await contract.query.greet('', {})
-      const message = output?.toString()
-      if (!result?.isOk) throw new Error(result.toString())
+      const gasLimit = getGasLimit(api, '10000000000', '10000000000')
+      const { result, output } = await contract.query.greet('', {
+        gasLimit,
+      })
+      if (!result?.isOk || !output) {
+        throw new Error(result.toString())
+      }
+      const message = (output.toPrimitive() as { ok: string }).ok
       setGreeterMessage(message)
     } catch (e) {
       console.error(e)
@@ -37,7 +42,7 @@ export const GreeterContractInteractions: FC = () => {
 
   // Update Greeting
   const updateGreeting = async () => {
-    if (!account || !contract || !signer) {
+    if (!account || !contract || !signer || !api) {
       toast.error('Wallet not connected. Try again…')
       return
     }
@@ -48,16 +53,16 @@ export const GreeterContractInteractions: FC = () => {
       const newMessage = form.getValues('newMessage')
 
       // Estimate gas
+      const gasLimit = getGasLimit(api, '10000000000', '10000000000')
       const { gasRequired } = await contract.query.setMessage(
         account.address,
-        { storageDepositLimit: null, gasLimit: -1 },
+        { storageDepositLimit: null, gasLimit },
         newMessage,
       )
-      const gasLimit = gasRequired.toNumber() * 1.5
 
       // Execute transaction
       await contract.tx
-        .setMessage({ gasLimit }, newMessage)
+        .setMessage({ gasLimit: gasRequired }, newMessage)
         .signAndSend(account.address, (result) => {
           if (result?.status?.isInBlock) fetchGreeting()
         })

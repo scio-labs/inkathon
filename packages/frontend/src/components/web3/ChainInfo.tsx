@@ -59,7 +59,7 @@ export const ChainInfo: FC = () => {
             </div>
           ))}
 
-          <div tw="mt-3 flex items-center justify-center space-x-2">
+          <div tw="mt-3 flex items-center justify-center space-x-3">
             {/* Explorer Link */}
             {!!activeChain?.explorerUrls?.length && (
               <Link
@@ -79,6 +79,17 @@ export const ChainInfo: FC = () => {
                 tw="flex items-center justify-center text-center text-sm text-gray-400 hover:text-white"
               >
                 Faucet <HiOutlineExternalLink tw="ml-1" />
+              </Link>
+            )}
+
+            {/* Contracts UI Link */}
+            {!!activeChain?.rpcUrls?.length && (
+              <Link
+                href={`https://contracts-ui.substrate.io/?rpc=${activeChain.rpcUrls[0]}`}
+                target="_blank"
+                tw="flex items-center justify-center text-center text-sm text-gray-400 hover:text-white"
+              >
+                Contracts UI <HiOutlineExternalLink tw="ml-1" />
               </Link>
             )}
           </div>

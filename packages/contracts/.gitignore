@@ -144,4 +144,4 @@ fabric.properties
 .node-data
 
 # Local deployments
-**/deployments/development.json
+deployments/**/development.json

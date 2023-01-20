@@ -2,10 +2,8 @@
 
 extern crate alloc;
 
-use ink_lang as ink;
-
 #[ink::contract]
-pub mod greeter {
+mod greeter {
     use alloc::string::String;
 
     #[ink(storage)]
@@ -45,7 +43,6 @@ pub mod greeter {
     #[cfg(test)]
     mod tests {
         use super::*;
-        use ink_lang as ink;
 
         #[ink::test]
         fn default_works() {
