@@ -5,10 +5,10 @@
   "homepage": "https://inkathon.xyz",
   "scripts": {
     "build": "cargo contract build --release --manifest-path ${CONTRACT:-greeter}/Cargo.toml && pnpm copy-build",
-    "copy-build": "mkdir -p ${CONTRACT:-greeter}/deployments/ && cp ${CONTRACT:-greeter}/target/ink/metadata.json ${CONTRACT:-greeter}/deployments/ && cp ${CONTRACT:-greeter}/target/ink/${CONTRACT:-greeter}.contract ${CONTRACT:-greeter}/deployments/",
-    "test": "cargo +nightly contract test --manifest-path ${CONTRACT:-greeter}/Cargo.toml",
+    "copy-build": "mkdir -p deployments/${CONTRACT:-greeter} && cp target/ink/${CONTRACT:-greeter}/metadata.json deployments/${CONTRACT:-greeter}/ && cp target/ink/${CONTRACT:-greeter}/${CONTRACT:-greeter}.contract deployments/${CONTRACT:-greeter}/",
+    "test": "cargo contract test --manifest-path ${CONTRACT:-greeter}/Cargo.toml",
     "node": "substrate-contracts-node --dev --port 9944 --base-path ./.node-data",
-    "write-address": "mkdir -p ${CONTRACT:-greeter}/deployments/ && echo \"{\n  \\x22address\\x22: \\x22$ADDRESS\\x22\n}\" >${CONTRACT:-greeter}/deployments/${CHAIN:-development}.json",
+    "write-address": "mkdir -p deployments/${CONTRACT:-greeter}/ && echo \"{\n  \\x22address\\x22: \\x22$ADDRESS\\x22\n}\" >deployments/${CONTRACT:-greeter}/${CHAIN:-development}.json",
     "contracts-ui": "open https://contracts-ui.substrate.io/?rpc=ws://127.0.0.1:9944",
     "explorer-ui": "open https://polkadot.js.org/apps/#/explorer?rpc=ws://127.0.0.1:9944",
     "dev": "pnpm contracts-ui && pnpm node"

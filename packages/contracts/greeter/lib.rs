@@ -3,7 +3,7 @@
 extern crate alloc;
 
 #[ink::contract]
-pub mod greeter {
+mod greeter {
     use alloc::string::String;
 
     #[ink(storage)]
