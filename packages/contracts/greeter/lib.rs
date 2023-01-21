@@ -1,10 +1,14 @@
 #![cfg_attr(not(feature = "std"), no_std)]
 
-extern crate alloc;
-
 #[ink::contract]
 mod greeter {
-    use alloc::string::String;
+    use ink::prelude::string::String;
+
+    #[ink(event)]
+    pub struct Greeted {
+        from: Option<AccountId>,
+        message: String,
+    }
 
     #[ink(storage)]
     pub struct Greeter {
@@ -36,7 +40,13 @@ mod greeter {
         /// Sets `message` to the given value.
         #[ink(message)]
         pub fn set_message(&mut self, new_value: String) {
-            self.message = new_value;
+            self.message = new_value.clone();
+
+            let from = self.env().caller();
+            self.env().emit_event(Greeted {
+                from: Some(from),
+                message: new_value,
+            });
         }
     }
 
@@ -45,7 +55,14 @@ mod greeter {
         use super::*;
 
         #[ink::test]
-        fn default_works() {
+        fn new_works() {
+            let message = "Hello ink! v4".to_string();
+            let greeter = Greeter::new(message.clone());
+            assert_eq!(greeter.greet(), message);
+        }
+
+        #[ink::test]
+        fn default_new_works() {
             let greeter = Greeter::default();
             let default_message = String::from("Hello ink!");
             assert_eq!(greeter.greet(), default_message);
