@@ -37,7 +37,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             {
               url: `${env.url}/images/cover.jpg`, // TODO
               width: 1200,
-              height: 670,
+              height: 675,
             },
           ],
         }}
