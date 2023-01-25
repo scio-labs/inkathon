@@ -25,14 +25,14 @@ function MyApp({ Component, pageProps }: AppProps) {
       <DefaultSeo
         dangerouslySetAllPagesToNoFollow={!env.isProduction}
         dangerouslySetAllPagesToNoIndex={!env.isProduction}
-        defaultTitle="INK!athon" // TODO
-        titleTemplate="%s | INK!athon" // TODO
+        defaultTitle="ink!athon" // TODO
+        titleTemplate="%s | ink!athon" // TODO
         description="Substrate-based Smart Contract & DApp Development Boilerplate" // TODO
         openGraph={{
           type: 'website',
           locale: 'en',
           url: env.url,
-          site_name: 'INK!athon', // TODO
+          site_name: 'ink!athon', // TODO
           images: [
             {
               url: `${env.url}/images/cover.jpg`, // TODO
@@ -51,7 +51,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
 
       <UseInkathonProvider
-        appName="INK!athon" // TODO
+        appName="ink!athon" // TODO
         connectOnInit={true}
         defaultChain={env.defaultChain}
         deployments={getDeployments()}

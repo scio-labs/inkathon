@@ -1,14 +1,14 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import githubCircleIcon from 'public/brand/inkathon-logo.png'
 import githubIcon from 'public/icons/github-button.svg'
-import githubCircleIcon from 'public/icons/github.svg'
 import sponsorIcon from 'public/icons/sponsor-button.svg'
 import vercelIcon from 'public/icons/vercel-button.svg'
 import { FC } from 'react'
 import 'twin.macro'
 
 export const HomePageTitle: FC = () => {
-  const title = 'INK!athon'
+  const title = 'ink!athon'
   const desc = 'Full-Stack DApp Boilerplate for Substrate and ink! Smart Contracts'
   const githubHref = 'https://github.com/scio-labs/inkathon'
   const deployHref = 'https://github.com/scio-labs/inkathon#deployment'
@@ -24,13 +24,7 @@ export const HomePageTitle: FC = () => {
           tw="flex cursor-pointer flex-col items-center"
         >
           {/* Github Icon */}
-          <Image
-            src={githubCircleIcon}
-            priority
-            width={50}
-            alt="Github Logo"
-            tw="opacity-50 group-hover:opacity-100"
-          />
+          <Image src={githubCircleIcon} priority width={110} alt="ink!athon Logo" />
           {/* Title */}
           <h1 tw="mt-4 font-black text-4xl tracking-tight">{title}</h1>
         </Link>

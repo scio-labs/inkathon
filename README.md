@@ -1,4 +1,4 @@
-# INK!athon – DApp Boilerplate for Substrate & ink!
+# ink!athon – DApp Boilerplate for Substrate & ink!
 
 ![Typescript](https://img.shields.io/badge/Typescript-blue)
 ![Next.js](https://img.shields.io/badge/Next.js-gray)
@@ -48,7 +48,7 @@ This repository is still work-in-progress and there are probably bugs. See the [
 - Misc:
   - Linting & Formatting: `eslint`, `prettier`, `husky`, `lint-staged`
 
-<img src="inkathon-stack.png" width="800" height="auto" alt="The Stack of INK!athon" />
+<img src="inkathon-stack.png" width="800" height="auto" alt="The Stack of ink!athon" />
 
 ## Projects using it
 
