@@ -1,7 +1,6 @@
 {
   "name": "@inkathon/contracts",
   "version": "0.0.1",
-  "license": "GPL-3.0",
   "homepage": "https://inkathon.xyz",
   "scripts": {
     "build": "cargo contract build --release --manifest-path ${CONTRACT:-greeter}/Cargo.toml && pnpm copy-build",
