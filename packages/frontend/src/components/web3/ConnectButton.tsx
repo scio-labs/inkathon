@@ -10,10 +10,10 @@ import {
   Text,
   VStack,
 } from '@chakra-ui/react'
-import { useBalance, useInkathon } from '@scio-labs/use-inkathon'
-import { env } from '@shared/environment'
-import { truncateHash } from '@shared/truncateHash'
-import { FC } from 'react'
+import { env } from '@config/environment'
+import { getSubstrateChain, SubstrateChain, useBalance, useInkathon } from '@scio-labs/use-inkathon'
+import { truncateHash } from '@utils/truncateHash'
+import { FC, useState } from 'react'
 import { AiOutlineCheckCircle, AiOutlineDisconnect } from 'react-icons/ai'
 import { FiChevronDown } from 'react-icons/fi'
 import 'twin.macro'
@@ -30,7 +30,10 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
     accounts,
     setAccount,
   } = useInkathon()
-  const { tokenSymbol, balance, balanceFormatted } = useBalance(account?.address)
+  const { balanceFormatted } = useBalance(account?.address)
+  const [supportedChains] = useState(
+    env.supportedChains.map((networkId) => getSubstrateChain(networkId) as SubstrateChain),
+  )
 
   // Connect Button
   if (!account)
@@ -85,7 +88,7 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
 
         <MenuList bgColor="blackAlpha.900" borderColor="whiteAlpha.300" rounded="2xl">
           {/* Supported Chains */}
-          {(env.supportedChains || []).map((chain) => (
+          {supportedChains.map((chain) => (
             <MenuItem
               key={chain.network}
               isDisabled={chain.network === activeChain?.network}
