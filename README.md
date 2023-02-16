@@ -176,16 +176,20 @@ Additionally, there are the following un-highlighted occurrences:
 
 Setting up a deployment via Vercel is pretty straightforward as build settings are preconfigured in `vercel.json`. To get started, press the **Deploy** button and enter the default environment variables listed below.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fscio-labs%2Finkathon%2F&env=NEXT_PUBLIC_PRODUCTION_MODE,NEXT_PUBLIC_URL,NEXT_PUBLIC_DEFAULT_CHAIN,NEXT_PUBLIC_SUPPORTED_CHAINS&envDescription=Environment%20Variables%20Documentation&envLink=https%3A%2F%2Fgithub.com%2Fscio-labs%2Finkathon%2Fblob%2Fmain%2Fpackages%2Ffrontend%2F.env.local.example&demo-url=https%3A%2F%2Finkathon.xyz)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fscio-labs%2Finkathon%2F&env=NEXT_PUBLIC_DEFAULT_CHAIN&envDescription=Environment%20Variables%20Documentation&envLink=https%3A%2F%2Fgithub.com%2Fscio-labs%2Finkathon%2Fblob%2Fmain%2Fpackages%2Ffrontend%2F.env.local.example&demo-url=https%3A%2F%2Finkathon.xyz)
 
-| Environment Variable          | Value                          |
-| ----------------------------- | ------------------------------ |
-| `NEXT_PUBLIC_PRODUCTION_MODE` | `true`                         |
-| `NEXT_PUBLIC_URL`             | `https://your-repo.vercel.app` |
-| `NEXT_PUBLIC_DEFAULT_CHAIN`   | `alephzero-testnet`            |
-| `NEXT_PUBLIC_DEFAULT_CHAIN`   | `["alephzero-testnet"]`        |
+### Environment Variables
 
-You can find more documentation on those environment variables in [`packages/frontend/.env.local.example`](https://github.com/scio-labs/inkathon/blob/main/packages/frontend/.env.local.example) and all available blockchain network identifiers in the [`useInkathon` repository](https://github.com/scio-labs/use-inkathon/blob/45db38e/src/chains.ts).
+The only mandatory environment variable you need to add is `NEXT_PUBLIC_DEFAULT_CHAIN`. Just set it to `alephzero-testnet` at least for the first deploy, as there is the sample contract deployed & the [deplyoments](https://github.com/scio-labs/inkathon/blob/main/packages/frontend/src/deployments/deployments.ts) are pre-configured.
+
+Please see all pre-defined environment variables below and find more info in [`packages/frontend/.env.local.example`](https://github.com/scio-labs/inkathon/blob/main/packages/frontend/.env.local.example). All available blockchain network identifiers are defined in the [`useInkathon` repository](https://github.com/scio-labs/use-inkathon/blob/main/src/chains.ts).
+
+| Environment Variable           | Value                          |
+| ------------------------------ | ------------------------------ |
+| `NEXT_PUBLIC_PRODUCTION_MODE`  | `true`                         |
+| `NEXT_PUBLIC_URL`              | `https://your-repo.vercel.app` |
+| `NEXT_PUBLIC_DEFAULT_CHAIN`    | `alephzero-testnet`            |
+| `NEXT_PUBLIC_SUPPORTED_CHAINS` | `["alephzero-testnet"]`        |
 
 ## FAQs & Troubleshooting
 
