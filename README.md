@@ -40,15 +40,22 @@ This repository is still work-in-progress and there are probably bugs. See the [
 
 ## The Stack
 
+<img src="inkathon-stack.png" width="800" height="auto" alt="The Stack of ink!athon" />
+
+<details>
+<summary><strong>The Stack in Detail</strong></summary>
+
+- Structure: Monorepo
 - Package-Manager: `pnpm`
-- Smart Contract Development: `ink!`, `cargo`
-- Frontend: `next`
+- Smart Contract Development: `ink!`, `rust`, `cargo`, `cargo-contract`, `contracts-node`
+- Frontend: `next`, `react`, `typescript`
   - Contract Interactions: `polkadot-js`, [`useInkathon` React Hooks](https://github.com/scio-labs/use-inkathon)
   - Styling: `chakra`, `tailwindcss`, `twin.macro`, `emotion`
 - Misc:
   - Linting & Formatting: `eslint`, `prettier`, `husky`, `lint-staged`
+- Deployment: Vercel
 
-<img src="inkathon-stack.png" width="800" height="auto" alt="The Stack of ink!athon" />
+</details>
 
 ## Projects using it
 
@@ -61,6 +68,8 @@ Below you find a few projects that use this boilerplate, a variation of it, or h
 ### Frontend
 
 ```bash
+# 0. Setup Node
+
 # 1. Install pnpm (https://pnpm.io/installation)
 npm i -g pnpm
 
@@ -76,16 +85,15 @@ cp packages/frontend/.env.local.example packages/frontend/.env.local
 ### Contracts
 
 ```bash
-# 1. Install Rust: https://docs.substrate.io/install/
-# NOTE: Leave out the "Compile a Substrate node" part for now
-rustup component add rust-src
-rustup target add wasm32-unknown-unknown
+# 1. Setup Rust: https://docs.substrate.io/install/
+# NOTE: You can skip the "Compile a Substrate node" part
 
 # 2. Install ink! tooling (https://use.ink/getting-started/setup#ink-cli)
-cargo install cargo-contract --force --locked --git https://github.com/paritytech/cargo-contract.git
-cargo install cargo-dylint dylint-link --force --locked
+rustup component add rust-src
+cargo install cargo-contract --force --locked
+cargo install cargo-dylint dylint-link
 
-# 3. Install local substrate-contracts-node (https://github.com/paritytech/substrate-contracts-node)
+# 3. Install local Substrate node with Smart Contract support (https://github.com/paritytech/substrate-contracts-node)
 cargo install contracts-node --force --git https://github.com/paritytech/substrate-contracts-node.git
 ```
 
