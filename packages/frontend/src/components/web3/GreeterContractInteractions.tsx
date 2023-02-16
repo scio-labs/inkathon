@@ -1,9 +1,8 @@
 import { Button, Card, FormControl, FormLabel, Input, Stack } from '@chakra-ui/react'
 import { ContractIds } from '@deployments/deployments'
-import { ContractPromise } from '@polkadot/api-contract'
-import { ContractCallOutcome } from '@polkadot/api-contract/types'
 import {
   contractQuery,
+  contractTx,
   unwrapResultOrError,
   useInkathon,
   useRegisteredContract,
@@ -43,48 +42,21 @@ export const GreeterContractInteractions: FC = () => {
 
   // Update Greeting
   const updateGreeting = async () => {
-    if (!account || !signer || !api) {
+    if (!account || !contract || !signer || !api) {
       toast.error('Wallet not connected. Try again…')
       return
     }
 
     setUpdateIsLoading(true)
     try {
-      const { web3FromSource } = await import('@polkadot/extension-dapp')
-      const injector = await web3FromSource(account.meta.source)
-      if (!injector?.signer) throw new Error('No signer')
-      api.setSigner(injector.signer)
-
       // Gather form value
       const newMessage = form.getValues('newMessage')
 
-      // Construct contract object
-      const contract = new ContractPromise(
-        api,
-        await deployments.greeter.abi,
-        deployments.greeter.address,
-      )
-      const abiMessage = contract.abi.messages.find((m) => m.method === 'set_message')
-      if (!abiMessage) throw new Error(`Couldn't construct ABI message`)
-
-      // Estimate Gas
-      const { gasRequired } = await api.call.contractsApi.call<ContractCallOutcome>(
-        account.address,
-        deployments.greeter.address,
-        new BN(0),
-        null,
-        null,
-        abiMessage.toU8a([newMessage]),
-      )
-
-      // Send transaction
-      await contract.tx
-        .setMessage({ gasLimit: gasRequired }, newMessage)
-        .signAndSend(account.address, (result) => {
-          if (result?.status?.isInBlock) fetchGreeting()
-        })
-
-      toast.success(`Successfully updated metadata`)
+      // Estimate gas & send transaction
+      await contractTx(api, account.address, contract, 'setMessage', {}, [newMessage], (result) => {
+        if (result?.status?.isInBlock) fetchGreeting()
+      })
+      toast.success(`Successfully updated greeting`)
     } catch (e) {
       console.error(e)
       toast.error('Error while updating greeting. Try again.')
