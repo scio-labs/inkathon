@@ -34,8 +34,8 @@
   },
   "devDependencies": {
     "husky": "^8.0.3",
-    "lint-staged": "^13.1.0",
-    "typescript": "^4.9.4",
+    "lint-staged": "^13.1.2",
+    "typescript": "^4.9.5",
     "next": "^13.1.6"
   }
 }
