@@ -14,7 +14,7 @@ module.exports = {
         gray: colors.zinc,
       },
       fontFamily: {
-        mono: ['Inconsolata', ...defaultTheme.fontFamily.mono],
+        mono: ['var(--font-inconsolata)', ...defaultTheme.fontFamily.mono],
       },
     },
   },

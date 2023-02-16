@@ -29,6 +29,7 @@ importers:
       '@emotion/server': ^11.10.0
       '@emotion/styled': ^11.10.5
       '@inkathon/contracts': workspace:*
+      '@next/font': ^13.1.6
       '@polkadot/api': ^9.14.1
       '@polkadot/api-contract': ^9.14.1
       '@polkadot/extension-dapp': ^0.44.8
@@ -74,6 +75,7 @@ importers:
       '@emotion/server': 11.10.0_@emotion+css@11.10.5
       '@emotion/styled': 11.10.5_cjinou6kcnbro54hfk33pnlsly
       '@inkathon/contracts': link:../contracts
+      '@next/font': 13.1.6
       '@polkadot/api': 9.14.1
       '@polkadot/api-contract': 9.14.1
       '@polkadot/extension-dapp': 0.44.8_kzvhixn4n6hxtik4mnlnr66hnq
@@ -1836,6 +1838,10 @@ packages:
     dependencies:
       glob: 7.1.7
     dev: true
+
+  /@next/font/13.1.6:
+    resolution: {integrity: sha512-AITjmeb1RgX1HKMCiA39ztx2mxeAyxl4ljv2UoSBUGAbFFMg8MO7YAvjHCgFhD39hL7YTbFjol04e/BPBH5RzQ==}
+    dev: false
 
   /@next/swc-android-arm-eabi/13.1.6:
     resolution: {integrity: sha512-F3/6Z8LH/pGlPzR1AcjPFxx35mPqjE5xZcf+IL+KgbW9tMkp7CYi1y7qKrEWU7W4AumxX/8OINnDQWLiwLasLQ==}

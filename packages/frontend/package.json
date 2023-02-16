@@ -27,6 +27,7 @@
     "@emotion/server": "^11.10.0",
     "@emotion/styled": "^11.10.5",
     "@inkathon/contracts": "workspace:*",
+    "@next/font": "^13.1.6",
     "@polkadot/api": "^9.14.1",
     "@polkadot/api-contract": "^9.14.1",
     "@polkadot/extension-dapp": "^0.44.8",
