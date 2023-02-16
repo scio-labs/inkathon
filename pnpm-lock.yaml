@@ -36,7 +36,7 @@ importers:
       '@polkadot/extension-inject': ^0.44.8
       '@polkadot/types': ^9.14.1
       '@polkadot/util': ^10.4.1
-      '@scio-labs/use-inkathon': 0.0.1-alpha.16
+      '@scio-labs/use-inkathon': 0.0.1-alpha.17
       '@testing-library/react': ^13.4.0
       '@types/downloadjs': ^1.4.3
       '@types/node': ^18.13.0
@@ -82,7 +82,7 @@ importers:
       '@polkadot/extension-inject': 0.44.8_@polkadot+api@9.14.1
       '@polkadot/types': 9.14.1
       '@polkadot/util': 10.4.1
-      '@scio-labs/use-inkathon': 0.0.1-alpha.16_3tx4hebut4kk6djgr4fggp2b5a
+      '@scio-labs/use-inkathon': 0.0.1-alpha.17_3tx4hebut4kk6djgr4fggp2b5a
       next: 13.1.6_kgpnzzej6jhkidcwkphtiabcee
       next-seo: 5.15.0_3vryta7zmbcsw4rrqf4axjqggm
       nprogress: 0.2.0
@@ -2435,8 +2435,8 @@ packages:
     resolution: {integrity: sha512-sXo/qW2/pAcmT43VoRKOJbDOfV3cYpq3szSVfIThQXNt+E4DfKj361vaAt3c88U5tPUxzEswam7GW48PJqtKAg==}
     dev: true
 
-  /@scio-labs/use-inkathon/0.0.1-alpha.16_3tx4hebut4kk6djgr4fggp2b5a:
-    resolution: {integrity: sha512-Uc7QFnA0zNcXj47h+oKd5TOZWmY+SF8pYtfQMfCb56kWBbKGQRHhOWjy7iM7+da2L6YguM+/qaLujFTDR3H2HA==}
+  /@scio-labs/use-inkathon/0.0.1-alpha.17_3tx4hebut4kk6djgr4fggp2b5a:
+    resolution: {integrity: sha512-lnmpvTidu1i8+4AJk81NpF/VtNcL1y48dAbvcCnoZ+QkeGKuMCpcqUjRjwdTDh4b6LGjAk6CGJhJfPv23avLeQ==}
     peerDependencies:
       '@polkadot/api': 9.13.6
       '@polkadot/api-contract': 9.13.6
@@ -3186,8 +3186,8 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
     dependencies:
-      caniuse-lite: 1.0.30001452
-      electron-to-chromium: 1.4.298
+      caniuse-lite: 1.0.30001453
+      electron-to-chromium: 1.4.299
       node-releases: 2.0.10
       update-browserslist-db: 1.0.10_browserslist@4.21.5
 
@@ -3230,8 +3230,8 @@ packages:
     engines: {node: '>= 6'}
     dev: true
 
-  /caniuse-lite/1.0.30001452:
-    resolution: {integrity: sha512-Lkp0vFjMkBB3GTpLR8zk4NwW5EdRdnitwYJHDOOKIU85x4ckYCPQ+9WlVvSVClHxVReefkUMtWZH2l9KGlD51w==}
+  /caniuse-lite/1.0.30001453:
+    resolution: {integrity: sha512-R9o/uySW38VViaTrOtwfbFEiBFUh7ST3uIG4OEymIG3/uKdHDO4xk/FaqfUw0d+irSUyFPy3dZszf9VvSTPnsA==}
 
   /chalk/2.4.2:
     resolution: {integrity: sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==}
@@ -3596,8 +3596,8 @@ packages:
       tweetnacl: 1.0.3
     dev: false
 
-  /electron-to-chromium/1.4.298:
-    resolution: {integrity: sha512-dJZurgxDeaqn90VmS23Xz+QPQQl84BxnlAfwCDFNjfEhqO2yLMDkeaDoJ1yPXAbmiqTi+hd5TpB5zi1N4hwBuQ==}
+  /electron-to-chromium/1.4.299:
+    resolution: {integrity: sha512-lQ7ijJghH6pCGbfWXr6EY+KYCMaRSjgsY925r1p/TlpSfVM1VjHTcn1gAc15VM4uwti283X6QtjPTXdpoSGiZQ==}
 
   /emoji-regex/8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
@@ -5093,7 +5093,7 @@ packages:
     dependencies:
       '@next/env': 13.1.6
       '@swc/helpers': 0.4.14
-      caniuse-lite: 1.0.30001452
+      caniuse-lite: 1.0.30001453
       postcss: 8.4.14
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -5137,7 +5137,7 @@ packages:
     dependencies:
       '@next/env': 13.1.6
       '@swc/helpers': 0.4.14
-      caniuse-lite: 1.0.30001452
+      caniuse-lite: 1.0.30001453
       postcss: 8.4.14
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
