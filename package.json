@@ -15,6 +15,9 @@
   "workspaces": [
     "packages/*"
   ],
+  "engines": {
+    "node": ">=16 <=18"
+  },
   "scripts": {
     "dev": "pnpm run --filter frontend dev",
     "build": "pnpm run --filter frontend build",

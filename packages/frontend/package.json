@@ -17,9 +17,6 @@
     "lint:fix": "prettier . --write && pnpm eslint --fix",
     "eslint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
-  "engines": {
-    "node": ">=16 <=18"
-  },
   "dependencies": {
     "@chakra-ui/react": "^2.5.1",
     "@emotion/css": "^11.10.5",
