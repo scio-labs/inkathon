@@ -145,3 +145,8 @@ fabric.properties
 
 # Local deployments
 deployments/**/development.json
+deployments/**/development.ts
+
+# Environment files
+*.env*
+!.env*.example

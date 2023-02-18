@@ -2,18 +2,27 @@
   "name": "@inkathon/contracts",
   "version": "0.0.1",
   "homepage": "https://inkathon.xyz",
+  "type": "module",
   "scripts": {
     "build": "cargo contract build --release --manifest-path ${CONTRACT:-greeter}/Cargo.toml && pnpm copy-build",
     "test": "cargo test --manifest-path ${CONTRACT:-greeter}/Cargo.toml",
     "node": "substrate-contracts-node --dev --port 9944 --base-path ./.node-data",
-    "copy-build": "mkdir -p deployments/${CONTRACT:-greeter} && cp target/ink/${CONTRACT:-greeter}/${CONTRACT:-greeter}.json deployments/${CONTRACT:-greeter}/metadata.json && cp target/ink/${CONTRACT:-greeter}/${CONTRACT:-greeter}.contract deployments/${CONTRACT:-greeter}/",
-    "write-address": "mkdir -p deployments/${CONTRACT:-greeter}/ && echo \"{\n  \\x22address\\x22: \\x22$ADDRESS\\x22\n}\" >deployments/${CONTRACT:-greeter}/${CHAIN:-development}.json",
+    "copy-build": "mkdir -p deployments/${CONTRACT:-greeter} && cp target/ink/${CONTRACT:-greeter}/${CONTRACT:-greeter}.json deployments/${CONTRACT:-greeter}/metadata.json && cp target/ink/${CONTRACT:-greeter}/${CONTRACT:-greeter}.contract deployments/${CONTRACT:-greeter}/ && cp target/ink/${CONTRACT:-greeter}/${CONTRACT:-greeter}.wasm deployments/${CONTRACT:-greeter}/",
+    "write-address": "mkdir -p deployments/${CONTRACT:-greeter}/ && echo \"export const address = '$ADDRESS'\" >deployments/${CONTRACT:-greeter}/${CHAIN:-development}.ts",
     "contracts-ui": "open https://contracts-ui.substrate.io/?rpc=ws://127.0.0.1:9944",
     "explorer-ui": "open https://polkadot.js.org/apps/#/explorer?rpc=ws://127.0.0.1:9944",
-    "dev": "pnpm contracts-ui && pnpm node"
+    "dev": "pnpm contracts-ui && pnpm node",
+    "deploy": "ts-node scripts/deploy.ts"
   },
   "devDependencies": {
-    "@types/node": "^18.13.0",
+    "@polkadot/api": "^9.14.1",
+    "@polkadot/api-contract": "^9.14.1",
+    "@polkadot/types": "^9.14.1",
+    "@polkadot/util": "^10.4.1",
+    "@polkadot/util-crypto": "^10.4.1",
+    "@scio-labs/use-inkathon": "0.0.1-alpha.19",
+    "@types/node": "^18.14.0",
+    "dotenv": "^16.0.3",
     "ts-node": "^10.9.1",
     "typescript": "^4.9.5"
   }
