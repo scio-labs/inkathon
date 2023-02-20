@@ -1,8 +1,14 @@
-import { deployContract, getSubstrateChain } from '@scio-labs/use-inkathon'
+import { BN } from '@polkadot/util'
+import {
+  deployContract,
+  getGasLimit,
+  getMaxGasLimit,
+  getSubstrateChain,
+} from '@scio-labs/use-inkathon'
 import * as dotenv from 'dotenv'
-import { readFile, writeFile } from 'fs/promises'
-import path from 'path'
+import { getDeploymentData } from './utils/getDeploymentData'
 import { initPolkadotJs } from './utils/initPolkadotJs'
+import { writeContractAddresses } from './utils/writeContractAddresses'
 dotenv.config({ path: `.env.${process.env.CHAIN}` })
 
 const main = async () => {
@@ -11,23 +17,25 @@ const main = async () => {
   if (!chain) throw new Error(`Chain '${process.env.CHAIN}' not found`)
 
   const { api, account } = await initPolkadotJs(chain.rpcUrls, accountUri)
+  const gasLimit =
+    chain.network === 'shibuya'
+      ? getGasLimit(api, new BN(100_000_000_000), null)
+      : getMaxGasLimit(api)
 
   // Deploy greeter contract
-  const deploymentsRelativePath = './deployments/greeter'
-  const greeterPath = path.join(path.resolve(), deploymentsRelativePath)
-  const greeterWasm = await readFile(path.join(greeterPath, 'greeter.wasm'))
-  const greeterAbi = JSON.parse(await readFile(path.join(greeterPath, 'metadata.json'), 'utf-8'))
-  const { address } = await deployContract(api, account, greeterAbi, greeterWasm, 'default')
+  let { abi, wasm } = await getDeploymentData('greeter')
+  const { address: greeterAddress } = await deployContract(api, account, abi, wasm, 'default', [], {
+    gasLimit,
+  })
 
-  // Write address to file
-  const addressFileRelativePath = path.join(deploymentsRelativePath, `${chain.network}.ts`)
-  const addressFileContents = `export const address = '${address}'\n`
-  await writeFile(path.join(path.resolve(), addressFileRelativePath), addressFileContents)
-  console.log(`Wrote address to file: ${addressFileRelativePath}`)
+  // Write contract addresses to `{contract}/{network}.ts` files
+  await writeContractAddresses(chain.network, {
+    greeter: greeterAddress,
+  })
 }
 
 main()
-  .catch((error) => () => {
+  .catch((error) => {
     console.error(error)
     process.exit(1)
   })

@@ -7,7 +7,7 @@ import { IKeyringPair } from '@polkadot/types/types/interfaces'
 export const initPolkadotJs = async (
   rpc: string | string[],
   uri: string,
-): Promise<{ api: ApiPromise; account: IKeyringPair }> => {
+): Promise<{ api: ApiPromise; account: IKeyringPair; decimals: number }> => {
   // Initialize api
   if (Array.isArray(rpc)) rpc = rpc?.[0]
   if (!rpc) throw new Error('No RPC given')
@@ -19,10 +19,13 @@ export const initPolkadotJs = async (
   const version = (await api.rpc.system.version())?.toString() || ''
   console.log(`Initialized API on ${chain} (${version})`)
 
-  // Initialize account
+  // Get decimals
+  const decimals = api.registry.chainDecimals?.[0] || 12
+
+  // Initialize account & set signer
   const keyring = new Keyring({ type: 'sr25519' })
   const account = keyring.addFromUri(uri)
-  console.log(`Initialized Account: ${account.address}\n`)
+  console.log(`Initialized Accounts: ${account.address}\n`)
 
-  return { api, account }
+  return { api, account, decimals }
 }
