@@ -13,7 +13,7 @@ import toast from 'react-hot-toast'
 import 'twin.macro'
 
 export const GreeterContractInteractions: FC = () => {
-  const { api, account, isConnected, signer } = useInkathon()
+  const { api, activeAccount, isConnected, activeSigner } = useInkathon()
   const { contract } = useRegisteredContract(ContractIds.greeter)
   const [greeterMessage, setGreeterMessage] = useState<string>()
   const [fetchIsLoading, setFetchIsLoading] = useState<boolean>()
@@ -42,7 +42,7 @@ export const GreeterContractInteractions: FC = () => {
 
   // Update Greeting
   const updateGreeting = async () => {
-    if (!account || !contract || !signer || !api) {
+    if (!activeAccount || !contract || !activeSigner || !api) {
       toast.error('Wallet not connected. Try again…')
       return
     }
@@ -53,9 +53,17 @@ export const GreeterContractInteractions: FC = () => {
       const newMessage = form.getValues('newMessage')
 
       // Estimate gas & send transaction
-      await contractTx(api, account.address, contract, 'setMessage', {}, [newMessage], (result) => {
-        if (result?.status?.isInBlock) fetchGreeting()
-      })
+      await contractTx(
+        api,
+        activeAccount.address,
+        contract,
+        'setMessage',
+        {},
+        [newMessage],
+        (result) => {
+          if (result?.status?.isInBlock) fetchGreeting()
+        },
+      )
       toast.success(`Successfully updated greeting`)
     } catch (e) {
       console.error(e)

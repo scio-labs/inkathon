@@ -26,17 +26,17 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
     connect,
     disconnect,
     isConnecting,
-    account,
+    activeAccount,
     accounts,
-    setAccount,
+    setActiveAccount,
   } = useInkathon()
-  const { balanceFormatted } = useBalance(account?.address)
+  const { balanceFormatted } = useBalance(activeAccount?.address)
   const [supportedChains] = useState(
     env.supportedChains.map((networkId) => getSubstrateChain(networkId) as SubstrateChain),
   )
 
   // Connect Button
-  if (!account)
+  if (!activeAccount)
     return (
       <Button
         onClick={connect}
@@ -78,9 +78,9 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
             fontWeight="bold"
           >
             <VStack spacing={0.5}>
-              <Text fontSize="sm">{account.meta?.name}</Text>
+              <Text fontSize="sm">{activeAccount.meta?.name}</Text>
               <Text fontSize="xs" fontWeight="normal" opacity={0.75}>
-                {truncateHash(account.address, 8)}
+                {truncateHash(activeAccount.address, 8)}
               </Text>
             </VStack>
           </MenuButton>
@@ -112,9 +112,9 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
           {(accounts || []).map((acc) => (
             <MenuItem
               key={acc.address}
-              isDisabled={acc.address === account.address}
+              isDisabled={acc.address === activeAccount.address}
               onClick={() => {
-                setAccount?.(acc)
+                setActiveAccount?.(acc)
               }}
               tw="bg-transparent hocus:bg-gray-800"
             >
@@ -122,7 +122,7 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
               <VStack align="start" spacing={0}>
                 <HStack>
                   <Text>{acc.meta?.name}</Text>
-                  {acc.address === account.address && <AiOutlineCheckCircle size={16} />}
+                  {acc.address === activeAccount.address && <AiOutlineCheckCircle size={16} />}
                 </HStack>
                 <Text fontSize="xs">{truncateHash(acc.address, 10)}</Text>
               </VStack>
