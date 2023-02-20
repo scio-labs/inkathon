@@ -112,25 +112,29 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
 
           {/* Available Accounts/Wallets */}
           <MenuDivider />
-          {(accounts || []).map((acc) => (
-            <MenuItem
-              key={acc.address}
-              isDisabled={acc.address === activeAccount.address}
-              onClick={() => {
-                setActiveAccount?.(acc)
-              }}
-              tw="bg-transparent hocus:bg-gray-800"
-            >
-              <CheckboxIcon />
-              <VStack align="start" spacing={0}>
-                <HStack>
-                  <Text>{acc.meta?.name}</Text>
-                  {acc.address === activeAccount.address && <AiOutlineCheckCircle size={16} />}
-                </HStack>
-                <Text fontSize="xs">{truncateHash(acc.address, 10)}</Text>
-              </VStack>
-            </MenuItem>
-          ))}
+          {(accounts || []).map((acc) => {
+            const encodedAddress = encodeAddress(acc.address, activeChain?.ss58Prefix || 42)
+            const truncatedEncodedAddress = truncateHash(encodedAddress, 10)
+            return (
+              <MenuItem
+                key={encodedAddress}
+                isDisabled={acc.address === activeAccount.address}
+                onClick={() => {
+                  setActiveAccount?.(acc)
+                }}
+                tw="bg-transparent hocus:bg-gray-800"
+              >
+                <CheckboxIcon />
+                <VStack align="start" spacing={0}>
+                  <HStack>
+                    <Text>{acc.meta?.name}</Text>
+                    {acc.address === activeAccount.address && <AiOutlineCheckCircle size={16} />}
+                  </HStack>
+                  <Text fontSize="xs">{truncatedEncodedAddress}</Text>
+                </VStack>
+              </MenuItem>
+            )
+          })}
 
           {/* Disconnect Button */}
           <MenuDivider />
