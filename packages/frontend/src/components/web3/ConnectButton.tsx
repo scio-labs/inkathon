@@ -11,9 +11,11 @@ import {
   VStack,
 } from '@chakra-ui/react'
 import { env } from '@config/environment'
+import { encodeAddress } from '@polkadot/util-crypto'
 import { getSubstrateChain, SubstrateChain, useBalance, useInkathon } from '@scio-labs/use-inkathon'
 import { truncateHash } from '@utils/truncateHash'
 import { FC, useState } from 'react'
+import { toast } from 'react-hot-toast'
 import { AiOutlineCheckCircle, AiOutlineDisconnect } from 'react-icons/ai'
 import { FiChevronDown } from 'react-icons/fi'
 import 'twin.macro'
@@ -22,7 +24,7 @@ export interface ConnectButtonProps {}
 export const ConnectButton: FC<ConnectButtonProps> = () => {
   const {
     activeChain,
-    setActiveChain,
+    switchActiveChain,
     connect,
     disconnect,
     isConnecting,
@@ -92,8 +94,9 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
             <MenuItem
               key={chain.network}
               isDisabled={chain.network === activeChain?.network}
-              onClick={() => {
-                setActiveChain?.(chain)
+              onClick={async () => {
+                await switchActiveChain?.(chain)
+                toast.success(`Switched to ${chain.name}`)
               }}
               tw="bg-transparent hocus:bg-gray-800"
             >
