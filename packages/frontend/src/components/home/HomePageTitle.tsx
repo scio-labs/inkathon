@@ -29,7 +29,7 @@ export const HomePageTitle: FC = () => {
           href={githubHref}
           target="_blank"
           className="group"
-          tw="flex cursor-pointer items-center gap-4 rounded-3xl border-2 border-gray-900 py-1.5 px-3.5 transition-all hover:(border-gray-300 bg-gray-900)"
+          tw="flex cursor-pointer items-center gap-4 rounded-3xl py-1.5 px-3.5 transition-all hover:bg-gray-900"
         >
           <Image src={inkathonLogo} priority width={60} alt="ink!athon Logo" />
           <h1 tw="font-black text-[2.5rem]">{title}</h1>
