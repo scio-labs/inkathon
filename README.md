@@ -110,29 +110,36 @@ pnpm dev
 
 ### Contracts Quickstart
 
-I created shorthand npm-scripts for most interactions (e.g. build, or starting a local node). Therefore, to execute those the active terminal directory needs to be `packages/contracts`. The full commands can be found in `packages/contracts/package.json`.
+I created convenience scripts for most interactions (i.e. build & deploy). To run those the active terminal directory needs to be `packages/contracts`. The full command list can be found in `packages/contracts/package.json`.
 
 ```bash
-# Start local node with persistence & open contracts-ui
-# NOTE: When using Brave, shields have to be taken down for the UIs
-# NOTE: Just use `pnpm node` to not automatically open contracts-ui
-pnpm dev
-
-# Build Contracts
+# Build Contracts & move deployments to `./deployments/{contract}/` folders
+# NOTE: When adding/renaming your contracts, edit them in `build-all.sh`
 pnpm build
 
-# Deploy Contracts with the generated `*.contract` file
-# via drag'n'drop in contracts-ui in the browser
-
-# Copy the deployed contracts address and save it via the following command
-ADDRESS=… pnpm write-address
-
-# NOTE: This command can also be adapted for different contracts and chains
-ADDRESS=123 CHAIN=alephzero-testnet CONTRACT=new_greeter pnpm write-address
-
 # Test Contracts
+# NOTE: When adding/renaming your contracts, edit them in `test-all.sh`
 pnpm test
+
+# Start local node with persistence (contracts stay deployed after restart)
+# NOTE: When using Brave, shields have to be taken down for the UIs
+pnpm node
+
+# Deploy Contracts (on the local node)
+# NOTE: Prerequisites fo all scripts are Node, pnpm, and `pnpm install`
+pnpm deploy
+
+# Deploy Contracts (on any other chain)
+# NOTE: Make sure to create a `.{chain}.env` environment file (gitignored)
+#       with the `ACCOUNT_URI` you want to use.
+#       Also, chain must be a network-id from here: https://github.com/scio-labs/use-inkathon/blob/main/src/chains.ts.
+CHAIN=alephzero-testnet pnpm deploy
+
+# Run any other script from the `./scripts` directory
+pnpm ts-node scripts/{script}.ts
 ```
+
+You can also upload & instantiate contracts manually using [Contracts UI](https://contracts-ui.substrate.io/) (`pnpm contracts-ui`).
 
 ### VSCode Setup
 
@@ -190,6 +197,10 @@ Please see all pre-defined environment variables below and find more info in [`p
 | `NEXT_PUBLIC_URL`              | `https://your-repo.vercel.app` |
 | `NEXT_PUBLIC_DEFAULT_CHAIN`    | `alephzero-testnet`            |
 | `NEXT_PUBLIC_SUPPORTED_CHAINS` | `["alephzero-testnet"]`        |
+
+### Contract Deployment
+
+Please see the [Contract Quickstart](#contracts-quickstart) section above.
 
 ## FAQs & Troubleshooting
 
