@@ -14,7 +14,7 @@ import 'twin.macro'
 
 export const GreeterContractInteractions: FC = () => {
   const { api, activeAccount, isConnected, activeSigner } = useInkathon()
-  const { contract } = useRegisteredContract(ContractIds.greeter)
+  const { contract, address: contractAddress } = useRegisteredContract(ContractIds.greeter)
   const [greeterMessage, setGreeterMessage] = useState<string>()
   const [fetchIsLoading, setFetchIsLoading] = useState<boolean>()
   const [updateIsLoading, setUpdateIsLoading] = useState<boolean>()
@@ -111,6 +111,9 @@ export const GreeterContractInteractions: FC = () => {
             </form>
           </Card>
         )}
+
+        {/* Contract Address */}
+        <p tw="text-center font-mono text-xs text-gray-600">{contractAddress}</p>
       </div>
     </>
   )
