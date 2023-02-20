@@ -33,6 +33,8 @@
     "files.associations": {
       ".env.*": "dotenv"
     },
+    "evenBetterToml.formatter.indentString": "    ",
+    "evenBetterToml.formatter.columnWidth": 120,
     "[rust]": {
       "editor.defaultFormatter": "rust-lang.rust-analyzer"
     },
