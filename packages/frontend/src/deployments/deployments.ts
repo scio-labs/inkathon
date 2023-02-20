@@ -1,4 +1,4 @@
-import { alephzeroTestnet, shibuya, SubstrateDeployment } from '@scio-labs/use-inkathon'
+import { shibuya, SubstrateDeployment } from '@scio-labs/use-inkathon'
 
 export enum ContractIds {
   greeter = 'greeter',
@@ -6,20 +6,19 @@ export enum ContractIds {
 
 export const getDeployments = async (): Promise<SubstrateDeployment[]> => {
   return [
-    {
-      contractId: ContractIds.greeter,
-      networkId: alephzeroTestnet.network,
-      abi: await import(`@inkathon/contracts/deployments/greeter/metadata.json`),
-      address: (await import(`@inkathon/contracts/deployments/greeter/alephzero-testnet.json`))
-        .address_alpha_zero,
-    },
+    // {
+    //   contractId: ContractIds.greeter,
+    //   networkId: alephzeroTestnet.network,
+    //   abi: await import(`@inkathon/contracts/deployments/greeter/metadata.json`),
+    //   address: (await import(`@inkathon/contracts/deployments/greeter/alephzero-testnet.json`))
+    //     .address_alpha_zero,
+    // },
     // TODO Add deployment for development chain
     {
       contractId: ContractIds.greeter,
       networkId: shibuya.network,
       abi: await import(`@inkathon/contracts/deployments/greeter/metadata.json`),
-      address: (await import(`@inkathon/contracts/deployments/greeter/alephzero-testnet.json`))
-        .address_shibuya,
+      address: (await import(`@inkathon/contracts/deployments/greeter/shibuya.json`)).shibuya,
     },
   ]
 }
