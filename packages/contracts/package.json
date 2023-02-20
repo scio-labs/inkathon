@@ -4,15 +4,12 @@
   "homepage": "https://inkathon.xyz",
   "type": "module",
   "scripts": {
-    "build": "cargo contract build --release --manifest-path ${CONTRACT:-greeter}/Cargo.toml && pnpm copy-build",
-    "test": "cargo test --manifest-path ${CONTRACT:-greeter}/Cargo.toml",
+    "test": "./test-all.sh",
+    "build": "./build-all.sh",
     "node": "substrate-contracts-node --dev --port 9944 --base-path ./.node-data",
-    "copy-build": "mkdir -p deployments/${CONTRACT:-greeter} && cp target/ink/${CONTRACT:-greeter}/${CONTRACT:-greeter}.json deployments/${CONTRACT:-greeter}/metadata.json && cp target/ink/${CONTRACT:-greeter}/${CONTRACT:-greeter}.contract deployments/${CONTRACT:-greeter}/ && cp target/ink/${CONTRACT:-greeter}/${CONTRACT:-greeter}.wasm deployments/${CONTRACT:-greeter}/",
-    "write-address": "mkdir -p deployments/${CONTRACT:-greeter}/ && echo \"export const address = '$ADDRESS'\" >deployments/${CONTRACT:-greeter}/${CHAIN:-development}.ts",
+    "deploy": "ts-node scripts/deploy.ts",
     "contracts-ui": "open https://contracts-ui.substrate.io/?rpc=ws://127.0.0.1:9944",
-    "explorer-ui": "open https://polkadot.js.org/apps/#/explorer?rpc=ws://127.0.0.1:9944",
-    "dev": "pnpm contracts-ui && pnpm node",
-    "deploy": "ts-node scripts/deploy.ts"
+    "explorer-ui": "open https://polkadot.js.org/apps/#/explorer?rpc=ws://127.0.0.1:9944"
   },
   "devDependencies": {
     "@polkadot/api": "^9.14.1",
