@@ -82,7 +82,10 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
             <VStack spacing={0.5}>
               <Text fontSize="sm">{activeAccount.meta?.name}</Text>
               <Text fontSize="xs" fontWeight="normal" opacity={0.75}>
-                {truncateHash(activeAccount.address, 8)}
+                {truncateHash(
+                  encodeAddress(activeAccount.address, activeChain?.ss58Prefix || 42),
+                  8,
+                )}
               </Text>
             </VStack>
           </MenuButton>
