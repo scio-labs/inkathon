@@ -7,5 +7,6 @@ contracts=( "greeter" )
 for i in "${contracts[@]}"
 do
   echo -e "\Testing './$i/Cargo.toml'…"
-  cargo test --manifest-path $i/Cargo.toml
+  # cargo test --manifest-path $i/Cargo.toml
+  cargo test --features e2e-tests --manifest-path $i/Cargo.toml
 done
