@@ -23,6 +23,7 @@ export const GreeterContractInteractions: FC = () => {
   // Fetch Greeting
   const fetchGreeting = async () => {
     if (!contract || !api) return
+
     setFetchIsLoading(true)
     try {
       const result = await contractQuery(api, '', contract, 'greet')
@@ -48,6 +49,7 @@ export const GreeterContractInteractions: FC = () => {
     }
 
     setUpdateIsLoading(true)
+    toast.loading('Updating greeting…', { id: `update` })
     try {
       // Gather form value
       const newMessage = form.getValues('newMessage')
@@ -60,16 +62,22 @@ export const GreeterContractInteractions: FC = () => {
         'setMessage',
         {},
         [newMessage],
-        (result) => {
-          if (result?.status?.isInBlock) fetchGreeting()
+        ({ status }) => {
+          if (status?.isInBlock) {
+            setUpdateIsLoading(false)
+            toast.dismiss(`update`)
+            toast.success(`Successfully updated greeting`)
+            fetchGreeting()
+            form.reset()
+          }
         },
       )
-      toast.success(`Successfully updated greeting`)
     } catch (e) {
+      setUpdateIsLoading(false)
+      toast.dismiss(`update`)
       console.error(e)
       toast.error('Error while updating greeting. Try again.')
-    } finally {
-      setUpdateIsLoading(false)
+      fetchGreeting()
     }
   }
 
