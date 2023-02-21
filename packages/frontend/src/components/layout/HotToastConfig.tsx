@@ -4,10 +4,12 @@ import { Toaster } from 'react-hot-toast'
 export const HotToastConfig: FC = () => {
   return (
     <Toaster
+      containerStyle={{
+        top: 60,
+      }}
       toastOptions={{
         position: 'top-center',
         style: {
-          marginTop: '2rem',
           wordBreak: 'break-all',
           maxWidth: '30rem',
           background: '#1a1b1f',
