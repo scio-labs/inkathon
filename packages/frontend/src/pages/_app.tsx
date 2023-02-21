@@ -6,14 +6,13 @@ import { getDeployments } from '@deployments/deployments'
 import { cache } from '@emotion/css'
 import { CacheProvider } from '@emotion/react'
 import { Inconsolata } from '@next/font/google'
-import { getSubstrateChain, SubstrateChain, UseInkathonProvider } from '@scio-labs/use-inkathon'
+import { UseInkathonProvider } from '@scio-labs/use-inkathon'
 import GlobalStyles from '@styles/GlobalStyles'
 import { DefaultSeo } from 'next-seo'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import Router from 'next/router'
 import NProgress from 'nprogress'
-import { useState } from 'react'
 
 // Router Loading Animation with @tanem/react-nprogress
 Router.events.on('routeChangeStart', () => NProgress.start())
@@ -26,8 +25,6 @@ const inconsolata = Inconsolata({
 })
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [defaultChain] = useState(getSubstrateChain(env.defaultChain) as SubstrateChain)
-
   return (
     <>
       {/* TODO SEO */}
@@ -69,7 +66,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <UseInkathonProvider
         appName="ink!athon" // TODO
         connectOnInit={true}
-        defaultChain={defaultChain}
+        defaultChain={env.defaultChain}
         deployments={getDeployments()}
       >
         <CacheProvider value={cache}>
