@@ -14,20 +14,20 @@ export const getDeployments = async (): Promise<SubstrateDeployment[]> => {
     {
       contractId: ContractIds.greeter,
       networkId: alephzeroTestnet.network,
-      abi: await import(`@inkathon/contracts/deployments/greeter/metadata.json`),
+      abi: await import(`@inkathon/contracts/deployments/greeter/greeter.json`),
       address: alephzeroTestnetAddress,
     },
     {
       contractId: ContractIds.greeter,
       networkId: shibuya.network,
-      abi: await import(`@inkathon/contracts/deployments/greeter/metadata.json`),
+      abi: await import(`@inkathon/contracts/deployments/greeter/greeter.json`),
       address: shibuyaAddress,
     },
     // TODO
     // {
     //   contractId: ContractIds.greeter,
     //   networkId: development.network,
-    //   abi: await import(`@inkathon/contracts/deployments/greeter/metadata.json`),
+    //   abi: await import(`@inkathon/contracts/deployments/greeter/greeter.json`),
     //   address: developmentAddress,
     // },
   ]
