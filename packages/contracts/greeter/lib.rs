@@ -1,5 +1,4 @@
 #![cfg_attr(not(feature = "std"), no_std)]
-// #![feature(min_specialization)]
 #[ink::contract]
 mod greeter {
     use ink::prelude::string::String;
