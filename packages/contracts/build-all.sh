@@ -13,6 +13,5 @@ do
   mkdir -p ./deployments/$i
   cp ./target/ink/$i/$i.contract ./deployments/$i/
   cp ./target/ink/$i/$i.wasm ./deployments/$i/
-  touch ./deployments/$i/$i.json
-  cp ./target/ink/$i/$i.json ./deployments/$i/$i.json
+  cp ./target/ink/$i/$i.json ./deployments/$i/
 done

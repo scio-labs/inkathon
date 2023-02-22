@@ -1,5 +1,5 @@
 #![cfg_attr(not(feature = "std"), no_std)]
-
+// #![feature(min_specialization)]
 #[ink::contract]
 mod greeter {
     use ink::prelude::string::String;
@@ -79,7 +79,7 @@ mod greeter {
         }
     }
 
-    /// This is how you'd write end-to-end (E2E) or integration tests for ink! contracts.
+    /// This is how you'd write end-to-end (E2E) or integration tests for greeter contracts.
     ///
     /// When running these you need to make sure that you:
     /// - Compile the tests with the `e2e-tests` feature flag enabled (`--features e2e-tests`)

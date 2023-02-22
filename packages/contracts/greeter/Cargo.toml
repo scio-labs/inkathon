@@ -14,6 +14,11 @@ scale-info = { version = "2", default-features = false, features = [
     "derive",
 ], optional = true }
 
+# openbrush = { tag = "3.0.0", git = "https://github.com/727-Ventures/openbrush-contracts", default-features = false, features = [
+#     "psp22",
+# ] }
+
+
 [dev-dependencies]
 ink_e2e = "4.0.0"
 
