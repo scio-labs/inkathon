@@ -127,13 +127,13 @@ pnpm node
 
 # Deploy Contracts (on the local node)
 # NOTE: Prerequisites fo all scripts are Node, pnpm, and `pnpm install`
-pnpm deploy
+pnpm run deploy
 
 # Deploy Contracts (on any other chain)
 # NOTE: Make sure to create a `.{chain}.env` environment file (gitignored)
 #       with the `ACCOUNT_URI` you want to use.
 #       Also, chain must be a network-id from here: https://github.com/scio-labs/use-inkathon/blob/main/src/chains.ts.
-CHAIN=alephzero-testnet pnpm deploy
+CHAIN=alephzero-testnet pnpm run deploy
 
 # Run any other script from the `./scripts` directory
 pnpm ts-node scripts/{script}.ts
