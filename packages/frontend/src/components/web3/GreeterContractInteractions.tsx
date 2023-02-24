@@ -18,7 +18,8 @@ export const GreeterContractInteractions: FC = () => {
   const [greeterMessage, setGreeterMessage] = useState<string>()
   const [fetchIsLoading, setFetchIsLoading] = useState<boolean>()
   const [updateIsLoading, setUpdateIsLoading] = useState<boolean>()
-  const form = useForm<{ newMessage: string }>()
+  type FormValues = { newMessage: string }
+  const { register, reset, handleSubmit } = useForm<FormValues>()
 
   // Fetch Greeting
   const fetchGreeting = async () => {
@@ -42,7 +43,7 @@ export const GreeterContractInteractions: FC = () => {
   }, [contract])
 
   // Update Greeting
-  const updateGreeting = async () => {
+  const updateGreeting = async (data: FormValues) => {
     if (!activeAccount || !contract || !activeSigner || !api) {
       toast.error('Wallet not connected. Try again…')
       return
@@ -51,9 +52,6 @@ export const GreeterContractInteractions: FC = () => {
     setUpdateIsLoading(true)
     toast.loading('Updating greeting…', { id: `update` })
     try {
-      // Gather form value
-      const newMessage = form.getValues('newMessage')
-
       // Estimate gas & send transaction
       await contractTx(
         api,
@@ -61,14 +59,14 @@ export const GreeterContractInteractions: FC = () => {
         contract,
         'setMessage',
         {},
-        [newMessage],
+        [data.newMessage],
         ({ status }) => {
           if (status?.isInBlock) {
             setUpdateIsLoading(false)
             toast.dismiss(`update`)
             toast.success(`Successfully updated greeting`)
             fetchGreeting()
-            form.reset()
+            reset()
           }
         },
       )
@@ -99,20 +97,13 @@ export const GreeterContractInteractions: FC = () => {
         {/* Update Greeting */}
         {!!isConnected && (
           <Card variant="outline" p={4} bgColor="whiteAlpha.100">
-            <form>
+            <form onSubmit={handleSubmit(updateGreeting)}>
               <Stack direction="row" spacing={2} align="end">
                 <FormControl>
                   <FormLabel>Update Greeting</FormLabel>
-                  <Input disabled={updateIsLoading} {...form.register('newMessage')} />
+                  <Input disabled={updateIsLoading} {...register('newMessage')} />
                 </FormControl>
-                <Button
-                  mt={4}
-                  colorScheme="purple"
-                  isLoading={updateIsLoading}
-                  disabled={updateIsLoading}
-                  type="button"
-                  onClick={updateGreeting}
-                >
+                <Button mt={4} type="submit" colorScheme="purple" isLoading={updateIsLoading}>
                   Submit
                 </Button>
               </Stack>
