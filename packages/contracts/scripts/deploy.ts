@@ -1,10 +1,4 @@
-import { BN } from '@polkadot/util'
-import {
-  deployContract,
-  getGasLimit,
-  getMaxGasLimit,
-  getSubstrateChain,
-} from '@scio-labs/use-inkathon'
+import { deployContract, getSubstrateChain } from '@scio-labs/use-inkathon'
 import * as dotenv from 'dotenv'
 import { getDeploymentData } from './utils/getDeploymentData'
 import { initPolkadotJs } from './utils/initPolkadotJs'
@@ -17,16 +11,10 @@ const main = async () => {
   if (!chain) throw new Error(`Chain '${process.env.CHAIN}' not found`)
 
   const { api, account } = await initPolkadotJs(chain.rpcUrls, accountUri)
-  const gasLimit =
-    chain.network === 'shibuya'
-      ? getGasLimit(api, new BN(100_000_000_000), null)
-      : getMaxGasLimit(api)
 
   // Deploy greeter contract
   let { abi, wasm } = await getDeploymentData('greeter')
-  const { address: greeterAddress } = await deployContract(api, account, abi, wasm, 'default', [], {
-    gasLimit,
-  })
+  const { address: greeterAddress } = await deployContract(api, account, abi, wasm, 'default', [])
 
   // Write contract addresses to `{contract}/{network}.ts` files
   await writeContractAddresses(chain.network, {
