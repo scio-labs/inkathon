@@ -12,7 +12,9 @@
 
 This is an opinionated boilerplate to get up and running with dApp development in the Substrate ecosystem, especially with ink! smart contracts. It uses custom-built [`useInkathon` React Hooks](https://github.com/scio-labs/use-inkathon) that abstract & improve the polkadot.js experience.
 
-By [Dennis Zoma](https://zoma.dev) & [Scio Labs](https://scio.xyz)
+By [Dennis Zoma](https://zoma.dev) & [Scio Labs](https://scio.xyz) 🪄
+
+Join our [Telegram Group](https://t.me/inkathon) 💬
 
 ---
 
