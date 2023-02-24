@@ -33,6 +33,9 @@
     "files.associations": {
       ".env.*": "dotenv"
     },
+    "[toml]": {
+      "editor.defaultFormatter": "tamasfe.even-better-toml"
+    },
     "evenBetterToml.formatter.indentString": "    ",
     "evenBetterToml.formatter.columnWidth": 120,
     "[rust]": {
