@@ -9,8 +9,7 @@ const main = async () => {
   const accountUri = process.env.ACCOUNT_URI || '//Alice'
   const chain = getSubstrateChain(process.env.CHAIN || 'development')
   if (!chain) throw new Error(`Chain '${process.env.CHAIN}' not found`)
-
-  const { api, account } = await initPolkadotJs(chain.rpcUrls, accountUri)
+  const { api, account } = await initPolkadotJs(chain, accountUri)
 
   // Deploy greeter contract
   let { abi, wasm } = await getDeploymentData('greeter')

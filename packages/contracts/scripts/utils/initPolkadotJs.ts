@@ -1,23 +1,21 @@
-import { ApiPromise, Keyring, WsProvider } from '@polkadot/api'
+import { ApiPromise, Keyring } from '@polkadot/api'
 import { IKeyringPair } from '@polkadot/types/types/interfaces'
+import { initPolkadotJs as initApi, SubstrateChain } from '@scio-labs/use-inkathon'
 
 /**
  * Initialize Polkadot.js API with given RPC & account from given URI.
  */
 export const initPolkadotJs = async (
-  rpc: string | string[],
+  chain: SubstrateChain,
   uri: string,
 ): Promise<{ api: ApiPromise; account: IKeyringPair; decimals: number }> => {
   // Initialize api
-  if (Array.isArray(rpc)) rpc = rpc?.[0]
-  if (!rpc) throw new Error('No RPC given')
-  const provider = new WsProvider(rpc)
-  const api = await ApiPromise.create({ provider, noInitWarn: true })
+  const { api } = await initApi(chain)
 
   // Print chain info
-  const chain = (await api.rpc.system.chain())?.toString() || ''
+  const network = (await api.rpc.system.chain())?.toString() || ''
   const version = (await api.rpc.system.version())?.toString() || ''
-  console.log(`Initialized API on ${chain} (${version})`)
+  console.log(`Initialized API on ${network} (${version})`)
 
   // Get decimals
   const decimals = api.registry.chainDecimals?.[0] || 12
