@@ -5,11 +5,11 @@ import { env } from '@config/environment'
 import { getDeployments } from '@deployments/deployments'
 import { cache } from '@emotion/css'
 import { CacheProvider } from '@emotion/react'
-import { Inconsolata } from '@next/font/google'
 import { UseInkathonProvider } from '@scio-labs/use-inkathon'
 import GlobalStyles from '@styles/GlobalStyles'
 import { DefaultSeo } from 'next-seo'
 import type { AppProps } from 'next/app'
+import { Inconsolata } from 'next/font/google'
 import Head from 'next/head'
 import Router from 'next/router'
 import NProgress from 'nprogress'
@@ -19,7 +19,7 @@ Router.events.on('routeChangeStart', () => NProgress.start())
 Router.events.on('routeChangeComplete', () => NProgress.done())
 Router.events.on('routeChangeError', () => NProgress.done())
 
-// TODO Google Fonts via @next/font
+// Google Fonts via next/font
 const inconsolata = Inconsolata({
   subsets: ['latin'],
 })
