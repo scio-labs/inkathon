@@ -55,28 +55,15 @@ export const GreeterContractInteractions: FC = () => {
       const newMessage = form.getValues('newMessage')
 
       // Estimate gas & send transaction
-      await contractTx(
-        api,
-        activeAccount.address,
-        contract,
-        'setMessage',
-        {},
-        [newMessage],
-        ({ status }) => {
-          if (status?.isInBlock) {
-            setUpdateIsLoading(false)
-            toast.dismiss(`update`)
-            toast.success(`Successfully updated greeting`)
-            fetchGreeting()
-            form.reset()
-          }
-        },
-      )
+      await contractTx(api, activeAccount.address, contract, 'setMessage', {}, [newMessage])
+      toast.success(`Successfully updated greeting`)
+      form.reset()
     } catch (e) {
-      setUpdateIsLoading(false)
-      toast.dismiss(`update`)
       console.error(e)
       toast.error('Error while updating greeting. Try again.')
+    } finally {
+      setUpdateIsLoading(false)
+      toast.dismiss(`update`)
       fetchGreeting()
     }
   }
