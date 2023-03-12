@@ -2,10 +2,13 @@ import { readFile } from 'fs/promises'
 import path from 'path'
 
 /**
- * Reads the contract deployment files (wasm & abi) from the `basePath` directory.
+ * Reads the contract deployment files (wasm & abi).
+ * NOTE: Base directory can be configured via the `DIR` environment variable
  */
-export const getDeploymentData = async (contractName: string, basePath = './deployments') => {
-  const contractPath = path.join(path.resolve(), basePath, contractName)
+export const getDeploymentData = async (contractName: string) => {
+  const baseDir = process.env.DIR || './deployments'
+  const contractPath = path.join(path.resolve(), baseDir, contractName)
+
   let abi, wasm
   try {
     abi = JSON.parse(await readFile(path.join(contractPath, 'metadata.json'), 'utf-8'))

@@ -6,9 +6,9 @@ import { writeContractAddresses } from './utils/writeContractAddresses'
 dotenv.config({ path: `.env.${process.env.CHAIN}` })
 
 const main = async () => {
-  const accountUri = process.env.ACCOUNT_URI || '//Alice'
   const chain = getSubstrateChain(process.env.CHAIN || 'development')
   if (!chain) throw new Error(`Chain '${process.env.CHAIN}' not found`)
+  const accountUri = process.env.ACCOUNT_URI || '//Alice'
   const { api, account } = await initPolkadotJs(chain, accountUri)
 
   // Deploy greeter contract
