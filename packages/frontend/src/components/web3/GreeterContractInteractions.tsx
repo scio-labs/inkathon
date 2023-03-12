@@ -14,7 +14,7 @@ import 'twin.macro'
 
 export const GreeterContractInteractions: FC = () => {
   const { api, activeAccount, isConnected, activeSigner } = useInkathon()
-  const { contract, address: contractAddress } = useRegisteredContract(ContractIds.greeter)
+  const { contract, address: contractAddress } = useRegisteredContract(ContractIds.Greeter)
   const [greeterMessage, setGreeterMessage] = useState<string>()
   const [fetchIsLoading, setFetchIsLoading] = useState<boolean>()
   const [updateIsLoading, setUpdateIsLoading] = useState<boolean>()
