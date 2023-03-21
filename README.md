@@ -65,22 +65,21 @@ Below you find a few projects that use this boilerplate, a variation of it, or h
 
 - [AZERO Domains](https://github.com/wottpal/azero.domains) – Domain Name Service for Aleph Zero
 
-## Getting Started
+## Prerequisites
 
 ### Frontend
 
 ```bash
-# 0. Setup Node
+# 1. Setup Node.js
 
-# 1. Install pnpm (https://pnpm.io/installation)
-npm i -g pnpm
+# 2. Install pnpm: https://pnpm.io/installation
 
-# 2. Install dependencies
+# 3. Install dependencies
 pnpm install
 
-# 3. Copy & fill environments
-# NOTE: Documentation of environment variables can be found in the according `.example` file
-# NOTE: Start with only the alephzero-testnet
+# 4. Copy & fill environments
+# NOTE: Documentation of environment variables can be found in the `.example` files
+# NOTE: For simplicity, start with only the `alephzero-testnet` enabled
 cp packages/frontend/.env.local.example packages/frontend/.env.local
 ```
 
@@ -88,27 +87,26 @@ cp packages/frontend/.env.local.example packages/frontend/.env.local
 
 ```bash
 # 1. Setup Rust: https://docs.substrate.io/install/
-# NOTE: You can skip the "Compile a Substrate node" part
+# NOTE: Skip the "Compile a Substrate node" section
 
-# 2. Install ink! tooling (https://use.ink/getting-started/setup#ink-cli)
-rustup component add rust-src
-cargo install cargo-contract --force --locked
-cargo install cargo-dylint dylint-link
+# 2. Install ink! cli (cargo contract): https://github.com/paritytech/cargo-contract
 
-# 3. Install local Substrate node with Smart Contract support (https://github.com/paritytech/substrate-contracts-node)
-cargo install contracts-node --force --git https://github.com/paritytech/substrate-contracts-node.git
+# 3. Install local contracts node: https://github.com/paritytech/substrate-contracts-node
 ```
 
 ## Development
 
 ### Frontend Quickstart
 
-```bash
-# NOTE: Can be executed in both, the root-dir or in `packages/frontend/`
+The frontend should work out of the box as remote deployments (address & abi) for `alephzero-testnet` and `shibuya` are provided within the repo already.
 
+```bash
 # Start Frontend (Next.js)
+# NOTE: Can be executed in both, the root-dir or in `packages/frontend/`
 pnpm dev
 ```
+
+If you want to run it against a local deployment on a locally running Substrate node, make sure to set the defined `NEXT_PUBLIC_DEFAULT_CHAIN` in `packages/frontend/.env.local` to `development`. Then follow the startup and deployment process described in the section below.
 
 ### Contracts Quickstart
 
