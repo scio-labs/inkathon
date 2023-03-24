@@ -41,7 +41,7 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
   if (!activeAccount)
     return (
       <Button
-        onClick={connect}
+        onClick={() => connect?.()}
         isLoading={isConnecting}
         size="md"
         py={6}
