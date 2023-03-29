@@ -70,7 +70,6 @@ export const ChainInfo: FC = () => {
                 Explorer <HiOutlineExternalLink tw="ml-1" />
               </Link>
             )}
-
             {/* Faucet Link */}
             {!!activeChain?.faucetUrls?.length && (
               <Link
@@ -81,7 +80,6 @@ export const ChainInfo: FC = () => {
                 Faucet <HiOutlineExternalLink tw="ml-1" />
               </Link>
             )}
-
             {/* Contracts UI Link */}
             {!!activeChain?.rpcUrls?.length && (
               <Link
@@ -94,6 +92,18 @@ export const ChainInfo: FC = () => {
             )}
           </div>
         </Card>
+
+        {/* Mainnet Security Disclaimer */}
+        {!activeChain?.testnet && (
+          <>
+            <h2 tw="text-center font-mono text-red-400">Security Disclaimer</h2>
+
+            <Card variant="outline" p={4} bgColor="red.500" borderColor="red.300" fontSize={'sm'}>
+              You are interacting with un-audited mainnet contracts and risk all your funds. Never
+              transfer tokens to this contract.
+            </Card>
+          </>
+        )}
       </div>
     </>
   )
