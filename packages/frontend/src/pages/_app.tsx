@@ -65,7 +65,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
       <UseInkathonProvider
         appName="ink!athon" // TODO
-        connectOnInit={true}
+        connectOnInit={false}
         defaultChain={env.defaultChain}
         deployments={getDeployments()}
       >

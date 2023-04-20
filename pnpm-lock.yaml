@@ -35,8 +35,8 @@ importers:
         specifier: ^11.1.3
         version: 11.1.3(@polkadot/util@11.1.3)
       '@scio-labs/use-inkathon':
-        specifier: 0.0.1-alpha.39
-        version: 0.0.1-alpha.39(@polkadot/api-contract@10.3.4)(@polkadot/api@10.3.4)(@polkadot/extension-dapp@0.45.5)(@polkadot/extension-inject@0.45.5)(@polkadot/types@10.3.4)(@polkadot/util@11.1.3)(react-dom@18.2.0)(react@18.2.0)
+        specifier: 0.0.1-alpha.40
+        version: 0.0.1-alpha.40(@polkadot/api-contract@10.3.4)(@polkadot/api@10.3.4)(@polkadot/extension-inject@0.45.5)(@polkadot/types@10.3.4)(@polkadot/util@11.1.3)(react-dom@18.2.0)(react@18.2.0)
       '@types/node':
         specifier: ^18.15.12
         version: 18.15.12
@@ -92,8 +92,8 @@ importers:
         specifier: ^11.1.3
         version: 11.1.3(@polkadot/util@11.1.3)
       '@scio-labs/use-inkathon':
-        specifier: 0.0.1-alpha.39
-        version: 0.0.1-alpha.39(@polkadot/api-contract@10.3.4)(@polkadot/api@10.3.4)(@polkadot/extension-dapp@0.45.5)(@polkadot/extension-inject@0.45.5)(@polkadot/types@10.3.4)(@polkadot/util@11.1.3)(react-dom@18.2.0)(react@18.2.0)
+        specifier: 0.0.1-alpha.40
+        version: 0.0.1-alpha.40(@polkadot/api-contract@10.3.4)(@polkadot/api@10.3.4)(@polkadot/extension-inject@0.45.5)(@polkadot/types@10.3.4)(@polkadot/util@11.1.3)(react-dom@18.2.0)(react@18.2.0)
       next:
         specifier: ^13.3.0
         version: 13.3.0(@babel/core@7.21.4)(babel-plugin-macros@3.1.0)(react-dom@18.2.0)(react@18.2.0)
@@ -2133,6 +2133,7 @@ packages:
       - bufferutil
       - supports-color
       - utf-8-validate
+    dev: false
 
   /@polkadot/extension-inject@0.45.5(@polkadot/api@10.3.4):
     resolution: {integrity: sha512-dmHF0Ttmyv2FQaRcopMlGXODvrlCXUU2Tfc67NB5qicye1YIdOs3MR0/vxEDEz7NiwpTXLQFPccpEu5UxtkECg==}
@@ -2438,13 +2439,12 @@ packages:
     resolution: {integrity: sha512-sXo/qW2/pAcmT43VoRKOJbDOfV3cYpq3szSVfIThQXNt+E4DfKj361vaAt3c88U5tPUxzEswam7GW48PJqtKAg==}
     dev: true
 
-  /@scio-labs/use-inkathon@0.0.1-alpha.39(@polkadot/api-contract@10.3.4)(@polkadot/api@10.3.4)(@polkadot/extension-dapp@0.45.5)(@polkadot/extension-inject@0.45.5)(@polkadot/types@10.3.4)(@polkadot/util@11.1.3)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-nTeC81N5LhZKZr/JW2ul+up+BJoRYAgemu/ywB9LYhRCXs6UpdT94nGubq9qz8dYnGat8psJY/50KEoLHE+K8g==}
+  /@scio-labs/use-inkathon@0.0.1-alpha.40(@polkadot/api-contract@10.3.4)(@polkadot/api@10.3.4)(@polkadot/extension-inject@0.45.5)(@polkadot/types@10.3.4)(@polkadot/util@11.1.3)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-pBr6UWtkArGF8oW/IV9rx8pq/n9dAYxyJIuoSqmFyHbo42ID8OXADhK3FibAShBOIHBIwOyU1RsupUu6RBO9rw==}
     engines: {node: '>=16 <=18', pnpm: '8'}
     peerDependencies:
       '@polkadot/api': '>=9.14.0'
       '@polkadot/api-contract': '>=9.14.0'
-      '@polkadot/extension-dapp': '>=0.44.0'
       '@polkadot/extension-inject': '>=0.44.0'
       '@polkadot/types': '>=9.14.0'
       '@polkadot/util': '>=10.4.0'
@@ -2453,7 +2453,6 @@ packages:
     dependencies:
       '@polkadot/api': 10.3.4
       '@polkadot/api-contract': 10.3.4
-      '@polkadot/extension-dapp': 0.45.5(@polkadot/api@10.3.4)(@polkadot/util-crypto@11.1.3)(@polkadot/util@11.1.3)
       '@polkadot/extension-inject': 0.45.5(@polkadot/api@10.3.4)
       '@polkadot/types': 10.3.4
       '@polkadot/util': 11.1.3
@@ -5080,8 +5079,8 @@ packages:
       semver: 7.5.0
     dev: false
 
-  /node-addon-api@6.0.0:
-    resolution: {integrity: sha512-GyHvgPvUXBvAkXa0YvYnhilSB1A+FRYMpIVggKzPZqdaZfevZOuzfWzyvgzOwRLHBeo/MMswmJFsrNF4Nw1pmA==}
+  /node-addon-api@6.1.0:
+    resolution: {integrity: sha512-+eawOlIgy680F0kBzPUNFhMZGtJ1YmqM6l4+Crf4IkImjYrO/mqPwRMh352g23uIaQKFItcQ64I7KMaJxHgAVA==}
     dev: false
 
   /node-domexception@1.0.0:
@@ -5846,7 +5845,7 @@ packages:
     dependencies:
       color: 4.2.3
       detect-libc: 2.0.1
-      node-addon-api: 6.0.0
+      node-addon-api: 6.1.0
       prebuild-install: 7.1.1
       semver: 7.5.0
       simple-get: 4.0.1
