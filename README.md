@@ -70,9 +70,9 @@ Below you find a few projects that use this boilerplate, a variation of it, or h
 ### Frontend
 
 ```bash
-# 1. Setup Node.js
+# 1. Setup Node.js (recommended via nvm)
 
-# 2. Install pnpm: https://pnpm.io/installation
+# 2. Install pnpm: https://pnpm.io/installation (recommended via node corepack)
 
 # 3. Install dependencies
 pnpm install
