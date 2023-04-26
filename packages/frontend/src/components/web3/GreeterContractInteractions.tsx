@@ -3,7 +3,7 @@ import { ContractIds } from '@deployments/deployments'
 import {
   contractQuery,
   contractTx,
-  unwrapResultOrError,
+  decodeOutput,
   useInkathon,
   useRegisteredContract,
 } from '@scio-labs/use-inkathon'
@@ -27,8 +27,9 @@ export const GreeterContractInteractions: FC = () => {
     setFetchIsLoading(true)
     try {
       const result = await contractQuery(api, '', contract, 'greet')
-      const message = unwrapResultOrError<string>(result)
-      setGreeterMessage(message)
+      const { output, isError, decodedOutput } = decodeOutput(result, contract, 'greet')
+      if (isError) throw new Error(decodedOutput)
+      setGreeterMessage(output)
     } catch (e) {
       console.error(e)
       toast.error('Error while fetching greeting. Try again…')
