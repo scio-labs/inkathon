@@ -19,6 +19,8 @@
     "eslint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
+    "@azns/resolver-core": "^0.0.3",
+    "@azns/resolver-react": "^0.0.3",
     "@chakra-ui/react": "^2.5.5",
     "@emotion/css": "^11.10.6",
     "@emotion/react": "^11.10.6",

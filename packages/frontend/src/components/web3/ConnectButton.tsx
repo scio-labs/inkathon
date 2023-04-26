@@ -1,3 +1,5 @@
+import { SupportedChainId } from '@azns/resolver-core'
+import { useResolveAddressToDomain } from '@azns/resolver-react'
 import {
   Button,
   HStack,
@@ -11,6 +13,7 @@ import {
   VStack,
 } from '@chakra-ui/react'
 import { env } from '@config/environment'
+import { InjectedAccount } from '@polkadot/extension-inject/types'
 import { encodeAddress } from '@polkadot/util-crypto'
 import {
   SubstrateChain,
@@ -23,6 +26,8 @@ import {
 } from '@scio-labs/use-inkathon'
 import { truncateHash } from '@utils/truncateHash'
 import { useIsSSR } from '@utils/useIsSSR'
+import Image from 'next/image'
+import aznsIconSvg from 'public/icons/azns-icon.svg'
 import { FC, useState } from 'react'
 import { toast } from 'react-hot-toast'
 import { AiOutlineCheckCircle, AiOutlineDisconnect } from 'react-icons/ai'
@@ -107,11 +112,23 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
   return (
     <Menu>
       <HStack>
+        {/* Account Balance */}
         {balanceFormatted !== undefined && (
-          <Button py={6} pl={5} rounded="2xl" fontWeight="bold" fontSize="sm" pointerEvents="none">
+          <Button
+            py={6}
+            pl={5}
+            rounded="2xl"
+            fontWeight="bold"
+            fontSize="sm"
+            fontFamily="mono"
+            letterSpacing={-0.25}
+            pointerEvents="none"
+          >
             {balanceFormatted}
           </Button>
         )}
+
+        {/* Account Name, Address, and AZNS-Domain (if assigned) */}
         <MenuButton
           as={Button}
           rightIcon={<FiChevronDown size={22} />}
@@ -122,7 +139,7 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
           fontWeight="bold"
         >
           <VStack spacing={0.5}>
-            <Text fontSize="sm">{activeAccount.name}</Text>
+            <AccountName account={activeAccount} />
             <Text fontSize="xs" fontWeight="normal" opacity={0.75}>
               {truncateHash(encodeAddress(activeAccount.address, activeChain?.ss58Prefix || 42), 8)}
             </Text>
@@ -167,7 +184,7 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
             >
               <VStack align="start" spacing={0}>
                 <HStack>
-                  <Text>{acc.name}</Text>
+                  <AccountName account={acc} />
                   {acc.address === activeAccount.address && <AiOutlineCheckCircle size={16} />}
                 </HStack>
                 <Text fontSize="xs">{truncatedEncodedAddress}</Text>
@@ -187,5 +204,35 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
         </MenuItem>
       </MenuList>
     </Menu>
+  )
+}
+
+export interface AccountNameProps {
+  account: InjectedAccount
+}
+export const AccountName: FC<AccountNameProps> = ({ account, ...rest }) => {
+  const { activeChain } = useInkathon()
+  const { primaryDomain } = useResolveAddressToDomain(
+    activeChain?.network === SupportedChainId.AlephZeroTestnet ? account?.address : undefined,
+    {
+      chainId: activeChain?.network,
+    },
+  )
+
+  return (
+    <Text
+      fontSize="sm"
+      fontFamily="mono"
+      fontWeight="bold"
+      textTransform="uppercase"
+      display="flex"
+      letterSpacing={-0.25}
+      alignItems="baseline"
+      gap="4px"
+      {...rest}
+    >
+      {primaryDomain || account.name}
+      {!!primaryDomain && <Image src={aznsIconSvg} alt="AZERO.ID Logo" width={11} height={11} />}
+    </Text>
   )
 }
