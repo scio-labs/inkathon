@@ -9,7 +9,8 @@
     "node": "substrate-contracts-node --dev --port 9944 --base-path ./.node-data",
     "deploy": "ts-node scripts/deploy.ts",
     "contracts-ui": "open https://contracts-ui.substrate.io/?rpc=ws://127.0.0.1:9944",
-    "explorer-ui": "open https://polkadot.js.org/apps/#/explorer?rpc=ws://127.0.0.1:9944"
+    "explorer-ui": "open https://polkadot.js.org/apps/#/explorer?rpc=ws://127.0.0.1:9944",
+    "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
     "@polkadot/api": "^10.4.1",

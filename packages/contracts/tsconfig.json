@@ -6,11 +6,12 @@
   "compilerOptions": {
     "module": "esnext",
     "moduleResolution": "node",
-    "target": "es2022",
+    "target": "esnext",
     "sourceMap": true,
     "outDir": "dist",
     "resolveJsonModule": true,
     "esModuleInterop": true,
+    "skipLibCheck": true,
     "allowJs": true,
     "baseUrl": ".",
     "composite": true
