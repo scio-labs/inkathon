@@ -147,7 +147,13 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
         </MenuButton>
       </HStack>
 
-      <MenuList bgColor="blackAlpha.900" borderColor="whiteAlpha.300" rounded="2xl">
+      <MenuList
+        bgColor="blackAlpha.900"
+        borderColor="whiteAlpha.300"
+        rounded="2xl"
+        maxHeight="40vh"
+        overflow="scroll"
+      >
         {/* Supported Chains */}
         {supportedChains.map((chain) => (
           <MenuItem
