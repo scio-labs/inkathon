@@ -56,22 +56,7 @@ export const GreeterContractInteractions: FC = () => {
       const newMessage = form.getValues('newMessage')
 
       // Estimate gas & send transaction
-      await contractTx(
-        api,
-        activeAccount.address,
-        contract,
-        'setMessage',
-        {},
-        [newMessage],
-        (result) => {
-          const { contractEvents } = result as any
-          const greetedEvent = contractEvents
-            ?.find((e: any) => e.event.identifier === 'Greeted')
-            ?.map((e: any) => e.event)
-          if (greetedEvent) console.log('`Greeted` event emitted:', greetedEvent)
-        },
-      )
-
+      await contractTx(api, activeAccount.address, contract, 'setMessage', {}, [newMessage])
       toast.success(`Successfully updated greeting`)
       form.reset()
     } catch (e) {
