@@ -5,21 +5,15 @@ authors = ["Scio Labs <hello@scio.xyz>"]
 edition = "2021"
 
 [dependencies]
-ink = { version = "4.0.0", default-features = false }
+ink = { version = "4.2.1", default-features = false }
 
 scale = { package = "parity-scale-codec", version = "3", default-features = false, features = ["derive"] }
-scale-info = { version = "2", default-features = false, features = ["derive"], optional = true }
+scale-info = { version = "2.5", default-features = false, features = ["derive"], optional = true }
 
 [lib]
-name = "greeter"
 path = "lib.rs"
-crate-type = ["cdylib"]
 
 [features]
 default = ["std"]
-std = [
-    "ink/std",
-    "scale/std",
-    "scale-info/std",
-]
+std = ["ink/std", "scale/std", "scale-info/std"]
 ink-as-dependency = []
