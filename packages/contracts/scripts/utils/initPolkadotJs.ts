@@ -11,6 +11,7 @@ export type InitParams = {
   keyring: Keyring
   account: IKeyringPair
   decimals: number
+  prefix: number
   toBNWithDecimals: (_: number | string) => BN
 }
 export const initPolkadotJs = async (chain: SubstrateChain, uri: string): Promise<InitParams> => {
@@ -22,8 +23,9 @@ export const initPolkadotJs = async (chain: SubstrateChain, uri: string): Promis
   const version = (await api.rpc.system.version())?.toString() || ''
   console.log(`Initialized API on ${network} (${version})`)
 
-  // Get decimals
+  // Get decimals & prefix
   const decimals = api.registry.chainDecimals?.[0] || 12
+  const prefix = api.registry.chainSS58 || 42
   const toBNWithDecimals = (n: number | string) => new BN(n).mul(new BN(10).pow(new BN(decimals)))
 
   // Initialize account & set signer
@@ -32,5 +34,5 @@ export const initPolkadotJs = async (chain: SubstrateChain, uri: string): Promis
   const balance = await getBalance(api, account.address, 3)
   console.log(`Initialized Account: ${account.address} (${balance.balanceFormatted})\n`)
 
-  return { api, keyring, account, decimals, toBNWithDecimals }
+  return { api, keyring, account, decimals, prefix, toBNWithDecimals }
 }
