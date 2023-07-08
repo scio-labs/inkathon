@@ -5,16 +5,22 @@ export const HotToastConfig: FC = () => {
   return (
     <Toaster
       containerStyle={{
-        top: 60,
+        top: 'auto',
+        bottom: 32,
+        right: 32,
       }}
+      gutter={16}
       toastOptions={{
-        position: 'top-center',
+        position: 'bottom-right',
         style: {
           wordBreak: 'break-all',
-          maxWidth: '30rem',
-          background: '#1a1b1f',
+          maxWidth: '35rem',
+          background: '#0f0f0f',
           color: 'white',
-          borderRadius: '12px',
+          borderRadius: '16px',
+          border: '1px #363636 solid',
+          fontWeight: '500',
+          padding: '0.5rem 0.75rem',
         },
         success: {
           duration: 5000,

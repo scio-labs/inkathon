@@ -2,11 +2,11 @@ import { Button, Card, FormControl, FormLabel, Input, Stack } from '@chakra-ui/r
 import { ContractIds } from '@deployments/deployments'
 import {
   contractQuery,
-  contractTx,
   decodeOutput,
   useInkathon,
   useRegisteredContract,
 } from '@scio-labs/use-inkathon'
+import { contractTxWithToast } from '@utils/contractTxWithToast'
 import { FC, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
@@ -49,22 +49,20 @@ export const GreeterContractInteractions: FC = () => {
       return
     }
 
-    setUpdateIsLoading(true)
-    toast.loading('Updating greeting…', { id: `update` })
-    try {
-      // Gather form value
-      const newMessage = form.getValues('newMessage')
+    // Gather form value
+    const newMessage = form.getValues('newMessage')
 
-      // Estimate gas & send transaction
-      await contractTx(api, activeAccount.address, contract, 'setMessage', {}, [newMessage])
-      toast.success(`Successfully updated greeting`)
+    // Send transaction
+    setUpdateIsLoading(true)
+    try {
+      await contractTxWithToast(api, activeAccount.address, contract, 'setMessage', {}, [
+        newMessage,
+      ])
       form.reset()
     } catch (e) {
       console.error(e)
-      toast.error('Error while updating greeting. Try again.')
     } finally {
       setUpdateIsLoading(false)
-      toast.dismiss(`update`)
       fetchGreeting()
     }
   }
