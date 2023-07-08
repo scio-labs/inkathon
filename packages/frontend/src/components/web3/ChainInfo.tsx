@@ -61,9 +61,9 @@ export const ChainInfo: FC = () => {
 
           <div tw="mt-3 flex items-center justify-center space-x-3">
             {/* Explorer Link */}
-            {!!activeChain?.explorerUrls?.length && (
+            {!!activeChain?.explorerUrls && !!Object.keys(activeChain.explorerUrls)?.length && (
               <Link
-                href={activeChain.explorerUrls[0]}
+                href={Object.values(activeChain.explorerUrls)[0]}
                 target="_blank"
                 tw="flex items-center justify-center text-center text-sm text-gray-400 hover:text-white"
               >

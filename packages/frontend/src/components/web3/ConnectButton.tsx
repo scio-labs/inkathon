@@ -46,7 +46,9 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
     accounts,
     setActiveAccount,
   } = useInkathon()
-  const { balanceFormatted } = useBalance(activeAccount?.address)
+  const { balanceFormatted } = useBalance(activeAccount?.address, true, {
+    forceUnit: false,
+  })
   const [supportedChains] = useState(
     env.supportedChains.map((networkId) => getSubstrateChain(networkId) as SubstrateChain),
   )
