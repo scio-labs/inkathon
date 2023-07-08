@@ -34,7 +34,7 @@
     "@polkadot/types": "^10.9.1",
     "@polkadot/util": "^12.3.2",
     "@polkadot/util-crypto": "^12.3.2",
-    "@scio-labs/use-inkathon": "file:../../../use-inkathon/scio-labs-use-inkathon-0.0.1-alpha.50.tgz",
+    "@scio-labs/use-inkathon": "^0.0.1-alpha.51",
     "next": "^13.4.9",
     "next-seo": "^6.1.0",
     "nprogress": "^0.2.0",
