@@ -28,7 +28,7 @@ import { truncateHash } from '@utils/truncateHash'
 import { useIsSSR } from '@utils/useIsSSR'
 import Image from 'next/image'
 import aznsIconSvg from 'public/icons/azns-icon.svg'
-import { FC, useState } from 'react'
+import { FC, useMemo, useState } from 'react'
 import { toast } from 'react-hot-toast'
 import { AiOutlineCheckCircle, AiOutlineDisconnect } from 'react-icons/ai'
 import { FiChevronDown, FiExternalLink } from 'react-icons/fi'
@@ -220,10 +220,15 @@ export interface AccountNameProps {
 }
 export const AccountName: FC<AccountNameProps> = ({ account, ...rest }) => {
   const { activeChain } = useInkathon()
+  const doResolveAddress = useMemo(
+    () => Object.values(SupportedChainId).includes(activeChain?.network as SupportedChainId),
+    [activeChain?.network],
+  )
   const { primaryDomain } = useResolveAddressToDomain(
-    activeChain?.network === SupportedChainId.AlephZeroTestnet ? account?.address : undefined,
+    doResolveAddress ? account?.address : undefined,
     {
       chainId: activeChain?.network,
+      debug: true,
     },
   )
 
