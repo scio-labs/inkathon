@@ -65,9 +65,9 @@ export const ChainInfo: FC = () => {
               <Link
                 href={Object.values(activeChain.explorerUrls)[0]}
                 target="_blank"
-                tw="flex items-center justify-center text-center text-sm text-gray-400 hover:text-white"
+                tw="flex items-center justify-center gap-1 text-center text-sm text-gray-400 hover:text-white"
               >
-                Explorer <HiOutlineExternalLink tw="ml-1" />
+                Explorer <HiOutlineExternalLink />
               </Link>
             )}
             {/* Faucet Link */}
@@ -75,9 +75,9 @@ export const ChainInfo: FC = () => {
               <Link
                 href={activeChain.faucetUrls[0]}
                 target="_blank"
-                tw="flex items-center justify-center text-center text-sm text-gray-400 hover:text-white"
+                tw="flex items-center justify-center gap-1 text-center text-sm text-gray-400 hover:text-white"
               >
-                Faucet <HiOutlineExternalLink tw="ml-1" />
+                Faucet <HiOutlineExternalLink />
               </Link>
             )}
             {/* Contracts UI Link */}
@@ -85,9 +85,9 @@ export const ChainInfo: FC = () => {
               <Link
                 href={`https://contracts-ui.substrate.io/?rpc=${activeChain.rpcUrls[0]}`}
                 target="_blank"
-                tw="flex items-center justify-center text-center text-sm text-gray-400 hover:text-white"
+                tw="flex items-center justify-center gap-1 text-center text-sm text-gray-400 hover:text-white"
               >
-                Contracts UI <HiOutlineExternalLink tw="ml-1" />
+                Contracts UI <HiOutlineExternalLink />
               </Link>
             )}
           </div>

@@ -13,7 +13,7 @@ import toast from 'react-hot-toast'
 import 'twin.macro'
 
 export const GreeterContractInteractions: FC = () => {
-  const { api, activeAccount, isConnected, activeSigner } = useInkathon()
+  const { api, activeAccount, activeSigner } = useInkathon()
   const { contract, address: contractAddress } = useRegisteredContract(ContractIds.Greeter)
   const [greeterMessage, setGreeterMessage] = useState<string>()
   const [fetchIsLoading, setFetchIsLoading] = useState<boolean>()
@@ -67,7 +67,7 @@ export const GreeterContractInteractions: FC = () => {
     }
   }
 
-  if (!contract) return null
+  if (!api) return null
 
   return (
     <>
@@ -78,36 +78,39 @@ export const GreeterContractInteractions: FC = () => {
         <Card variant="outline" p={4} bgColor="whiteAlpha.100">
           <FormControl>
             <FormLabel>Fetched Greeting</FormLabel>
-            <Input placeholder={fetchIsLoading ? 'Loading…' : greeterMessage} disabled={true} />
+            <Input
+              placeholder={fetchIsLoading || !contract ? 'Loading…' : greeterMessage}
+              disabled={true}
+            />
           </FormControl>
         </Card>
 
         {/* Update Greeting */}
-        {!!isConnected && (
-          <Card variant="outline" p={4} bgColor="whiteAlpha.100">
-            <form>
-              <Stack direction="row" spacing={2} align="end">
-                <FormControl>
-                  <FormLabel>Update Greeting</FormLabel>
-                  <Input disabled={updateIsLoading} {...form.register('newMessage')} />
-                </FormControl>
-                <Button
-                  mt={4}
-                  colorScheme="purple"
-                  isLoading={updateIsLoading}
-                  disabled={updateIsLoading}
-                  type="button"
-                  onClick={updateGreeting}
-                >
-                  Submit
-                </Button>
-              </Stack>
-            </form>
-          </Card>
-        )}
+        <Card variant="outline" p={4} bgColor="whiteAlpha.100">
+          <form>
+            <Stack direction="row" spacing={2} align="end">
+              <FormControl>
+                <FormLabel>Update Greeting</FormLabel>
+                <Input disabled={updateIsLoading} {...form.register('newMessage')} />
+              </FormControl>
+              <Button
+                mt={4}
+                colorScheme="purple"
+                isLoading={updateIsLoading}
+                disabled={updateIsLoading}
+                type="button"
+                onClick={updateGreeting}
+              >
+                Submit
+              </Button>
+            </Stack>
+          </form>
+        </Card>
 
         {/* Contract Address */}
-        <p tw="text-center font-mono text-xs text-gray-600">{contractAddress}</p>
+        <p tw="text-center font-mono text-xs text-gray-600">
+          {contract ? contractAddress : 'Loading…'}
+        </p>
       </div>
     </>
   )

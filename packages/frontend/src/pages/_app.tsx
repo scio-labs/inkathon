@@ -11,18 +11,9 @@ import { DefaultSeo } from 'next-seo'
 import type { AppProps } from 'next/app'
 import { Inconsolata } from 'next/font/google'
 import Head from 'next/head'
-import Router from 'next/router'
-import NProgress from 'nprogress'
 
-// Router Loading Animation with @tanem/react-nprogress
-Router.events.on('routeChangeStart', () => NProgress.start())
-Router.events.on('routeChangeComplete', () => NProgress.done())
-Router.events.on('routeChangeError', () => NProgress.done())
-
-// Google Fonts via next/font
-const inconsolata = Inconsolata({
-  subsets: ['latin'],
-})
+// Google Font(s) via `next/font`
+const inconsolata = Inconsolata({ subsets: ['latin'] })
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -65,7 +56,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
       <UseInkathonProvider
         appName="ink!athon" // TODO
-        connectOnInit={false}
+        connectOnInit={true}
         defaultChain={env.defaultChain}
         deployments={getDeployments()}
       >

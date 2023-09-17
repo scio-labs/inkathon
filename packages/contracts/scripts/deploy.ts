@@ -18,7 +18,6 @@ dotenv.config({ path: `.env.${process.env.CHAIN || 'development'}` })
  * Example usage:
  *  - `CHAIN=alephzero-testnet pnpm run deploy`
  */
-
 const main = async () => {
   // Initialization
   const chain = getSubstrateChain(chainId)

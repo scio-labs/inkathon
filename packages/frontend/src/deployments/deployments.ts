@@ -17,5 +17,6 @@ export const getDeployments = async (): Promise<SubstrateDeployment[]> => {
       },
     ])
     .reduce(async (acc, curr) => [...(await acc), ...(await curr)], [] as any)
+
   return deployments
 }

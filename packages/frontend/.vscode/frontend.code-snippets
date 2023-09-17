@@ -34,7 +34,7 @@
       "import { FC } from 'react'",
       "import 'twin.macro'",
       "",
-      "export interface $1Props {}",
+      "interface $1Props {}",
       "export const $1: FC<$1Props> = () => {",
       "  return <>",
       "    $1",
@@ -49,7 +49,7 @@
       "import { FC, PropsWithChildren } from 'react'",
       "import 'twin.macro'",
       "",
-      "export interface $1Props extends PropsWithChildren {}",
+      "interface $1Props extends PropsWithChildren {}",
       "export const $1: FC<$1Props> = ({ children }) => {",
       "  return <>$0{children}</>",
       "}"
