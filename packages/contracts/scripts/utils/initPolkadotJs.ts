@@ -31,7 +31,7 @@ export const initPolkadotJs = async (chain: SubstrateChain, uri: string): Promis
   // Initialize account & set signer
   const keyring = new Keyring({ type: 'sr25519' })
   const account = keyring.addFromUri(uri)
-  const balance = await getBalance(api, account.address, 3)
+  const balance = await getBalance(api, account.address)
   console.log(`Initialized Account: ${account.address} (${balance.balanceFormatted})\n`)
 
   return { api, keyring, account, decimals, prefix, toBNWithDecimals }
