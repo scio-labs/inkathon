@@ -12,13 +12,15 @@ import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import 'twin.macro'
 
+type UpdateGreetingValues = { newMessage: string }
+
 export const GreeterContractInteractions: FC = () => {
   const { api, activeAccount, activeSigner } = useInkathon()
   const { contract, address: contractAddress } = useRegisteredContract(ContractIds.Greeter)
   const [greeterMessage, setGreeterMessage] = useState<string>()
   const [fetchIsLoading, setFetchIsLoading] = useState<boolean>()
   const [updateIsLoading, setUpdateIsLoading] = useState<boolean>()
-  const form = useForm<{ newMessage: string }>()
+  const { register, reset, handleSubmit } = useForm<UpdateGreetingValues>()
 
   // Fetch Greeting
   const fetchGreeting = async () => {
@@ -43,14 +45,11 @@ export const GreeterContractInteractions: FC = () => {
   }, [contract])
 
   // Update Greeting
-  const updateGreeting = async () => {
+  const updateGreeting = async ({ newMessage }: UpdateGreetingValues) => {
     if (!activeAccount || !contract || !activeSigner || !api) {
       toast.error('Wallet not connected. Try again…')
       return
     }
-
-    // Gather form value
-    const newMessage = form.getValues('newMessage')
 
     // Send transaction
     setUpdateIsLoading(true)
@@ -58,7 +57,7 @@ export const GreeterContractInteractions: FC = () => {
       await contractTxWithToast(api, activeAccount.address, contract, 'setMessage', {}, [
         newMessage,
       ])
-      form.reset()
+      reset()
     } catch (e) {
       console.error(e)
     } finally {
@@ -87,19 +86,18 @@ export const GreeterContractInteractions: FC = () => {
 
         {/* Update Greeting */}
         <Card variant="outline" p={4} bgColor="whiteAlpha.100">
-          <form>
+          <form onSubmit={handleSubmit(updateGreeting)}>
             <Stack direction="row" spacing={2} align="end">
               <FormControl>
                 <FormLabel>Update Greeting</FormLabel>
-                <Input disabled={updateIsLoading} {...form.register('newMessage')} />
+                <Input disabled={updateIsLoading} {...register('newMessage')} />
               </FormControl>
               <Button
+                type="submit"
                 mt={4}
                 colorScheme="purple"
                 isLoading={updateIsLoading}
                 disabled={updateIsLoading}
-                type="button"
-                onClick={updateGreeting}
               >
                 Submit
               </Button>
