@@ -206,7 +206,7 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
         {/* Disconnect Button */}
         <MenuDivider />
         <MenuItem
-          onClick={disconnect}
+          onClick={() => disconnect?.()}
           icon={<AiOutlineDisconnect size={18} />}
           tw="bg-transparent hocus:bg-gray-800"
         >
