@@ -63,7 +63,8 @@ This repository is still work-in-progress and there are probably bugs. See the [
 
 Below you find a few projects that use this boilerplate, a variation of it, or have a similar setup that inspired it:
 
-- [AZERO Domains](https://github.com/wottpal/azero.domains) – Domain Name Service for Aleph Zero
+- [AZERO.ID](https://azero.id) – Domain Name Service for Aleph Zero and beyond
+- Multiple hackathon projects from [EthWarsaw](https://ethwarsaw-2023.devpost.com/submissions/) and [HackOnChain](https://www.hackonchain.xyz/)
 
 ## Prerequisites
 
