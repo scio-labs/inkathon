@@ -1,6 +1,5 @@
 {
   "name": "@inkathon/frontend",
-  "version": "0.0.1",
   "homepage": "https://inkathon.xyz",
   "babelMacros": {
     "twin": {
@@ -17,6 +16,7 @@
     "type-check": "tsc --pretty --noEmit",
     "lint": "prettier . --check && pnpm eslint",
     "lint:fix": "prettier . --write && pnpm eslint --fix",
+    "lint:format": "prettier . --write",
     "eslint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
