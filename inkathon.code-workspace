@@ -1,38 +1,39 @@
 {
   "folders": [
     {
-      "name": "_ROOT",
-      "path": "../"
+      "name": "ROOT",
+      "path": "./"
     },
     {
       "name": "Frontend",
-      "path": "../frontend"
+      "path": "./frontend"
     },
     {
       "name": "Contracts",
-      "path": "../contracts"
+      "path": "./contracts"
     }
   ],
   "settings": {
-    "files.exclude": {
-      "**/node_modules/": true,
-      "**/pnpm-lock.yaml": true,
-      "**/.turbo": true,
-      "**/.next": true,
-      "**/.vercel": true
+    "search.exclude": {
+      "**/*.{png,svg,webm,mp4}": true
     },
     "search.useIgnoreFiles": true,
     "search.useGlobalIgnoreFiles": true,
     "search.useParentIgnoreFiles": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
       "source.organizeImports": true,
       "source.fixAll.eslint": true
     },
     "files.associations": {
-      ".env.*": "dotenv"
+      ".env.*": "dotenv",
+      "*.css": "tailwindcss"
     },
+    "[javascriptreact][typescriptreact][javascript][typescript][markdown][html][css][scss][sass][json][yaml]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "javascript.updateImportsOnFileMove.enabled": "always",
     "[toml]": {
       "editor.defaultFormatter": "tamasfe.even-better-toml"
     },
