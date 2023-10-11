@@ -20,7 +20,7 @@
     "@polkadot/util": "^12.5.1",
     "@polkadot/util-crypto": "^12.5.1",
     "@scio-labs/use-inkathon": "^0.0.8",
-    "@types/node": "^18.17.17",
+    "@types/node": "^18.18.4",
     "dotenv": "^16.3.1",
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2"
