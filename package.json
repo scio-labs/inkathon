@@ -12,10 +12,11 @@
   },
   "private": true,
   "workspaces": [
-    "packages/*"
+    "frontend",
+    "contracts"
   ],
   "engines": {
-    "node": ">=16 <=18",
+    "node": ">=16",
     "pnpm": "8"
   },
   "scripts": {

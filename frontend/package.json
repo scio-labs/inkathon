@@ -8,6 +8,7 @@
     }
   },
   "scripts": {
+    "postinstall": "cp -n .env.local.example .env.local; true",
     "dev": "NODE_ENV=development next dev",
     "node": "pnpm run --filter contracts node",
     "dev-and-node": "concurrently \"pnpm dev\" \"pnpm node\" --names \"Next,Node\" --kill-others",

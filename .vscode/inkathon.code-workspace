@@ -6,11 +6,11 @@
     },
     {
       "name": "Frontend",
-      "path": "../packages/frontend"
+      "path": "../frontend"
     },
     {
       "name": "Contracts",
-      "path": "../packages/contracts"
+      "path": "../contracts"
     }
   ],
   "settings": {

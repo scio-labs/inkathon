@@ -7,7 +7,8 @@
     "test": "./test-all.sh",
     "build": "./build-all.sh",
     "node": "substrate-contracts-node --dev --port 9944 --base-path ./.node-data",
-    "deploy": "ts-node scripts/deploy.ts",
+    "script": "ts-node --cwd=scripts",
+    "deploy": "pnpm run script deploy",
     "contracts-ui": "open https://contracts-ui.substrate.io/?rpc=ws://127.0.0.1:9944",
     "explorer-ui": "open https://polkadot.js.org/apps/#/explorer?rpc=ws://127.0.0.1:9944",
     "typecheck": "tsc --noEmit"
