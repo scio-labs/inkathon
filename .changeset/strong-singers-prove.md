@@ -1,0 +1,5 @@
+---
+'@inkathon/contracts': patch
+---
+
+dfghj
