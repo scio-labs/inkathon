@@ -1,7 +1,7 @@
 {
   "$schema": "https://unpkg.com/@changesets/config@2.3.1/schema.json",
   "changelog": ["@changesets/changelog-github", { "repo": "scio-labs/inkathon" }],
-  "commit": true,
+  "commit": false,
   "fixed": [],
   "privatePackages": { "version": true, "tag": true },
   "linked": [["@inkathon/*"]],
