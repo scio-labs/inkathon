@@ -2,11 +2,12 @@
   "name": "@inkathon/monorepo",
   "description": "Full-Stack DApp Boilerplate for ink! Smart Contracts",
   "homepage": "https://inkathon.xyz",
+  "private": true,
+  "version": "0.0.1",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/scio-labs/inkathon"
   },
-  "private": true,
   "workspaces": [
     "frontend",
     "contracts"
@@ -35,6 +36,8 @@
     ]
   },
   "devDependencies": {
+    "@changesets/changelog-github": "^0.4.8",
+    "@changesets/cli": "^2.26.2",
     "lint-staged": "^14.0.1",
     "next": "^13.5.4",
     "simple-git-hooks": "^2.9.0",

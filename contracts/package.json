@@ -1,7 +1,8 @@
 {
   "name": "@inkathon/contracts",
-  "homepage": "https://inkathon.xyz",
   "type": "module",
+  "private": true,
+  "version": "0.0.1",
   "scripts": {
     "test": "./test-all.sh",
     "build": "./build-all.sh",

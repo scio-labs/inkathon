@@ -1,6 +1,7 @@
 {
   "name": "@inkathon/frontend",
-  "homepage": "https://inkathon.xyz",
+  "private": true,
+  "version": "0.0.1",
   "babelMacros": {
     "twin": {
       "preset": "emotion"
@@ -23,7 +24,6 @@
     "@azns/resolver-core": "^1.6.0",
     "@azns/resolver-react": "^1.6.0",
     "@chakra-ui/react": "^2.8.1",
-    "@changesets/cli": "^2.26.2",
     "@emotion/css": "^11.11.2",
     "@emotion/react": "^11.11.1",
     "@emotion/server": "^11.11.0",
