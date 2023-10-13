@@ -1,3 +1,5 @@
+### Rust ###
+
 # Ignore build artifacts from the local tests sub-crate.
 target/
 debug/
@@ -12,20 +14,7 @@ Cargo.lock
 # MSVC Windows builds of rustc generate these, which store debugging information
 *.pdb
 
-# MacOS
-.DS_Store
-
-
 ### Editors ###
-
-# VSCode
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-!.vscode/*.code-workspace
-.history/
 
 # JetBrains
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
@@ -56,19 +45,6 @@ Cargo.lock
 # Gradle
 .idea/**/gradle.xml
 .idea/**/libraries
-
-# Gradle and Maven with auto-import
-# When using Gradle or Maven with auto-import, you should exclude module files,
-# since they will be recreated, and may cause churn.  Uncomment if using
-# auto-import.
-# .idea/artifacts
-# .idea/compiler.xml
-# .idea/jarRepositories.xml
-# .idea/modules.xml
-# .idea/*.iml
-# .idea/modules
-# *.iml
-# *.ipr
 
 # CMake
 cmake-build-*/
@@ -139,6 +115,12 @@ fabric.properties
 # Azure Toolkit for IntelliJ plugin
 # https://plugins.jetbrains.com/plugin/8053-azure-toolkit-for-intellij
 .idea/**/azureSettings.xml
+
+### Custom ###
+
+# misc
+.DS_Store
+*.pem
 
 # Substrate Contracts Node Persistence Cache
 .node-data
