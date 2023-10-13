@@ -17,12 +17,12 @@
     "pnpm": "8"
   },
   "scripts": {
-    "dev": "pnpm run --filter frontend dev",
-    "build": "pnpm run --filter frontend build",
-    "start": "pnpm run --filter frontend start",
-    "lint": "pnpm run --filter frontend lint",
-    "lint:fix": "pnpm run --filter frontend lint:fix",
-    "lint:format": "pnpm run --filter frontend lint:format"
+    "dev": "pnpm run -F frontend dev",
+    "build": "pnpm run -F frontend build",
+    "start": "pnpm run -F frontend start",
+    "lint": "pnpm run -F '*' lint",
+    "lint:fix": "pnpm run -F '*' lint:fix",
+    "lint:format": "pnpm run -F '*' lint:format"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.8",

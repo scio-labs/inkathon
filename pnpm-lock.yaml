@@ -53,9 +53,21 @@ importers:
       '@types/node':
         specifier: ^18.18.4
         version: 18.18.4
+      '@typescript-eslint/eslint-plugin':
+        specifier: ^6.7.5
+        version: 6.7.5(@typescript-eslint/parser@6.7.5)(eslint@8.51.0)(typescript@5.2.2)
+      '@typescript-eslint/parser':
+        specifier: ^6.7.5
+        version: 6.7.5(eslint@8.51.0)(typescript@5.2.2)
       dotenv:
         specifier: ^16.3.1
         version: 16.3.1
+      eslint:
+        specifier: ^8.51.0
+        version: 8.51.0
+      eslint-config-prettier:
+        specifier: ^9.0.0
+        version: 9.0.0(eslint@8.51.0)
       ts-node:
         specifier: ^10.9.1
         version: 10.9.1(@types/node@18.18.4)(typescript@5.2.2)
@@ -1168,7 +1180,7 @@ packages:
   /@chakra-ui/react-children-utils@2.0.6(react@18.2.0):
     resolution: {integrity: sha512-QVR2RC7QsOsbWwEnq9YduhpqSFnZGvjjGREV8ygKi8ADhXh93C8azLECCUVgRJF2Wc+So1fgxmjLcbZfY2VmBA==}
     peerDependencies:
-      react: '>=18 || ^18.0.0'
+      react: '>=18'
     dependencies:
       react: 18.2.0
     dev: false
@@ -1176,7 +1188,7 @@ packages:
   /@chakra-ui/react-context@2.1.0(react@18.2.0):
     resolution: {integrity: sha512-iahyStvzQ4AOwKwdPReLGfDesGG+vWJfEsn0X/NoGph/SkN+HXtv2sCfYFFR9k7bb+Kvc6YfpLlSuLvKMHi2+w==}
     peerDependencies:
-      react: '>=18 || ^18.0.0'
+      react: '>=18'
     dependencies:
       react: 18.2.0
     dev: false
@@ -1193,7 +1205,7 @@ packages:
   /@chakra-ui/react-types@2.0.7(react@18.2.0):
     resolution: {integrity: sha512-12zv2qIZ8EHwiytggtGvo4iLT0APris7T0qaAWqzpUGS0cdUtR8W+V1BJ5Ocq+7tA6dzQ/7+w5hmXih61TuhWQ==}
     peerDependencies:
-      react: '>=18 || ^18.0.0'
+      react: '>=18'
     dependencies:
       react: 18.2.0
     dev: false
@@ -1201,7 +1213,7 @@ packages:
   /@chakra-ui/react-use-animation-state@2.1.0(react@18.2.0):
     resolution: {integrity: sha512-CFZkQU3gmDBwhqy0vC1ryf90BVHxVN8cTLpSyCpdmExUEtSEInSCGMydj2fvn7QXsz/za8JNdO2xxgJwxpLMtg==}
     peerDependencies:
-      react: '>=18 || ^18.0.0'
+      react: '>=18'
     dependencies:
       '@chakra-ui/dom-utils': 2.1.0
       '@chakra-ui/react-use-event-listener': 2.1.0(react@18.2.0)
@@ -1284,7 +1296,7 @@ packages:
   /@chakra-ui/react-use-merge-refs@2.1.0(react@18.2.0):
     resolution: {integrity: sha512-lERa6AWF1cjEtWSGjxWTaSMvneccnAVH4V4ozh8SYiN9fSPZLlSG3kNxfNzdFvMEhM7dnP60vynF7WjGdTgQbQ==}
     peerDependencies:
-      react: '>=18 || ^18.0.0'
+      react: '>=18'
     dependencies:
       react: 18.2.0
     dev: false
@@ -1346,7 +1358,7 @@ packages:
   /@chakra-ui/react-use-update-effect@2.1.0(react@18.2.0):
     resolution: {integrity: sha512-ND4Q23tETaR2Qd3zwCKYOOS1dfssojPLJMLvUtUbW5M9uW1ejYWgGUobeAiOVfSplownG8QYMmHTP86p/v0lbA==}
     peerDependencies:
-      react: '>=18 || ^18.0.0'
+      react: '>=18'
     dependencies:
       react: 18.2.0
     dev: false

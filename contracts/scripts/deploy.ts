@@ -6,7 +6,9 @@ import { writeContractAddresses } from './utils/writeContractAddresses'
 
 // [KEEP THIS] Dynamically load environment from `.env.{chainId}`
 const chainId = process.env.CHAIN || 'development'
-dotenv.config({ path: `.env.${chainId}` })
+dotenv.config({
+  path: `.env.${chainId}`,
+})
 
 /**
  * Script that deploys the greeter contract and writes its address to a file.
@@ -25,11 +27,13 @@ const main = async () => {
   const { api, chain, account } = await initPolkadotJs(chainId, accountUri)
 
   // Deploy greeter contract
-  let { abi, wasm } = await getDeploymentData('greeter')
+  const { abi, wasm } = await getDeploymentData('greeter')
   const greeter = await deployContract(api, account, abi, wasm, 'default', [])
 
   // Write contract addresses to `{contract}/{network}.ts` file(s)
-  await writeContractAddresses(chain.network, { greeter })
+  await writeContractAddresses(chain.network, {
+    greeter,
+  })
 }
 
 main()
