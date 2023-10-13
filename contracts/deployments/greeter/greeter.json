@@ -1,6 +1,6 @@
 {
   "source": {
-    "hash": "0xabe1d427e2fdb5a557ff7b3cc33e73d6f76b9bbf90ca1adec17faa815d7d99c9",
+    "hash": "0x594f6192f714665ea04eddc473def48dd71497034b89ea617ff97a44a1aa84e2",
     "language": "ink! 4.3.0",
     "compiler": "rustc 1.72.1",
     "build_info": {
@@ -16,7 +16,9 @@
   "contract": {
     "name": "greeter",
     "version": "0.0.1",
-    "authors": ["Scio Labs <hello@scio.xyz>"]
+    "authors": [
+      "Scio Labs <hello@scio.xyz>"
+    ]
   },
   "spec": {
     "constructors": [
@@ -25,17 +27,24 @@
           {
             "label": "init_value",
             "type": {
-              "displayName": ["String"],
+              "displayName": [
+                "String"
+              ],
               "type": 0
             }
           }
         ],
         "default": false,
-        "docs": ["Creates a new greeter contract initialized with the given value."],
+        "docs": [
+          "Creates a new greeter contract initialized with the given value."
+        ],
         "label": "new",
         "payable": false,
         "returnType": {
-          "displayName": ["ink_primitives", "ConstructorResult"],
+          "displayName": [
+            "ink_primitives",
+            "ConstructorResult"
+          ],
           "type": 1
         },
         "selector": "0x9bae9d5e"
@@ -43,11 +52,16 @@
       {
         "args": [],
         "default": false,
-        "docs": ["Creates a new greeter contract initialized to 'Hello ink!'."],
+        "docs": [
+          "Creates a new greeter contract initialized to 'Hello ink!'."
+        ],
         "label": "default",
         "payable": false,
         "returnType": {
-          "displayName": ["ink_primitives", "ConstructorResult"],
+          "displayName": [
+            "ink_primitives",
+            "ConstructorResult"
+          ],
           "type": 1
         },
         "selector": "0xed4b9d1b"
@@ -56,28 +70,40 @@
     "docs": [],
     "environment": {
       "accountId": {
-        "displayName": ["AccountId"],
+        "displayName": [
+          "AccountId"
+        ],
         "type": 6
       },
       "balance": {
-        "displayName": ["Balance"],
+        "displayName": [
+          "Balance"
+        ],
         "type": 9
       },
       "blockNumber": {
-        "displayName": ["BlockNumber"],
+        "displayName": [
+          "BlockNumber"
+        ],
         "type": 12
       },
       "chainExtension": {
-        "displayName": ["ChainExtension"],
+        "displayName": [
+          "ChainExtension"
+        ],
         "type": 13
       },
       "hash": {
-        "displayName": ["Hash"],
+        "displayName": [
+          "Hash"
+        ],
         "type": 10
       },
       "maxEventTopics": 4,
       "timestamp": {
-        "displayName": ["Timestamp"],
+        "displayName": [
+          "Timestamp"
+        ],
         "type": 11
       }
     },
@@ -89,7 +115,9 @@
             "indexed": false,
             "label": "from",
             "type": {
-              "displayName": ["Option"],
+              "displayName": [
+                "Option"
+              ],
               "type": 5
             }
           },
@@ -98,7 +126,9 @@
             "indexed": false,
             "label": "message",
             "type": {
-              "displayName": ["String"],
+              "displayName": [
+                "String"
+              ],
               "type": 0
             }
           }
@@ -108,19 +138,27 @@
       }
     ],
     "lang_error": {
-      "displayName": ["ink", "LangError"],
+      "displayName": [
+        "ink",
+        "LangError"
+      ],
       "type": 3
     },
     "messages": [
       {
         "args": [],
         "default": false,
-        "docs": [" Returns the current value of `message`."],
+        "docs": [
+          " Returns the current value of `message`."
+        ],
         "label": "greet",
         "mutates": false,
         "payable": false,
         "returnType": {
-          "displayName": ["ink", "MessageResult"],
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
           "type": 4
         },
         "selector": "0x052cda08"
@@ -130,18 +168,25 @@
           {
             "label": "new_value",
             "type": {
-              "displayName": ["String"],
+              "displayName": [
+                "String"
+              ],
               "type": 0
             }
           }
         ],
         "default": false,
-        "docs": [" Sets `message` to the given value."],
+        "docs": [
+          " Sets `message` to the given value."
+        ],
         "label": "set_message",
         "mutates": true,
         "payable": false,
         "returnType": {
-          "displayName": ["ink", "MessageResult"],
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
           "type": 1
         },
         "selector": "0x1fe7426f"
@@ -215,7 +260,9 @@
             "type": 3
           }
         ],
-        "path": ["Result"]
+        "path": [
+          "Result"
+        ]
       }
     },
     {
@@ -239,7 +286,10 @@
             ]
           }
         },
-        "path": ["ink_primitives", "LangError"]
+        "path": [
+          "ink_primitives",
+          "LangError"
+        ]
       }
     },
     {
@@ -279,7 +329,9 @@
             "type": 3
           }
         ],
-        "path": ["Result"]
+        "path": [
+          "Result"
+        ]
       }
     },
     {
@@ -310,7 +362,9 @@
             "type": 6
           }
         ],
-        "path": ["Option"]
+        "path": [
+          "Option"
+        ]
       }
     },
     {
@@ -326,7 +380,11 @@
             ]
           }
         },
-        "path": ["ink_primitives", "types", "AccountId"]
+        "path": [
+          "ink_primitives",
+          "types",
+          "AccountId"
+        ]
       }
     },
     {
@@ -369,7 +427,11 @@
             ]
           }
         },
-        "path": ["ink_primitives", "types", "Hash"]
+        "path": [
+          "ink_primitives",
+          "types",
+          "Hash"
+        ]
       }
     },
     {
@@ -394,7 +456,11 @@
         "def": {
           "variant": {}
         },
-        "path": ["ink_env", "types", "NoChainExtension"]
+        "path": [
+          "ink_env",
+          "types",
+          "NoChainExtension"
+        ]
       }
     }
   ],

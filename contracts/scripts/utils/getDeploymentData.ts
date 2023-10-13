@@ -11,7 +11,7 @@ export const getDeploymentData = async (contractName: string) => {
 
   let abi, wasm
   try {
-    abi = JSON.parse(await readFile(path.join(contractPath, 'metadata.json'), 'utf-8'))
+    abi = JSON.parse(await readFile(path.join(contractPath, `${contractName}.json`), 'utf-8'))
     wasm = await readFile(path.join(contractPath, `${contractName}.wasm`))
   } catch (e) {
     console.error(e)

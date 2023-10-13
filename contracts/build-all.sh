@@ -22,5 +22,5 @@ do
   mkdir -p $OUT_DIR/$i
   cp ./target/ink/$i/$i.contract $OUT_DIR/$i/
   cp ./target/ink/$i/$i.wasm $OUT_DIR/$i/
-  cp ./target/ink/$i/$i.json $OUT_DIR/$i/metadata.json
+  cp ./target/ink/$i/$i.json $OUT_DIR/$i/
 done

@@ -228,10 +228,7 @@ export const AccountName: FC<AccountNameProps> = ({ account, ...rest }) => {
   )
   const { primaryDomain } = useResolveAddressToDomain(
     doResolveAddress ? account?.address : undefined,
-    {
-      chainId: activeChain?.network,
-      debug: true,
-    },
+    { chainId: activeChain?.network },
   )
 
   return (
