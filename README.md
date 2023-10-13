@@ -71,6 +71,8 @@ pnpm install
 pnpm run dev
 ```
 
+Optionally, to enable [`simple-git-hooks`](https://github.com/toplenboren/simple-git-hooks) (for automatic linting & formatting when committing), you can run the following command once: `pnpm simple-git-hooks`.
+
 ### 2. Build & deploy contracts on a local node
 
 The `contracts/package.json` file contains shorthand scripts for building, testing, and deploying your contracts. To run these scripts, the active working directory of your terminal needs to be `contracts/`.
