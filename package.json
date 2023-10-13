@@ -24,9 +24,6 @@
     "lint:fix": "pnpm run --filter frontend lint:fix",
     "lint:format": "pnpm run --filter frontend lint:format"
   },
-  "simple-git-hooks": {
-    "pre-commit": "pnpm lint-staged"
-  },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "pnpm run lint:fix"
@@ -34,6 +31,9 @@
     "*.{json,md,mdx,html,css,yml,yaml}": [
       "pnpm run lint:format"
     ]
+  },
+  "simple-git-hooks": {
+    "pre-commit": "export NVM_DIR=\"$HOME/.nvm\"\n[ -s \"$NVM_DIR/nvm.sh\" ] && \\. \"$NVM_DIR/nvm.sh\"\npnpm lint-staged"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.8",
