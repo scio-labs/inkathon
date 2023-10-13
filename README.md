@@ -10,7 +10,9 @@
 
 This is a full-stack dApp boilerplate for ink! smart contracts with an integrated frontend. It can be used to quickly start developing your hackathon idea or to scaffold a production-ready Web3 application.
 
-The project is part of a [Scio Labs](https://scio.xyz) initiative to improve the developer experience in the ink! ecosystem:
+The project is part of a [Scio Labs](https://scio.xyz) initiative to improve the developer experience in the ink! ecosystem and a proud member of the [Aleph Zero EFP](https://alephzero.org/ecosystem-funding-program). 💜
+
+Other projects include:
 
 - `create-ink-app` CLI (_Coming soon_)
 - [`ink!athon`](https://github.com/scio-labs/inkathon) Boilerplate
@@ -19,40 +21,40 @@ The project is part of a [Scio Labs](https://scio.xyz) initiative to improve the
 
 **Join the discussion in our [Telegram Group](https://t.me/inkathon)** 💬
 
+---
+
 **Table of Contents:**
 
-1. [Getting started](#getting-started)
+1. [About 📖](#about-)
+2. [Getting started 🚀](#getting-started-)
    1. [1. Run the frontend](#1-run-the-frontend)
    2. [2. Build \& deploy contracts on a local node](#2-build--deploy-contracts-on-a-local-node)
-   3. [3. Run the frontend against the local node](#3-run-the-frontend-against-the-local-node)
-2. [The Stack](#the-stack)
-3. [Live Examples](#live-examples)
-4. [Customization](#customization)
-   1. [Project Name](#project-name)
-   2. [Custom Contracts](#custom-contracts)
-5. [Deployment](#deployment)
+   3. [3. Connect the frontend to the local node](#3-connect-the-frontend-to-the-local-node)
+3. [Customization 🎨](#customization-)
+   1. [1. Project Name](#1-project-name)
+   2. [2. Custom Contracts](#2-custom-contracts)
+   3. [3. Custom Scripts](#3-custom-scripts)
+4. [The Stack 🥞](#the-stack-)
+5. [Live Examples 🌐](#live-examples-)
+6. [Deployment 🚢](#deployment-)
    1. [Environment Variables](#environment-variables)
    2. [Contract Deployment](#contract-deployment)
-6. [VSCode Setup](#vscode-setup)
+7. [VSCode Setup 🛠](#vscode-setup-)
    1. [Workspace](#workspace)
    2. [Plugins](#plugins)
-7. [FAQs \& Troubleshooting](#faqs--troubleshooting)
+8. [FAQs \& Troubleshooting 💬](#faqs--troubleshooting-)
 
 ---
 
-## About
+## About 📖
 
-TODO: About Section (Scio, EFP, AZERO.ID)
+The boilerplate comes with a small sample ink! `Greeter` contract which stores a `message` (the "greeting") and allows anyone to update it. The frontend contains simple UI components to connect your wallet and interact with the contract (i.e. read & write the `message`). Try it out live on [inkathon.xyz](https://inkathon.xyz).
 
-## Getting started
-
-The boilerplate comes with a small sample ink! `Greeter` contract. It stores a `message` (the "greeting") and allows anyone to update it. The frontend contains simple UI components to connect your wallet and interact with the contract (i.e. read & write the `message`). Try it out live on [inkathon.xyz](https://inkathon.xyz).
-
-_This section will guide you through setting up and running the boilerplate locally._
+## Getting started 🚀
 
 ### 1. Run the frontend
 
-The frontend works out of the box, without a local node running, as the sample contract is pre-deployed one certain live testnets (i.e. `alephzero-testnet` and `shibuya`). Necessary deployment metadata and addresses are provided under `contracts/deployments/`.
+The frontend works out of the box, without a local node running, as the sample contract is pre-deployed on certain live testnets (i.e. `alephzero-testnet` and `shibuya`). Necessary deployment metadata and addresses are provided under `contracts/deployments/`.
 
 > **Pre-requisites:**
 >
@@ -71,7 +73,7 @@ pnpm run dev
 
 ### 2. Build & deploy contracts on a local node
 
-The `contracts/package.json` file contains shorthand scripts for building, testing, and deploying your contracts. To run those, the active working directory of your terminal needs to be `contracts/`.
+The `contracts/package.json` file contains shorthand scripts for building, testing, and deploying your contracts. To run these scripts, the active working directory of your terminal needs to be `contracts/`.
 
 > **Pre-requisites:**
 >
@@ -80,7 +82,7 @@ The `contracts/package.json` file contains shorthand scripts for building, testi
 > - Install [`substrate-contracts-node`](https://github.com/paritytech/substrate-contracts-node)
 
 ```bash
-# Build contracts and move artifacts to `./deployments/{contract}/` folders
+# Build contracts and move artifacts to `contracts/deployments/{contract}/` folders
 pnpm run build
 
 # Start local node with persistence (contracts stay deployed after restart)
@@ -97,121 +99,167 @@ Alternatively, you can also deploy contracts manually using [Contracts UI](https
 
 ### 3. Connect the frontend to the local node
 
-Open the `frontend/.env.local` file and set `NEXT_PUBLIC_DEFAULT_CHAIN` to `development`. Then restart the frontend and you should be able to interact with the contracts deployed on your local node.
+Open the `frontend/.env.local` file and set the `NEXT_PUBLIC_DEFAULT_CHAIN` variable to `development`. Then restart the frontend and you should be able to interact with the contracts deployed on your local node.
 
-Read more about environment variables and all available chain constants in the [Deployment](#deployment) section below.
+_Read more about environment variables and all available chain constants in the [Environment Variables](#environment-variables) section below._
 
-## The Stack
+## Customization 🎨
 
-<img src="inkathon-stack.png" width="800" height="auto" alt="The Stack of ink!athon" />
+### 1. Project Name
+
+There are multiple places where you need to insert your very own project name & identifier. Most of these occurrences are highlighted with a `/* TODO */` comment in the code. You can easily replace them one by one by installing the [`todo-tree`](https://marketplace.visualstudio.com/items?itemName=gruntfuggly.todo-tree) plugin.
+
+Additionally, there are the following un-highlighted occurrences:
+
+- The name of the `inkathon.code-workspace` file
+- The package names within `package.json`, `frontend/package.json`, and `contracts/package.json`
+- The workspace dependency defined in `frontend/package.json` and `frontend/src/deployments/deployments.ts`
+
+### 2. Custom Contracts
+
+To replace the default `Greeter` contract or add another custom one, you need to do the following:
+
+- Add a new contract directory under `contracts/src/`
+- Add it as another workspace member to the `contracts/Cargo.toml` file
+- Add another deployment script or adjust `contracts/scripts/deploy.ts`
+- Adjust the `ContractIds` enum and `getDeployments` function in `frontend/src/deployments/deployments.ts`
+
+### 3. Custom Scripts
+
+Adding custom scripts is useful to interact with your contracts or test certain functionality. Therefore, just duplicate & reuse the `contracts/scripts/script.template.ts` file and run it via `pnpm run script <script-name>`.
+
+For general scripts the same environment variable initialization & configuration applies as described below in the [Deployment](#deployment) section (e.g. to change the target network).
+
+## The Stack 🥞
 
 <details>
 <summary><strong>The Stack in Detail</strong></summary>
 
-- Structure: Monorepo
-- Package-Manager: `pnpm`
-- Smart Contract Development: `ink!`, `rust`, `cargo`, `cargo-contract`, `contracts-node`
-- Frontend: `next`, `react`, `typescript`
-  - Contract Interactions: `polkadot-js`, [`useInkathon` React Hooks](https://github.com/scio-labs/use-inkathon)
+- Monorepo Workspace with `contracts/` and `frontend/` packages (_Tip_: Use the `inkathon.code-workspace` file to open it in VSCode)
+- Package Manager: `pnpm` or `yarn@stable` (Read more in the [FAQs](#faqs--troubleshooting) section below)
+- Smart Contract Development: Rust, ink!, `cargo-contract`, `substrate-contracts-node`
+- Frontend: Next.js, React, TypeScript
+  - Contract Interactions: `polkadot-js`, [`useInkathon`](https://github.com/scio-labs/use-inkathon) React Hooks & Utility Library (alternatively: [`useInk`](https://use.ink/frontend/getting-started))
   - Styling: `chakra`, `tailwindcss`, `twin.macro`, `emotion`
-- Misc:
-  - Linting & Formatting: `eslint`, `prettier`, `husky`, `lint-staged`
-- Deployment: Vercel
+  - Linting & Formatting: `eslint`, `prettier`, `simple-git-hooks`, `lint-staged`
+
+<small>Styling, linting, and formatting libraries can be fully dropped or replaced with alternatives.</small>
 
 </details>
 
-## Live Examples
+![inkathon Stack Diagram](inkathon-stack-diagram.png)
+
+## Live Examples 🌐
 
 Below you find live examples that use this boilerplate or have a similar setup inspired by it:
 
-- [inkathon.xyz Demo Page](https://inkathon.xyz) – Sample deployment of this boilerplate
+- [inkathon.xyz](https://inkathon.xyz) – Live demo deployment of this boilerplate
 - [AZERO.ID](https://azero.id) – Domain Name Service for Aleph Zero and beyond
 - Multiple hackathon projects from [ETHWarsaw](https://ethwarsaw-2023.devpost.com/submissions/), [HackOnChain](https://www.hackonchain.xyz/), [ETHDam](https://www.ethdam.com/), and the [Polkadot ink! Hackathon](https://www.encode.club/polkadot-ink-hackathon).
 
-## Customization
+## Deployment 🚢
 
-### Project Name
+Spinning up a deployment via Vercel is pretty straightforward as the necessary settings are already configured in `vercel.json`. If you haven't cloned the repository yet, you can also use the **Deploy** button below to create a new repository from this template.
 
-There are multiple places where you need to insert your actual project name & identifier. I highlighted most of these occurrences with a `/* TODO */` comment in the code. When installing the `todo-tree` plugin [listed above](#vscode-setup) you can easily replace them one by one.
-
-Additionally, there are the following un-highlighted occurrences:
-
-- The name of the `.vscode/*.code-workspace` file
-- The package names within `package.json`, `frontend/package.json`, and `contracts/package.json`
-- The workspace dependency defined in `frontend/package.json`
-
-### Custom Contracts
-
-TODO: frontend/src/deployments.ts; Cargo.toml; lib.rs file under contracts/src; Deploy Script; UI
-
-## Deployment
-
-Setting up a deployment via Vercel is pretty straightforward as build settings are preconfigured in `vercel.json`. To get started, press the **Deploy** button and enter the default environment variables listed below.
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fscio-labs%2Finkathon%2F&env=NEXT_PUBLIC_DEFAULT_CHAIN&envDescription=Environment%20Variables%20Documentation&envLink=https%3A%2F%2Fgithub.com%2Fscio-labs%2Finkathon%2Fblob%2Fmain%2Ffrontend%2F.env.local.example&demo-url=https%3A%2F%2Finkathon.xyz)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&env=NEXT_PUBLIC_DEFAULT_CHAIN&envDescription=Insert%20%60alephzero-testnet%60%20or%20%60shibuya%60&envLink=https%3A%2F%2Fgithub.com%2Fscio-labs%2Finkathon%23environment-variables&project-name=inkathon&repository-name=inkathon&redirect-url=https%3A%2F%2Fgithub.com%2Fscio-labs%2Finkathon&demo-url=https%3A%2F%2Finkathon.xyz)
 
 ### Environment Variables
 
-The only mandatory environment variable you need to add is `NEXT_PUBLIC_DEFAULT_CHAIN`. Just set it to `alephzero-testnet` at least for the first deploy, as there is the sample contract deployed & the [deplyoments](https://github.com/scio-labs/inkathon/blob/main/frontend/src/deployments/deployments.ts) are pre-configured.
-
-Please see all pre-defined environment variables below and find more info in [`frontend/.env.local.example`](https://github.com/scio-labs/inkathon/blob/main/frontend/.env.local.example). All available blockchain network identifiers are defined in the [`useInkathon` repository](https://github.com/scio-labs/use-inkathon/blob/main/src/chains.ts).
-
-| Environment Variable           | Value                          |
-| ------------------------------ | ------------------------------ |
-| `NEXT_PUBLIC_PRODUCTION_MODE`  | `true`                         |
-| `NEXT_PUBLIC_URL`              | `https://your-repo.vercel.app` |
-| `NEXT_PUBLIC_DEFAULT_CHAIN`    | `alephzero-testnet`            |
-| `NEXT_PUBLIC_SUPPORTED_CHAINS` | `["alephzero-testnet"]`        |
-
-### Contract Deployment
-
-TODO: Explain custom chain & account arguments
-
-```bash
-
-# Deploy Contracts (on any other chain)
-# NOTE: Make sure to create a `.{chain}.env` environment file (gitignored)
-#       with the `ACCOUNT_URI` you want to use.
-#       Also, chain must be a network-id from here: https://github.com/scio-labs/use-inkathon/blob/main/src/chains.ts.
-CHAIN=alephzero-testnet pnpm run deploy
-
-```
-
-Please see the [Contract Quickstart](#contracts-quickstart) section above.
-
-## VSCode Setup
-
-### Workspace
-
-I strongly recommend developing in VSCode by opening the workspace file `inkathon.code-workspace` instead of just the plain directory. This has multiple advantages and assures a more predictable monorepo configuration. The [first plugin](https://marketplace.visualstudio.com/items?itemName=zoma.vscode-auto-open-workspace) listed below will help with getting used to it.
-
-### Plugins
-
-I strongly recommend installing all plugins listed inside `.vscode/extensions.json`. They should be suggested automatically by VSCode.
+One key element making this boilerplate so flexible is the usage of environment variables to configure the active network in the frontend. This is done by setting the `NEXT_PUBLIC_DEFAULT_CHAIN` variable in the `frontend/.env.local` file, or in the Vercel deployment settings respectively.
 
 <details>
-<summary><strong>Recommended Plugins</strong></summary>
+<summary><strong>All Supported Chain Constants</strong></summary>
 
-1. [`zoma.vscode-auto-open-workspace`](https://marketplace.visualstudio.com/items?itemName=zoma.vscode-auto-open-workspace) – Automatically suggests opening the according `.code-workspace` file.
-2. [`dbaeumer.vscode-eslint`](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) – Adds ESLint editor support.
-3. [`esbenp.prettier-vscode`](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) – Adds Prettier editor support.
-4. [`bradlc.vscode-tailwindcss`](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss) & [`lightyen.tailwindcss-intellisense-twin`](https://marketplace.visualstudio.com/items?itemName=lightyen.tailwindcss-intellisense-twin) – Adds tailwindcss & twin.macro editor support.
-5. [`rust-lang.rust-analyzer`](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer) – Adds Rust language support.
-6. [`ink-analyzer.ink-analyzer`](https://marketplace.visualstudio.com/items?itemName=ink-analyzer.ink-analyzer) – Adds ink! language support.
-7. [`tamasfe.even-better-toml`](https://marketplace.visualstudio.com/items?itemName=tamasfe.even-better-toml) – Adds `.toml` file support.
-8. [`gruntfuggly.todo-tree`](https://marketplace.visualstudio.com/items?itemName=gruntfuggly.todo-tree) & [`wayou.vscode-todo-highlight`](https://marketplace.visualstudio.com/items?itemName=wayou.vscode-todo-highlight) – Lists all `TODO` comments in your workspace.
-9. [`mikestead.dotenv`](https://marketplace.visualstudio.com/items?itemName=mikestead.dotenv) – Adds syntax highlighting for `.env` files.
+| Network Identifier  | Name                    | Type    |
+| ------------------- | ----------------------- | ------- |
+| `development`       | ️Local Development Node | Testnet |
+| `alephzero-testnet` | Aleph Zero Testnet      | Testnet |
+| `rococo`            | Rococo                  | Testnet |
+| `shibuya`           | Shibuya Testnet         | Testnet |
+| `shiden`            | Shiden                  | Mainnet |
+| `alephzero`         | Aleph Zero              | Mainnet |
+| `astar`             | Astar                   | Mainnet |
+
+<small>Source: https://github.com/scio-labs/use-inkathon/blob/main/src/chains.ts</small>
+
+> [!NOTE]  
+> Chains can also be supplied manually by creating a [`SubstrateChain`](https://github.com/scio-labs/use-inkathon/blob/main/src/chains.ts#L4) object. If you think a chain is missing, please open an issue or PR.
 
 </details>
 
-## FAQs & Troubleshooting
+| Environment Variables           | [Default Values](https://github.com/scio-labs/inkathon/blob/main/frontend/.env.local.example) | Description                                                                                                                                                         |
+| ------------------------------- | --------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `NEXT_PUBLIC_DEFAULT_CHAIN` \*️⃣ | ️`alephzero-testnet`                                                                          | The network (Substrate-based chain) the frontend should connect to by default and what contract deployment artifacts to import.                                     |
+| `NEXT_PUBLIC_PRODUCTION_MODE`   | `false`                                                                                       | Optional boolean flag to differentiate production environment (e.g. for SEO or Analytics).                                                                          |
+| `NEXT_PUBLIC_URL`               | `http://localhost:3000`                                                                       | Optional string that defines the base URL of the frontend (will be auto-inferred from Vercel environment variables).                                                |
+| `NEXT_PUBLIC_SUPPORTED_CHAINS`  | –                                                                                             | Optional array with network identifers (e.g. `["alephzero-testnet", "shibuya"]`) that are supported by the frontend, **if the dApp is supposed to be multi-chain**. |
+
+<small>\*️⃣ Required </small>
+
+### Contract Deployment
+
+In the [Getting Started](#getting-started) section above, we've already deployed the sample `Greeter` contract on a local node. To target a live network, we can use the `CHAIN` environment variable when running the `deploy` script.
+
+```bash
+CHAIN=alephzero-testnet pnpm run deploy
+```
+
+Further, dynamically loaded environment files with the `.env.{chain}` naming convention can be used to add additional configuration about the deployer account.
+
+```bash
+# .env.alephzero-testnet
+ACCOUNT_URI=bottom drive obey lake curtain smoke basket hold race lonely fit walk//Alice
+```
+
+When running the same script again, this deployer account defined there will be used to sign the extrinsic.
+
+> [!WARNING]  
+> These files are gitignored by default, but you should still be extra cautious when adding sensitive information to them.
+
+## VSCode Setup 🛠
+
+### Workspace
+
+It's recommended to develop in VSCode by opening the workspace file `inkathon.code-workspace` instead of just the plain directory. This has multiple advantages and assures a more predictable monorepo configuration. The [first plugin](https://marketplace.visualstudio.com/items?itemName=zoma.vscode-auto-open-workspace) listed below will help with getting used to it.
+
+### Plugins
+
+Further, the recommended VSCode plugins listed below can be really helpful when working with this boilerplate.
 
 <details>
-<summary><strong>What is pnpm and do I need it?</strong></summary>
+<summary><strong>All Recommended Plugins</strong></summary>
 
-[Pnpm](https://pnpm.io/) works in my experience way faster and more reliably within monorepos than npm or yarn. When using it though, it's strongly recommended everyone on the team uses it. No installs should perform be performed nor any other lock files should be committed.
+| Plugin Name                                                                                                                            | Description                                                          |
+| -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| [`zoma.vscode-auto-open-workspace`](https://marketplace.visualstudio.com/items?itemName=zoma.vscode-auto-open-workspace)               | Automatically suggests opening the according `.code-workspace` file. |
+| [`dbaeumer.vscode-eslint`](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)                                 | Adds ESLint editor support.                                          |
+| [`esbenp.prettier-vscode`](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)                                 | Adds Prettier editor support.                                        |
+| [`bradlc.vscode-tailwindcss`](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)                           | Adds tailwindcss editor support.                                     |
+| [`lightyen.tailwindcss-intellisense-twin`](https://marketplace.visualstudio.com/items?itemName=lightyen.tailwindcss-intellisense-twin) | Adds twin.macro editor support.                                      |
+| [`rust-lang.rust-analyzer`](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)                               | Adds Rust language support.                                          |
+| [`ink-analyzer.ink-analyzer`](https://marketplace.visualstudio.com/items?itemName=ink-analyzer.ink-analyzer)                           | Adds ink! language support.                                          |
+| [`tamasfe.even-better-toml`](https://marketplace.visualstudio.com/items?itemName=tamasfe.even-better-toml)                             | Adds `.toml` file support.                                           |
+| [`gruntfuggly.todo-tree`](https://marketplace.visualstudio.com/items?itemName=gruntfuggly.todo-tree)                                   | Lists all `TODO` comments in your workspace.                         |
+| [`wayou.vscode-todo-highlight`](https://marketplace.visualstudio.com/items?itemName=wayou.vscode-todo-highlight)                       | Lists all `TODO` comments in your workspace.                         |
+| [`mikestead.dotenv`](https://marketplace.visualstudio.com/items?itemName=mikestead.dotenv)                                             | Adds syntax highlighting for `.env` files.                           |
 
-Also, esp. the `contracts` package has multiple shorthand npm scripts defined in its `package.json` that are recommended to use.
+</details>
+
+## FAQs & Troubleshooting 💬
+
+<details>
+<summary><strong>Which package managers are supported? Do I have to use pnpm?</strong></summary>
+
+For monorepo workspaces, [pnpm](https://pnpm.io) is likely the fastest and most reliable choice. When using it though, it's strongly recommended everyone on the team uses it. No installs should be performed nor any other lock files should be committed.
+
+As an alternative, [yarn](https://yarnpkg.com/) is also supported and can be used for installation. Caveats when using yarn:
+
+- Only the stable version of yarn (currently v3) is supported, not [yarn classic](https://classic.yarnpkg.com/) (v1).
+- `yarn.lock` files should be committed instead of `.pnpm-lock.yaml` files.
+- The `pnpm` CLI is still used in many `package.json` scripts, so these would have to be adjusted manually.
+
+> [!IMPORTANT]  
+> As [npm](https://www.npmjs.com/) lacks support for the `workspace` import protocol, it's not compatible with ink!athon.
 
 </details>
 
@@ -231,7 +279,10 @@ Important, in production it's recommended to use at most one of 1. and 2. to red
 <details>
 <summary><strong>Can I just use plain TailwindCSS?</strong></summary>
 
-The packages above can be easily switched out with plain TailwindCSS, a detailed guide that is coming soon. In the meantime, open an issue to get guidance.
+The packages mentioned above can be replaced with vanilla TailwindCSS manually without much effort.
+
+> [!NOTE]  
+> We're currently moving away from twin.macro to vanilla TailwindCSS as the new default. This will be reflected in the boilerplate soon.
 
 </details>
 
