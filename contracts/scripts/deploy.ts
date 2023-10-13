@@ -1,30 +1,28 @@
-import { deployContract, getSubstrateChain } from '@scio-labs/use-inkathon'
+import { deployContract } from '@scio-labs/use-inkathon'
 import * as dotenv from 'dotenv'
 import { getDeploymentData } from './utils/getDeploymentData'
 import { initPolkadotJs } from './utils/initPolkadotJs'
 import { writeContractAddresses } from './utils/writeContractAddresses'
 
-// Dynamic environment variables
+// [KEEP THIS] Dynamically load environment from `.env.{chainId}`
 const chainId = process.env.CHAIN || 'development'
-dotenv.config({ path: `.env.${process.env.CHAIN || 'development'}` })
+dotenv.config({ path: `.env.${chainId}` })
 
 /**
  * Script that deploys the greeter contract and writes its address to a file.
  *
  * Parameters:
- *  - `DIR`: Directory to read deploy files & write contract addresses to (optional, defaults to `./src/deployments`)
+ *  - `DIR`: Directory to read contract build artifacts (optional, defaults to `./deployments`)
  *  - `CHAIN`: Chain ID (optional, defaults to `development`)
  *
  * Example usage:
+ *  - `pnpm run deploy`
  *  - `CHAIN=alephzero-testnet pnpm run deploy`
  */
 const main = async () => {
-  // Initialization
-  const chain = getSubstrateChain(chainId)
-  if (!chain) throw new Error(`Chain '${chainId}' not found`)
+  // [KEEP THIS] Initialization
   const accountUri = process.env.ACCOUNT_URI || '//Alice'
-  const derivationPath = process.env.ACCOUNT_DERIVATION_PATH || ''
-  const { api, account } = await initPolkadotJs(chain, `${accountUri}${derivationPath}`)
+  const { api, chain, account } = await initPolkadotJs(chainId, accountUri)
 
   // Deploy greeter contract
   let { abi, wasm } = await getDeploymentData('greeter')

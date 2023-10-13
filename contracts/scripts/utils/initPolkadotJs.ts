@@ -1,12 +1,18 @@
 import { ApiPromise, Keyring } from '@polkadot/api'
 import { IKeyringPair } from '@polkadot/types/types/interfaces'
 import { BN } from '@polkadot/util'
-import { SubstrateChain, getBalance, initPolkadotJs as initApi } from '@scio-labs/use-inkathon'
+import {
+  SubstrateChain,
+  getBalance,
+  getSubstrateChain,
+  initPolkadotJs as initApi,
+} from '@scio-labs/use-inkathon'
 
 /**
  * Initialize Polkadot.js API with given RPC & account from given URI.
  */
 export type InitParams = {
+  chain: SubstrateChain
   api: ApiPromise
   keyring: Keyring
   account: IKeyringPair
@@ -14,7 +20,10 @@ export type InitParams = {
   prefix: number
   toBNWithDecimals: (_: number | string) => BN
 }
-export const initPolkadotJs = async (chain: SubstrateChain, uri: string): Promise<InitParams> => {
+export const initPolkadotJs = async (chainId: string, uri: string): Promise<InitParams> => {
+  const chain = getSubstrateChain(chainId)
+  if (!chain) throw new Error(`Chain '${chainId}' not found`)
+
   // Initialize api
   const { api } = await initApi(chain)
 
@@ -34,5 +43,5 @@ export const initPolkadotJs = async (chain: SubstrateChain, uri: string): Promis
   const balance = await getBalance(api, account.address)
   console.log(`Initialized Account: ${account.address} (${balance.balanceFormatted})\n`)
 
-  return { api, keyring, account, decimals, prefix, toBNWithDecimals }
+  return { api, chain, keyring, account, decimals, prefix, toBNWithDecimals }
 }
