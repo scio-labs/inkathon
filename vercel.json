@@ -4,9 +4,5 @@
   "buildCommand": "pnpm build",
   "devCommand": "pnpm dev",
   "outputDirectory": "./frontend/.next",
-  "installCommand": "HUSKY=0 pnpm install --no-frozen-lockfile",
-  "ignoreCommand": "",
-  "github": {
-    "silent": true
-  }
+  "installCommand": "pnpm install --no-frozen-lockfile"
 }
