@@ -21,6 +21,8 @@ Other projects include:
 
 **Join the discussion in our [Telegram Group](https://t.me/inkathon)** 💬
 
+**If you want to contribute, please read our [Contributor Guidelines](https://github.com/scio-labs/inkathon/blob/main/CONTRIBUTING.md)** 🙏
+
 ---
 
 **Table of Contents:**
@@ -228,6 +230,8 @@ When running the same script again, this deployer account defined there will be 
 ### Workspace
 
 It's recommended to develop in VSCode by opening the workspace file `inkathon.code-workspace` instead of just the plain directory. This approach offers multiple advantages, including a more predictable monorepo configuration. VSCode will also automatically suggest switching to the workspace when opening the project's root directory in the bottom right corner.
+
+<img src="inkathon-vscode-workspace.png" width="400" alt="VSCode Workspace Notification">
 
 ### Plugins
 
