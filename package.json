@@ -3,7 +3,6 @@
   "description": "Full-Stack DApp Boilerplate for ink! Smart Contracts",
   "homepage": "https://inkathon.xyz",
   "private": true,
-  "version": "0.0.1",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/scio-labs/inkathon"
@@ -22,7 +21,9 @@
     "start": "pnpm run -F frontend start",
     "lint": "pnpm run -F '*' lint",
     "lint:fix": "pnpm run -F '*' lint:fix",
-    "lint:format": "pnpm run -F '*' lint:format"
+    "lint:format": "pnpm run -F '*' lint:format",
+    "changeset:version": "changeset version",
+    "changeset:publish": "changeset publish"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.8",
