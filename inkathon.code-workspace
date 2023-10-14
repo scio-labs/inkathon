@@ -1,0 +1,55 @@
+{
+  "folders": [
+    {
+      "name": "ROOT",
+      "path": "./"
+    },
+    {
+      "name": "Frontend",
+      "path": "./frontend"
+    },
+    {
+      "name": "Contracts",
+      "path": "./contracts"
+    }
+  ],
+  "settings": {
+    "search.exclude": {
+      "**/*.{png,svg,webm,mp4}": true
+    },
+    "search.useIgnoreFiles": true,
+    "search.useGlobalIgnoreFiles": true,
+    "search.useParentIgnoreFiles": true,
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true,
+      "source.fixAll.eslint": true
+    },
+    "files.associations": {
+      ".env.*": "dotenv",
+      "*.css": "tailwindcss"
+    },
+    "[javascriptreact][typescriptreact][javascript][typescript][markdown][html][css][scss][sass][json][jsonc][yaml]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "[toml]": {
+      "editor.defaultFormatter": "tamasfe.even-better-toml"
+    },
+    "evenBetterToml.formatter.indentString": "    ",
+    "evenBetterToml.formatter.columnWidth": 120,
+    "[rust]": {
+      "editor.defaultFormatter": "rust-lang.rust-analyzer"
+    },
+    "peacock.color": "#8758FF",
+    "workbench.colorCustomizations": {
+      "sash.hoverBorder": "#ac8bff",
+      "statusBar.background": "#8758ff",
+      "statusBar.foreground": "#e7e7e7",
+      "statusBarItem.hoverBackground": "#ac8bff",
+      "statusBarItem.remoteBackground": "#8758ff",
+      "statusBarItem.remoteForeground": "#e7e7e7"
+    }
+  }
+}
