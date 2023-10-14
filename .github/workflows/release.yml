@@ -15,7 +15,7 @@ jobs:
     strategy:
       matrix:
         node-version: [18]
-        pnpm-version: [8]
+        pnpm-version: [8.8]
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v3
@@ -36,7 +36,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Install Dependencies
-        run: pnpm install --lockfile-only
+        run: pnpm install --frozen-lockfile
 
       - name: Create Release Pull Request
         uses: changesets/action@v1

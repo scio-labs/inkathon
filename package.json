@@ -22,7 +22,9 @@
     "start": "pnpm run -F frontend start",
     "lint": "pnpm run -F '*' lint",
     "lint:fix": "pnpm run -F '*' lint:fix",
-    "lint:format": "pnpm run -F '*' lint:format"
+    "lint:format": "pnpm run -F '*' lint:format",
+    "changeset:version": "changeset version",
+    "changeset:publish": "changeset publish"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.8",
