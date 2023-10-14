@@ -1,4 +1,4 @@
-import { env } from '@config/environment'
+import { env } from '@/config/environment'
 import { SubstrateDeployment } from '@scio-labs/use-inkathon'
 
 /**

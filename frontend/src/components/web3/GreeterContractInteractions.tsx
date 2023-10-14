@@ -1,12 +1,12 @@
+import { ContractIds } from '@/deployments/deployments'
+import { contractTxWithToast } from '@/utils/contractTxWithToast'
 import { Button, Card, FormControl, FormLabel, Input, Stack } from '@chakra-ui/react'
-import { ContractIds } from '@deployments/deployments'
 import {
   contractQuery,
   decodeOutput,
   useInkathon,
   useRegisteredContract,
 } from '@scio-labs/use-inkathon'
-import { contractTxWithToast } from '@utils/contractTxWithToast'
 import { FC, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'

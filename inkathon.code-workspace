@@ -29,7 +29,7 @@
       ".env.*": "dotenv",
       "*.css": "tailwindcss"
     },
-    "[javascriptreact][typescriptreact][javascript][typescript][markdown][html][css][scss][sass][json][yaml]": {
+    "[javascriptreact][typescriptreact][javascript][typescript][markdown][html][css][scss][sass][json][jsonc][yaml]": {
       "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "typescript.updateImportsOnFileMove.enabled": "always",
