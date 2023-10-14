@@ -4,7 +4,6 @@
     "esbenp.prettier-vscode",
     "bradlc.vscode-tailwindcss",
     "lightyen.tailwindcss-intellisense-twin",
-    "zoma.vscode-auto-open-workspace",
     "wayou.vscode-todo-highlight",
     "tamasfe.even-better-toml",
     "rust-lang.rust-analyzer",

@@ -75,7 +75,7 @@ Optionally, to enable [`simple-git-hooks`](https://github.com/toplenboren/simple
 
 ### 2. Build & deploy contracts on a local node
 
-The `contracts/package.json` file contains shorthand scripts for building, testing, and deploying your contracts. To run these scripts, the active working directory of your terminal needs to be `contracts/`.
+The `contracts/package.json` file contains shorthand scripts for building, testing, and deploying your contracts. To run these scripts, you need to set `contracts/` as the active working directory in your terminal.
 
 > **Pre-requisites:**
 >
@@ -109,7 +109,7 @@ _Read more about environment variables and all available chain constants in the 
 
 ### 1. Project Name
 
-There are multiple places where you need to insert your very own project name & identifier. Most of these occurrences are highlighted with a `/* TODO */` comment in the code. You can easily replace them one by one by installing the [`todo-tree`](https://marketplace.visualstudio.com/items?itemName=gruntfuggly.todo-tree) plugin.
+There are multiple places where you need to insert your project's name and identifier. Most of these occurrences are highlighted with a `/* TODO */` comment in the code. You can easily replace them one by one by installing the [`todo-tree`](https://marketplace.visualstudio.com/items?itemName=gruntfuggly.todo-tree) plugin.
 
 Additionally, there are the following un-highlighted occurrences:
 
@@ -119,7 +119,7 @@ Additionally, there are the following un-highlighted occurrences:
 
 ### 2. Custom Contracts
 
-To replace the default `Greeter` contract or add another custom one, you need to do the following:
+To replace the default `Greeter` contract or add a new one, you need to do the following:
 
 - Add a new contract directory under `contracts/src/`
 - Add it as another workspace member to the `contracts/Cargo.toml` file
@@ -137,7 +137,7 @@ For general scripts the same environment variable initialization & configuration
 <details>
 <summary><strong>The Stack in Detail</strong></summary>
 
-- Monorepo Workspace with `contracts/` and `frontend/` packages (_Tip_: Use the `inkathon.code-workspace` file to open it in VSCode)
+- Monorepo Workspace with `contracts/` and `frontend/` directories as packages.
 - Package Manager: `pnpm` or `yarn@stable` (Read more in the [FAQs](#faqs--troubleshooting) section below)
 - Smart Contract Development: Rust, ink!, `cargo-contract`, `substrate-contracts-node`
 - Frontend: Next.js, React, TypeScript
@@ -150,6 +150,9 @@ For general scripts the same environment variable initialization & configuration
 </details>
 
 ![inkathon Stack Diagram](inkathon-stack-diagram.png)
+
+> [!NOTE]  
+> When opening the project directory in VSCode, it automatically suggests opening the `inkathon.code-workspace` file instead. This is recommended as it offers a more predictable monorepo configuration.
 
 ## Live Examples 🌐
 
@@ -189,6 +192,8 @@ One key element making this boilerplate so flexible is the usage of environment 
 
 </details>
 
+All environment variables are imported from `process.env` in [`frontend/src/config/environment.ts`](https://github.com/scio-labs/inkathon/blob/main/frontend/src/config/environment.ts) for type safety.
+
 | Environment Variables           | [Default Values](https://github.com/scio-labs/inkathon/blob/main/frontend/.env.local.example) | Description                                                                                                                                                         |
 | ------------------------------- | --------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `NEXT_PUBLIC_DEFAULT_CHAIN` \*️⃣ | ️`alephzero-testnet`                                                                          | The network (Substrate-based chain) the frontend should connect to by default and what contract deployment artifacts to import.                                     |
@@ -222,28 +227,27 @@ When running the same script again, this deployer account defined there will be 
 
 ### Workspace
 
-It's recommended to develop in VSCode by opening the workspace file `inkathon.code-workspace` instead of just the plain directory. This has multiple advantages and assures a more predictable monorepo configuration. The [first plugin](https://marketplace.visualstudio.com/items?itemName=zoma.vscode-auto-open-workspace) listed below will help with getting used to it.
+It's recommended to develop in VSCode by opening the workspace file `inkathon.code-workspace` instead of just the plain directory. This approach offers multiple advantages, including a more predictable monorepo configuration. VSCode will also automatically suggest switching to the workspace when opening the project's root directory in the bottom right corner.
 
 ### Plugins
 
-Further, the recommended VSCode plugins listed below can be really helpful when working with this boilerplate.
+Additionally, the VSCode plugins listed below are recommended as they can be very helpful when working with this boilerplate.
 
 <details>
 <summary><strong>All Recommended Plugins</strong></summary>
 
-| Plugin Name                                                                                                                            | Description                                                          |
-| -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| [`zoma.vscode-auto-open-workspace`](https://marketplace.visualstudio.com/items?itemName=zoma.vscode-auto-open-workspace)               | Automatically suggests opening the according `.code-workspace` file. |
-| [`dbaeumer.vscode-eslint`](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)                                 | Adds ESLint editor support.                                          |
-| [`esbenp.prettier-vscode`](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)                                 | Adds Prettier editor support.                                        |
-| [`bradlc.vscode-tailwindcss`](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)                           | Adds tailwindcss editor support.                                     |
-| [`lightyen.tailwindcss-intellisense-twin`](https://marketplace.visualstudio.com/items?itemName=lightyen.tailwindcss-intellisense-twin) | Adds twin.macro editor support.                                      |
-| [`rust-lang.rust-analyzer`](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)                               | Adds Rust language support.                                          |
-| [`ink-analyzer.ink-analyzer`](https://marketplace.visualstudio.com/items?itemName=ink-analyzer.ink-analyzer)                           | Adds ink! language support.                                          |
-| [`tamasfe.even-better-toml`](https://marketplace.visualstudio.com/items?itemName=tamasfe.even-better-toml)                             | Adds `.toml` file support.                                           |
-| [`gruntfuggly.todo-tree`](https://marketplace.visualstudio.com/items?itemName=gruntfuggly.todo-tree)                                   | Lists all `TODO` comments in your workspace.                         |
-| [`wayou.vscode-todo-highlight`](https://marketplace.visualstudio.com/items?itemName=wayou.vscode-todo-highlight)                       | Lists all `TODO` comments in your workspace.                         |
-| [`mikestead.dotenv`](https://marketplace.visualstudio.com/items?itemName=mikestead.dotenv)                                             | Adds syntax highlighting for `.env` files.                           |
+| Plugin Name                                                                                                                            | Description                                  |
+| -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
+| [`dbaeumer.vscode-eslint`](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)                                 | Adds ESLint editor support.                  |
+| [`esbenp.prettier-vscode`](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)                                 | Adds Prettier editor support.                |
+| [`bradlc.vscode-tailwindcss`](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)                           | Adds tailwindcss editor support.             |
+| [`lightyen.tailwindcss-intellisense-twin`](https://marketplace.visualstudio.com/items?itemName=lightyen.tailwindcss-intellisense-twin) | Adds twin.macro editor support.              |
+| [`rust-lang.rust-analyzer`](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)                               | Adds Rust language support.                  |
+| [`ink-analyzer.ink-analyzer`](https://marketplace.visualstudio.com/items?itemName=ink-analyzer.ink-analyzer)                           | Adds ink! language support.                  |
+| [`tamasfe.even-better-toml`](https://marketplace.visualstudio.com/items?itemName=tamasfe.even-better-toml)                             | Adds `.toml` file support.                   |
+| [`gruntfuggly.todo-tree`](https://marketplace.visualstudio.com/items?itemName=gruntfuggly.todo-tree)                                   | Lists all `TODO` comments in your workspace. |
+| [`wayou.vscode-todo-highlight`](https://marketplace.visualstudio.com/items?itemName=wayou.vscode-todo-highlight)                       | Lists all `TODO` comments in your workspace. |
+| [`mikestead.dotenv`](https://marketplace.visualstudio.com/items?itemName=mikestead.dotenv)                                             | Adds syntax highlighting for `.env` files.   |
 
 </details>
 
@@ -266,6 +270,18 @@ As an alternative, [yarn](https://yarnpkg.com/) is also supported and can be use
 </details>
 
 <details>
+<summary><strong>How to solve `Cannot find module './greeter/development.ts'`?</strong></summary>
+
+Sometimes, Next.js doesn't pick up changes (i.e. file creations) in the `contracts/deployments/{contract}/` folders correctly. E.g., when you just deployed on a local node for the first time and set the frontend's `.env.local` to connect to the `development` network.
+
+To fix this, you can delete the build cache at `frontend/.next`. This is currently the only solution and will force Next.js to rebuild the project and pick up the new files.
+
+> [!NOTE]  
+> To prevent this behavior, the `contracts/package.json` file contains a small `postinstall` script that creates an empty `development.ts` file if none exists.
+
+</details>
+
+<details>
 <summary><strong>How to approach styling?</strong></summary>
 
 This boilerplate currently offers styling via the following options.
@@ -274,7 +290,8 @@ This boilerplate currently offers styling via the following options.
 - [twin.macro](https://github.com/ben-rogerson/twin.macro) – [Tailwindcss](https://tailwindcss.com/) within Styled Components via [Emotion](https://emotion.sh/docs/styled) (see [snippets](#snippets))
 - Standard (S)CSS styles via `className` and `*.module.(s)css` files.
 
-Important, in production it's recommended to use at most one of 1. and 2. to reduce bundle size.
+> [!IMPORTANT]  
+> To reduce the bundle size in production, it's recommended to use either option 1 or 2, but not both.
 
 </details>
 
@@ -284,7 +301,7 @@ Important, in production it's recommended to use at most one of 1. and 2. to red
 The packages mentioned above can be replaced with vanilla TailwindCSS manually without much effort.
 
 > [!NOTE]  
-> We're currently moving away from twin.macro to vanilla TailwindCSS as the new default. This will be reflected in the boilerplate soon.
+> We are currently transitioning from twin.macro to vanilla TailwindCSS as the new default. This will be reflected in the boilerplate soon.
 
 </details>
 

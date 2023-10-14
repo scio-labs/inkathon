@@ -2,7 +2,8 @@ import { env } from '@config/environment'
 import { SubstrateDeployment } from '@scio-labs/use-inkathon'
 
 /**
- * TODO: Add or change your contract ids here
+ * Add or change your custom contract ids here
+ * DOCS: https://github.com/scio-labs/inkathon#2-custom-contracts
  */
 export enum ContractIds {
   Greeter = 'greeter',
