@@ -29,15 +29,15 @@
     "@emotion/server": "^11.11.0",
     "@emotion/styled": "^11.11.0",
     "@inkathon/contracts": "workspace:*",
-    "@polkadot/api": "^10.9.1",
-    "@polkadot/api-contract": "^10.9.1",
+    "@polkadot/api": "^10.10.1",
+    "@polkadot/api-contract": "^10.10.1",
     "@polkadot/extension-dapp": "^0.46.5",
     "@polkadot/extension-inject": "^0.46.5",
     "@polkadot/keyring": "^12.5.1",
-    "@polkadot/types": "^10.9.1",
+    "@polkadot/types": "^10.10.1",
     "@polkadot/util": "^12.5.1",
     "@polkadot/util-crypto": "^12.5.1",
-    "@scio-labs/use-inkathon": "^0.0.8",
+    "@scio-labs/use-inkathon": "^0.0.9",
     "framer-motion": "^10.16.4",
     "next": "^13.5.4",
     "next-seo": "^6.1.0",
@@ -57,7 +57,7 @@
     "@emotion/babel-plugin": "^11.11.0",
     "@testing-library/react": "^14.0.0",
     "@types/downloadjs": "^1.4.4",
-    "@types/node": "^18.18.4",
+    "@types/node": "^18.18.5",
     "@types/react": "^18.2.28",
     "@types/react-dom": "^18.2.13",
     "@typescript-eslint/eslint-plugin": "^6.7.5",
@@ -74,6 +74,6 @@
     "tailwindcss": "^3.3.3",
     "twin.macro": "^3.4.0",
     "typescript": "^5.2.2",
-    "webpack": "^5.88.2"
+    "webpack": "^5.89.0"
   }
 }
