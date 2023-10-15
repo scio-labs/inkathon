@@ -2,11 +2,8 @@
   "name": "@inkathon/monorepo",
   "description": "Full-Stack DApp Boilerplate for ink! Smart Contracts",
   "homepage": "https://inkathon.xyz",
+  "author": "Scio Labs <hello@scio.xyz> (https://scio.xyz)",
   "private": true,
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/scio-labs/inkathon"
-  },
   "workspaces": [
     "frontend",
     "contracts"

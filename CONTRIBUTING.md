@@ -1,4 +1,4 @@
-# Contributor Guidelines
+# Contributing Guidelines
 
 [Scio Labs](https://scio.xyz) actively welcomes contributions from anyone to make this a community-driven effort. There are many ways to contribute, from writing tutorials or blog posts, improving the documentation, submitting bug reports and feature requests, or writing code.
 

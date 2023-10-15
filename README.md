@@ -3,7 +3,7 @@
 # ink!athon Boilerplate
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![Built with ink!](https://raw.githubusercontent.com/paritytech/ink/master/.images/badge.svg)](https://github.com/paritytech/ink)
+[![Built with ink!](https://raw.githubusercontent.com/paritytech/ink/master/.images/badge.svg)](https://use.ink)
 ![Rust](https://img.shields.io/badge/Rust-000000?logo=rust&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-000000?logo=typescript&logoColor=white)
 ![Next.js](https://img.shields.io/badge/Next.js-000000?logo=next.js&logoColor=white)
@@ -115,9 +115,9 @@ There are multiple places where you need to insert your project's name and ident
 
 Additionally, there are the following un-highlighted occurrences:
 
-- The name of the `inkathon.code-workspace` file
-- The package names within `package.json`, `frontend/package.json`, and `contracts/package.json`
-- The workspace dependency defined in `frontend/package.json` and `frontend/src/deployments/deployments.ts`
+- the name of the `inkathon.code-workspace` file
+- the `package.json`'s name & metadata in the root directory as well as in the `contracts/` and `frontend/` packages
+- the workspace dependency (`@inkathon/contracts`) defined in `frontend/package.json` and imported in `frontend/src/deployments/deployments.ts`
 
 ### 2. Custom Contracts
 
