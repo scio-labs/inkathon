@@ -15,7 +15,7 @@
   ],
   "settings": {
     "search.exclude": {
-      "**/*.{png,svg,webm,mp4}": true
+      "**/*.{jpg,jpeg,png,svg,webm,mp4,ttf,woff,woff2}": true
     },
     "search.useIgnoreFiles": true,
     "search.useGlobalIgnoreFiles": true,
