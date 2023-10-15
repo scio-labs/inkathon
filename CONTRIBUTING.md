@@ -29,8 +29,11 @@ _To ensure a smooth and efficient collaboration, please follow the guidelines be
 - Please follow the existing coding style.
 - Make sure your changes pass the lint checks.
 
-> [!NOTE]  
-> It's recommended to enable the `pre-commit` hook in your local repository via `pnpm simple-git-hooks`. Also, please always use the `inkathon.code-workspace` file when working on the project in VSCode.
+> [!IMPORTANT]
+>
+> - Please install all recommended VSCode extensions (see `.vscode/extensions.json`).
+> - After installing dependencies, enable the `pre-commit` hook in your local repository via `pnpm simple-git-hooks`.
+> - Make sure to always use the `inkathon.code-workspace` file when working on the project in VSCode.
 
 ## Communication
 
