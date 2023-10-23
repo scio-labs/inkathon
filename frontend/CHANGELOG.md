@@ -1,5 +1,11 @@
 # @inkathon/frontend
 
+## 0.1.1
+
+### Patch Changes
+
+- [`1556c0f`](https://github.com/scio-labs/inkathon/commit/1556c0fb526c0b0219217cd19ab2a47dcc038ba4) Thanks [@wottpal](https://github.com/wottpal)! - Fix `@polkadot/*` package warnings about cjs/esm duplications.
+
 ## 0.1.0
 
 ### Minor Changes
