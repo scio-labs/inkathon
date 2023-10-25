@@ -1,5 +1,11 @@
 # @inkathon/contracts
 
+## 0.1.2
+
+### Patch Changes
+
+- [`2b9bc68`](https://github.com/scio-labs/inkathon/commit/2b9bc689876ea195a1cf2f6af1ca2414bcf04172) Thanks [@wottpal](https://github.com/wottpal)! - Make cp/copy command work cross-platform (i.e. on Windows) for postinstall and build-all scripts.
+
 ## 0.1.0
 
 ### Minor Changes
