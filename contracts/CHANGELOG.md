@@ -1,5 +1,11 @@
 # @inkathon/contracts
 
+## 0.1.3
+
+### Patch Changes
+
+- [`4bda28d`](https://github.com/scio-labs/inkathon/commit/4bda28d645abc8d8684d33bac788f04c278d7b4e) Thanks [@wottpal](https://github.com/wottpal)! - Further cross-platform script improvements (i.e. regarding the touch command).
+
 ## 0.1.2
 
 ### Patch Changes
