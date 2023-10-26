@@ -4,7 +4,7 @@
   "private": true,
   "version": "0.1.2",
   "scripts": {
-    "postinstall": "touch deployments/greeter/development.ts; true",
+    "postinstall": "echo \"Creating empty 'development.ts' it does not exist…\" && [[ ! -e deployments/greeter/development.ts ]] && (command -v touch &> /dev/null && touch deployments/greeter/development.ts || copy /b deployments/greeter/development.ts +,,); true",
     "test": "./test-all.sh",
     "build": "./build-all.sh",
     "node": "substrate-contracts-node --dev --port 9944 --base-path ./.node-data",

@@ -8,7 +8,7 @@
     }
   },
   "scripts": {
-    "postinstall": "[[ ! -e .env.local ]] && CP_CMD=$(command -v cp &> /dev/null && echo \"cp\" || echo \"copy\") && $CP_CMD .env.local.example .env.local; true",
+    "postinstall": "echo \"Creating default '.env.local' it does not exist…\" && [[ ! -e .env.local ]] && CP_CMD=$(command -v cp &> /dev/null && echo \"cp\" || echo \"copy\") && $CP_CMD .env.local.example .env.local; true",
     "dev": "NODE_ENV=development next dev",
     "node": "pnpm run --filter contracts node",
     "dev-and-node": "concurrently \"pnpm dev\" \"pnpm node\" --names \"Next,Node\" --kill-others",
