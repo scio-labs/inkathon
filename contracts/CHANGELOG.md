@@ -1,5 +1,11 @@
 # @inkathon/contracts
 
+## 0.2.0
+
+### Minor Changes
+
+- [`c2cfbe4`](https://github.com/scio-labs/inkathon/commit/c2cfbe428a4e86f7ddb3d25886d4da79238b69be) Thanks [@wottpal](https://github.com/wottpal)! - Ensure & document Windows, Ubuntu, and macOS compatibility. 🌈
+
 ## 0.1.3
 
 ### Patch Changes
