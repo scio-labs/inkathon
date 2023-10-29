@@ -1,5 +1,12 @@
 # @inkathon/frontend
 
+## 0.2.1
+
+### Patch Changes
+
+- Updated dependencies [[`3f4179e`](https://github.com/scio-labs/inkathon/commit/3f4179e9325b155324d23796234d9f853ae03dd9)]:
+  - @inkathon/contracts@0.2.1
+
 ## 0.2.0
 
 ### Minor Changes
