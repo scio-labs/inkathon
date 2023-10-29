@@ -1,5 +1,11 @@
 # @inkathon/contracts
 
+## 0.2.1
+
+### Patch Changes
+
+- [`3f4179e`](https://github.com/scio-labs/inkathon/commit/3f4179e9325b155324d23796234d9f853ae03dd9) Thanks [@wottpal](https://github.com/wottpal)! - Add workaround to run ESM-enabled ts-node scripts with Node.js 20. Related: https://github.com/TypeStrong/ts-node/issues/1997
+
 ## 0.2.0
 
 ### Minor Changes
