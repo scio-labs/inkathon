@@ -1,12 +1,7 @@
 import { ContractPromise } from '@polkadot/api-contract'
 import { contractQuery, contractTx, decodeOutput, deployContract } from '@scio-labs/use-inkathon'
-import * as dotenv from 'dotenv'
 import { getDeploymentData } from './utils/getDeploymentData'
 import { initPolkadotJs } from './utils/initPolkadotJs'
-
-// [KEEP THIS] Dynamically load environment from`.env.{chainId}`
-const chainId = process.env.CHAIN || 'development'
-dotenv.config({ path: `.env.${chainId}` })
 
 /**
  * Example script that updates & reads a message from a greeter contract.
@@ -21,9 +16,7 @@ dotenv.config({ path: `.env.${chainId}` })
  *  - `CHAIN=alephzero-testnet pnpm run script <script-name>`
  */
 const main = async () => {
-  // [KEEP THIS] Initialization
-  const accountUri = process.env.ACCOUNT_URI || '//Alice'
-  const { api, chain, account } = await initPolkadotJs(chainId, accountUri)
+  const { api, account } = await initPolkadotJs()
 
   // Deploy greeter contract
   const { abi, wasm } = await getDeploymentData('greeter')

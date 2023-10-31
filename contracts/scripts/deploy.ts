@@ -1,20 +1,13 @@
 import { deployContract } from '@scio-labs/use-inkathon'
-import * as dotenv from 'dotenv'
 import { getDeploymentData } from './utils/getDeploymentData'
 import { initPolkadotJs } from './utils/initPolkadotJs'
 import { writeContractAddresses } from './utils/writeContractAddresses'
-
-// [KEEP THIS] Dynamically load environment from `.env.{chainId}`
-const chainId = process.env.CHAIN || 'development'
-dotenv.config({
-  path: `.env.${chainId}`,
-})
 
 /**
  * Script that deploys the greeter contract and writes its address to a file.
  *
  * Parameters:
- *  - `DIR`: Directory to read contract build artifacts (optional, defaults to `./deployments`)
+ *  - `DIR`: Directory to read contract build artifacts & write addresses to (optional, defaults to `./deployments`)
  *  - `CHAIN`: Chain ID (optional, defaults to `development`)
  *
  * Example usage:
@@ -22,9 +15,8 @@ dotenv.config({
  *  - `CHAIN=alephzero-testnet pnpm run deploy`
  */
 const main = async () => {
-  // [KEEP THIS] Initialization
-  const accountUri = process.env.ACCOUNT_URI || '//Alice'
-  const { api, chain, account } = await initPolkadotJs(chainId, accountUri)
+  const initParams = await initPolkadotJs()
+  const { api, chain, account } = initParams
 
   // Deploy greeter contract
   const { abi, wasm } = await getDeploymentData('greeter')
