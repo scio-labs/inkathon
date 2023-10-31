@@ -3,17 +3,11 @@ set -eu
 
 # ENVIRONMENT VARIABLES
 CONTRACTS_DIR="${CONTRACTS_DIR:=./src}" # Base contract directory 
-OUT_DIR="${OUT_DIR:=./deployments}" # Output directory for build files
 
-# Store all folder names under `CONTRACTS_DIR` in an array
-contracts=()
-for d in $CONTRACTS_DIR/* ; do
-  if [ -d "$d" ] && [ -f "$d/Cargo.toml" ]; then
-    contracts+=($(basename $d))
-  fi
-done
+# Determine all contracts under `$CONTRACTS_DIR`
+contracts=($(find $CONTRACTS_DIR -maxdepth 1 -type d -exec test -f {}/Cargo.toml \; -print | xargs -n 1 basename))
 
-# Testing all contracts
+# Test all contracts
 for i in "${contracts[@]}"
 do
   echo -e "\nTesting '$CONTRACTS_DIR/$i/Cargo.toml'…"
