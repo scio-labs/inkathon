@@ -1,5 +1,11 @@
 # @inkathon/contracts
 
+## 0.3.0
+
+### Minor Changes
+
+- [`cda19ae`](https://github.com/scio-labs/inkathon/commit/cda19aeb4107c076daeb17a455fecfbd7f373044) Thanks [@wottpal](https://github.com/wottpal)! - Vastly reduce boilerplate for JS/TS script initialization of Polkadot.js. You no longer need to read and parse dotenv environment variables in every script.
+
 ## 0.2.1
 
 ### Patch Changes
