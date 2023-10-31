@@ -39,8 +39,10 @@
     "@polkadot/util-crypto": "^12.5.1",
     "@scio-labs/use-inkathon": "^0.4.3",
     "autoprefixer": "^10.4.16",
+    "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "framer-motion": "^10.16.4",
+    "lucide-react": "^0.291.0",
     "next": "^14.0.0",
     "next-seo": "^6.4.0",
     "postcss": "^8.4.31",
@@ -52,6 +54,7 @@
     "sharp": "^0.32.6",
     "spinners-react": "^1.0.7",
     "tailwind-merge": "^2.0.0",
+    "tailwindcss-animate": "^1.0.7",
     "use-async-effect": "^2.2.7"
   },
   "devDependencies": {
