@@ -6,6 +6,12 @@ const path = require('path')
 // The folders containing files importing twin.macro
 const includedDirs = [path.resolve(__dirname, 'src')]
 
+// The folders containing next.js server components
+const excludedDirs = [
+  path.resolve(__dirname, 'src/app'),
+  path.resolve(__dirname, 'src/components/next'),
+]
+
 module.exports = function withTwin(nextConfig) {
   return {
     ...nextConfig,
@@ -16,6 +22,7 @@ module.exports = function withTwin(nextConfig) {
       config.module.rules.push({
         test: /\.(tsx|ts)$/,
         include: includedDirs,
+        exclude: excludedDirs,
         use: [
           options.defaultLoaders.babel,
           {
