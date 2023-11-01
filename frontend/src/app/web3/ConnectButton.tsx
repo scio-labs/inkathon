@@ -1,23 +1,19 @@
 'use client'
+import Link from 'next/link'
 
+import { Button } from '@/app/components/ui/button'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/app/components/ui/dropdown-menu'
 import { env } from '@/config/environment'
 import { truncateHash } from '@/utils/truncateHash'
 import { useIsSSR } from '@/utils/useIsSSR'
 import { SupportedChainId } from '@azns/resolver-core'
 import { useResolveAddressToDomain } from '@azns/resolver-react'
-//TODO: convert to shadcn/ui
-import {
-  Button,
-  HStack,
-  Link,
-  Menu,
-  MenuButton,
-  MenuDivider,
-  MenuItem,
-  MenuList,
-  Text,
-  VStack,
-} from '@chakra-ui/react'
 import { InjectedAccount } from '@polkadot/extension-inject/types'
 import { encodeAddress } from '@polkadot/util-crypto'
 import {
@@ -32,9 +28,10 @@ import {
 import Image from 'next/image'
 import aznsIconSvg from 'public/icons/azns-icon.svg'
 import { FC, useMemo, useState } from 'react'
-import { toast } from 'react-hot-toast'
+import toast from 'react-hot-toast'
 import { AiOutlineCheckCircle, AiOutlineDisconnect } from 'react-icons/ai'
 import { FiChevronDown, FiExternalLink } from 'react-icons/fi'
+import { RiArrowDownSLine } from 'react-icons/ri'
 
 export interface ConnectButtonProps {}
 export const ConnectButton: FC<ConnectButtonProps> = () => {
@@ -64,158 +61,143 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
   // Connect Button
   if (!activeAccount)
     return (
-      <Menu>
-        <MenuButton
-          as={Button}
-          isLoading={isConnecting}
-          size="md"
-          rightIcon={<FiChevronDown size={22} />}
-          py={6}
-          fontWeight="bold"
-          rounded="2xl"
-          colorScheme="purple"
-        >
-          Connect Wallet
-        </MenuButton>
-
-        <MenuList bgColor="blackAlpha.900" borderColor="whiteAlpha.300" rounded="2xl">
-          {/* Installed Wallets */}
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button
+            className="group h-12 rounded-2xl bg-purple-200 px-4 py-3 font-bold text-background hover:bg-purple-300 aria-expanded:bg-purple-400"
+            isLoading={isConnecting}
+            disabled={isConnecting}
+            translate="no"
+          >
+            Connect Wallet
+            <RiArrowDownSLine size={20} aria-hidden="true" />
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className="rounded-2xl border-white/30 bg-black/90">
           {!isSSR &&
             !activeAccount &&
             browserWallets.map((w) =>
               isWalletInstalled(w) ? (
-                <MenuItem
+                <DropdownMenuItem
                   key={w.id}
+                  className="bg-transparent hover:bg-gray-800 focus:bg-gray-800"
                   onClick={() => {
                     connect?.(undefined, w)
                   }}
-                  className="bg-transparent focus:bg-gray-800 hover:bg-gray-800"
                 >
                   {w.name}
-                </MenuItem>
+                </DropdownMenuItem>
               ) : (
-                <MenuItem
-                  as={Link}
-                  href={w.urls.website}
+                <DropdownMenuItem
                   key={w.id}
-                  className="bg-transparent opacity-50 hover:bg-gray-800 focus:bg-gray-800 hover:no-underline hover:opacity-70"
+                  className="bg-transparent opacity-50 hover:bg-gray-800 hover:no-underline hover:opacity-70 focus:bg-gray-800"
                 >
-                  <VStack align="start" spacing={0}>
-                    <HStack>
-                      <Text>{w.name}</Text>
+                  <Link href={w.urls.website}>
+                    <div className="align-center flex justify-start gap-2">
+                      <p>{w.name}</p>
                       <FiExternalLink size={16} />
-                    </HStack>
-                    <Text fontSize="xs">Not installed</Text>
-                  </VStack>
-                </MenuItem>
+                    </div>
+                    <p>Not installed</p>
+                  </Link>
+                </DropdownMenuItem>
               ),
             )}
-        </MenuList>
-      </Menu>
+        </DropdownMenuContent>
+      </DropdownMenu>
     )
 
   // Account Menu & Disconnect Button
   return (
-    <Menu>
-      <HStack>
-        {/* Account Balance */}
-        {balanceFormatted !== undefined && (
-          <Button
-            py={6}
-            pl={5}
-            rounded="2xl"
-            fontWeight="bold"
-            fontSize="sm"
-            fontFamily="mono"
-            letterSpacing={-0.25}
-            pointerEvents="none"
-          >
-            {balanceFormatted}
+    <div className="flex select-none gap-4">
+      {/* {Account Balance} */}
+      {balanceFormatted !== undefined && (
+        <div className="pointer-events-none flex items-center justify-center rounded-2xl bg-white/[0.08] px-4 py-3 font-mono text-base font-bold text-white">
+          {balanceFormatted}
+        </div>
+      )}
+
+      {/* Account Name, Address, and AZNS-Domain (if assigned) */}
+      <DropdownMenu>
+        <DropdownMenuTrigger
+          asChild
+          className="rounded-2xl bg-white/[0.08] px-4 py-6 font-bold text-foreground hover:bg-white/[0.1] aria-expanded:bg-white/[0.12]"
+        >
+          <Button className="group" translate="no">
+            <div className="flex items-center gap-2">
+              <div className="flex flex-col items-center justify-center">
+                <AccountName account={activeAccount} />
+                <span className="text-xs font-normal opacity-75">
+                  {truncateHash(
+                    encodeAddress(activeAccount.address, activeChain?.ss58Prefix || 42),
+                    8,
+                  )}
+                </span>
+              </div>
+              <FiChevronDown size={22} aria-hidden="true" />
+            </div>
           </Button>
-        )}
-
-        {/* Account Name, Address, and AZNS-Domain (if assigned) */}
-        <MenuButton
-          as={Button}
-          rightIcon={<FiChevronDown size={22} />}
-          hidden={false}
-          py={6}
-          pl={5}
-          rounded="2xl"
-          fontWeight="bold"
-        >
-          <VStack spacing={0.5}>
-            <AccountName account={activeAccount} />
-            <Text fontSize="xs" fontWeight="normal" opacity={0.75}>
-              {truncateHash(encodeAddress(activeAccount.address, activeChain?.ss58Prefix || 42), 8)}
-            </Text>
-          </VStack>
-        </MenuButton>
-      </HStack>
-
-      <MenuList
-        bgColor="blackAlpha.900"
-        borderColor="whiteAlpha.300"
-        rounded="2xl"
-        maxHeight="40vh"
-        overflow="scroll"
-      >
-        {/* Supported Chains */}
-        {supportedChains.map((chain) => (
-          <MenuItem
-            key={chain.network}
-            isDisabled={chain.network === activeChain?.network}
-            onClick={async () => {
-              await switchActiveChain?.(chain)
-              toast.success(`Switched to ${chain.name}`)
-            }}
-            className="bg-transparent hover:bg-gray-800 focus:bg-gray-800"
-          >
-            <VStack align="start" spacing={0}>
-              <HStack>
-                <Text>{chain.name}</Text>
-                {chain.network === activeChain?.network && <AiOutlineCheckCircle size={16} />}
-              </HStack>
-            </VStack>
-          </MenuItem>
-        ))}
-
-        {/* Available Accounts/Wallets */}
-        <MenuDivider />
-        {(accounts || []).map((acc) => {
-          const encodedAddress = encodeAddress(acc.address, activeChain?.ss58Prefix || 42)
-          const truncatedEncodedAddress = truncateHash(encodedAddress, 10)
-          return (
-            <MenuItem
-              key={encodedAddress}
-              isDisabled={acc.address === activeAccount.address}
-              onClick={() => {
-                setActiveAccount?.(acc)
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className="no-scrollbar max-h-[40vh] overflow-scroll rounded-2xl border-white/[.16] bg-black/[.92]">
+          {/* Supported Chains */}
+          {supportedChains.map((chain) => (
+            <DropdownMenuItem
+              disabled={chain.network === activeChain?.network}
+              key={chain.network}
+              className={
+                'cursor-pointer bg-transparent hover:bg-gray-800 focus:bg-gray-800 disabled:cursor-not-allowed disabled:bg-opacity-50'
+              }
+              onClick={async () => {
+                await switchActiveChain?.(chain)
+                toast.success(`Switched to ${chain.name}`)
               }}
-              className="bg-transparent hover:bg-gray-800 focus:bg-gray-800"
             >
-              <VStack align="start" spacing={0}>
-                <HStack>
-                  <AccountName account={acc} />
-                  {acc.address === activeAccount.address && <AiOutlineCheckCircle size={16} />}
-                </HStack>
-                <Text fontSize="xs">{truncatedEncodedAddress}</Text>
-              </VStack>
-            </MenuItem>
-          )
-        })}
+              <div className="group flex flex-row gap-2">
+                <p>{chain.name}</p>
+                {chain.network === activeChain?.network && <AiOutlineCheckCircle size={16} />}
+              </div>
+            </DropdownMenuItem>
+          ))}
 
-        {/* Disconnect Button */}
-        <MenuDivider />
-        <MenuItem
-          onClick={() => disconnect?.()}
-          icon={<AiOutlineDisconnect size={18} />}
-          className="bg-transparent hover:bg-gray-800 focus:bg-gray-800"
-        >
-          Disconnect
-        </MenuItem>
-      </MenuList>
-    </Menu>
+          {/* Available Accounts/Wallets */}
+          <DropdownMenuSeparator />
+          {(accounts || []).map((acc) => {
+            const encodedAddress = encodeAddress(acc.address, activeChain?.ss58Prefix || 42)
+            const truncatedEncodedAddress = truncateHash(encodedAddress, 10)
+
+            return (
+              <DropdownMenuItem
+                key={encodedAddress}
+                className="cursor-pointer bg-transparent hover:bg-gray-800 focus:bg-gray-800 disabled:cursor-not-allowed disabled:bg-opacity-50"
+                disabled={acc.address === activeAccount?.address}
+                onClick={() => {
+                  setActiveAccount?.(acc)
+                }}
+              >
+                <div className="group">
+                  <div className="flex flex-row gap-2">
+                    <AccountName account={acc} />
+                    {acc.address === activeAccount?.address && <AiOutlineCheckCircle size={16} />}
+                  </div>
+                  <p className="text-xs">{truncatedEncodedAddress}</p>
+                </div>
+              </DropdownMenuItem>
+            )
+          })}
+
+          {/* Disconnect Button */}
+          <DropdownMenuSeparator />
+          <DropdownMenuItem
+            className="bg-transparent hover:bg-gray-800 focus:bg-gray-800"
+            onClick={() => disconnect?.()}
+          >
+            <div className="group flex gap-2">
+              <AiOutlineDisconnect size={18} />
+              Disconnect
+            </div>
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </div>
   )
 }
 
@@ -234,19 +216,9 @@ export const AccountName: FC<AccountNameProps> = ({ account, ...rest }) => {
   )
 
   return (
-    <Text
-      fontSize="sm"
-      fontFamily="mono"
-      fontWeight="bold"
-      textTransform="uppercase"
-      display="flex"
-      letterSpacing={-0.25}
-      alignItems="baseline"
-      gap="4px"
-      {...rest}
-    >
+    <div className="flex items-baseline gap-2 font-mono text-base font-bold uppercase" {...rest}>
       {primaryDomain || account.name}
       {!!primaryDomain && <Image src={aznsIconSvg} alt="AZERO.ID Logo" width={11} height={11} />}
-    </Text>
+    </div>
   )
 }

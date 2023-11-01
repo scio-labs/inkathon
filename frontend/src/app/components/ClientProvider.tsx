@@ -1,6 +1,6 @@
 'use client'
 
-import { BaseLayout } from '@/components/next/BaseLayout'
+import { BaseLayout } from '@/app/components/next/BaseLayout'
 import { env } from '@/config/environment'
 import { getDeployments } from '@/deployments/deployments'
 import { UseInkathonProvider } from '@scio-labs/use-inkathon'

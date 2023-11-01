@@ -1,5 +1,5 @@
 import { ThemeProvider } from '@/app/components/ThemeProvider'
-import { HotToastConfig } from '@/components/next/HotToastConfig'
+import { HotToastConfig } from '@/app/components/next/HotToastConfig'
 import { env } from '@/config/environment'
 import { Metadata } from 'next'
 import { Inconsolata } from 'next/font/google'

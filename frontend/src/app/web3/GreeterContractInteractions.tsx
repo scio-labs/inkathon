@@ -1,9 +1,11 @@
 'use client'
 
+import { Button } from '@/app/components/ui/button'
+import { Card } from '@/app/components/ui/card'
+import { Form, FormControl, FormItem, FormLabel } from '@/app/components/ui/form'
+import { Input } from '@/app/components/ui/input'
 import { ContractIds } from '@/deployments/deployments'
 import { contractTxWithToast } from '@/utils/contractTxWithToast'
-//TODO: convert to shadcn/ui
-import { Button, Card, FormControl, FormLabel, Input, Stack } from '@chakra-ui/react'
 import {
   contractQuery,
   decodeOutput,
@@ -22,7 +24,9 @@ export const GreeterContractInteractions: FC = () => {
   const [greeterMessage, setGreeterMessage] = useState<string>()
   const [fetchIsLoading, setFetchIsLoading] = useState<boolean>()
   const [updateIsLoading, setUpdateIsLoading] = useState<boolean>()
-  const { register, reset, handleSubmit } = useForm<UpdateGreetingValues>()
+  const form = useForm<UpdateGreetingValues>()
+
+  const { register, reset, handleSubmit } = form
 
   // Fetch Greeting
   const fetchGreeting = async () => {
@@ -72,40 +76,53 @@ export const GreeterContractInteractions: FC = () => {
 
   return (
     <>
-      <div className="flex grow flex-col space-y-4 max-w-[20rem]">
+      <div className="flex max-w-[20rem] grow flex-col space-y-4">
         <h2 className="text-center font-mono text-gray-400">Greeter Smart Contract</h2>
 
-        {/* Fetched Greeting */}
-        <Card variant="outline" p={4} bgColor="whiteAlpha.100">
-          <FormControl>
-            <FormLabel>Fetched Greeting</FormLabel>
-            <Input
-              placeholder={fetchIsLoading || !contract ? 'Loading…' : greeterMessage}
-              disabled={true}
-            />
-          </FormControl>
-        </Card>
-
-        {/* Update Greeting */}
-        <Card variant="outline" p={4} bgColor="whiteAlpha.100">
-          <form onSubmit={handleSubmit(updateGreeting)}>
-            <Stack direction="row" spacing={2} align="end">
+        <Form {...form}>
+          {/* Fetched Greeting */}
+          <Card className="rounded-md border border-white/[.16] bg-[#0d0d0d] p-4">
+            <FormItem>
+              <FormLabel className="text-base">Fetched Greeting</FormLabel>
               <FormControl>
-                <FormLabel>Update Greeting</FormLabel>
-                <Input disabled={updateIsLoading} {...register('newMessage')} />
+                <Input
+                  className="border-white/[.16]"
+                  placeholder={fetchIsLoading || !contract ? 'Loading…' : greeterMessage}
+                  disabled={true}
+                />
               </FormControl>
-              <Button
-                type="submit"
-                mt={4}
-                colorScheme="purple"
-                isLoading={updateIsLoading}
-                disabled={updateIsLoading}
-              >
-                Submit
-              </Button>
-            </Stack>
-          </form>
-        </Card>
+            </FormItem>
+          </Card>
+
+          {/* Update Greeting */}
+          {/* {TODO: move this className to common component} */}
+          <Card className="rounded-md border border-white/[.16] bg-[#0d0d0d] p-4">
+            <form onSubmit={handleSubmit(updateGreeting)}>
+              <div className="flex flex-col justify-end gap-2">
+                <FormItem>
+                  <FormLabel className="text-base">Update Greeting</FormLabel>
+                  <FormControl>
+                    <div className="flex gap-2">
+                      <Input
+                        className="border-white bg-inherit"
+                        disabled={updateIsLoading}
+                        {...register('newMessage')}
+                      />
+                      <Button
+                        className="bg-purple-200 font-bold hover:bg-purple-300"
+                        disabled={fetchIsLoading || updateIsLoading}
+                        isLoading={updateIsLoading}
+                        type="submit"
+                      >
+                        Submit
+                      </Button>
+                    </div>
+                  </FormControl>
+                </FormItem>
+              </div>
+            </form>
+          </Card>
+        </Form>
 
         {/* Contract Address */}
         <p className="text-center font-mono text-xs text-gray-600">

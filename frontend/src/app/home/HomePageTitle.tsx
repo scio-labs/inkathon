@@ -16,7 +16,7 @@ interface StyledIconLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
 const StyledIconLink: React.FC<StyledIconLinkProps> = ({ className, children, ...rest }) => (
   <Link
     className={cn(
-      'opacity-90 transition-all group hover:opacity-100 hover:-translate-y-0.5',
+      'group opacity-90 transition-all hover:-translate-y-0.5 hover:opacity-100',
       className,
     )}
     {...rest}
@@ -41,14 +41,14 @@ export const HomePageTitle: FC = () => {
           href={githubHref}
           target="_blank"
           // className="group"
-          className="group flex cursor-pointer items-center gap-4 rounded-3xl py-1.5 px-3.5 transition-all hover:bg-gray-900"
+          className="group flex cursor-pointer items-center gap-4 rounded-3xl px-3.5 py-1.5 transition-all hover:bg-gray-900"
         >
           <Image src={inkathonLogo} priority width={60} alt="ink!athon Logo" />
-          <h1 className="font-black text-[2.5rem]">{title}</h1>
+          <h1 className="text-[2.5rem] font-black">{title}</h1>
         </Link>
 
         {/* Tagline & Links */}
-        <p className="mt-2 text-gray-600 text-sm">
+        <p className="mt-2 text-sm text-gray-600">
           By{' '}
           <a
             href="https://zoma.dev"
@@ -66,7 +66,7 @@ export const HomePageTitle: FC = () => {
             Scio Labs
           </a>
         </p>
-        <p className="mt-4 mb-6 text-gray-400">{desc}</p>
+        <p className="mb-6 mt-4 text-gray-400">{desc}</p>
 
         {/* Github & Vercel Buttons */}
         <div className="flex space-x-2">
@@ -84,7 +84,7 @@ export const HomePageTitle: FC = () => {
           </StyledIconLink>
         </div>
 
-        <div className="my-14 w-14 bg-gray-800 h-[2px]" />
+        <div className="my-14 h-[2px] w-14 bg-gray-800" />
       </div>
     </>
   )

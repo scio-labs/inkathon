@@ -1,11 +1,11 @@
 'use client'
 
+import { CenterBody } from '@/app/components/next/CenterBody'
 import { HomePageTitle } from '@/app/home/HomePageTitle'
 import { HomeTopBar } from '@/app/home/HomeTopBar'
 import { ChainInfo } from '@/app/web3/ChainInfo'
 import { ConnectButton } from '@/app/web3/ConnectButton'
 import { GreeterContractInteractions } from '@/app/web3/GreeterContractInteractions'
-import { CenterBody } from '@/components/next/CenterBody'
 import { useInkathon } from '@scio-labs/use-inkathon'
 import type { NextPage } from 'next'
 import { useEffect } from 'react'
@@ -24,7 +24,7 @@ const HomePage: NextPage = () => {
       {/* Top Bar */}
       <HomeTopBar />
 
-      <CenterBody className="mt-20 mb-10 px-5">
+      <CenterBody className="mb-10 mt-20 px-5">
         {/* Title */}
         <HomePageTitle />
 

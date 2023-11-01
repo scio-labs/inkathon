@@ -1,7 +1,7 @@
 'use client'
 
-//TODO: convert to shadcn/ui
-import { Card, Spinner } from '@chakra-ui/react'
+import { Card } from '@/app/components/ui/card'
+import { Spinner } from '@/app/components/ui/spinner'
 import { useInkathon } from '@scio-labs/use-inkathon'
 import Link from 'next/link'
 import { FC, useEffect, useState } from 'react'
@@ -37,8 +37,8 @@ export const ChainInfo: FC = () => {
   // Connection Loading Indicator
   if (!api)
     return (
-      <div className="mt-8 mb-4 flex flex-col items-center justify-center space-y-3 text-center font-mono text-sm text-gray-400 sm:flex-row sm:space-x-3 sm:space-y-0">
-        <Spinner size="sm" />
+      <div className="mb-4 mt-8 flex flex-col items-center justify-center space-y-3 text-center font-mono text-sm text-gray-400 sm:flex-row sm:space-x-3 sm:space-y-0">
+        <Spinner />
         <div>
           Connecting to {activeChain?.name} ({activeChain?.rpcUrls?.[0]})
         </div>
@@ -47,15 +47,15 @@ export const ChainInfo: FC = () => {
 
   return (
     <>
-      <div className="flex grow flex-col space-y-4 max-w-[20rem]">
+      <div className="flex max-w-[20rem] grow flex-col space-y-4">
         <h2 className="text-center font-mono text-gray-400">Chain Info</h2>
 
-        <Card variant="outline" p={4} bgColor="whiteAlpha.100">
+        <Card className="rounded-md border border-white/[.16] bg-[#0d0d0d] p-4">
           {/* Metadata */}
           {Object.entries(chainInfo || {}).map(([key, value]) => (
             <div key={key} className="text-sm leading-7">
               {key}:
-              <strong className="float-right ml-6 truncate max-w-[15rem]" title={value}>
+              <strong className="float-right ml-6 max-w-[15rem] truncate" title={value}>
                 {value}
               </strong>
             </div>
@@ -100,7 +100,7 @@ export const ChainInfo: FC = () => {
           <>
             <h2 className="text-center font-mono text-red-400">Security Disclaimer</h2>
 
-            <Card variant="outline" p={4} bgColor="red.500" borderColor="red.300" fontSize={'sm'}>
+            <Card className="rounded-md border border-red-300 bg-red-500 p-2 shadow-md">
               You are interacting with un-audited mainnet contracts and risk all your funds. Never
               transfer tokens to this contract.
             </Card>
