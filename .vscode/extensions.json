@@ -9,6 +9,7 @@
     "rust-lang.rust-analyzer",
     "ink-analyzer.ink-analyzer",
     "gruntfuggly.todo-tree",
-    "mikestead.dotenv"
+    "mikestead.dotenv",
+    "bradlc.vscode-tailwindcss"
   ]
 }

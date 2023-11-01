@@ -1,3 +1,4 @@
+import { ThemeProvider } from '@/app/components/ThemeProvider'
 import { HotToastConfig } from '@/components/next/HotToastConfig'
 import { env } from '@/config/environment'
 import { Metadata } from 'next'
@@ -7,7 +8,11 @@ import RootLayoutClientProvider from './components/ClientProvider'
 import './styles/globals.css'
 
 // Google Font(s) via `next/font`
-const inconsolata = Inconsolata({ subsets: ['latin'], adjustFontFallback: false, display: 'swap' })
+const inconsolata = Inconsolata({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inconsolata',
+})
 
 export const metadata: Metadata = {
   title: 'ink!athon',
@@ -36,12 +41,14 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
-    <html lang="en">
-      <body className={inconsolata.className}>
-        <RootLayoutClientProvider>
-          {children}
-          <HotToastConfig />
-        </RootLayoutClientProvider>
+    <html lang="en" className={`${inconsolata.variable} font-sans`}>
+      <body>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
+          <RootLayoutClientProvider>
+            {children}
+            <HotToastConfig />
+          </RootLayoutClientProvider>
+        </ThemeProvider>
       </body>
     </html>
   )
