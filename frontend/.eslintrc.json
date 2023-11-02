@@ -1,7 +1,7 @@
 {
   "root": true,
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint"],
+  "plugins": ["@typescript-eslint", "check-file"],
   "extends": [
     "eslint:recommended",
     "next/core-web-vitals",
@@ -19,6 +19,12 @@
     "react-hooks/exhaustive-deps": "off",
     "react/jsx-no-target-blank": "off",
     "no-extra-boolean-cast": "off",
-    "prefer-const": "warn"
+    "prefer-const": "warn",
+    "check-file/filename-naming-convention": [
+      "warn",
+      {
+        "**/*.{js,jsx,ts,tsx}": "KEBAB_CASE"
+      }
+    ]
   }
 }

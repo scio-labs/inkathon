@@ -5,7 +5,7 @@ import { Card } from '@/app/components/ui/card'
 import { Form, FormControl, FormItem, FormLabel } from '@/app/components/ui/form'
 import { Input } from '@/app/components/ui/input'
 import { ContractIds } from '@/deployments/deployments'
-import { contractTxWithToast } from '@/utils/contractTxWithToast'
+import { contractTxWithToast } from '@/utils/contract-tx-with-toast'
 import {
   contractQuery,
   decodeOutput,

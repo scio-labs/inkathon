@@ -1,10 +1,10 @@
-import { ThemeProvider } from '@/app/components/ThemeProvider'
-import { HotToastConfig } from '@/app/components/next/HotToastConfig'
+import { HotToastConfig } from '@/app/components/next/hot-toast-config'
+import { ThemeProvider } from '@/app/components/theme-provider'
 import { env } from '@/config/environment'
 import { Metadata } from 'next'
 import { Inconsolata } from 'next/font/google'
 import { PropsWithChildren } from 'react'
-import RootLayoutClientProvider from './components/ClientProvider'
+import RootLayoutClientProvider from './components/client-provider'
 import './styles/globals.css'
 
 // Google Font(s) via `next/font`
