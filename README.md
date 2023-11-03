@@ -163,7 +163,7 @@ For general scripts the same environment variable initialization & configuration
 - Smart Contract Development: Rust, ink!, `cargo-contract`, `substrate-contracts-node`
 - Frontend: Next.js, React, TypeScript
   - Contract Interactions: `polkadot-js`, [`useInkathon`](https://github.com/scio-labs/use-inkathon) React Hooks & Utility Library (alternatively: [`useInk`](https://use.ink/frontend/getting-started))
-  - Styling: `chakra`, `tailwindcss`, `twin.macro`, `emotion`
+  - Styling: `shadcn/ui`, `tailwindcss`
   - Linting & Formatting: `eslint`, `prettier`, `simple-git-hooks`, `lint-staged`
 
 <small>Styling, linting, and formatting libraries can be fully dropped or replaced with alternatives.</small>
@@ -309,8 +309,7 @@ To fix this, you can delete the build cache at `frontend/.next`. This is current
 
 This boilerplate currently offers styling via the following options.
 
-- [Chakra UI](https://chakra-ui.com/) – Component library for quick prototyping e.g. during hackathons)
-- [twin.macro](https://github.com/ben-rogerson/twin.macro) – [Tailwindcss](https://tailwindcss.com/) within Styled Components via [Emotion](https://emotion.sh/docs/styled) (see [snippets](#snippets))
+- [shadcn/ui](https://ui.shadcn.com/) - Re-usable components built using [Radix UI](https://radix-ui.com/) and [Tailwindcss](https://tailwindcss.com/).
 - Standard (S)CSS styles via `className` and `*.module.(s)css` files.
 
 > [!IMPORTANT]  
