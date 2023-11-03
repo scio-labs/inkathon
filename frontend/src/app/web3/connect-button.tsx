@@ -10,8 +10,8 @@ import {
   DropdownMenuTrigger,
 } from '@/app/components/ui/dropdown-menu'
 import { env } from '@/config/environment'
-import { truncateHash } from '@/utils/truncate-hash'
-import { useIsSSR } from '@/utils/use-is-ssr'
+import { truncateHash } from '@/lib/utils/truncate-hash'
+import { useIsSSR } from '@/lib/utils/use-is-ssr'
 import { SupportedChainId } from '@azns/resolver-core'
 import { useResolveAddressToDomain } from '@azns/resolver-react'
 import { InjectedAccount } from '@polkadot/extension-inject/types'
