@@ -81,7 +81,7 @@ export const GreeterContractInteractions: FC = () => {
 
         <Form {...form}>
           {/* Fetched Greeting */}
-          <Card className="rounded-md border border-white/[.16] bg-[#0d0d0d] p-4">
+          <Card>
             <FormItem>
               <FormLabel className="text-base">Fetched Greeting</FormLabel>
               <FormControl>
@@ -95,8 +95,7 @@ export const GreeterContractInteractions: FC = () => {
           </Card>
 
           {/* Update Greeting */}
-          {/* {TODO: move this className to common component} */}
-          <Card className="rounded-md border border-white/[.16] bg-[#0d0d0d] p-4">
+          <Card>
             <form onSubmit={handleSubmit(updateGreeting)}>
               <div className="flex flex-col justify-end gap-2">
                 <FormItem>

@@ -50,7 +50,7 @@ export const ChainInfo: FC = () => {
       <div className="flex max-w-[20rem] grow flex-col space-y-4">
         <h2 className="text-center font-mono text-gray-400">Chain Info</h2>
 
-        <Card className="rounded-md border border-white/[.16] bg-[#0d0d0d] p-4">
+        <Card>
           {/* Metadata */}
           {Object.entries(chainInfo || {}).map(([key, value]) => (
             <div key={key} className="text-sm leading-7">
@@ -100,7 +100,7 @@ export const ChainInfo: FC = () => {
           <>
             <h2 className="text-center font-mono text-red-400">Security Disclaimer</h2>
 
-            <Card className="rounded-md border border-red-300 bg-red-500 p-2 shadow-md">
+            <Card className="border-red-300 bg-red-500 p-2 shadow-md">
               You are interacting with un-audited mainnet contracts and risk all your funds. Never
               transfer tokens to this contract.
             </Card>
