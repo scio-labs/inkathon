@@ -17,6 +17,7 @@
     "build": "pnpm run -F frontend build",
     "start": "pnpm run -F frontend start",
     "node": "pnpm run -F contracts node",
+    "type-check": "pnpm run -F '*' type-check",
     "lint": "pnpm run -F '*' lint",
     "lint:fix": "pnpm run -F '*' lint:fix",
     "lint:format": "pnpm run -F '*' lint:format",
