@@ -2,6 +2,12 @@
 
 ## 0.3.0
 
+### Minor Changes
+
+- [`64adba1`](https://github.com/scio-labs/inkathon/commit/64adba196dd98ad272bbb4a99b4f7bc7186ae385) Thanks [@wottpal](https://github.com/wottpal)! - Add Nightly Connect support for Aleph Zero, Aleph Zero Testnet, and Local Node. Checkout: https://connect.nightly.app/.
+
+## 0.3.0
+
 ### Patch Changes
 
 - Updated dependencies [[`cda19ae`](https://github.com/scio-labs/inkathon/commit/cda19aeb4107c076daeb17a455fecfbd7f373044)]:
