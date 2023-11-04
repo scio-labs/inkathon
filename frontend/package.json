@@ -37,7 +37,7 @@
     "@polkadot/types": "^10.10.1",
     "@polkadot/util": "^12.5.1",
     "@polkadot/util-crypto": "^12.5.1",
-    "@scio-labs/use-inkathon": "^0.4.1",
+    "@scio-labs/use-inkathon": "^0.4.3",
     "framer-motion": "^10.16.4",
     "next": "^13.5.6",
     "next-seo": "^6.4.0",
