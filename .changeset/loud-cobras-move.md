@@ -1,5 +1,5 @@
 ---
-'@inkathon/contracts': minor
+'@inkathon/contracts': patch
 ---
 
-Add contract deployment addresses on t0rn and rococo-contracts
+Deploy contracts & add deployment addresses for Rococo Contracts test-network.
