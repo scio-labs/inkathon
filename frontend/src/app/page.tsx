@@ -1,6 +1,6 @@
 'use client'
 
-import { CenterBody } from '@/app/components/next/center-body'
+import { CenterBody } from '@/app/components/layout/center-body'
 import { HomePageTitle } from '@/app/home/home-page-title'
 import { HomeTopBar } from '@/app/home/home-top-bar'
 import { ChainInfo } from '@/app/web3/chain-info'

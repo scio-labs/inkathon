@@ -1,4 +1,4 @@
-import { HotToastConfig } from '@/app/components/next/hot-toast-config'
+import { HotToastConfig } from '@/app/components/layout/hot-toast-config'
 import { ThemeProvider } from '@/app/components/theme-provider'
 import { env } from '@/config/environment'
 import { Metadata } from 'next'
