@@ -149,9 +149,9 @@ To replace the default `Greeter` contract or add a new one, you need to do the f
 
 ### 3. Custom Scripts
 
-Adding custom scripts is useful to interact with your contracts or test certain functionality. Therefore, just duplicate & reuse the `contracts/scripts/script.template.ts` file and run it via `pnpm run script <script-name>`.
+Adding custom scripts is useful to interact with your contracts or test certain functionality. Therefore, just duplicate & reuse the `contracts/scripts/script.template.ts` file and run it via `pnpm run script <script-name>`. This command will run the TypeScript file directly via [`tsx`](https://github.com/privatenumber/tsx).
 
-For general scripts the same environment variable initialization & configuration applies as described below in the [Deployment](#deployment) section (e.g. to change the target network).
+For general scripts, the same environment variable initialization & configuration applies as described below in the [Deployment](#deployment) section (e.g. to change the target network).
 
 ## The Stack 🥞
 
