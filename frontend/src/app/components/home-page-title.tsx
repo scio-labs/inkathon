@@ -1,11 +1,11 @@
-import { cn } from '@/lib/utils/cn'
+import { cn } from '@/utils/cn'
 import Image from 'next/image'
 import Link from 'next/link'
-import inkathonLogo from 'public/brand/inkathon-logo.png'
 import githubIcon from 'public/icons/github-button.svg'
 import sponsorIcon from 'public/icons/sponsor-button.svg'
 import telegramIcon from 'public/icons/telegram-button.svg'
 import vercelIcon from 'public/icons/vercel-button.svg'
+import inkathonLogo from 'public/images/inkathon-logo.png'
 import { AnchorHTMLAttributes, FC } from 'react'
 
 interface StyledIconLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {

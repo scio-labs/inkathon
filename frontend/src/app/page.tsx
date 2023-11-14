@@ -1,11 +1,10 @@
 'use client'
 
-import { CenterBody } from '@/app/components/layout/center-body'
-import { HomePageTitle } from '@/app/home/home-page-title'
-import { HomeTopBar } from '@/app/home/home-top-bar'
-import { ChainInfo } from '@/app/web3/chain-info'
-import { ConnectButton } from '@/app/web3/connect-button'
-import { GreeterContractInteractions } from '@/app/web3/greeter-contract-interactions'
+import { HomePageTitle } from '@/app/components/home-page-title'
+import { HomeTopBar } from '@/app/components/home-top-bar'
+import { ChainInfo } from '@/components/web3/chain-info'
+import { ConnectButton } from '@/components/web3/connect-button'
+import { GreeterContractInteractions } from '@/components/web3/greeter-contract-interactions'
 import { useInkathon } from '@scio-labs/use-inkathon'
 import type { NextPage } from 'next'
 import { useEffect } from 'react'
@@ -24,7 +23,7 @@ const HomePage: NextPage = () => {
       {/* Top Bar */}
       <HomeTopBar />
 
-      <CenterBody className="mb-10 mt-20 px-5">
+      <div className="relative mt-20 flex grow flex-col items-center justify-center px-5 pb-10">
         {/* Title */}
         <HomePageTitle />
 
@@ -38,7 +37,7 @@ const HomePage: NextPage = () => {
           {/* Greeter Read/Write Contract Interactions */}
           <GreeterContractInteractions />
         </div>
-      </CenterBody>
+      </div>
     </>
   )
 }

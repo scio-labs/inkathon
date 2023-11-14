@@ -1,11 +1,11 @@
 'use client'
 
-import { Button } from '@/app/components/ui/button'
-import { Card } from '@/app/components/ui/card'
-import { Form, FormControl, FormItem, FormLabel } from '@/app/components/ui/form'
-import { Input } from '@/app/components/ui/input'
+import { Button } from '@/components/ui/button'
+import { Card } from '@/components/ui/card'
+import { Form, FormControl, FormItem, FormLabel } from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
 import { ContractIds } from '@/deployments/deployments'
-import { contractTxWithToast } from '@/lib/utils/contract-tx-with-toast'
+import { contractTxWithToast } from '@/utils/contract-tx-with-toast'
 import {
   contractQuery,
   decodeOutput,

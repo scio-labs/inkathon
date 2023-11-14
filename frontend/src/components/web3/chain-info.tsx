@@ -1,7 +1,7 @@
 'use client'
 
-import { Card } from '@/app/components/ui/card'
-import { Spinner } from '@/app/components/ui/spinner'
+import { Card } from '@/components/ui/card'
+import { Spinner } from '@/components/ui/spinner'
 import { useInkathon } from '@scio-labs/use-inkathon'
 import Link from 'next/link'
 import { FC, useEffect, useState } from 'react'

@@ -19,12 +19,6 @@
     "react-hooks/exhaustive-deps": "off",
     "react/jsx-no-target-blank": "off",
     "no-extra-boolean-cast": "off",
-    "prefer-const": "warn",
-    "check-file/filename-naming-convention": [
-      "warn",
-      {
-        "**/*.{js,jsx,ts,tsx}": "KEBAB_CASE"
-      }
-    ]
+    "prefer-const": "warn"
   }
 }

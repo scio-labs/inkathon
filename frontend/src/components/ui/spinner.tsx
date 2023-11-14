@@ -1,4 +1,4 @@
-import { cn } from '@/lib/utils/cn'
+import { cn } from '@/utils/cn'
 import { Loader2 } from 'lucide-react'
 import { FC } from 'react'
 

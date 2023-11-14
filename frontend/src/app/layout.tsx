@@ -1,34 +1,30 @@
-import { HotToastConfig } from '@/app/components/layout/hot-toast-config'
-import { ThemeProvider } from '@/app/components/theme-provider'
+import { BaseLayout } from '@/components/layout/base-layout'
+import { HotToastConfig } from '@/components/layout/hot-toast-config'
 import { env } from '@/config/environment'
 import { Metadata } from 'next'
 import { Inconsolata } from 'next/font/google'
 import { PropsWithChildren } from 'react'
-import RootLayoutClientProvider from './components/client-provider'
-import './styles/globals.css'
+import './globals.css'
+import ClientProviders from './providers'
 
-// Google Font(s) via `next/font`
-const inconsolata = Inconsolata({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-inconsolata',
-})
+const inconsolata = Inconsolata({ subsets: ['latin'], variable: '--font-inconsolata' })
 
 export const metadata: Metadata = {
-  title: 'ink!athon',
-  description: 'Substrate-based Smart Contract & DApp Development Boilerplate',
+  title: 'ink!athon Boilerplate',
+  description: 'Full-Stack DApp Boilerplate for ink! Smart Contracts',
   metadataBase: new URL(env.url),
+  themeColor: '#000000',
   robots: env.isProduction ? 'all' : 'noindex,nofollow',
   openGraph: {
     type: 'website',
     locale: 'en',
     url: env.url,
-    siteName: 'ink!athon',
+    siteName: 'ink!athon Boilerplate',
     images: [
       {
-        url: `${env.url}/images/cover.jpg`,
-        width: 1200,
-        height: 675,
+        url: '/images/inkathon-og-banner.jpg',
+        width: 1280,
+        height: 640,
       },
     ],
   },
@@ -41,14 +37,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
-    <html lang="en" className={`${inconsolata.variable} font-sans`}>
-      <body>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
-          <RootLayoutClientProvider>
-            {children}
-            <HotToastConfig />
-          </RootLayoutClientProvider>
-        </ThemeProvider>
+    <html lang="en" className="dark">
+      <body className={inconsolata.variable}>
+        <ClientProviders>
+          <BaseLayout>{children}</BaseLayout>
+          <HotToastConfig />
+        </ClientProviders>
       </body>
     </html>
   )
