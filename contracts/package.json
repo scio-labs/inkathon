@@ -8,8 +8,7 @@
     "test": "bash test-all.sh",
     "build": "bash build-all.sh",
     "node": "substrate-contracts-node --dev --base-path ./.node-data",
-    "script:cwd": "node --no-warnings=ExperimentalWarning --loader ts-node/esm",
-    "script": "f() { node --no-warnings=ExperimentalWarning --loader ts-node/esm ./scripts/$1; }; f \"$@\"",
+    "script": "f() { tsx ./scripts/$1; }; f \"$@\"",
     "deploy": "pnpm run script deploy",
     "contracts-ui": "open https://contracts-ui.substrate.io/?rpc=ws://127.0.0.1:9944",
     "explorer-ui": "open https://polkadot.js.org/apps/#/explorer?rpc=ws://127.0.0.1:9944",
@@ -33,7 +32,7 @@
     "dotenv": "^16.3.1",
     "eslint": "^8.53.0",
     "eslint-config-prettier": "^9.0.0",
-    "ts-node": "^10.9.1",
+    "tsx": "^4.1.2",
     "typescript": "^5.2.2"
   }
 }
