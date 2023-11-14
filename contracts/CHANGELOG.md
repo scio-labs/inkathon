@@ -1,5 +1,11 @@
 # @inkathon/contracts
 
+## 0.3.2
+
+### Patch Changes
+
+- [#39](https://github.com/scio-labs/inkathon/pull/39) [`47aed1b`](https://github.com/scio-labs/inkathon/commit/47aed1b722138bd6fca2883337151d3c0b77e4a3) Thanks [@ical10](https://github.com/ical10)! - Deploy contracts & add deployment addresses for Rococo Contracts test-network.
+
 ## 0.3.1
 
 ### Patch Changes
