@@ -1,5 +1,11 @@
 # @inkathon/contracts
 
+## 0.3.1
+
+### Patch Changes
+
+- [`e73d9b8`](https://github.com/scio-labs/inkathon/commit/e73d9b86a4299702c59538ac43612b9977d479be) Thanks [@wottpal](https://github.com/wottpal)! - Replace `ts-node` with `tsx` (https://github.com/privatenumber/tsx) for less-verbose TypeScript script execution.
+
 ## 0.3.0
 
 ### Minor Changes
