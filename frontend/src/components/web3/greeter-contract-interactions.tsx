@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import { Card } from '@/components/ui/card'
+import { Card, CardContent } from '@/components/ui/card'
 import { Form, FormControl, FormItem, FormLabel } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { ContractIds } from '@/deployments/deployments'
@@ -82,44 +82,43 @@ export const GreeterContractInteractions: FC = () => {
         <Form {...form}>
           {/* Fetched Greeting */}
           <Card>
-            <FormItem>
-              <FormLabel className="text-base">Fetched Greeting</FormLabel>
-              <FormControl>
-                <Input
-                  className="border-white/[.16]"
-                  placeholder={fetchIsLoading || !contract ? 'Loading…' : greeterMessage}
-                  disabled={true}
-                />
-              </FormControl>
-            </FormItem>
+            <CardContent className="pt-6">
+              <FormItem>
+                <FormLabel className="text-base">Fetched Greeting</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder={fetchIsLoading || !contract ? 'Loading…' : greeterMessage}
+                    disabled={true}
+                  />
+                </FormControl>
+              </FormItem>
+            </CardContent>
           </Card>
 
           {/* Update Greeting */}
           <Card>
-            <form onSubmit={handleSubmit(updateGreeting)}>
-              <div className="flex flex-col justify-end gap-2">
-                <FormItem>
-                  <FormLabel className="text-base">Update Greeting</FormLabel>
-                  <FormControl>
-                    <div className="flex gap-2">
-                      <Input
-                        className="border-white bg-inherit"
-                        disabled={updateIsLoading}
-                        {...register('newMessage')}
-                      />
-                      <Button
-                        className="bg-purple-200 font-bold hover:bg-purple-300"
-                        disabled={fetchIsLoading || updateIsLoading}
-                        isLoading={updateIsLoading}
-                        type="submit"
-                      >
-                        Submit
-                      </Button>
-                    </div>
-                  </FormControl>
-                </FormItem>
-              </div>
-            </form>
+            <CardContent className="pt-6">
+              <form onSubmit={handleSubmit(updateGreeting)}>
+                <div className="flex flex-col justify-end gap-2">
+                  <FormItem>
+                    <FormLabel className="text-base">Update Greeting</FormLabel>
+                    <FormControl>
+                      <div className="flex gap-2">
+                        <Input disabled={updateIsLoading} {...register('newMessage')} />
+                        <Button
+                          className="bg-primary font-bold"
+                          disabled={fetchIsLoading || updateIsLoading}
+                          isLoading={updateIsLoading}
+                          type="submit"
+                        >
+                          Submit
+                        </Button>
+                      </div>
+                    </FormControl>
+                  </FormItem>
+                </div>
+              </form>
+            </CardContent>
           </Card>
         </Form>
 

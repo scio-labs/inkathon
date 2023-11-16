@@ -64,7 +64,7 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button
-            className="group h-12 rounded-2xl bg-purple-200 px-4 py-3 font-bold text-background hover:bg-purple-300 aria-expanded:bg-purple-400"
+            className="group h-12 rounded-2xl bg-primary px-4 py-3 font-bold text-foreground"
             isLoading={isConnecting}
             disabled={isConnecting}
             translate="no"
@@ -73,14 +73,13 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
             <RiArrowDownSLine size={20} aria-hidden="true" />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="rounded-2xl border-white/30 bg-black/90">
+        <DropdownMenuContent>
           {!isSSR &&
             !activeAccount &&
             browserWallets.map((w) =>
               isWalletInstalled(w) ? (
                 <DropdownMenuItem
                   key={w.id}
-                  className="bg-transparent hover:bg-gray-800 focus:bg-gray-800"
                   onClick={() => {
                     connect?.(undefined, w)
                   }}
@@ -88,10 +87,7 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
                   {w.name}
                 </DropdownMenuItem>
               ) : (
-                <DropdownMenuItem
-                  key={w.id}
-                  className="bg-transparent opacity-50 hover:bg-gray-800 hover:no-underline hover:opacity-70 focus:bg-gray-800"
-                >
+                <DropdownMenuItem key={w.id} className="opacity-50">
                   <Link href={w.urls.website}>
                     <div className="align-center flex justify-start gap-2">
                       <p>{w.name}</p>
@@ -111,7 +107,7 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
     <div className="flex select-none gap-4">
       {/* {Account Balance} */}
       {balanceFormatted !== undefined && (
-        <div className="pointer-events-none flex items-center justify-center rounded-2xl bg-white/[0.08] px-4 py-3 font-mono text-base font-bold text-white">
+        <div className="flex items-center justify-center rounded-2xl bg-gray-900 px-4 py-3 font-mono text-base font-bold text-foreground">
           {balanceFormatted}
         </div>
       )}
@@ -120,13 +116,13 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
       <DropdownMenu>
         <DropdownMenuTrigger
           asChild
-          className="rounded-2xl bg-white/[0.08] px-4 py-6 font-bold text-foreground hover:bg-white/[0.1] aria-expanded:bg-white/[0.12]"
+          className="rounded-2xl bg-gray-900 px-4 py-6 font-bold text-foreground"
         >
           <Button className="group" translate="no">
             <div className="flex items-center gap-2">
               <div className="flex flex-col items-center justify-center">
                 <AccountName account={activeAccount} />
-                <span className="text-xs font-normal opacity-75">
+                <span className="text-xs font-normal">
                   {truncateHash(
                     encodeAddress(activeAccount.address, activeChain?.ss58Prefix || 42),
                     8,
@@ -137,15 +133,12 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
             </div>
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="no-scrollbar max-h-[40vh] overflow-scroll rounded-2xl border-white/[.16] bg-black/[.92]">
+        <DropdownMenuContent className="no-scrollbar max-h-[40vh] overflow-scroll rounded-2xl">
           {/* Supported Chains */}
           {supportedChains.map((chain) => (
             <DropdownMenuItem
               disabled={chain.network === activeChain?.network}
               key={chain.network}
-              className={
-                'cursor-pointer bg-transparent hover:bg-gray-800 focus:bg-gray-800 disabled:cursor-not-allowed disabled:bg-opacity-50'
-              }
               onClick={async () => {
                 await switchActiveChain?.(chain)
                 toast.success(`Switched to ${chain.name}`)
@@ -167,7 +160,6 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
             return (
               <DropdownMenuItem
                 key={encodedAddress}
-                className="cursor-pointer bg-transparent hover:bg-gray-800 focus:bg-gray-800 disabled:cursor-not-allowed disabled:bg-opacity-50"
                 disabled={acc.address === activeAccount?.address}
                 onClick={() => {
                   setActiveAccount?.(acc)
@@ -186,10 +178,7 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
 
           {/* Disconnect Button */}
           <DropdownMenuSeparator />
-          <DropdownMenuItem
-            className="bg-transparent hover:bg-gray-800 focus:bg-gray-800"
-            onClick={() => disconnect?.()}
-          >
+          <DropdownMenuItem onClick={() => disconnect?.()}>
             <div className="group flex gap-2">
               <AiOutlineDisconnect size={18} />
               Disconnect

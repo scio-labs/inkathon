@@ -1,6 +1,6 @@
 'use client'
 
-import { Card } from '@/components/ui/card'
+import { Card, CardContent, CardFooter } from '@/components/ui/card'
 import { Spinner } from '@/components/ui/spinner'
 import { useInkathon } from '@scio-labs/use-inkathon'
 import Link from 'next/link'
@@ -51,17 +51,18 @@ export const ChainInfo: FC = () => {
         <h2 className="text-center font-mono text-gray-400">Chain Info</h2>
 
         <Card>
-          {/* Metadata */}
-          {Object.entries(chainInfo || {}).map(([key, value]) => (
-            <div key={key} className="text-sm leading-7">
-              {key}:
-              <strong className="float-right ml-6 max-w-[15rem] truncate" title={value}>
-                {value}
-              </strong>
-            </div>
-          ))}
-
-          <div className="mt-3 flex items-center justify-center space-x-3">
+          <CardContent className="pb-3 pt-6">
+            {/* Metadata */}
+            {Object.entries(chainInfo || {}).map(([key, value]) => (
+              <div key={key} className="text-sm leading-7">
+                {key}:
+                <strong className="float-right ml-6 max-w-[15rem] truncate" title={value}>
+                  {value}
+                </strong>
+              </div>
+            ))}
+          </CardContent>
+          <CardFooter className="flex items-center justify-center space-x-3">
             {/* Explorer Link */}
             {!!activeChain?.explorerUrls && !!Object.keys(activeChain.explorerUrls)?.length && (
               <Link
@@ -92,7 +93,7 @@ export const ChainInfo: FC = () => {
                 Contracts UI <HiOutlineExternalLink />
               </Link>
             )}
-          </div>
+          </CardFooter>
         </Card>
 
         {/* Mainnet Security Disclaimer */}
