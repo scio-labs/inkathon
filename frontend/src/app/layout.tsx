@@ -1,7 +1,7 @@
 import { BaseLayout } from '@/components/layout/base-layout'
 import { HotToastConfig } from '@/components/layout/hot-toast-config'
 import { env } from '@/config/environment'
-import { Metadata } from 'next'
+import { Metadata, Viewport } from 'next'
 import { Inconsolata } from 'next/font/google'
 import { PropsWithChildren } from 'react'
 import './globals.css'
@@ -9,11 +9,15 @@ import ClientProviders from './providers'
 
 const inconsolata = Inconsolata({ subsets: ['latin'], variable: '--font-inconsolata' })
 
+export const viewport: Viewport = {
+  themeColor: '#000000',
+  colorScheme: 'dark',
+}
+
 export const metadata: Metadata = {
   title: 'ink!athon Boilerplate',
   description: 'Full-Stack DApp Boilerplate for ink! Smart Contracts',
   metadataBase: new URL(env.url),
-  themeColor: '#000000',
   robots: env.isProduction ? 'all' : 'noindex,nofollow',
   openGraph: {
     type: 'website',
