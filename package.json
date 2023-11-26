@@ -9,7 +9,7 @@
     "contracts"
   ],
   "engines": {
-    "node": ">=18",
+    "node": ">=18 <=20",
     "pnpm": "8"
   },
   "scripts": {
