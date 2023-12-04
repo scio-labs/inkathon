@@ -1,5 +1,7 @@
 'use client'
 
+import { FC, useEffect, useState } from 'react'
+
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Form, FormControl, FormItem, FormLabel } from '@/components/ui/form'
@@ -12,7 +14,6 @@ import {
   useInkathon,
   useRegisteredContract,
 } from '@scio-labs/use-inkathon'
-import { FC, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 
@@ -76,7 +77,7 @@ export const GreeterContractInteractions: FC = () => {
 
   return (
     <>
-      <div className="flex max-w-[20rem] grow flex-col space-y-4">
+      <div className="flex max-w-[22rem] grow flex-col gap-4">
         <h2 className="text-center font-mono text-gray-400">Greeter Smart Contract</h2>
 
         <Form {...form}>

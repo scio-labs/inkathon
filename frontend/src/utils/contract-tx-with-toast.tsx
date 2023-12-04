@@ -1,11 +1,12 @@
+import Link from 'next/link'
+import { FC } from 'react'
+
 import {
   ContractTxResult,
   SubstrateExplorer,
   contractTx,
   useInkathon,
 } from '@scio-labs/use-inkathon'
-import Link from 'next/link'
-import { FC } from 'react'
 import { toast } from 'react-hot-toast'
 
 type ContractTxWithToastParams = Parameters<typeof contractTx>

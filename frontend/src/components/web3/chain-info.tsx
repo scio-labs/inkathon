@@ -1,10 +1,11 @@
 'use client'
 
+import Link from 'next/link'
+import { FC, useEffect, useState } from 'react'
+
 import { Card, CardContent, CardFooter } from '@/components/ui/card'
 import { Spinner } from '@/components/ui/spinner'
 import { useInkathon } from '@scio-labs/use-inkathon'
-import Link from 'next/link'
-import { FC, useEffect, useState } from 'react'
 import { HiOutlineExternalLink } from 'react-icons/hi'
 
 export const ChainInfo: FC = () => {
@@ -47,7 +48,7 @@ export const ChainInfo: FC = () => {
 
   return (
     <>
-      <div className="flex max-w-[20rem] grow flex-col space-y-4">
+      <div className="flex max-w-[22rem] grow flex-col gap-4">
         <h2 className="text-center font-mono text-gray-400">Chain Info</h2>
 
         <Card>

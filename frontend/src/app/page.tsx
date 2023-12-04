@@ -1,16 +1,15 @@
 'use client'
 
+import { useEffect } from 'react'
+
 import { HomePageTitle } from '@/app/components/home-page-title'
-import { HomeTopBar } from '@/app/components/home-top-bar'
 import { ChainInfo } from '@/components/web3/chain-info'
 import { ConnectButton } from '@/components/web3/connect-button'
 import { GreeterContractInteractions } from '@/components/web3/greeter-contract-interactions'
 import { useInkathon } from '@scio-labs/use-inkathon'
-import type { NextPage } from 'next'
-import { useEffect } from 'react'
 import { toast } from 'react-hot-toast'
 
-const HomePage: NextPage = () => {
+export default function HomePage() {
   // Display `useInkathon` error messages (optional)
   const { error } = useInkathon()
   useEffect(() => {
@@ -20,17 +19,14 @@ const HomePage: NextPage = () => {
 
   return (
     <>
-      {/* Top Bar */}
-      <HomeTopBar />
-
-      <div className="relative mt-20 flex grow flex-col items-center justify-center px-5 pb-10">
+      <div className="container relative flex grow flex-col items-center justify-center py-10">
         {/* Title */}
         <HomePageTitle />
 
         {/* Connect Wallet Button */}
         <ConnectButton />
 
-        <div className="mt-10 flex w-full flex-wrap items-start justify-center gap-4">
+        <div className="mt-12 flex w-full flex-wrap items-start justify-center gap-4">
           {/* Chain Metadata Information */}
           <ChainInfo />
 
@@ -41,5 +37,3 @@ const HomePage: NextPage = () => {
     </>
   )
 }
-
-export default HomePage

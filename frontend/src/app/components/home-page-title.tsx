@@ -1,12 +1,12 @@
-import { cn } from '@/utils/cn'
 import Image from 'next/image'
 import Link from 'next/link'
+import { AnchorHTMLAttributes, FC } from 'react'
+
+import { cn } from '@/utils/cn'
 import githubIcon from 'public/icons/github-button.svg'
-import sponsorIcon from 'public/icons/sponsor-button.svg'
 import telegramIcon from 'public/icons/telegram-button.svg'
 import vercelIcon from 'public/icons/vercel-button.svg'
 import inkathonLogo from 'public/images/inkathon-logo.png'
-import { AnchorHTMLAttributes, FC } from 'react'
 
 interface StyledIconLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   href: string
@@ -27,10 +27,9 @@ const StyledIconLink: React.FC<StyledIconLinkProps> = ({ className, children, ..
 
 export const HomePageTitle: FC = () => {
   const title = 'ink!athon'
-  const desc = 'Full-Stack DApp Boilerplate for Substrate and ink! Smart Contracts'
+  const desc = 'Full-Stack DApp Boilerplate for ink! Smart Contracts'
   const githubHref = 'https://github.com/scio-labs/inkathon'
   const deployHref = 'https://github.com/scio-labs/inkathon#deployment'
-  const sponsorHref = 'mailto:hello@scio.xyz'
   const telegramHref = 'https://t.me/inkathon'
 
   return (
@@ -44,16 +43,17 @@ export const HomePageTitle: FC = () => {
           className="group flex cursor-pointer items-center gap-4 rounded-3xl px-3.5 py-1.5 transition-all hover:bg-gray-900"
         >
           <Image src={inkathonLogo} priority width={60} alt="ink!athon Logo" />
-          <h1 className="text-[2.5rem] font-black">{title}</h1>
+          <h1 className="text-[2.5rem] font-black tracking-tighter">{title}</h1>
         </Link>
 
-        {/* Tagline & Links */}
-        <p className="mt-2 text-sm text-gray-600">
-          By{' '}
+        {/* Tagline & Lincks */}
+        <p className="mb-2 mt-4 text-gray-400">{desc}</p>
+        <p className="mb-8 text-xs text-gray-600">
+          Built by{' '}
           <a
             href="https://zoma.dev"
             target="_blank"
-            className="font-semibold text-gray-500 hover:text-gray-100"
+            className="font-semibold text-gray-600 hover:text-gray-300"
           >
             Dennis Zoma
           </a>{' '}
@@ -61,15 +61,23 @@ export const HomePageTitle: FC = () => {
           <a
             href="https://scio.xyz"
             target="_blank"
-            className="font-semibold text-gray-500 hover:text-gray-100"
+            className="font-semibold text-gray-600 hover:text-gray-300"
           >
             Scio Labs
           </a>
+          . Supported by{' '}
+          <a
+            href="https://alephzero.org"
+            target="_blank"
+            className="font-semibold text-gray-600 hover:text-gray-300"
+          >
+            Aleph Zero
+          </a>
+          .
         </p>
-        <p className="mb-6 mt-4 text-gray-400">{desc}</p>
 
         {/* Github & Vercel Buttons */}
-        <div className="flex space-x-2">
+        <div className="flex select-none space-x-2">
           <StyledIconLink href={githubHref} target="_blank">
             <Image src={githubIcon} priority height={32} alt="Github Repository" />
           </StyledIconLink>
@@ -79,12 +87,9 @@ export const HomePageTitle: FC = () => {
           <StyledIconLink href={telegramHref} target="_blank">
             <Image src={telegramIcon} priority height={32} alt="Telegram Group" />
           </StyledIconLink>
-          <StyledIconLink href={sponsorHref} target="_blank">
-            <Image src={sponsorIcon} priority height={32} alt="Sponsor the Project" />
-          </StyledIconLink>
         </div>
 
-        <div className="my-14 h-[2px] w-14 bg-gray-800" />
+        <div className="my-14 h-[1px] w-[5rem] max-w-full bg-gray-800" />
       </div>
     </>
   )

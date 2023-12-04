@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { FC } from 'react'
+
 import { HiOutlineExternalLink } from 'react-icons/hi'
 
 export const HomeTopBar: FC = () => {

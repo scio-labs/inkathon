@@ -1,7 +1,8 @@
 import { FC } from 'react'
+
 import { Toaster } from 'react-hot-toast'
 
-export const HotToastConfig: FC = () => {
+export const ToastConfig: FC = () => {
   return (
     <Toaster
       containerStyle={{
@@ -23,7 +24,10 @@ export const HotToastConfig: FC = () => {
           padding: '0.5rem 0.75rem',
         },
         success: {
-          duration: 5000,
+          duration: 6000,
+        },
+        error: {
+          duration: 6000,
         },
       }}
     />

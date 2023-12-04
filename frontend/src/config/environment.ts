@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-
 import { getSupportedChains } from './get-supported-chains'
 import { getURL } from './get-url'
 

@@ -1,5 +1,8 @@
 'use client'
+
+import Image from 'next/image'
 import Link from 'next/link'
+import { FC, useMemo, useState } from 'react'
 
 import { Button } from '@/components/ui/button'
 import {
@@ -11,7 +14,6 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { env } from '@/config/environment'
 import { truncateHash } from '@/utils/truncate-hash'
-import { useIsSSR } from '@/utils/use-is-ssr'
 import { SupportedChainId } from '@azns/resolver-core'
 import { useResolveAddressToDomain } from '@azns/resolver-react'
 import { InjectedAccount } from '@polkadot/extension-inject/types'
@@ -25,13 +27,14 @@ import {
   useBalance,
   useInkathon,
 } from '@scio-labs/use-inkathon'
-import Image from 'next/image'
+import { AlertOctagon } from 'lucide-react'
 import aznsIconSvg from 'public/icons/azns-icon.svg'
-import { FC, useMemo, useState } from 'react'
 import toast from 'react-hot-toast'
 import { AiOutlineCheckCircle, AiOutlineDisconnect } from 'react-icons/ai'
 import { FiChevronDown, FiExternalLink } from 'react-icons/fi'
 import { RiArrowDownSLine } from 'react-icons/ri'
+
+import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip'
 
 export interface ConnectButtonProps {}
 export const ConnectButton: FC<ConnectButtonProps> = () => {
@@ -45,7 +48,7 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
     accounts,
     setActiveAccount,
   } = useInkathon()
-  const { balanceFormatted } = useBalance(activeAccount?.address, true, {
+  const { reducibleBalance, reducibleBalanceFormatted } = useBalance(activeAccount?.address, true, {
     forceUnit: false,
     fixedDecimals: 2,
     removeTrailingZeros: true,
@@ -53,10 +56,16 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
   const [supportedChains] = useState(
     env.supportedChains.map((networkId) => getSubstrateChain(networkId) as SubstrateChain),
   )
-  const [browserWallets] = useState(
-    allSubstrateWallets.filter((w) => w.platforms.includes(SubstrateWalletPlatform.Browser)),
-  )
-  const isSSR = useIsSSR()
+
+  // Sort installed wallets first
+  const [browserWallets] = useState([
+    ...allSubstrateWallets.filter(
+      (w) => w.platforms.includes(SubstrateWalletPlatform.Browser) && isWalletInstalled(w),
+    ),
+    ...allSubstrateWallets.filter(
+      (w) => w.platforms.includes(SubstrateWalletPlatform.Browser) && !isWalletInstalled(w),
+    ),
+  ])
 
   // Connect Button
   if (!activeAccount)
@@ -64,7 +73,7 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button
-            className="group h-12 rounded-2xl bg-primary px-4 py-3 font-bold text-foreground"
+            className="h-12 min-w-[14rem] gap-2 rounded-2xl border border-white/10 bg-primary px-4 py-3 font-bold text-foreground"
             isLoading={isConnecting}
             disabled={isConnecting}
             translate="no"
@@ -73,13 +82,13 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
             <RiArrowDownSLine size={20} aria-hidden="true" />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent>
-          {!isSSR &&
-            !activeAccount &&
+        <DropdownMenuContent className="min-w-[14rem]">
+          {!activeAccount &&
             browserWallets.map((w) =>
               isWalletInstalled(w) ? (
                 <DropdownMenuItem
                   key={w.id}
+                  className="cursor-pointer"
                   onClick={() => {
                     connect?.(undefined, w)
                   }}
@@ -104,22 +113,15 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
 
   // Account Menu & Disconnect Button
   return (
-    <div className="flex select-none gap-4">
-      {/* {Account Balance} */}
-      {balanceFormatted !== undefined && (
-        <div className="flex items-center justify-center rounded-2xl bg-gray-900 px-4 py-3 font-mono text-base font-bold text-foreground">
-          {balanceFormatted}
-        </div>
-      )}
-
-      {/* Account Name, Address, and AZNS-Domain (if assigned) */}
+    <div className="flex select-none flex-wrap items-stretch justify-center gap-4">
+      {/* Account Name, Address, and AZERO.ID-Domain (if assigned) */}
       <DropdownMenu>
         <DropdownMenuTrigger
           asChild
           className="rounded-2xl bg-gray-900 px-4 py-6 font-bold text-foreground"
         >
-          <Button className="group" translate="no">
-            <div className="flex items-center gap-2">
+          <Button className="min-w-[14rem] border" translate="no">
+            <div className="flex items-center justify-between gap-2">
               <div className="flex flex-col items-center justify-center">
                 <AccountName account={activeAccount} />
                 <span className="text-xs font-normal">
@@ -129,24 +131,30 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
                   )}
                 </span>
               </div>
-              <FiChevronDown size={22} aria-hidden="true" />
+              <FiChevronDown className="shrink-0" size={22} aria-hidden="true" />
             </div>
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="no-scrollbar max-h-[40vh] overflow-scroll rounded-2xl">
+        <DropdownMenuContent
+          align="end"
+          className="no-scrollbar max-h-[40vh] min-w-[14rem] overflow-scroll rounded-2xl"
+        >
           {/* Supported Chains */}
           {supportedChains.map((chain) => (
             <DropdownMenuItem
               disabled={chain.network === activeChain?.network}
+              className={chain.network !== activeChain?.network ? 'cursor-pointer' : ''}
               key={chain.network}
               onClick={async () => {
                 await switchActiveChain?.(chain)
                 toast.success(`Switched to ${chain.name}`)
               }}
             >
-              <div className="group flex flex-row gap-2">
+              <div className="flex w-full items-center justify-between gap-2">
                 <p>{chain.name}</p>
-                {chain.network === activeChain?.network && <AiOutlineCheckCircle size={16} />}
+                {chain.network === activeChain?.network && (
+                  <AiOutlineCheckCircle className="shrink-0" size={15} />
+                )}
               </div>
             </DropdownMenuItem>
           ))}
@@ -161,16 +169,19 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
               <DropdownMenuItem
                 key={encodedAddress}
                 disabled={acc.address === activeAccount?.address}
+                className={acc.address !== activeAccount?.address ? 'cursor-pointer' : ''}
                 onClick={() => {
                   setActiveAccount?.(acc)
                 }}
               >
-                <div className="group">
-                  <div className="flex flex-row gap-2">
+                <div className="flex w-full items-center justify-between">
+                  <div>
                     <AccountName account={acc} />
-                    {acc.address === activeAccount?.address && <AiOutlineCheckCircle size={16} />}
+                    <p className="text-xs">{truncatedEncodedAddress}</p>
                   </div>
-                  <p className="text-xs">{truncatedEncodedAddress}</p>
+                  {acc.address === activeAccount?.address && (
+                    <AiOutlineCheckCircle className="shrink-0" size={15} />
+                  )}
                 </div>
               </DropdownMenuItem>
             )
@@ -178,14 +189,29 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
 
           {/* Disconnect Button */}
           <DropdownMenuSeparator />
-          <DropdownMenuItem onClick={() => disconnect?.()}>
-            <div className="group flex gap-2">
+          <DropdownMenuItem className="cursor-pointer" onClick={() => disconnect?.()}>
+            <div className="flex gap-2">
               <AiOutlineDisconnect size={18} />
               Disconnect
             </div>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
+
+      {/* Account Balance */}
+      {reducibleBalanceFormatted !== undefined && (
+        <div className="flex min-w-[10rem] items-center justify-center gap-2 rounded-2xl border bg-gray-900 px-4 py-3 font-mono text-sm font-bold text-foreground">
+          {reducibleBalanceFormatted}
+          {(!reducibleBalance || reducibleBalance?.isZero()) && (
+            <Tooltip>
+              <TooltipTrigger className="cursor-help">
+                <AlertOctagon size={16} className="text-warning" />
+              </TooltipTrigger>
+              <TooltipContent>No balance to pay fees</TooltipContent>
+            </Tooltip>
+          )}
+        </div>
+      )}
     </div>
   )
 }
@@ -205,9 +231,9 @@ export const AccountName: FC<AccountNameProps> = ({ account, ...rest }) => {
   )
 
   return (
-    <div className="flex items-baseline gap-2 font-mono text-base font-bold uppercase" {...rest}>
+    <div className="flex items-center gap-2 font-mono text-sm font-bold uppercase" {...rest}>
       {primaryDomain || account.name}
-      {!!primaryDomain && <Image src={aznsIconSvg} alt="AZERO.ID Logo" width={11} height={11} />}
+      {!!primaryDomain && <Image src={aznsIconSvg} alt="AZERO.ID Logo" width={13} height={13} />}
     </div>
   )
 }
