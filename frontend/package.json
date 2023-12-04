@@ -1,7 +1,7 @@
 {
   "name": "@inkathon/frontend",
   "private": true,
-  "version": "0.4.0",
+  "version": "0.4.1",
   "scripts": {
     "postinstall": "bash postinstall.sh",
     "dev": "NODE_ENV=development POLKADOTJS_DISABLE_ESM_CJS_WARNING_FLAG=1 next dev",
