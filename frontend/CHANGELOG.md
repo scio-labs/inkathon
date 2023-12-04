@@ -1,5 +1,19 @@
 # @inkathon/frontend
 
+## 0.4.0
+
+### Minor Changes
+
+- [#42](https://github.com/scio-labs/inkathon/pull/42) [`0533391`](https://github.com/scio-labs/inkathon/commit/0533391ac6f9b953ba0cb231af8b3037e80bcbab) Thanks [@ical10](https://github.com/ical10)! - Update project default to Node 20.
+
+- [#42](https://github.com/scio-labs/inkathon/pull/42) [`bc721ea`](https://github.com/scio-labs/inkathon/commit/bc721ea638a33d5d9d993eecddfd2a6f3ece1bfe) Thanks [@ical10](https://github.com/ical10)! - - Migrate the current pages directory to the Next.js 13 app directory.
+  - Migrate to `shadcn/ui` components and vanilla tailwind.
+
+### Patch Changes
+
+- Updated dependencies [[`0533391`](https://github.com/scio-labs/inkathon/commit/0533391ac6f9b953ba0cb231af8b3037e80bcbab)]:
+  - @inkathon/contracts@0.4.0
+
 ## 0.3.2
 
 ### Patch Changes

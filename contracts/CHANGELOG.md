@@ -1,5 +1,11 @@
 # @inkathon/contracts
 
+## 0.4.0
+
+### Minor Changes
+
+- [#42](https://github.com/scio-labs/inkathon/pull/42) [`0533391`](https://github.com/scio-labs/inkathon/commit/0533391ac6f9b953ba0cb231af8b3037e80bcbab) Thanks [@ical10](https://github.com/ical10)! - Update project default to Node 20.
+
 ## 0.3.2
 
 ### Patch Changes
