@@ -32,6 +32,12 @@
     "[javascriptreact][typescriptreact][javascript][typescript][markdown][html][css][scss][sass][json][jsonc][yaml]": {
       "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
+    "[javascriptreact][typescriptreact][javascript][typescript]": {
+      "tailwindCSS.experimental.classRegex": [
+        ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+        ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+      ]
+    },
     "typescript.updateImportsOnFileMove.enabled": "always",
     "javascript.updateImportsOnFileMove.enabled": "always",
     "[toml]": {

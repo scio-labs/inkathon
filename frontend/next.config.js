@@ -5,7 +5,8 @@
 /**
  * @type {import('next').NextConfig}
  **/
-let nextConfig = {
+const nextConfig = {
+  reactStrictMode: true,
   // Fix for warnings about cjs/esm package duplication
   // See: https://github.com/polkadot-js/api/issues/5636
   transpilePackages: [
@@ -20,8 +21,5 @@ let nextConfig = {
     '@polkadot/util-crypto',
   ],
 }
-
-const withTwin = require('./withTwin.js')
-nextConfig = withTwin(nextConfig)
 
 module.exports = nextConfig

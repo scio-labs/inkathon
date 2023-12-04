@@ -2,13 +2,13 @@
   "recommendations": [
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
-    "bradlc.vscode-tailwindcss",
-    "lightyen.tailwindcss-intellisense-twin",
     "wayou.vscode-todo-highlight",
     "tamasfe.even-better-toml",
     "rust-lang.rust-analyzer",
     "ink-analyzer.ink-analyzer",
     "gruntfuggly.todo-tree",
-    "mikestead.dotenv"
+    "mikestead.dotenv",
+    "bradlc.vscode-tailwindcss",
+    "zoma.vscode-auto-open-workspace"
   ]
 }
