@@ -161,7 +161,7 @@ For general scripts, the same environment variable initialization & configuratio
 - Monorepo Workspace with `contracts/` and `frontend/` directories as packages.
 - Package Manager: `pnpm` or `yarn@stable` (Read more in the [FAQs](#faqs--troubleshooting) section below)
 - Smart Contract Development: Rust, ink!, `cargo-contract`, `substrate-contracts-node`
-- Frontend: Next.js, React, TypeScript
+- Frontend: Next.js (app-dir), React, TypeScript
   - Contract Interactions: `polkadot-js`, [`useInkathon`](https://github.com/scio-labs/use-inkathon) React Hooks & Utility Library (alternatively: [`useInk`](https://use.ink/frontend/getting-started))
   - Styling: `shadcn/ui`, `tailwindcss`
   - Linting & Formatting: `eslint`, `prettier`, `simple-git-hooks`, `lint-staged`
@@ -259,18 +259,18 @@ Additionally, the VSCode plugins listed below are recommended as they can be ver
 <details>
 <summary><strong>All Recommended Plugins</strong></summary>
 
-| Plugin Name                                                                                                                            | Description                                  |
-| -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
-| [`dbaeumer.vscode-eslint`](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)                                 | Adds ESLint editor support.                  |
-| [`esbenp.prettier-vscode`](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)                                 | Adds Prettier editor support.                |
-| [`bradlc.vscode-tailwindcss`](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)                           | Adds tailwindcss editor support.             |
-| [`lightyen.tailwindcss-intellisense-twin`](https://marketplace.visualstudio.com/items?itemName=lightyen.tailwindcss-intellisense-twin) | Adds twin.macro editor support.              |
-| [`rust-lang.rust-analyzer`](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)                               | Adds Rust language support.                  |
-| [`ink-analyzer.ink-analyzer`](https://marketplace.visualstudio.com/items?itemName=ink-analyzer.ink-analyzer)                           | Adds ink! language support.                  |
-| [`tamasfe.even-better-toml`](https://marketplace.visualstudio.com/items?itemName=tamasfe.even-better-toml)                             | Adds `.toml` file support.                   |
-| [`gruntfuggly.todo-tree`](https://marketplace.visualstudio.com/items?itemName=gruntfuggly.todo-tree)                                   | Lists all `TODO` comments in your workspace. |
-| [`wayou.vscode-todo-highlight`](https://marketplace.visualstudio.com/items?itemName=wayou.vscode-todo-highlight)                       | Lists all `TODO` comments in your workspace. |
-| [`mikestead.dotenv`](https://marketplace.visualstudio.com/items?itemName=mikestead.dotenv)                                             | Adds syntax highlighting for `.env` files.   |
+| Plugin Name                                                                                                              | Description                                   |
+| ------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------- |
+| [`dbaeumer.vscode-eslint`](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)                   | Adds ESLint editor support.                   |
+| [`esbenp.prettier-vscode`](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)                   | Adds Prettier editor support.                 |
+| [`bradlc.vscode-tailwindcss`](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)             | Adds tailwindcss editor support.              |
+| [`rust-lang.rust-analyzer`](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)                 | Adds Rust language support.                   |
+| [`ink-analyzer.ink-analyzer`](https://marketplace.visualstudio.com/items?itemName=ink-analyzer.ink-analyzer)             | Adds ink! language support.                   |
+| [`tamasfe.even-better-toml`](https://marketplace.visualstudio.com/items?itemName=tamasfe.even-better-toml)               | Adds `.toml` file support.                    |
+| [`gruntfuggly.todo-tree`](https://marketplace.visualstudio.com/items?itemName=gruntfuggly.todo-tree)                     | Lists all `TODO` comments in your workspace.  |
+| [`wayou.vscode-todo-highlight`](https://marketplace.visualstudio.com/items?itemName=wayou.vscode-todo-highlight)         | Highlights `TODO` comments in your workspace. |
+| [`mikestead.dotenv`](https://marketplace.visualstudio.com/items?itemName=mikestead.dotenv)                               | Adds syntax highlighting for `.env` files.    |
+| [`zoma.vscode-auto-open-workspace`](https://marketplace.visualstudio.com/items?itemName=zoma.vscode-auto-open-workspace) | Auto-opens `*.code-workspace` files.          |
 
 </details>
 
@@ -307,23 +307,14 @@ To fix this, you can delete the build cache at `frontend/.next`. This is current
 <details>
 <summary><strong>How to approach styling?</strong></summary>
 
-This boilerplate currently offers styling via the following options.
+Currently it offers styling via the following options out of the box:
 
-- [shadcn/ui](https://ui.shadcn.com/) - Re-usable components built using [Radix UI](https://radix-ui.com/) and [Tailwindcss](https://tailwindcss.com/).
-- Standard (S)CSS styles via `className` and `*.module.(s)css` files.
+- [shadcn/ui](https://ui.shadcn.com/) - Re-usable components built using [Radix UI](https://radix-ui.com/) and [Tailwind CSS](https://tailwindcss.com/).
+- Vanilla [Tailwind CSS](https://tailwindcss.com/) styled styles via `className` and `*.module.(s)css` files.
+- Default (S)CSS styles.
 
-> [!IMPORTANT]  
-> To reduce the bundle size in production, it's recommended to use either option 1 or 2, but not both.
-
-</details>
-
-<details>
-<summary><strong>Can I just use plain TailwindCSS?</strong></summary>
-
-The packages mentioned above can be replaced with vanilla TailwindCSS manually without much effort.
-
-> [!NOTE]  
-> We are currently transitioning from twin.macro to vanilla TailwindCSS as the new default. This will be reflected in the boilerplate soon.
+> [!INFO]  
+> This boilerplate tries to stay as un-opinonated in regards to styling, which means you can use any styling or component library.
 
 </details>
 

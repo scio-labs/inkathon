@@ -29,7 +29,7 @@ export const HomePageTitle: FC = () => {
   const title = 'ink!athon'
   const desc = 'Full-Stack DApp Boilerplate for ink! Smart Contracts'
   const githubHref = 'https://github.com/scio-labs/inkathon'
-  const deployHref = 'https://github.com/scio-labs/inkathon#deployment'
+  const deployHref = 'https://github.com/scio-labs/inkathon#deployment-'
   const telegramHref = 'https://t.me/inkathon'
 
   return (
