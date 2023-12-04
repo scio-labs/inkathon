@@ -99,25 +99,26 @@ export const GreeterContractInteractions: FC = () => {
           {/* Update Greeting */}
           <Card>
             <CardContent className="pt-6">
-              <form onSubmit={handleSubmit(updateGreeting)}>
-                <div className="flex flex-col justify-end gap-2">
-                  <FormItem>
-                    <FormLabel className="text-base">Update Greeting</FormLabel>
-                    <FormControl>
-                      <div className="flex gap-2">
-                        <Input disabled={updateIsLoading} {...register('newMessage')} />
-                        <Button
-                          className="bg-primary font-bold"
-                          disabled={fetchIsLoading || updateIsLoading}
-                          isLoading={updateIsLoading}
-                          type="submit"
-                        >
-                          Submit
-                        </Button>
-                      </div>
-                    </FormControl>
-                  </FormItem>
-                </div>
+              <form
+                onSubmit={handleSubmit(updateGreeting)}
+                className="flex flex-col justify-end gap-2"
+              >
+                <FormItem>
+                  <FormLabel className="text-base">Update Greeting</FormLabel>
+                  <FormControl>
+                    <div className="flex gap-2">
+                      <Input disabled={updateIsLoading} {...register('newMessage')} />
+                      <Button
+                        type="submit"
+                        className="bg-primary font-bold"
+                        disabled={fetchIsLoading || updateIsLoading}
+                        isLoading={updateIsLoading}
+                      >
+                        Submit
+                      </Button>
+                    </div>
+                  </FormControl>
+                </FormItem>
               </form>
             </CardContent>
           </Card>

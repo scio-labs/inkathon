@@ -1,0 +1,109 @@
+{
+  "Workshop Contracts Snippet #1": {
+    "scope": "rust",
+    "prefix": "Workshop Contracts Snippet #1",
+    "body": [
+      "/// Reverses and stores the `message` string",
+      "#[ink(message)]",
+      "pub fn reverse_message(&mut self) {",
+      "    self.message = self.message.chars().rev().collect::<String>();",
+      "}"
+    ]
+  },
+  "Workshop Contracts Snippet #2": {
+    "scope": "rust",
+    "prefix": "Workshop Contracts Snippet #2",
+    "body": [
+      "#[ink::test]",
+      "fn reverse_message_works() {",
+      "    let message_1 = String::from(\"gm ink!\");",
+      "    let message_1_reversed = String::from(\"!kni mg\");",
+      "    let mut greeter = Greeter::new(message_1.clone());",
+      "    assert_eq!(greeter.greet(), message_1);",
+      "    greeter.reverse_message();",
+      "    assert_eq!(greeter.greet(), message_1_reversed);",
+      "}"
+    ]
+  },
+  "Workshop Frontend Snippet #1": {
+    "scope": "typescriptreact",
+    "prefix": "Workshop Frontend Snippet #1",
+    "body": [
+      "// Reverse Greeting",
+      "const reverseGreeting = async () => {",
+      "  if (!activeAccount || !contract || !activeSigner || !api) {",
+      "    toast.error('Wallet not connected. Try again…')",
+      "    return",
+      "  }",
+      "",
+      "  setUpdateIsLoading(true)",
+      "  try {",
+      "    await contractTxWithToast(api, activeAccount.address, contract, 'reverseMessage', {}, [])",
+      "  } catch (e) {",
+      "    console.error(e)",
+      "  } finally {",
+      "    setUpdateIsLoading(false)",
+      "    await fetchGreeting()",
+      "  }",
+      "}",
+    ]
+  },
+  "Workshop Frontend Snippet #2": {
+    "scope": "typescriptreact",
+    "prefix": "Workshop Frontend Snippet #2",
+    "body": [
+      "{/* Reverse Greeting */}",
+      "<Card>",
+      "  <CardContent className=\"pt-6\">",
+      "    <Button",
+      "      type=\"button\"",
+      "      onClick={reverseGreeting}",
+      "      className=\"w-full bg-primary font-bold\"",
+      "      disabled={fetchIsLoading || updateIsLoading}",
+      "      isLoading={updateIsLoading}",
+      "    >",
+      "      Submit",
+      "    </Button>",
+      "  </CardContent>",
+      "</Card>",
+    ]
+  }
+  "Workshop Scripts Snippet #1": {
+    "scope": "typescript",
+    "prefix": "Workshop Scripts Snippet #1",
+    "body": [
+      "import { transferBalance } from '@scio-labs/use-inkathon'",
+      "import { initPolkadotJs } from './utils/initPolkadotJs'",
+      "",
+      "/**",
+      " * Example script that transfers tokens to the passed address from Alice.",
+      " *",
+      " * Parameters:",
+      " *  - `ACCOUNT_URI`: Sender address URI (i.e. `//Alice`)",
+      " *  - `ADDRESS`: Receiver address",
+      " *  - `AMOUNT`: Token amount to transfer (optional, defaults to `100`)",
+      " *  - `CHAIN`: Chain ID (optional, defaults to `development`)",
+      " *",
+      " * Example usage:",
+      " *  - `ADDRESS=5fei… pnpm run script make-it-rain`",
+      " */",
+      "const main = async () => {",
+      "  const { api, account, toBNWithDecimals } = await initPolkadotJs()",
+      "",
+      "  const receiverAddress = process.env.ADDRESS",
+      "  if (!receiverAddress) throw new Error('Missing `ADDRESS` variable')",
+      "  const tokenAmount = toBNWithDecimals(process.env.AMOUNT ? parseInt(process.env.AMOUNT) : 100)",
+      "",
+      "  console.log(`\nTransferring ${tokenAmount} tokens to ${receiverAddress}…`)",
+      "  await transferBalance(api, account, receiverAddress, tokenAmount)",
+      "}",
+      "",
+      "main()",
+      "  .catch((error) => {",
+      "    console.error(error)",
+      "    process.exit(1)",
+      "  })",
+      "  .finally(() => process.exit(0))",
+    ]
+  }
+}
