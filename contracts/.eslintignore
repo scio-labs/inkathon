@@ -2,3 +2,5 @@ node_modules
 deployments
 target
 src
+dist
+.node-data

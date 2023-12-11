@@ -16,8 +16,7 @@
     "sync-types": "typesync",
     "lint": "prettier . --check && eslint",
     "lint:fix": "prettier . --write && eslint --fix",
-    "lint:format": "prettier . --write",
-    "eslint": "eslint . --ext .js,.ts"
+    "lint:format": "prettier . --write"
   },
   "devDependencies": {
     "@polkadot/api": "^10.11.1",

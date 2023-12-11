@@ -8,7 +8,7 @@ module.exports = {
   importOrder: [
     '^((react|next)/(.*)$)|^((react|next)$)',
     '<THIRD_PARTY_MODULES>',
-    '^@(config|types|styles|shared|lib|utils|hooks|components|app|pages|features)/(.*)$',
+    '^@/(config|types|styles|shared|lib|utils|hooks|components|app|pages|features)/(.*)$',
     '^[./]',
   ],
   importOrderSeparation: true,
@@ -21,4 +21,6 @@ module.exports = {
       },
     },
   ],
+  tailwindConfig: 'tailwind.config.ts',
+  tailwindFunctions: ['clsx', 'cva'],
 }

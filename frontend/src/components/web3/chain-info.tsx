@@ -3,10 +3,11 @@
 import Link from 'next/link'
 import { FC, useEffect, useState } from 'react'
 
-import { Card, CardContent, CardFooter } from '@/components/ui/card'
-import { Spinner } from '@/components/ui/spinner'
 import { useInkathon } from '@scio-labs/use-inkathon'
 import { HiOutlineExternalLink } from 'react-icons/hi'
+
+import { Card, CardContent, CardFooter } from '@/components/ui/card'
+import { Spinner } from '@/components/ui/spinner'
 
 export const ChainInfo: FC = () => {
   const { api, activeChain } = useInkathon()

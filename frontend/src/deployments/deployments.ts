@@ -1,5 +1,6 @@
-import { env } from '@/config/environment'
 import { SubstrateDeployment } from '@scio-labs/use-inkathon'
+
+import { env } from '@/config/environment'
 
 /**
  * Add or change your custom contract ids here

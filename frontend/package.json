@@ -13,8 +13,7 @@
     "sync-types": "typesync",
     "lint": "prettier . --check && eslint",
     "lint:fix": "prettier . --write && eslint --fix",
-    "lint:format": "prettier . --write",
-    "eslint": "eslint . --ext .js,.jsx,.ts,.tsx"
+    "lint:format": "prettier . --write"
   },
   "dependencies": {
     "@azns/resolver-core": "^1.6.0",

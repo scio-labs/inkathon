@@ -4,16 +4,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { FC, useMemo, useState } from 'react'
 
-import { Button } from '@/components/ui/button'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
-import { env } from '@/config/environment'
-import { truncateHash } from '@/utils/truncate-hash'
 import { SupportedChainId } from '@azns/resolver-core'
 import { useResolveAddressToDomain } from '@azns/resolver-react'
 import { InjectedAccount } from '@polkadot/extension-inject/types'
@@ -33,6 +23,17 @@ import toast from 'react-hot-toast'
 import { AiOutlineCheckCircle, AiOutlineDisconnect } from 'react-icons/ai'
 import { FiChevronDown, FiExternalLink } from 'react-icons/fi'
 import { RiArrowDownSLine } from 'react-icons/ri'
+
+import { Button } from '@/components/ui/button'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu'
+import { env } from '@/config/environment'
+import { truncateHash } from '@/utils/truncate-hash'
 
 import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip'
 

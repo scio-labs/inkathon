@@ -2,12 +2,13 @@
 
 import { useEffect } from 'react'
 
+import { useInkathon } from '@scio-labs/use-inkathon'
+import { toast } from 'react-hot-toast'
+
 import { HomePageTitle } from '@/app/components/home-page-title'
 import { ChainInfo } from '@/components/web3/chain-info'
 import { ConnectButton } from '@/components/web3/connect-button'
 import { GreeterContractInteractions } from '@/components/web3/greeter-contract-interactions'
-import { useInkathon } from '@scio-labs/use-inkathon'
-import { toast } from 'react-hot-toast'
 
 export default function HomePage() {
   // Display `useInkathon` error messages (optional)

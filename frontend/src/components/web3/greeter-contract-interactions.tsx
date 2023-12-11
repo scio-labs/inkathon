@@ -2,12 +2,7 @@
 
 import { FC, useEffect, useState } from 'react'
 
-import { Button } from '@/components/ui/button'
-import { Card, CardContent } from '@/components/ui/card'
-import { Form, FormControl, FormItem, FormLabel } from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
 import { ContractIds } from '@/deployments/deployments'
-import { contractTxWithToast } from '@/utils/contract-tx-with-toast'
 import {
   contractQuery,
   decodeOutput,
@@ -16,6 +11,12 @@ import {
 } from '@scio-labs/use-inkathon'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
+
+import { Button } from '@/components/ui/button'
+import { Card, CardContent } from '@/components/ui/card'
+import { Form, FormControl, FormItem, FormLabel } from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import { contractTxWithToast } from '@/utils/contract-tx-with-toast'
 
 type UpdateGreetingValues = { newMessage: string }
 

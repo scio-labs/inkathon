@@ -2,11 +2,12 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { AnchorHTMLAttributes, FC } from 'react'
 
-import { cn } from '@/utils/cn'
 import githubIcon from 'public/icons/github-button.svg'
 import telegramIcon from 'public/icons/telegram-button.svg'
 import vercelIcon from 'public/icons/vercel-button.svg'
 import inkathonLogo from 'public/images/inkathon-logo.png'
+
+import { cn } from '@/utils/cn'
 
 interface StyledIconLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   href: string

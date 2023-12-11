@@ -1,12 +1,13 @@
 import { Metadata, Viewport } from 'next'
 import { PropsWithChildren } from 'react'
 
+import { GeistMono } from 'geist/font/mono'
+import { GeistSans } from 'geist/font/sans'
+
 import { ToastConfig } from '@/app/toast-config'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { env } from '@/config/environment'
 import { cn } from '@/utils/cn'
-import { GeistMono } from 'geist/font/mono'
-import { GeistSans } from 'geist/font/sans'
 
 import './globals.css'
 import ClientProviders from './providers'

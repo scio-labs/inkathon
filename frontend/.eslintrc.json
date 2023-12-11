@@ -19,6 +19,7 @@
     "react-hooks/exhaustive-deps": "off",
     "react/jsx-no-target-blank": "off",
     "no-extra-boolean-cast": "off",
-    "prefer-const": "warn"
+    "prefer-const": "warn",
+    "no-restricted-imports": ["warn", { "patterns": ["process"] }]
   }
 }
