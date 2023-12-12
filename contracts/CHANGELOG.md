@@ -1,5 +1,13 @@
 # @inkathon/contracts
 
+## 0.4.2
+
+### Patch Changes
+
+- [`cf68f5f`](https://github.com/scio-labs/inkathon/commit/cf68f5f96888c69434014ff4f8eccdd3558d20bc) Thanks [@wottpal](https://github.com/wottpal)! - Further simplify contract scripts by moving required explicit types to `use-inkathon`. Also changing the module resolution setting in `tsconfig.json` to import directly from sub-paths like `@scio-labs/use-inkathon/types` which makes the scripts in a context like Next.js app-dir API routes.
+
+- [`bc7d7ed`](https://github.com/scio-labs/inkathon/commit/bc7d7ed546fc2f17b6adaf96e34645f84ac2a5e0) Thanks [@wottpal](https://github.com/wottpal)! - Move VSCode settings to `settings.json` file but keep `inkathon.code-workspace`. It's now also supported by default to develop with ink!athon without opening the code-workspace file.
+
 ## 0.4.1
 
 ### Patch Changes

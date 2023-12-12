@@ -1,5 +1,14 @@
 # @inkathon/frontend
 
+## 0.4.2
+
+### Patch Changes
+
+- [`bc7d7ed`](https://github.com/scio-labs/inkathon/commit/bc7d7ed546fc2f17b6adaf96e34645f84ac2a5e0) Thanks [@wottpal](https://github.com/wottpal)! - Move VSCode settings to `settings.json` file but keep `inkathon.code-workspace`. It's now also supported by default to develop with ink!athon without opening the code-workspace file.
+
+- Updated dependencies [[`cf68f5f`](https://github.com/scio-labs/inkathon/commit/cf68f5f96888c69434014ff4f8eccdd3558d20bc), [`bc7d7ed`](https://github.com/scio-labs/inkathon/commit/bc7d7ed546fc2f17b6adaf96e34645f84ac2a5e0)]:
+  - @inkathon/contracts@0.4.2
+
 ## 0.4.1
 
 ### Patch Changes
