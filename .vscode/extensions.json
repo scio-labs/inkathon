@@ -8,7 +8,6 @@
     "ink-analyzer.ink-analyzer",
     "gruntfuggly.todo-tree",
     "mikestead.dotenv",
-    "bradlc.vscode-tailwindcss",
-    "zoma.vscode-auto-open-workspace"
+    "bradlc.vscode-tailwindcss"
   ]
 }

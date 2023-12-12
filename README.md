@@ -172,9 +172,6 @@ For general scripts, the same environment variable initialization & configuratio
 
 ![inkathon Stack Diagram](inkathon-stack-diagram.png)
 
-> [!NOTE]  
-> When opening the project directory in VSCode, it automatically suggests opening the `inkathon.code-workspace` file instead. This is recommended as it offers a more predictable monorepo configuration.
-
 ## Live Examples 🌐
 
 Below you find live examples that use this boilerplate or have a similar setup inspired by it:
@@ -248,9 +245,9 @@ When running the same script again, this deployer account defined there will be 
 
 ### Workspace
 
-It's recommended to develop in VSCode by opening the workspace file `inkathon.code-workspace` instead of just the plain directory. This approach offers multiple advantages, including a more predictable monorepo configuration. VSCode will also automatically suggest switching to the workspace when opening the project's root directory in the bottom right corner.
+It can be helpful to develop in VSCode by opening the workspace file `inkathon.code-workspace` instead of just the plain directory. This approach offers multiple advantages, like sections in the file explorer, or shortcut actions to open the terminal in the correct directory.
 
-<img src="inkathon-vscode-workspace.png" width="400" alt="VSCode Workspace Notification">
+Consider installin the [`zoma.vscode-auto-open-workspace`](https://marketplace.visualstudio.com/items?itemName=zoma.vscode-auto-open-workspace) extension to automatically open the workspace file when opening the directory.
 
 ### Plugins
 
@@ -259,18 +256,17 @@ Additionally, the VSCode plugins listed below are recommended as they can be ver
 <details>
 <summary><strong>All Recommended Plugins</strong></summary>
 
-| Plugin Name                                                                                                              | Description                                   |
-| ------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------- |
-| [`dbaeumer.vscode-eslint`](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)                   | Adds ESLint editor support.                   |
-| [`esbenp.prettier-vscode`](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)                   | Adds Prettier editor support.                 |
-| [`bradlc.vscode-tailwindcss`](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)             | Adds tailwindcss editor support.              |
-| [`rust-lang.rust-analyzer`](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)                 | Adds Rust language support.                   |
-| [`ink-analyzer.ink-analyzer`](https://marketplace.visualstudio.com/items?itemName=ink-analyzer.ink-analyzer)             | Adds ink! language support.                   |
-| [`tamasfe.even-better-toml`](https://marketplace.visualstudio.com/items?itemName=tamasfe.even-better-toml)               | Adds `.toml` file support.                    |
-| [`gruntfuggly.todo-tree`](https://marketplace.visualstudio.com/items?itemName=gruntfuggly.todo-tree)                     | Lists all `TODO` comments in your workspace.  |
-| [`wayou.vscode-todo-highlight`](https://marketplace.visualstudio.com/items?itemName=wayou.vscode-todo-highlight)         | Highlights `TODO` comments in your workspace. |
-| [`mikestead.dotenv`](https://marketplace.visualstudio.com/items?itemName=mikestead.dotenv)                               | Adds syntax highlighting for `.env` files.    |
-| [`zoma.vscode-auto-open-workspace`](https://marketplace.visualstudio.com/items?itemName=zoma.vscode-auto-open-workspace) | Auto-opens `*.code-workspace` files.          |
+| Plugin Name                                                                                                      | Description                                   |
+| ---------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
+| [`dbaeumer.vscode-eslint`](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)           | Adds ESLint editor support.                   |
+| [`esbenp.prettier-vscode`](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)           | Adds Prettier editor support.                 |
+| [`bradlc.vscode-tailwindcss`](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)     | Adds tailwindcss editor support.              |
+| [`rust-lang.rust-analyzer`](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)         | Adds Rust language support.                   |
+| [`ink-analyzer.ink-analyzer`](https://marketplace.visualstudio.com/items?itemName=ink-analyzer.ink-analyzer)     | Adds ink! language support.                   |
+| [`tamasfe.even-better-toml`](https://marketplace.visualstudio.com/items?itemName=tamasfe.even-better-toml)       | Adds `.toml` file support.                    |
+| [`gruntfuggly.todo-tree`](https://marketplace.visualstudio.com/items?itemName=gruntfuggly.todo-tree)             | Lists all `TODO` comments in your workspace.  |
+| [`wayou.vscode-todo-highlight`](https://marketplace.visualstudio.com/items?itemName=wayou.vscode-todo-highlight) | Highlights `TODO` comments in your workspace. |
+| [`mikestead.dotenv`](https://marketplace.visualstudio.com/items?itemName=mikestead.dotenv)                       | Adds syntax highlighting for `.env` files.    |
 
 </details>
 
