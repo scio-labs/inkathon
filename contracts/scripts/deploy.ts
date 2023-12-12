@@ -1,7 +1,7 @@
-import { deployContract } from '@scio-labs/use-inkathon'
-import { getDeploymentData } from './utils/getDeploymentData'
-import { initPolkadotJs } from './utils/initPolkadotJs'
-import { writeContractAddresses } from './utils/writeContractAddresses'
+import { getDeploymentData } from '@/utils/getDeploymentData'
+import { initPolkadotJs } from '@/utils/initPolkadotJs'
+import { writeContractAddresses } from '@/utils/writeContractAddresses'
+import { deployContract } from '@scio-labs/use-inkathon/helpers'
 
 /**
  * Script that deploys the greeter contract and writes its address to a file.

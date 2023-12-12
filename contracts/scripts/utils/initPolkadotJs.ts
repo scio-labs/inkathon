@@ -1,12 +1,9 @@
 import { ApiPromise, Keyring } from '@polkadot/api'
 import { IKeyringPair } from '@polkadot/types/types/interfaces'
 import { BN } from '@polkadot/util'
-import {
-  SubstrateChain,
-  getBalance,
-  getSubstrateChain,
-  initPolkadotJs as initApi,
-} from '@scio-labs/use-inkathon'
+import { getSubstrateChain } from '@scio-labs/use-inkathon/chains'
+import { getBalance, initPolkadotJs as initApi } from '@scio-labs/use-inkathon/helpers'
+import { SubstrateChain } from '@scio-labs/use-inkathon/types'
 import * as dotenv from 'dotenv'
 
 // Dynamically load environment from `.env.{chainId}`

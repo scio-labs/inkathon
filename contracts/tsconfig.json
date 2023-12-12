@@ -5,7 +5,7 @@
   },
   "compilerOptions": {
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "target": "esnext",
     "sourceMap": true,
     "outDir": "dist",
@@ -13,8 +13,11 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "allowJs": true,
+    "composite": true,
     "baseUrl": ".",
-    "composite": true
+    "paths": {
+      "@/*": ["./scripts/*"]
+    }
   },
   "exclude": ["node_modules", "dist", "target", "./*/target"],
   "include": ["./deployments/**/*.json", "./deployments/**/*.ts", "./scripts/**/*.ts"]

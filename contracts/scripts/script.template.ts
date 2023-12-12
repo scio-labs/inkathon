@@ -1,7 +1,12 @@
+import { getDeploymentData } from '@/utils/getDeploymentData'
+import { initPolkadotJs } from '@/utils/initPolkadotJs'
 import { ContractPromise } from '@polkadot/api-contract'
-import { contractQuery, contractTx, decodeOutput, deployContract } from '@scio-labs/use-inkathon'
-import { getDeploymentData } from './utils/getDeploymentData'
-import { initPolkadotJs } from './utils/initPolkadotJs'
+import {
+  contractQuery,
+  contractTx,
+  decodeOutput,
+  deployContract,
+} from '@scio-labs/use-inkathon/helpers'
 
 /**
  * Example script that updates & reads a message from a greeter contract.
