@@ -11,8 +11,8 @@
     "start": "NODE_ENV=production next start",
     "type-check": "tsc --pretty --noEmit",
     "sync-types": "typesync",
-    "lint": "prettier . --check && eslint",
-    "lint:fix": "prettier . --write && eslint --fix",
+    "lint": "prettier . --check && eslint .",
+    "lint:fix": "prettier . --write && eslint . --fix",
     "lint:format": "prettier . --write"
   },
   "dependencies": {

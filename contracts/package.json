@@ -14,8 +14,8 @@
     "explorer-ui": "open https://polkadot.js.org/apps/#/explorer?rpc=ws://127.0.0.1:9944",
     "type-check": "tsc --pretty --noEmit",
     "sync-types": "typesync",
-    "lint": "prettier . --check && eslint",
-    "lint:fix": "prettier . --write && eslint --fix",
+    "lint": "prettier . --check && eslint .",
+    "lint:fix": "prettier . --write && eslint . --fix",
     "lint:format": "prettier . --write"
   },
   "devDependencies": {
