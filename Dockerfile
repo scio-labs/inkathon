@@ -1,0 +1,57 @@
+# Inspired by https://www.darraghoriordan.com/2023/04/13/running-next-js-docker-container
+# STAGE 1: A container with pnpm and python3 is required
+FROM node:18-alpine as pnpm_base
+
+WORKDIR /app
+# install pnpm
+RUN npm i --global --no-update-notifier --no-fund pnpm@8
+# install python3 and other deps
+RUN apk add --no-cache g++ make py3-pip libc6-compat bash
+
+# STAGE 2: fetch deps into the pnpm store
+# We run pnpm fetch in a separate step to avoid re-fetching deps on every code change
+FROM pnpm_base as fetched_deps
+WORKDIR /app
+# setting env to production usually speeds up installations
+ENV NODE_ENV production
+COPY pnpm-lock.yaml ./
+# set the store dir to a folder that is not in the project
+RUN pnpm config set store-dir /workdir/.pnpm-store
+RUN pnpm fetch
+
+# STAGE 3: Copy the application code and install all deps from cache into the application
+FROM fetched_deps as with_all_deps
+# Copy whole project since it's using monorepo
+COPY . ./
+# Install all the deps
+RUN pnpm install --offline
+
+# STAGE 4: Build the NextJS app
+# Use pnpm filter to only build the frontend app
+# Then use pnpm deploy command to prune the dependencies
+FROM with_all_deps as builder
+RUN pnpm --filter='*frontend' build
+RUN pnpm --filter='*frontend' deploy pruned --prod
+
+# STAGE 5: Create a clean production image - only take pruned assets
+FROM node:18-alpine AS runner
+WORKDIR /app
+# We set the NODE_ENV to production to make sure that the app runs in production mode
+ENV NODE_ENV=production
+# We add a non-root user to run the app for security reasons
+RUN addgroup --system --gid 1001 app
+RUN adduser --system --uid 1001 app
+USER app
+
+# Copy the built app assets from the builder stage
+# NextJS produces a backend server and a frontend app
+COPY --chown=app:app --from=builder /app/frontend/.next/standalone src/
+COPY --chown=app:app --from=builder /app/frontend/public src/frontend/public
+COPY --chown=app:app --from=builder /app/frontend/.next/static src/frontend/.next/static
+
+# Set and expose the port that the app will run on
+ENV PORT 5000
+EXPOSE 5000
+
+# Run the app
+CMD ["node", "src/frontend/server.js"]
