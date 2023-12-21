@@ -50,8 +50,8 @@ COPY --chown=app:app --from=builder /app/frontend/public src/frontend/public
 COPY --chown=app:app --from=builder /app/frontend/.next/static src/frontend/.next/static
 
 # Set and expose the port that the app will run on
-ENV PORT 5000
-EXPOSE 5000
+ENV PORT 3000
+EXPOSE 3000
 
 # Run the app
 CMD ["node", "src/frontend/server.js"]
