@@ -1,11 +1,10 @@
-# docker-compose.dev.yaml
-
 version: '1.0'
 services:
   frontend-dev:
     container_name: inkathon-frontend-dev
     build:
       context: .
+      dockerfile: Dockerfile.frontend
       target: with_all_deps
     restart: always
     command: pnpm run dev
@@ -23,6 +22,7 @@ services:
     container_name: inkathon-frontend-prod
     build:
       context: .
+      dockerfile: Dockerfile.frontend
       args:
         - NODE_ENV=production
     ports:

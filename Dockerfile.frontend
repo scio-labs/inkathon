@@ -4,9 +4,10 @@ FROM node:18-alpine as pnpm_base
 
 WORKDIR /app
 # install pnpm
-RUN npm i --global --no-update-notifier --no-fund pnpm@8
+RUN npm i --global --no-update-notifier --no-fund pnpm@8 \
 # install python3 and other deps
-RUN apk add --no-cache g++ make py3-pip libc6-compat bash
+  && apk add --no-cache g++=~13.2.1_git20231014-r0 make=~4.4.1-r2 py3-pip libc6-compat bash=~5.2.21-r0
+
 
 # STAGE 2: fetch deps into the pnpm store
 # We run pnpm fetch in a separate step to avoid re-fetching deps on every code change
@@ -16,8 +17,8 @@ WORKDIR /app
 ENV NODE_ENV production
 COPY pnpm-lock.yaml ./
 # set the store dir to a folder that is not in the project
-RUN pnpm config set store-dir /workdir/.pnpm-store
-RUN pnpm fetch
+RUN pnpm config set store-dir /workdir/.pnpm-store \
+ && pnpm fetch
 
 # STAGE 3: Copy the application code and install all deps from cache into the application
 FROM fetched_deps as with_all_deps
@@ -30,8 +31,8 @@ RUN pnpm install --offline
 # Use pnpm filter to only build the frontend app
 # Then use pnpm deploy command to prune the dependencies
 FROM with_all_deps as builder
-RUN pnpm --filter='*frontend' build
-RUN pnpm --filter='*frontend' deploy pruned --prod
+RUN pnpm --filter='*frontend' build \
+ && pnpm --filter='*frontend' deploy pruned --prod
 
 # STAGE 5: Create a clean production image - only take pruned assets
 FROM node:18-alpine AS runner
@@ -39,8 +40,8 @@ WORKDIR /app
 # We set the NODE_ENV to production to make sure that the app runs in production mode
 ENV NODE_ENV=production
 # We add a non-root user to run the app for security reasons
-RUN addgroup --system --gid 1001 app
-RUN adduser --system --uid 1001 app
+RUN addgroup --system --gid 1001 app \
+ && adduser --system --uid 1001 app
 USER app
 
 # Copy the built app assets from the builder stage
