@@ -22,10 +22,7 @@ ENV NODE_PATH $NVM_DIR/versions/node/$NODE_VERSION/bin
 ENV PATH $NODE_PATH:$PATH
 # Install pnpm
 RUN npm i --global --no-update-notifier --no-fund pnpm@8
-RUN pnpm config set store-dir /workdir/.pnpm-store \
- && pnpm fetch
- # Install project dependencies
-RUN pnpm install --offline
+RUN yes Y | pnpm install
 
 RUN echo "*** Instaling Rust environment for contracts node***"
 RUN rm -rf /usr/local/rustup /usr/local/cargo
@@ -45,7 +42,7 @@ RUN rustup component add rust-src
 RUN cargo install --force --locked cargo-contract
 
 # Set and expose the port that the app will run on
-EXPOSE 8080 30333 9933 9944 9615 3000 443 80
+EXPOSE 9944
 
 # RUN echo "*** Start Substrate node template ***"
 CMD [ "/usr/local/cargo/bin/substrate-contracts-node", "--dev", "--rpc-cors=all"]
