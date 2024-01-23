@@ -18,6 +18,8 @@ import { Form, FormControl, FormItem, FormLabel } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { contractTxWithToast } from '@/utils/contract-tx-with-toast'
 
+// import GreeterContract from '@inkathon/contracts/typed-contracts/query/greeter'
+
 type UpdateGreetingValues = { newMessage: string }
 
 export const GreeterContractInteractions: FC = () => {
@@ -40,6 +42,11 @@ export const GreeterContractInteractions: FC = () => {
       const { output, isError, decodedOutput } = decodeOutput(result, contract, 'greet')
       if (isError) throw new Error(decodedOutput)
       setGreeterMessage(output)
+
+      // Alternatively: Fetch it with typed contract instance
+      // const typedContract = new GreeterContract(contract, api, activeAccount?.address as string)
+      // const typedResult = await typedContract.greet()
+      // console.log('typedResult: ', typedResult.value)
     } catch (e) {
       console.error(e)
       toast.error('Error while fetching greeting. Try again…')

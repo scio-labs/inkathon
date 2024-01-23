@@ -23,7 +23,7 @@ export type InitParams = {
   toBNWithDecimals: (_: number | string) => BN
 }
 export const initPolkadotJs = async (): Promise<InitParams> => {
-  const accountUti = process.env.ACCOUNT_URI || '//Alice'
+  const accountUri = process.env.ACCOUNT_URI || '//Alice'
   const chain = getSubstrateChain(chainId)
   if (!chain) throw new Error(`Chain '${chainId}' not found`)
 
@@ -42,7 +42,7 @@ export const initPolkadotJs = async (): Promise<InitParams> => {
 
   // Initialize account & set signer
   const keyring = new Keyring({ type: 'sr25519' })
-  const account = keyring.addFromUri(accountUti)
+  const account = keyring.addFromUri(accountUri)
   const balance = await getBalance(api, account.address)
   console.log(`Initialized Account: ${account.address} (${balance.balanceFormatted})\n`)
 

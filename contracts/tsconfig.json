@@ -20,5 +20,10 @@
     }
   },
   "exclude": ["node_modules", "dist", "target", "./*/target"],
-  "include": ["./deployments/**/*.json", "./deployments/**/*.ts", "./scripts/**/*.ts"]
+  "include": [
+    "./deployments/**/*.json",
+    "./deployments/**/*.ts",
+    "./scripts/**/*.ts",
+    "./typed-contracts/**/*.ts"
+  ]
 }
