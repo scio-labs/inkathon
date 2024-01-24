@@ -1,5 +1,11 @@
 # @inkathon/contracts
 
+## 0.5.0
+
+### Minor Changes
+
+- [#53](https://github.com/scio-labs/inkathon/pull/53) [`194120d`](https://github.com/scio-labs/inkathon/commit/194120d21028d48102d370db72660e1e23c84c4f) Thanks [@wottpal](https://github.com/wottpal)! - Add type-safe contract integrations via `useRegisteredTypedContract` and `typechain-polkadot`.
+
 ## 0.4.2
 
 ### Patch Changes

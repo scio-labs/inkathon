@@ -2,7 +2,7 @@
   "name": "@inkathon/contracts",
   "type": "module",
   "private": true,
-  "version": "0.4.2",
+  "version": "0.5.0",
   "scripts": {
     "postinstall": "bash postinstall.sh",
     "test": "bash test-all.sh",
