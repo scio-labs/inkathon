@@ -22,4 +22,11 @@ do
   $CP_CMD ./target/ink/$i/$i.contract $DIR/$i/
   $CP_CMD ./target/ink/$i/$i.wasm $DIR/$i/
   $CP_CMD ./target/ink/$i/$i.json $DIR/$i/
+
+  if [[ "$@" != *"--skip-types"* ]]; then
+    echo "Generate types via typechain into './typed-contracts'…"
+    # Because of an open issue, this used the npx-installed version of `@727-ventures/typechain-polkadot`
+    # See: https://github.com/Brushfam/typechain-polkadot/issues/115
+    npx @727-ventures/typechain-polkadot --in $DIR/$i/ --out typed-contracts --yes
+  fi
 done

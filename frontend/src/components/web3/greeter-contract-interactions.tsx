@@ -3,11 +3,13 @@
 import { FC, useEffect, useState } from 'react'
 
 import { ContractIds } from '@/deployments/deployments'
+import GreeterContract from '@inkathon/contracts/typed-contracts/contracts/greeter'
 import {
   contractQuery,
   decodeOutput,
   useInkathon,
   useRegisteredContract,
+  useRegisteredTypedContract,
 } from '@scio-labs/use-inkathon'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
@@ -23,6 +25,7 @@ type UpdateGreetingValues = { newMessage: string }
 export const GreeterContractInteractions: FC = () => {
   const { api, activeAccount, activeSigner } = useInkathon()
   const { contract, address: contractAddress } = useRegisteredContract(ContractIds.Greeter)
+  const { typedContract } = useRegisteredTypedContract(ContractIds.Greeter, GreeterContract)
   const [greeterMessage, setGreeterMessage] = useState<string>()
   const [fetchIsLoading, setFetchIsLoading] = useState<boolean>()
   const [updateIsLoading, setUpdateIsLoading] = useState<boolean>()
@@ -32,7 +35,7 @@ export const GreeterContractInteractions: FC = () => {
 
   // Fetch Greeting
   const fetchGreeting = async () => {
-    if (!contract || !api) return
+    if (!contract || !typedContract || !api) return
 
     setFetchIsLoading(true)
     try {
@@ -40,6 +43,10 @@ export const GreeterContractInteractions: FC = () => {
       const { output, isError, decodedOutput } = decodeOutput(result, contract, 'greet')
       if (isError) throw new Error(decodedOutput)
       setGreeterMessage(output)
+
+      // Alternatively: Fetch it with typed contract instance
+      const typedResult = await typedContract.query.greet()
+      console.log('Result from typed contract: ', typedResult.value)
     } catch (e) {
       console.error(e)
       toast.error('Error while fetching greeting. Try again…')
@@ -50,7 +57,7 @@ export const GreeterContractInteractions: FC = () => {
   }
   useEffect(() => {
     fetchGreeting()
-  }, [contract])
+  }, [typedContract])
 
   // Update Greeting
   const updateGreeting = async ({ newMessage }: UpdateGreetingValues) => {
