@@ -165,6 +165,7 @@ For general scripts, the same environment variable initialization & configuratio
   - Contract Interactions: `polkadot-js`, [`useInkathon`](https://github.com/scio-labs/use-inkathon) React Hooks & Utility Library (alternatively: [`useInk`](https://use.ink/frontend/getting-started))
   - Styling: `shadcn/ui`, `tailwindcss`
   - Linting & Formatting: `eslint`, `prettier`, `simple-git-hooks`, `lint-staged`
+- Type-safe contract generation via [`typechain-polkadot`](https://github.com/Brushfam/typechain-polkadot)
 
 <small>Styling, linting, and formatting libraries can be fully dropped or replaced with alternatives.</small>
 
@@ -315,13 +316,22 @@ Currently it offers styling via the following options out of the box:
 </details>
 
 <details>
+<summary><strong>How do type-safe contract interactions work?</strong></summary>
+
+With [`typechain-polkadot`](https://github.com/Brushfam/typechain-polkadot), types for each contract (TypeScript files) are created upon build (via the `build` script or `build-all.sh` command). You can suppress this behavior by passing `--skip-types`.
+
+They are stored under `contracts/typed-contracts/` and imported directly from the frontend. Then, via the new `useRegisteredTypedContract` hook from [`useInkathon`](https://github.com/scio-labs/use-inkathon) instances with pre-defined api, network-dependant contract address, and injected signer are being created. See `greeter-contract-interactions.tsx` for an example.
+
+</details>
+
+<details>
 <summary><strong>Resources to learn more about Substrate, ink!, and polkadot.js</strong></summary>
 
 - [ink! Documentation](https://use.ink/)
 - [polkadot.js Documentation](https://polkadot.js.org/docs/)
 - [Polkadot Wiki ink! Tools](https://wiki.polkadot.network/docs/build-open-source)
 - [Aleph Zero Documentation](https://docs.alephzero.org/aleph-zero/build/)
-- [ink!athon Workshop Recording](https://youtube.com/watch?v=SoNLZfsd0mQ)
+- [ink!athon Workshop Recording](https://youtube.com/watch?v=DA1pLk5--GE)
 - [ink!athon Telegram Group](https://t.me/inkathon)
 
 </details>

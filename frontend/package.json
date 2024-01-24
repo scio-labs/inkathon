@@ -16,6 +16,7 @@
     "lint:format": "prettier . --write"
   },
   "dependencies": {
+    "@727-ventures/typechain-types": "^1.1.2",
     "@azns/resolver-core": "^1.6.0",
     "@azns/resolver-react": "^1.6.0",
     "@hookform/resolvers": "^3.3.4",
@@ -32,9 +33,10 @@
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-tooltip": "^1.0.7",
-    "@scio-labs/use-inkathon": "^0.6.3",
+    "@scio-labs/use-inkathon": "^0.7.0",
     "@vercel/analytics": "^1.1.1",
     "autoprefixer": "^10.4.16",
+    "bn.js": "^5.2.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "geist": "^1.2.0",
@@ -54,8 +56,8 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
-    "@727-ventures/typechain-types": "^1.1.2",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+    "@types/bn.js": "~5.1.5",
     "@types/downloadjs": "^1.4.5",
     "@types/eslint": "^8.56.2",
     "@types/eslint-config-prettier": "^6.11.3",

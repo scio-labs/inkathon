@@ -1,7 +1,7 @@
 {
   "ts-node": {
     "esm": true,
-    "experimentalSpecifierResolution": "node"
+    "experimentalSpecifierResolution": "node",
   },
   "compilerOptions": {
     "module": "esnext",
@@ -16,14 +16,14 @@
     "composite": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./scripts/*"]
-    }
+      "@/*": ["./scripts/*"],
+    },
   },
   "exclude": ["node_modules", "dist", "target", "./*/target"],
   "include": [
     "./deployments/**/*.json",
     "./deployments/**/*.ts",
     "./scripts/**/*.ts",
-    "./typed-contracts/**/*.ts"
-  ]
+    "./typed-contracts/**/*.ts",
+  ],
 }
