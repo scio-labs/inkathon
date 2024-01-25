@@ -14,7 +14,7 @@ RUN npm i --global --no-update-notifier --no-fund pnpm@8 \
 FROM pnpm_base as fetched_deps
 WORKDIR /app
 # setting env to production usually speeds up installations
-ENV NODE_ENV production
+ENV NODE_ENV=production
 COPY pnpm-lock.yaml ./
 # set the store dir to a folder that is not in the project
 RUN pnpm config set store-dir /workdir/.pnpm-store \
