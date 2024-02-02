@@ -32,7 +32,6 @@ export const GreeterContractInteractions: FC = () => {
   const { typedContract } = useRegisteredTypedContract(ContractIds.Greeter, GreeterContract)
   const [greeterMessage, setGreeterMessage] = useState<string>()
   const [fetchIsLoading, setFetchIsLoading] = useState<boolean>()
-  const [updateIsLoading, setUpdateIsLoading] = useState<boolean>()
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   })
@@ -72,8 +71,6 @@ export const GreeterContractInteractions: FC = () => {
       return
     }
 
-    // Send transaction
-    setUpdateIsLoading(true)
     try {
       await contractTxWithToast(api, activeAccount.address, contract, 'setMessage', {}, [
         newMessage,
@@ -82,7 +79,6 @@ export const GreeterContractInteractions: FC = () => {
     } catch (e) {
       console.error(e)
     } finally {
-      setUpdateIsLoading(false)
       fetchGreeting()
     }
   }
@@ -121,12 +117,12 @@ export const GreeterContractInteractions: FC = () => {
                   <FormLabel className="text-base">Update Greeting</FormLabel>
                   <FormControl>
                     <div className="flex gap-2">
-                      <Input disabled={updateIsLoading} {...register('newMessage')} />
+                      <Input disabled={form.formState.isSubmitting} {...register('newMessage')} />
                       <Button
                         type="submit"
                         className="bg-primary font-bold"
-                        disabled={fetchIsLoading || updateIsLoading}
-                        isLoading={updateIsLoading}
+                        disabled={fetchIsLoading || form.formState.isSubmitting}
+                        isLoading={form.formState.isSubmitting}
                       >
                         Submit
                       </Button>
