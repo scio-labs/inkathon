@@ -3,6 +3,7 @@
 import { FC, useEffect, useState } from 'react'
 
 import { ContractIds } from '@/deployments/deployments'
+import { zodResolver } from '@hookform/resolvers/zod'
 import GreeterContract from '@inkathon/contracts/typed-contracts/contracts/greeter'
 import {
   contractQuery,
@@ -11,8 +12,9 @@ import {
   useRegisteredContract,
   useRegisteredTypedContract,
 } from '@scio-labs/use-inkathon'
-import { useForm } from 'react-hook-form'
+import { SubmitHandler, useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
+import * as z from 'zod'
 
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
@@ -20,7 +22,9 @@ import { Form, FormControl, FormItem, FormLabel } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { contractTxWithToast } from '@/utils/contract-tx-with-toast'
 
-type UpdateGreetingValues = { newMessage: string }
+const formSchema = z.object({
+  newMessage: z.string().min(1).max(90),
+})
 
 export const GreeterContractInteractions: FC = () => {
   const { api, activeAccount, activeSigner } = useInkathon()
@@ -29,7 +33,9 @@ export const GreeterContractInteractions: FC = () => {
   const [greeterMessage, setGreeterMessage] = useState<string>()
   const [fetchIsLoading, setFetchIsLoading] = useState<boolean>()
   const [updateIsLoading, setUpdateIsLoading] = useState<boolean>()
-  const form = useForm<UpdateGreetingValues>()
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+  })
 
   const { register, reset, handleSubmit } = form
 
@@ -60,7 +66,7 @@ export const GreeterContractInteractions: FC = () => {
   }, [typedContract])
 
   // Update Greeting
-  const updateGreeting = async ({ newMessage }: UpdateGreetingValues) => {
+  const updateGreeting: SubmitHandler<z.infer<typeof formSchema>> = async ({ newMessage }) => {
     if (!activeAccount || !contract || !activeSigner || !api) {
       toast.error('Wallet not connected. Try again…')
       return
