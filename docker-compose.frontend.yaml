@@ -1,0 +1,29 @@
+version: '1.0'
+services:
+  frontend-dev:
+    container_name: inkathon-frontend-dev
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+      target: with_all_deps
+    restart: always
+    command: pnpm run dev
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    ports:
+      - 3000:3000
+  frontend-prod:
+    container_name: inkathon-frontend-prod
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+      args:
+        - NODE_ENV=production
+    ports:
+      - 3001:3000

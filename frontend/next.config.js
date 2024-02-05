@@ -2,6 +2,8 @@
 /* eslint-env node */
 // @ts-check
 
+const path = require('path')
+
 /**
  * @type {import('next').NextConfig}
  **/
@@ -10,6 +12,7 @@ const nextConfig = {
   // Fix for warnings about cjs/esm package duplication
   // See: https://github.com/polkadot-js/api/issues/5636
   transpilePackages: ['@polkadot/.*'],
+  output: 'standalone',
 }
 
 module.exports = nextConfig

@@ -1,0 +1,11 @@
+version: '1.0'
+
+services:
+  substrate-contracts-node:
+    build:
+      context: .
+      dockerfile: Dockerfile.contracts
+    image: contracts-node:latest
+    container_name: substrate-contracts-node
+    ports:
+      - "9944:9944"
