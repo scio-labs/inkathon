@@ -9,7 +9,7 @@ for dir in "./src/"*/; do
     contract_name=$(basename "${dir}")
 
     if [[ ! -e "./deployments/${contract_name}/development.ts" ]]; then
-        echo "Creating empty 'development.ts' file for ${contract_name}"
+        echo "Creating empty 'development.ts' file for '${contract_name}'…"
 
         mkdir -p "./deployments/${contract_name}"
 
@@ -19,6 +19,6 @@ for dir in "./src/"*/; do
             copy /b "deployments/${contract_name}/development.ts" +,,
         fi
     else
-        echo "Great, 'development.ts' already exists! Skipping…"
+        echo "Great, 'development.ts' for '${contract_name}' already exists! Skipping…"
     fi
 done
