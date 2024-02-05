@@ -31,7 +31,7 @@ RUN pnpm install --offline
 # Use pnpm filter to only build the frontend app
 # Then use pnpm deploy command to prune the dependencies
 FROM with_all_deps as builder
-RUN pnpm --filter='*frontend' build \
+RUN NEXT_BUILD_STANDALONE=true pnpm --filter='*frontend' build \
  && pnpm --filter='*frontend' deploy pruned --prod
 
 # STAGE 5: Create a clean production image - only take pruned assets
