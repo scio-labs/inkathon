@@ -187,29 +187,9 @@ Spinning up a deployment via Vercel is pretty straightforward as the necessary s
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&env=NEXT_PUBLIC_DEFAULT_CHAIN&envDescription=Insert%20%60alephzero-testnet%60%20or%20%60shibuya%60&envLink=https%3A%2F%2Fgithub.com%2Fscio-labs%2Finkathon%23environment-variables&project-name=inkathon&repository-name=inkathon&redirect-url=https%3A%2F%2Fgithub.com%2Fscio-labs%2Finkathon&demo-url=https%3A%2F%2Finkathon.xyz)
 
+Alternatively, you can also use the provided Dockerfiles to deploy to any hosting provider of your choice. Read more [here](https://github.com/scio-labs/inkathon/pull/50#issue-2041934251).
+
 ### Environment Variables
-
-One key element making this boilerplate so flexible is the usage of environment variables to configure the active network in the frontend. This is done by setting the `NEXT_PUBLIC_DEFAULT_CHAIN` variable in the `frontend/.env.local` file, or in the Vercel deployment settings respectively.
-
-<details>
-<summary><strong>All Supported Chain Constants</strong></summary>
-
-| Network Identifier  | Name                    | Type    |
-| ------------------- | ----------------------- | ------- |
-| `development`       | ️Local Development Node | Testnet |
-| `alephzero-testnet` | Aleph Zero Testnet      | Testnet |
-| `rococo`            | Rococo                  | Testnet |
-| `shibuya`           | Shibuya Testnet         | Testnet |
-| `shiden`            | Shiden                  | Mainnet |
-| `alephzero`         | Aleph Zero              | Mainnet |
-| `astar`             | Astar                   | Mainnet |
-
-<small>Source: https://github.com/scio-labs/use-inkathon/blob/main/src/chains.ts</small>
-
-> [!NOTE]  
-> Chains can also be supplied manually by creating a [`SubstrateChain`](https://github.com/scio-labs/use-inkathon/blob/main/src/chains.ts#L4) object. If you think a chain is missing, please open an issue or PR.
-
-</details>
 
 All environment variables are imported from `process.env` in [`frontend/src/config/environment.ts`](https://github.com/scio-labs/inkathon/blob/main/frontend/src/config/environment.ts) and re-exported from there. For improved type safety, Always only import environment variables from `@/config/environment` and never directly from `process.env`.
 
@@ -221,6 +201,15 @@ All environment variables are imported from `process.env` in [`frontend/src/conf
 | `NEXT_PUBLIC_SUPPORTED_CHAINS`  | –                                                                                             | Optional array with network identifers (e.g. `["alephzero-testnet", "shibuya"]`) that are supported by the frontend, **if the dApp is supposed to be multi-chain**. |
 
 <small>\*️⃣ Required </small>
+
+#### Supported Chains
+
+One key element making this boilerplate so flexible is the usage of environment variables to configure the active network in the frontend. This is done by setting the `NEXT_PUBLIC_DEFAULT_CHAIN` variable in the `frontend/.env.local` file, or in the deployment settings respectively.
+
+If your network is not provided by the `use-inkathon` library, you can add it manually by creating a new [`SubstrateChain`](https://github.com/scio-labs/use-inkathon/blob/main/src/chains.ts#L4) object. If you think a chain is missing, please open an issue or PR.
+
+> [!IMPORTANT]  
+> All supported chain constants [can be found here](https://github.com/scio-labs/use-inkathon/blob/main/src/chains.ts) in the `scio-labs/use-inkathon` repository.
 
 ### Contract Deployment
 
