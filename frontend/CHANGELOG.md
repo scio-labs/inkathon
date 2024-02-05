@@ -1,5 +1,21 @@
 # @inkathon/frontend
 
+## 0.6.0
+
+### Minor Changes
+
+- [#57](https://github.com/scio-labs/inkathon/pull/57) [`d623968`](https://github.com/scio-labs/inkathon/commit/d623968827da0d96b51a09f79d2f02ecb1c6c2a8) Thanks [@peetzweg](https://github.com/peetzweg)! - uses zod for form validation
+
+- [#50](https://github.com/scio-labs/inkathon/pull/50) [`7c717dd`](https://github.com/scio-labs/inkathon/commit/7c717dd17e4b221b076ecf5d7bf74bebecc9df83) Thanks [@ical10](https://github.com/ical10)! - - Setup Docker workflow for local development of frontend (Next.js Startup & Watching) and production build (non-Vercel deployments)
+  - Setup Docker workflow for local development of contracts (Rust & Substrate Contracts Node Setup, Contract Deployment)
+
+### Patch Changes
+
+- [#55](https://github.com/scio-labs/inkathon/pull/55) [`6b7ea5d`](https://github.com/scio-labs/inkathon/commit/6b7ea5de1e425242fd4811dbc85898f64ceb069f) Thanks [@peetzweg](https://github.com/peetzweg)! - allow postinstall to work with new contracts instead of only packaged greeter
+
+- Updated dependencies [[`7c717dd`](https://github.com/scio-labs/inkathon/commit/7c717dd17e4b221b076ecf5d7bf74bebecc9df83), [`6b7ea5d`](https://github.com/scio-labs/inkathon/commit/6b7ea5de1e425242fd4811dbc85898f64ceb069f)]:
+  - @inkathon/contracts@0.6.0
+
 ## 0.5.0
 
 ### Minor Changes
