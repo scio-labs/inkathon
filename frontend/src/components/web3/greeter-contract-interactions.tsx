@@ -62,7 +62,7 @@ export const GreeterContractInteractions: FC = () => {
   }
   useEffect(() => {
     fetchGreeting()
-  }, [typedContract])
+  }, [contract])
 
   // Update Greeting
   const updateGreeting: SubmitHandler<z.infer<typeof formSchema>> = async ({ newMessage }) => {
