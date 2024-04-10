@@ -1,5 +1,15 @@
 # @inkathon/contracts
 
+## 0.7.0
+
+### Minor Changes
+
+- [#60](https://github.com/scio-labs/inkathon/pull/60) [`bcc077a`](https://github.com/scio-labs/inkathon/commit/bcc077a1f139029d1bd4456fcfd1343582ba7598) Thanks [@peetzweg](https://github.com/peetzweg)! - Update to ink! v5
+
+### Patch Changes
+
+- [#60](https://github.com/scio-labs/inkathon/pull/60) [`49d181b`](https://github.com/scio-labs/inkathon/commit/49d181b4efe7c874998f332f9a2e5c92d29f5223) Thanks [@peetzweg](https://github.com/peetzweg)! - Disable `typechain-polkadot` typed-contracts until ink! v5 support.
+
 ## 0.6.0
 
 ### Minor Changes
