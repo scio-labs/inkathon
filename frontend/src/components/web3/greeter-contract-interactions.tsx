@@ -4,13 +4,12 @@ import { FC, useEffect, useState } from 'react'
 
 import { ContractIds } from '@/deployments/deployments'
 import { zodResolver } from '@hookform/resolvers/zod'
-import GreeterContract from '@inkathon/contracts/typed-contracts/contracts/greeter'
+// import GreeterContract from '@inkathon/contracts/typed-contracts/contracts/greeter'
 import {
   contractQuery,
   decodeOutput,
   useInkathon,
   useRegisteredContract,
-  useRegisteredTypedContract,
 } from '@scio-labs/use-inkathon'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
@@ -29,7 +28,7 @@ const formSchema = z.object({
 export const GreeterContractInteractions: FC = () => {
   const { api, activeAccount, activeSigner } = useInkathon()
   const { contract, address: contractAddress } = useRegisteredContract(ContractIds.Greeter)
-  const { typedContract } = useRegisteredTypedContract(ContractIds.Greeter, GreeterContract)
+  // const { typedContract } = useRegisteredTypedContract(ContractIds.Greeter, GreeterContract)
   const [greeterMessage, setGreeterMessage] = useState<string>()
   const [fetchIsLoading, setFetchIsLoading] = useState<boolean>()
   const form = useForm<z.infer<typeof formSchema>>({
@@ -40,7 +39,7 @@ export const GreeterContractInteractions: FC = () => {
 
   // Fetch Greeting
   const fetchGreeting = async () => {
-    if (!contract || !typedContract || !api) return
+    if (!contract || !api) return
 
     setFetchIsLoading(true)
     try {
@@ -49,9 +48,10 @@ export const GreeterContractInteractions: FC = () => {
       if (isError) throw new Error(decodedOutput)
       setGreeterMessage(output)
 
+      // NOTE: Currently disabled until `typechain-polkadot` dependencies are upted to support ink! v5
       // Alternatively: Fetch it with typed contract instance
-      const typedResult = await typedContract.query.greet()
-      console.log('Result from typed contract: ', typedResult.value)
+      // const typedResult = await typedContract.query.greet()
+      // console.log('Result from typed contract: ', typedResult.value)
     } catch (e) {
       console.error(e)
       toast.error('Error while fetching greeting. Try again…')
