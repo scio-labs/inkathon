@@ -1,5 +1,11 @@
 # @inkathon/contracts
 
+## 0.8.0
+
+### Minor Changes
+
+- [`0f3c1a5`](https://github.com/scio-labs/inkathon/commit/0f3c1a5ba5f129c2fba0f7fed2ba27fc3968d07f) Thanks [@wottpal](https://github.com/wottpal)! - Integrate named workspace contracts with DRink! CLI in a simplified pnpm command.
+
 ## 0.7.0
 
 ### Minor Changes
