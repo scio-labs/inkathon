@@ -44,7 +44,8 @@ Other projects include:
 7. [VSCode Setup 🛠](#vscode-setup-)
    1. [Workspace](#workspace)
    2. [Plugins](#plugins)
-8. [FAQs \& Troubleshooting 💬](#faqs--troubleshooting-)
+8. [DRink! CLI Usage 💧](#drink-cli-usage-)
+9. [FAQs \& Troubleshooting 💬](#faqs--troubleshooting-)
 
 ---
 
@@ -259,6 +260,16 @@ Additionally, the VSCode plugins listed below are recommended as they can be ver
 | [`mikestead.dotenv`](https://marketplace.visualstudio.com/items?itemName=mikestead.dotenv)                       | Adds syntax highlighting for `.env` files.    |
 
 </details>
+
+## DRink! CLI Usage 💧
+
+The [DRink! CLI](https://github.com/inkdevhub/drink/blob/main/drink-cli/README.md) is a convenient command line tool that helps you to play with your ink! contracts without setting up a local node.
+
+1. Install `drink-cli` via `cargo install drink-cli --force --locked`.
+2. Build your contracts via `pnpm run build`.
+3. Run the following command to prepare & open the CLI for your contract: `pnpm run drink-cli <contract-name>`.
+
+Then, just use the `help` command to see all available commands and start interacting with your contract. For example, you can deploy the greeter example contract via `d --constructor default` or `d "Hello World"`.
 
 ## FAQs & Troubleshooting 💬
 
