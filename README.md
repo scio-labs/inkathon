@@ -97,7 +97,7 @@ Optionally, to enable [`simple-git-hooks`](https://github.com/toplenboren/simple
 
 ### 2. Build & deploy contracts on a local node
 
-The `contracts/package.json` file contains shorthand scripts for building, testing, and deploying your contracts. To run these scripts, you need to set `contracts/` as the active working directory in your terminal.
+The `contracts/package.json` file contains shorthand scripts for building, testing, and deploying your contracts.
 
 > **Pre-requisites:**
 >
@@ -106,6 +106,9 @@ The `contracts/package.json` file contains shorthand scripts for building, testi
 > - Install [`substrate-contracts-node`](https://github.com/paritytech/substrate-contracts-node)
 
 ```bash
+# Set `contracts/` as the active working directory in your terminal
+cd contracts
+
 # Build contracts and move artifacts to `contracts/deployments/{contract}/` folders
 pnpm run build
 
