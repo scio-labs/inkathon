@@ -32,9 +32,6 @@ importers:
 
   contracts:
     devDependencies:
-      '@727-ventures/typechain-types':
-        specifier: ^1.1.2
-        version: 1.1.2
       '@polkadot/api':
         specifier: ^11.0.2
         version: 11.0.2
@@ -53,6 +50,9 @@ importers:
       '@polkadot/util-crypto':
         specifier: ^12.6.2
         version: 12.6.2(@polkadot/util@12.6.2)
+      '@prosopo/typechain-types':
+        specifier: ^1.1.15
+        version: 1.1.15
       '@scio-labs/use-inkathon':
         specifier: ^0.10.0
         version: 0.10.0(@nightlylabs/wallet-selector-polkadot@0.2.5)(@polkadot/api-contract@11.0.2)(@polkadot/api@11.0.2)(@polkadot/extension-inject@0.47.3)(@polkadot/keyring@12.6.2)(@polkadot/types@11.0.2)(@polkadot/util-crypto@12.6.2)(@polkadot/util@12.6.2)(react-dom@18.3.1)(react@18.3.1)
@@ -95,9 +95,6 @@ importers:
 
   frontend:
     dependencies:
-      '@727-ventures/typechain-types':
-        specifier: ^1.1.2
-        version: 1.1.2
       '@azns/resolver-core':
         specifier: ^1.6.0
         version: 1.6.0(@polkadot/api-contract@11.0.2)(@polkadot/api@11.0.2)(@polkadot/types@11.0.2)(@polkadot/util-crypto@12.6.2)(@polkadot/util@12.6.2)
@@ -134,6 +131,9 @@ importers:
       '@polkadot/util-crypto':
         specifier: ^12.6.2
         version: 12.6.2(@polkadot/util@12.6.2)
+      '@prosopo/typechain-types':
+        specifier: ^1.1.15
+        version: 1.1.15
       '@radix-ui/react-dropdown-menu':
         specifier: ^2.0.6
         version: 2.0.6(@types/react-dom@18.3.0)(@types/react@18.3.1)(react-dom@18.3.1)(react@18.3.1)
@@ -269,19 +269,6 @@ importers:
         version: 5.4.5
 
 packages:
-
-  /@727-ventures/typechain-types@1.1.2:
-    resolution: {integrity: sha512-Ed9pxucmrwl9bO8sAiWorP7fRUO+feekwN2UP9GV4/XDsgtSH5RPJSEeSooYJLpwALElinX7Imekg9MQmuXpmg==}
-    dependencies:
-      '@polkadot/api': 10.13.1
-      '@polkadot/api-contract': 10.13.1
-      '@types/bn.js': 5.1.5
-      '@types/node': 18.19.31
-      camelcase: 6.3.0
-    transitivePeerDependencies:
-      - bufferutil
-      - supports-color
-      - utf-8-validate
 
   /@aashutoshrathi/word-wrap@1.2.6:
     resolution: {integrity: sha512-1Yjs2SvM8TflER/OD3cOjhWWOZb58A2t7wpE2S9XfBYTiIl+XFhQG2bjy4Pu1I+EAlCNUzRDYDdFwFYUKvXcIA==}
@@ -2451,6 +2438,20 @@ packages:
       ws: 8.17.0
     transitivePeerDependencies:
       - bufferutil
+      - utf-8-validate
+
+  /@prosopo/typechain-types@1.1.15:
+    resolution: {integrity: sha512-VZpzG/sUba6xnMsiPcFGCCDInV2o7aaJarKvGFWqaCM7I1AKIbq8hi0i6ojxKq9caMo0ZAwblSi+XR8GX+QfVg==}
+    dependencies:
+      '@polkadot/api': 10.13.1
+      '@polkadot/api-contract': 10.13.1
+      '@types/bn.js': 5.1.5
+      '@types/node': 18.19.31
+      camelcase: 6.3.0
+      tslib: 2.6.2
+    transitivePeerDependencies:
+      - bufferutil
+      - supports-color
       - utf-8-validate
 
   /@radix-ui/primitive@1.0.1:

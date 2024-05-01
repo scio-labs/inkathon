@@ -20,7 +20,7 @@
     "lint:format": "prettier . --write"
   },
   "devDependencies": {
-    "@727-ventures/typechain-types": "^1.1.2",
+    "@prosopo/typechain-types": "^1.1.15",
     "@polkadot/api": "^11.0.2",
     "@polkadot/api-contract": "^11.0.2",
     "@polkadot/keyring": "^12.6.2",

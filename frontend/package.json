@@ -16,7 +16,7 @@
     "lint:format": "prettier . --write"
   },
   "dependencies": {
-    "@727-ventures/typechain-types": "^1.1.2",
+    "@prosopo/typechain-types": "^1.1.15",
     "@azns/resolver-core": "^1.6.0",
     "@azns/resolver-react": "^1.6.0",
     "@hookform/resolvers": "^3.3.4",
