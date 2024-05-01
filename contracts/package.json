@@ -21,24 +21,24 @@
   },
   "devDependencies": {
     "@727-ventures/typechain-types": "^1.1.2",
-    "@polkadot/api": "^10.12.6",
-    "@polkadot/api-contract": "^10.12.6",
+    "@polkadot/api": "^11.0.2",
+    "@polkadot/api-contract": "^11.0.2",
     "@polkadot/keyring": "^12.6.2",
-    "@polkadot/types": "^10.12.6",
+    "@polkadot/types": "^11.0.2",
     "@polkadot/util": "^12.6.2",
     "@polkadot/util-crypto": "^12.6.2",
-    "@scio-labs/use-inkathon": "^0.9.0",
+    "@scio-labs/use-inkathon": "^0.10.0",
     "@types/bn.js": "~5.1.5",
-    "@types/eslint": "^8.56.7",
+    "@types/eslint": "^8.56.10",
     "@types/eslint-config-prettier": "^6.11.3",
     "@types/node": "^20.12.7",
-    "@typescript-eslint/eslint-plugin": "^7.6.0",
-    "@typescript-eslint/parser": "^7.6.0",
+    "@typescript-eslint/eslint-plugin": "^7.8.0",
+    "@typescript-eslint/parser": "^7.8.0",
     "bn.js": "^5.2.1",
     "dotenv": "^16.4.5",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
-    "tsx": "^4.7.2",
-    "typescript": "^5.4.4"
+    "tsx": "^4.8.2",
+    "typescript": "^5.4.5"
   }
 }
