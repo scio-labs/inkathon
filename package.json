@@ -12,6 +12,12 @@
     "node": ">=18 <=20",
     "pnpm": "8"
   },
+  "pnpm": {
+    "overrides": {
+      "@polkadot/api": ">=11",
+      "@polkadot/api-contract": ">=11"
+    }
+  },
   "scripts": {
     "dev": "pnpm run -F frontend dev",
     "build": "pnpm run -F frontend build",

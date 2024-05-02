@@ -153,7 +153,7 @@
         "args": [],
         "default": false,
         "docs": [
-          " Returns the current value of `message`."
+          " Returns the current value of 'message'."
         ],
         "label": "greet",
         "mutates": false,
@@ -181,7 +181,7 @@
         ],
         "default": false,
         "docs": [
-          " Sets `message` to the given value."
+          " Sets 'message' to the given value."
         ],
         "label": "set_message",
         "mutates": true,

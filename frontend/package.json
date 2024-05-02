@@ -16,7 +16,6 @@
     "lint:format": "prettier . --write"
   },
   "dependencies": {
-    "@prosopo/typechain-types": "^1.1.15",
     "@azns/resolver-core": "^1.6.0",
     "@azns/resolver-react": "^1.6.0",
     "@hookform/resolvers": "^3.3.4",
@@ -29,6 +28,7 @@
     "@polkadot/types": "^11.0.2",
     "@polkadot/util": "^12.6.2",
     "@polkadot/util-crypto": "^12.6.2",
+    "@prosopo/typechain-types": "^1.1.15",
     "@radix-ui/react-dropdown-menu": "^2.0.6",
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-slot": "^1.0.2",
@@ -61,7 +61,7 @@
     "@types/downloadjs": "^1.4.5",
     "@types/eslint": "^8.56.10",
     "@types/eslint-config-prettier": "^6.11.3",
-    "@types/node": "^20.12.7",
+    "@types/node": "^20.12.8",
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.0",
     "@typescript-eslint/eslint-plugin": "^7.8.0",

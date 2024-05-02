@@ -31,13 +31,13 @@ mod greeter {
             Self::new(default_message)
         }
 
-        /// Returns the current value of `message`.
+        /// Returns the current value of 'message'.
         #[ink(message)]
         pub fn greet(&self) -> String {
             self.message.clone()
         }
 
-        /// Sets `message` to the given value.
+        /// Sets 'message' to the given value.
         #[ink(message)]
         pub fn set_message(&mut self, new_value: String) {
             self.message = new_value.clone();
