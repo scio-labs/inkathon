@@ -1,5 +1,11 @@
 # @inkathon/frontend
 
+## 0.8.1
+
+### Patch Changes
+
+- [#67](https://github.com/scio-labs/inkathon/pull/67) [`503c07b`](https://github.com/scio-labs/inkathon/commit/503c07b6c0d877463c97ea8a83da176893ee8461) Thanks [@ical10](https://github.com/ical10)! - feat: Fix frontend production build Dockerfile
+
 ## 0.8.0
 
 ### Patch Changes
