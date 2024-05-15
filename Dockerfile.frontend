@@ -32,7 +32,7 @@ RUN pnpm install --offline
 # Then use pnpm deploy command to prune the dependencies
 FROM with_all_deps as builder
 RUN NEXT_BUILD_STANDALONE=true pnpm --filter='*frontend' build \
- && pnpm --filter='*frontend' deploy pruned --prod
+ && pnpm --filter='*frontend' deploy pruned --prod --force
 
 # STAGE 5: Create a clean production image - only take pruned assets
 FROM node:18-alpine AS runner
