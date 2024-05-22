@@ -10,7 +10,7 @@
   ],
   "engines": {
     "node": ">=18 <=20",
-    "pnpm": "8"
+    "pnpm": ">=8"
   },
   "scripts": {
     "dev": "pnpm run -F frontend dev",
