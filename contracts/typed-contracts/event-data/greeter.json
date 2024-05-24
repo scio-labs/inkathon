@@ -1,0 +1,3 @@
+{
+"Greeted": {"name":"Greeted","body":{"from":{"name":"Option","body":{"0":{"name":"AccountId","body":"string | number[]","isResult":false,"isPrimitive":true,"isConvertable":false},"1":{"name":"null","isResult":false,"isPrimitive":true,"isConvertable":false}},"isResult":false,"isPrimitive":false,"isConvertable":false},"message":{"name":"string","isResult":false,"isPrimitive":true,"isConvertable":false}},"isResult":false,"isPrimitive":false,"isConvertable":false}
+}

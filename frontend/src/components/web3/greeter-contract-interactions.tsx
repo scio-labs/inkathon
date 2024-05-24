@@ -4,12 +4,13 @@ import { FC, useEffect, useState } from 'react'
 
 import { ContractIds } from '@/deployments/deployments'
 import { zodResolver } from '@hookform/resolvers/zod'
-// import GreeterContract from '@inkathon/contracts/typed-contracts/contracts/greeter'
+import GreeterContract from '@inkathon/contracts/typed-contracts/contracts/greeter'
 import {
   contractQuery,
   decodeOutput,
   useInkathon,
   useRegisteredContract,
+  useRegisteredTypedContract,
 } from '@scio-labs/use-inkathon'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
@@ -28,9 +29,8 @@ const formSchema = z.object({
 export const GreeterContractInteractions: FC = () => {
   const { api, activeAccount, activeSigner } = useInkathon()
   const { contract, address: contractAddress } = useRegisteredContract(ContractIds.Greeter)
-  // const { typedContract } = useRegisteredTypedContract(ContractIds.Greeter, GreeterContract)
+  const { typedContract } = useRegisteredTypedContract(ContractIds.Greeter, GreeterContract)
   const [greeterMessage, setGreeterMessage] = useState<string>()
-  const [fetchIsLoading, setFetchIsLoading] = useState<boolean>()
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   })
@@ -38,20 +38,21 @@ export const GreeterContractInteractions: FC = () => {
   const { register, reset, handleSubmit } = form
 
   // Fetch Greeting
+  const [fetchIsLoading, setFetchIsLoading] = useState<boolean>()
   const fetchGreeting = async () => {
-    if (!contract || !api) return
+    if (!contract || !typedContract || !api) return
 
     setFetchIsLoading(true)
     try {
+      // Fetch via `contractQuery`
       const result = await contractQuery(api, '', contract, 'greet')
       const { output, isError, decodedOutput } = decodeOutput(result, contract, 'greet')
       if (isError) throw new Error(decodedOutput)
       setGreeterMessage(output)
 
-      // NOTE: Currently disabled until `typechain-polkadot` dependencies are upted to support ink! v5
-      // Alternatively: Fetch it with typed contract instance
-      // const typedResult = await typedContract.query.greet()
-      // console.log('Result from typed contract: ', typedResult.value)
+      // Alternatively: Fetch via `typedContract`
+      const typedResult = await typedContract.query.greet()
+      console.log('Result from typed contract: ', typedResult.value)
     } catch (e) {
       console.error(e)
       toast.error('Error while fetching greeting. Try again…')
@@ -62,19 +63,25 @@ export const GreeterContractInteractions: FC = () => {
   }
   useEffect(() => {
     fetchGreeting()
-  }, [contract])
+  }, [contract, typedContract])
 
   // Update Greeting
   const updateGreeting: SubmitHandler<z.infer<typeof formSchema>> = async ({ newMessage }) => {
-    if (!activeAccount || !contract || !activeSigner || !api) {
+    if (!activeAccount || !contract || !typedContract || !activeSigner || !api) {
       toast.error('Wallet not connected. Try again…')
       return
     }
 
     try {
+      // Update via `contractTx` (`contractTxWithToast` respectively)
       await contractTxWithToast(api, activeAccount.address, contract, 'setMessage', {}, [
         newMessage,
       ])
+
+      // NOTE: DOESN'T NOT WORK YET
+      // Alternatively: Update via `typedContract`
+      // await typedContract.tx.setMessage(`newMessage: ${newMessage}`)
+
       reset()
     } catch (e) {
       console.error(e)
