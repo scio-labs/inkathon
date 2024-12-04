@@ -14,8 +14,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [20]
-        pnpm-version: [9.4]
+        node-version: [22]
+        pnpm-version: [9.14.4]
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
