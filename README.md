@@ -136,6 +136,7 @@ CHAIN=<chain-name> bun run deploy
 - [x] Show Balance in UI
 - [x] Account/Address Switcher
 - [x] Indicator & Action to map accounts
+- [x] Faucet Direct Links
 - [ ] Dockerfile for self-hosting
 - [ ] Claude & Cursor Rules
 - [ ] Rust & `ink-analyzer` VSCode setup
