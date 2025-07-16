@@ -1,6 +1,7 @@
 "use client"
 
 import {
+  useAccounts,
   useConnectedWallets,
   useWalletConnector,
   useWalletDisconnector,
@@ -9,6 +10,7 @@ import {
 import { LinkIcon, UnlinkIcon, WalletIcon } from "lucide-react"
 import { useCallback } from "react"
 import { toast } from "sonner"
+import type { Wallet } from "@/lib/reactive-dot/custom-types"
 import { Button } from "../ui/button-extended"
 import {
   DropdownMenu,
@@ -17,9 +19,8 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu"
 
-type Wallet = ReturnType<typeof useWallets>[number]
-
 export function ConnectButton() {
+  const accounts = useAccounts()
   const wallets = useWallets()
   const connectedWallets = useConnectedWallets()
 
@@ -52,7 +53,7 @@ export function ConnectButton() {
     })
   }, [disconnectWallet, connectedWallets])
 
-  if (connectedWallets?.length > 0) {
+  if (accounts?.length > 0) {
     return (
       <Button
         size="lg"

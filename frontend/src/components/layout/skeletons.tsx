@@ -15,7 +15,7 @@ export function AppSkeleton() {
 }
 
 export function CardSkeleton() {
-  return <div className="glass-card h-[250px] animate-pulse" />
+  return <div className="inkathon-card h-[250px] animate-pulse" />
 }
 
 export function ButtonSkeleton(props: ButtonProps) {

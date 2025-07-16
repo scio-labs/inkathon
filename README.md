@@ -134,7 +134,7 @@ CHAIN=<chain-name> bun run deploy
 
 - [x] Network Selector
 - [x] Show Balance in UI
-- [ ] Account/Address Switcher
+- [x] Account/Address Switcher
 - [ ] Shortcut for Mapping Accounts
 - [ ] Dockerfile for self-hosting
 - [ ] Claude & Cursor Rules

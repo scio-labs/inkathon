@@ -1,10 +1,16 @@
-import { type ChainProvider, useChainSpecData } from "@reactive-dot/react"
-import type { ComponentProps } from "react"
+import { useChainSpecData } from "@reactive-dot/react"
 import { config } from "@/lib/reactive-dot/config"
+import type { ChainId } from "@/lib/reactive-dot/custom-types"
 import { buttonVariants } from "../ui/button-extended"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select"
-
-type ChainId = ComponentProps<typeof ChainProvider>["chainId"]
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select"
 
 interface ChainSelectProps {
   chainId: ChainId
@@ -19,16 +25,18 @@ export function ChainSelect({ chainId, setChainId }: ChainSelectProps) {
         className={buttonVariants({
           size: "lg",
           variant: "glass",
-          className:
-            "!h-11 min-w-[200px] *:data-[slot=select-value]:inline *:data-[slot=select-value]:truncate",
+          className: "inkathon-select",
         })}
       >
         <SelectValue placeholder="Select a chain" />
       </SelectTrigger>
       <SelectContent>
-        {chainIds.map((chainId) => (
-          <ChainSelectItem key={chainId} chainId={chainId} />
-        ))}
+        <SelectGroup>
+          <SelectLabel>Chains</SelectLabel>
+          {chainIds.map((chainId) => (
+            <ChainSelectItem key={chainId} chainId={chainId} />
+          ))}
+        </SelectGroup>
       </SelectContent>
     </Select>
   )

@@ -144,12 +144,15 @@
   body {
     @apply bg-gradient-to-b from-background/100 via-background/100 to-[hsl(255deg,50%,20%)] bg-no-repeat bg-center bg-fixed;
   }
-  .glass-card {
+  .inkathon-card {
     @apply !min-h-[250px] !bg-gradient-to-b !border !from-foreground/5 !via-foreground/0 !to-foreground/0 !rounded-3xl !border-foreground/15 !bg-foreground/8 !shadow-xl !ring-1 !ring-foreground/15 !ring-offset-2 !ring-offset-background;
   }
-  .glass-card-table {
+  .inkathon-card-table {
     @apply table-fixed border-foreground/10 border-t;
     @apply [&_tr]:hover:!bg-foreground/5;
     @apply [&_td]:truncate [&_td]:border-foreground/10 [&_td]:border-b [&_td]:first:w-1/3 [&_td]:first:!pl-6 [&_td]:first:font-medium [&_td]:first:text-muted-foreground [&_td]:last:!pr-6 [&_td]:last:text-right [&_td]:last:font-mono;
+  }
+  .inkathon-select {
+    @apply !h-11 !min-w-[200px] *:data-[slot=select-value]:!inline *:data-[slot=select-value]:!truncate;
   }
 }

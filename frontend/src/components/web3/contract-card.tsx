@@ -1,7 +1,8 @@
-import { createReviveSdk } from "@polkadot-api/sdk-ink"
-import { useAccounts, useChainId, useTypedApi } from "@reactive-dot/react"
+import { createReviveSdk, type ReviveSdkTypedApi } from "@polkadot-api/sdk-ink"
+import { useChainId, useTypedApi } from "@reactive-dot/react"
 import { useCallback, useEffect, useState } from "react"
 import { toast } from "sonner"
+import { useSignerAndAddress } from "@/hooks/use-signer-and-address"
 import { ALICE } from "@/lib/inkathon/constants"
 import { flipper } from "@/lib/inkathon/deployments"
 import { CardSkeleton } from "../layout/skeletons"
@@ -14,7 +15,7 @@ export function ContractCard() {
 
   const api = useTypedApi()
   const chain = useChainId()
-  const accounts = useAccounts()
+  const { signer, signerAddress } = useSignerAndAddress()
 
   /**
    * Contract Read (Query)
@@ -27,7 +28,7 @@ export function ContractCard() {
       if (!api || !chain) return
 
       // Create SDK & contract instance
-      const sdk = createReviveSdk(api, flipper.contract)
+      const sdk = createReviveSdk(api as ReviveSdkTypedApi, flipper.contract)
       const contract = sdk.getContract(flipper.evmAddresses[chain])
 
       // Ensure account is mapped (it most likely is)
@@ -53,17 +54,16 @@ export function ContractCard() {
    * Contract Write (Transaction)
    */
   const handleFlip = useCallback(async () => {
-    if (!api || !chain || !accounts?.length) return
+    if (!api || !chain || !signer) return
 
-    const account = accounts[0]
-    const sdk = createReviveSdk(api, flipper.contract)
+    const sdk = createReviveSdk(api as ReviveSdkTypedApi, flipper.contract)
     const contract = sdk.getContract(flipper.evmAddresses[chain])
 
     // Map account if not mapped
-    const isMapped = await sdk.addressIsMapped(account.address)
+    const isMapped = await sdk.addressIsMapped(signerAddress)
     if (!isMapped) {
       try {
-        const txResult = await api.tx.Revive.map_account().signAndSubmit(account.polkadotSigner)
+        const txResult = await api.tx.Revive.map_account().signAndSubmit(signer)
         if (!txResult.ok) {
           throw txResult.dispatchError
         }
@@ -76,8 +76,8 @@ export function ContractCard() {
 
     // Send transaction
     const tx = contract
-      .send("flip", { origin: account.address })
-      .signAndSubmit(account.polkadotSigner)
+      .send("flip", { origin: signerAddress })
+      .signAndSubmit(signer)
       .then((tx) => {
         queryContract()
         if (!tx.ok) throw new Error("Failed to send transaction", { cause: tx.dispatchError })
@@ -88,12 +88,12 @@ export function ContractCard() {
       success: "Successfully flipped",
       error: "Failed to send transaction",
     })
-  }, [accounts, api, chain])
+  }, [signer, api, chain])
 
   if (queryIsLoading) return <CardSkeleton />
 
   return (
-    <Card className="glass-card">
+    <Card className="inkathon-card">
       <CardHeader className="relative">
         <CardTitle>Flipper Contract</CardTitle>
 
@@ -107,7 +107,7 @@ export function ContractCard() {
         </Button>
       </CardHeader>
 
-      <Table className="glass-card-table">
+      <Table className="inkathon-card-table">
         <TableBody>
           <TableRow>
             <TableCell>Flip State</TableCell>

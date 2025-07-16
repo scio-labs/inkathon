@@ -9,12 +9,12 @@ export function ChainMetaCard() {
   if (isLoading) return <CardSkeleton />
 
   return (
-    <Card className="glass-card">
+    <Card className="inkathon-card">
       <CardHeader>
         <CardTitle>Chain Metadata</CardTitle>
       </CardHeader>
 
-      <Table className="glass-card-table">
+      <Table className="inkathon-card-table">
         <TableBody>
           <TableRow>
             <TableCell>Name</TableCell>
