@@ -14,10 +14,16 @@
 
 The inkathon boilerplate offers a complete setup for developing full-stack dApps on Polkadot with ink! smart contracts and Next.js. It now shines in new glory with full ink! v6 support powered by Papi, ReactiveDOT, Pop CLI, and more.
 
+The boilerplate rebuild features:
+
+- Full ink! v6 support & type-safety
+- Revamped build, deployment, and address management scripts
+- Updated stack with Bun, Next.js v15, TailwindCSS & shadcn/ui v4
+
 The inkathon boilerplate is almost as old as ink! itself. With accumulated over 200 stars, more than 250 public projects depending on it and the most active [ink! Telegram group](https://t.me/inkathon).
 
 > [!NOTE]  
-> Are you looking for the old ink! v5 compatible boilerplate? Check out the [`v1` branch](https://github.com/scio-labs/inkathon/tree/v1).
+> The old ink! v5 compatible boilerplate is available on the [`v1` branch](https://github.com/scio-labs/inkathon/tree/v1).
 
 ## Getting Started 🚀
 
@@ -119,3 +125,18 @@ CHAIN=<chain-name> bun run deploy
 ```
 
 3. Add the new network to the frontend under `frontend/src/lib/reactive-dot/config.ts`
+
+## To-Dos
+
+> [!IMPORTANT]
+>
+> This is an alpha release. Use it at your own risk.
+
+- [ ] Dockerfile for self-hosting
+- [ ] Show Balance in UI
+- [ ] Shortcut for Mapping Accounts
+- [ ] Account/Address Switcher
+- [ ] Claude & Cursor Rules
+- [ ] Rust & `ink-analyzer` VSCode setup
+- [ ] New `init.sh` script for setting up the boilerplate (e.g. update name)
+- [ ] More contract examples
