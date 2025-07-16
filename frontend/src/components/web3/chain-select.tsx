@@ -20,7 +20,7 @@ export function ChainSelect({ chainId, setChainId }: ChainSelectProps) {
           size: "lg",
           variant: "glass",
           className:
-            "!h-11 w-[200px] *:data-[slot=select-value]:inline *:data-[slot=select-value]:truncate",
+            "!h-11 min-w-[200px] *:data-[slot=select-value]:inline *:data-[slot=select-value]:truncate",
         })}
       >
         <SelectValue placeholder="Select a chain" />
@@ -37,12 +37,7 @@ export function ChainSelect({ chainId, setChainId }: ChainSelectProps) {
 function ChainSelectItem({ chainId }: { chainId: keyof typeof config.chains }) {
   const { name } = useChainSpecData({ chainId })
 
-  return (
-    <SelectItem value={chainId}>
-      {name}
-      {name}
-      {name}
-      {name}
-    </SelectItem>
-  )
+  const formattedName = name === "passet-hub" ? "Passet Hub Testnet" : name
+
+  return <SelectItem value={chainId}>{formattedName}</SelectItem>
 }

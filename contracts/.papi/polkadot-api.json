@@ -13,6 +13,12 @@
       "metadata": ".papi/metadata/pop.scale",
       "genesis": "0xe8b2d197b82a0da1fffca832c050894ebe343b289c61ef439aa694bdcef78aa1",
       "codeHash": "0x7fb1a967a98f40aa39622e3e3fa39f9325c10940cd6767ef3f1250463cb76264"
+    },
+    "passethub": {
+      "wsUrl": "wss://testnet-passet-hub.polkadot.io",
+      "metadata": ".papi/metadata/passethub.scale",
+      "genesis": "0xfd974cf9eaf028f5e44b9fdd1949ab039c6cf9cc54449b0b60d71b042e79aeb6",
+      "codeHash": "0x87d8a4f006f8d55b05a81e32c8594acabb4f95dbeae1b724edc9ecf2289dc7af"
     }
   },
   "ink": {

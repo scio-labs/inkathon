@@ -13,7 +13,7 @@ import { ContractCard } from "@/components/web3/contract-card"
 type ChainId = ComponentProps<typeof ChainProvider>["chainId"]
 
 export function App() {
-  const [chainId, setChainId] = useState<ChainId>("pop")
+  const [chainId, setChainId] = useState<ChainId>("passethub")
 
   return (
     <ChainProvider chainId={chainId}>
