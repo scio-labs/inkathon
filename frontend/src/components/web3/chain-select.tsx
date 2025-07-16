@@ -19,7 +19,8 @@ export function ChainSelect({ chainId, setChainId }: ChainSelectProps) {
         className={buttonVariants({
           size: "lg",
           variant: "glass",
-          className: "!h-11 min-w-[200px]",
+          className:
+            "!h-11 w-[200px] *:data-[slot=select-value]:inline *:data-[slot=select-value]:truncate",
         })}
       >
         <SelectValue placeholder="Select a chain" />
@@ -36,5 +37,12 @@ export function ChainSelect({ chainId, setChainId }: ChainSelectProps) {
 function ChainSelectItem({ chainId }: { chainId: keyof typeof config.chains }) {
   const { name } = useChainSpecData({ chainId })
 
-  return <SelectItem value={chainId}>{name}</SelectItem>
+  return (
+    <SelectItem value={chainId}>
+      {name}
+      {name}
+      {name}
+      {name}
+    </SelectItem>
+  )
 }

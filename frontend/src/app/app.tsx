@@ -18,7 +18,7 @@ export function App() {
   return (
     <ChainProvider chainId={chainId}>
       <Wrapper className="flex flex-col items-center gap-8">
-        <div className="flex items-center justify-center gap-4">
+        <div className="flex items-center justify-center gap-4 max-sm:flex-col">
           {/* Chain Selector */}
           <Suspense fallback={<ButtonSkeleton />}>
             <ChainSelect chainId={chainId} setChainId={setChainId} />
