@@ -1,7 +1,6 @@
-import { createReviveSdk, type ReviveSdkTypedApi } from "@polkadot-api/sdk-ink"
+import { ss58ToEthereum } from "@polkadot-api/sdk-ink"
 import { useTypedApi } from "@reactive-dot/react"
 import { useCallback, useEffect, useState } from "react"
-import * as deployments from "@/lib/inkathon/deployments"
 import { useSignerAndAddress } from "./use-signer-and-address"
 
 export function useIsMapped() {
@@ -16,11 +15,8 @@ export function useIsMapped() {
       return
     }
 
-    // Check if account is mapped
-    // TODO: Check mapping state without mandatory contract instance
-    const arbitraryContract = Object.values(deployments)[0].contract
-    const sdk = createReviveSdk(api as ReviveSdkTypedApi, arbitraryContract)
-    const isMapped = await sdk.addressIsMapped(signerAddress)
+    const evmSignerAddress = ss58ToEthereum(signerAddress)
+    const isMapped = !!(await api.query.Revive.OriginalAccount.getValue(evmSignerAddress))
 
     setIsMapped(isMapped)
   }, [api, signerAddress])
