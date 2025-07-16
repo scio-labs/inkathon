@@ -17,7 +17,7 @@
     },
     "contracts": {
       "name": "@inkathon/contracts",
-      "version": "5.0.0",
+      "version": "6.0.0",
       "dependencies": {
         "@polkadot-api/descriptors": "file:.papi/descriptors",
         "@polkadot-api/sdk-ink": "^0.3.1",
@@ -30,7 +30,7 @@
     },
     "frontend": {
       "name": "@inkathon/frontend",
-      "version": "5.0.0",
+      "version": "6.0.0",
       "dependencies": {
         "@inkathon/contracts": "workspace:*",
         "@polkadot-api/descriptors": "file:../contracts/.papi/descriptors",

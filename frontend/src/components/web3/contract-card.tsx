@@ -37,7 +37,8 @@ export function ContractCard() {
 
       // Query contract
       const result = await contract.query("get", { origin: ALICE })
-      setFlipperState(result.value.response)
+      const newState = result.success ? result.value.response : undefined
+      setFlipperState(newState)
     } catch (error) {
       console.error(error)
     } finally {
@@ -79,6 +80,7 @@ export function ContractCard() {
       .send("flip", { origin: account.address })
       .signAndSubmit(account.polkadotSigner)
       .then((tx) => {
+        queryContract()
         if (!tx.ok) throw new Error("Failed to send transaction", { cause: tx.dispatchError })
       })
 
