@@ -3,7 +3,6 @@ import { useChainId, useTypedApi } from "@reactive-dot/react"
 import { useCallback, useEffect, useState } from "react"
 import { toast } from "sonner"
 import { useSignerAndAddress } from "@/hooks/use-signer-and-address"
-import { ALICE } from "@/lib/inkathon/constants"
 import { flipper } from "@/lib/inkathon/deployments"
 import { CardSkeleton } from "../layout/skeletons"
 import { Button } from "../ui/button-extended"
@@ -31,10 +30,6 @@ export function ContractCard() {
       const sdk = createReviveSdk(api as ReviveSdkTypedApi, flipper.contract)
       const contract = sdk.getContract(flipper.evmAddresses[chain])
 
-      // Ensure account is mapped (it most likely is)
-      const isMapped = await sdk.addressIsMapped(ALICE)
-      if (!isMapped) throw new Error(`Account '${ALICE}' (//Alice) not mapped`)
-
       // Option 1: Query storage directly
       const storageResult = await contract.getStorage().getRoot()
       const newState = storageResult.success ? storageResult.value : undefined
@@ -44,6 +39,9 @@ export function ContractCard() {
       // NOTE: Unfortunately, as `origin` is mandatory, every passed accounts needs
       //       to be mapped in an extra transaction first before it can be used for querying.
       // WORKAROUNDS: Use pre-mapped `//Alice` or use `getStorage` directly as shown above.
+      //
+      // const isMapped = await sdk.addressIsMapped(ALICE)
+      // if (!isMapped) throw new Error(`Account '${ALICE}' (//Alice) not mapped`)
       //
       // const result = await contract.query("get", { origin: ALICE })
       // const newState = result.success ? result.value.response : undefined
@@ -71,16 +69,8 @@ export function ContractCard() {
     // Map account if not mapped
     const isMapped = await sdk.addressIsMapped(signerAddress)
     if (!isMapped) {
-      try {
-        const txResult = await api.tx.Revive.map_account().signAndSubmit(signer)
-        if (!txResult.ok) {
-          throw txResult.dispatchError
-        }
-      } catch (error) {
-        toast.error("Failed to map account. Do you have enough funds?")
-        console.error(error)
-        return
-      }
+      toast.error("Account not mapped. Please map your account first.")
+      return
     }
 
     // Send transaction
