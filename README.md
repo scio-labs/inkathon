@@ -141,3 +141,4 @@ CHAIN=<chain-name> bun run deploy
 - [ ] Rust & `ink-analyzer` VSCode setup
 - [ ] New `init.sh` script for setting up the boilerplate (e.g. update name)
 - [ ] More contract examples
+- [ ] Chain configuration via environment
