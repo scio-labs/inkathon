@@ -12,38 +12,34 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [22]
-        pnpm-version: [9.14.4]
     steps:
-      - name: Checkout Repo
+      - name: Checkout
         uses: actions/checkout@v4
         with:
           # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
           fetch-depth: 0
           submodules: true
 
-      - name: Set up pnpm action ${{ matrix.pnpm-version }}
-        uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        name: Setup node
         with:
-          version: ${{ matrix.pnpm-version }}
+          node-version-file: package.json
 
-      - name: Set up Node ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
+      - uses: oven-sh/setup-bun@v2
+        name: Setup bun
         with:
-          cache: 'pnpm'
-          node-version: ${{ matrix.node-version }}
+          bun-version-file: package.json
 
-      - name: Install Dependencies
-        run: pnpm install --frozen-lockfile
+      - name: Install dependencies
+        run: |
+          bun install
 
       - name: Create Release Pull Request
         uses: changesets/action@v1
         with:
           title: 'chore(changeset): Bump package version'
           commit: 'chore(changeset): Bump package version'
-          version: pnpm changeset version
-          publish: pnpm changeset publish
+          version: bunx changeset version
+          publish: bunx changeset publish
         env:
           GITHUB_TOKEN: ${{ secrets.CHANGESETS_PAT }}

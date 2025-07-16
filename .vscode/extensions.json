@@ -1,12 +1,10 @@
 {
   "recommendations": [
-    "dbaeumer.vscode-eslint",
+    "biomejs.biome",
     "esbenp.prettier-vscode",
-    "wayou.vscode-todo-highlight",
     "tamasfe.even-better-toml",
     "rust-lang.rust-analyzer",
     "ink-analyzer.ink-analyzer",
-    "gruntfuggly.todo-tree",
     "dotenv.dotenv-vscode",
     "bradlc.vscode-tailwindcss"
   ]

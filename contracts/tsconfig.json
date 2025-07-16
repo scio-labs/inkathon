@@ -1,29 +1,30 @@
 {
-  "ts-node": {
-    "esm": true,
-    "experimentalSpecifierResolution": "node"
-  },
   "compilerOptions": {
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "target": "esnext",
-    "sourceMap": true,
-    "outDir": "dist",
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
+    // Environment setup & latest features
+    "lib": ["ESNext"],
+    "target": "ESNext",
+    "module": "Preserve",
+    "moduleDetection": "force",
+    "jsx": "react-jsx",
     "allowJs": true,
-    "composite": true,
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./scripts/*"]
-    }
+
+    // Bundler mode
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "noEmit": true,
+
+    // Best practices
+    "strict": true,
+    "skipLibCheck": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+
+    // Some stricter flags (disabled by default)
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noPropertyAccessFromIndexSignature": false
   },
-  "exclude": ["node_modules", "dist", "target", "./*/target"],
-  "include": [
-    "./deployments/**/*.json",
-    "./deployments/**/*.ts",
-    "./scripts/**/*.ts",
-    "./typed-contracts/**/*.ts"
-  ]
+  "include": ["scripts/**/*.ts"]
 }

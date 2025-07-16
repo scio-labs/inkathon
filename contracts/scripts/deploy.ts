@@ -1,31 +1,29 @@
-import { getDeploymentData } from '@/utils/getDeploymentData'
-import { initPolkadotJs } from '@/utils/initPolkadotJs'
-import { writeContractAddresses } from '@/utils/writeContractAddresses'
-import { deployContract } from '@scio-labs/use-inkathon/helpers'
+import { contracts } from "@polkadot-api/descriptors"
+import { deployContract } from "./utils/deploy-contract"
+import { initApi } from "./utils/init-api"
+import { writeAddresses } from "./utils/write-addresses"
 
 /**
- * Script that deploys the greeter contract and writes its address to a file.
+ * This script initializes the Polkadot API client and deploys the contract
+ * using the provided utilities under './utils'.
  *
- * Parameters:
- *  - `DIR`: Directory to read contract build artifacts & write addresses to (optional, defaults to `./deployments`)
- *  - `CHAIN`: Chain ID (optional, defaults to `development`)
+ * @options
+ *  Environment variables:
+ *    CHAIN         - Target chain to deploy the contract to (must be initialized with `bunx papi add <chain>`). Default: `dev`
+ *    ACCOUNT_URI   - Account to deploy the contract from. If not set, uses `.env.{CHAIN}` or defaults to `//Alice`
+ *    DIR           - Directory to write the contract addresses to. Default: `./deployments`
  *
- * Example usage:
- *  - `pnpm run deploy`
- *  - `CHAIN=alephzero-testnet pnpm run deploy`
+ * @example
+ * CHAIN=dev bun run deploy.ts
  */
 const main = async () => {
-  const initParams = await initPolkadotJs()
-  const { api, chain, account } = initParams
+  const initResult = await initApi()
 
-  // Deploy greeter contract
-  const { abi, wasm } = await getDeploymentData('greeter')
-  const greeter = await deployContract(api, account, abi, wasm, 'default', [])
-
-  // Write contract addresses to `{contract}/{network}.ts` file(s)
-  await writeContractAddresses(chain.network, {
-    greeter,
+  const deployResult = await deployContract(initResult, "flipper", contracts.flipper, "new", {
+    init_value: true,
   })
+
+  await writeAddresses({ flipper: deployResult })
 }
 
 main()

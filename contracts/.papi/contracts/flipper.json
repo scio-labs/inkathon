@@ -1,0 +1,417 @@
+{
+  "source": {
+    "hash": "0xe0e253381de78ef54364a13c2ef4d1a2b055b5500b317737a4966629a33e2259",
+    "language": "ink! 6.0.0-alpha",
+    "compiler": "rustc 1.88.0",
+    "contract_binary": "0x50564d00001807000000000000010600c00040a000045505000000000e00000019000000240000002f00000063616c6c5f646174615f636f70796765745f73746f726167657365616c5f72657475726e7365745f73746f7261676576616c75655f7472616e7366657272656405110283760463616c6c84bb066465706c6f79068695100285b9a4019902b402b502dc0201032e03870314045804b104cc04350558058d05b1059511c87b10307b15287b16206472531910bb008d2c84c407c842056487642aae52107c7b95770178ab95aa01ac5af6c8480cc949068469f884cb07c8950a510b19017b197b16087b1c1033054911189ab608951918846701d4b90351070e8217107c77783733050101846702510714821710c857077f77c8530979979555020184670497b603510711821710c857078177c853037a37018219188d67847038c9b808958308642701c8470c95cb08c84308d06905aeab198289953308cf0908d458087bc895770828e1642a28693306821b1084b70449111851070c81877a17183306040184b702510717c84607c837077f77951818d4680879879566020184b701510714c86404c843037c37951818d46808788701821718cf0707d457077bc78216088219c89b088469072809c89b0884690701c8a909ae9a107c8795880178a795aa01ac9af66427821030821528821620951138320064c764cbaea5d282789577087b58955508aea5c528f39511f07b1008648a78170795180733090164a733002028e4039511a87b10507b15487b16406416330500000233070000023300020a040149112049112849113049113880571480521880591c805a04805308805c0c805810380b00000297992097772097cc2097aa20d42909951220d48707d43c08d4ba0a7b1a7b18087b17107b1918330704017c68017c69027c6a037c6b97880897991097aa18d4b8087c6b047c6c05d4a9097c6a067c650797cc08d4cb0b97aa10975518d45a0a956608d49808d4ba0a97aa20d4a8087b289522089577ff5207b4951920330705330805019588ff51080f829a959908510af5330704018210508215488216409511583200827808510814827a7ca9958bff95aa017b7a7b7b0828053309019597ff8e77957a01939a330702db8a073200003300069511f87b101f03000002330800000233090233070a020000009511c87b10307b15287b16207b1733070000027b1708491110004049111895170850100ac702821710821518ac574b821608c95707c856087b18087b1710491118951808821750100c71fe821810821718ac7826821a08975920989920977720987b20330764680a03821030821528821620951138320000821910835501ac590400330800000233070a0200838852080f330a330901330b0000022816330a013b0a000002330b000002c8ab0b330902019511f87b10330800000278ba0a02009511c87b10307b15287b162050101004fe8477ff005217050e01330933050000023307000002330800400a013807000002977930977828847aff0098993898883895abd1987718510b2495aa9d520ad7009599c65209d00095885bff5208c8009577af5207c1003306281d95997aff5209b5009588a55208ae00957727ff5207a6003306010133070000027b170849111000404911189517085010128f01821710821518ac577f7b16821808c957069759207a1608c88505989920951b083307645a0a0101801808ac865b8377511703565207527b15087b18109517085010141afe8477ff005117023d821810520836821851083e8477013300049511d87b10207b1518330500401e0300000233080000027b187b150849111001641833000e28d7fc00330801330701330008289ffe330801e078075010160afe33083307330008288afe9511d87b10207b15187b1610501018bffc8477ff005217056f3309330600000233050000023308004033070000020a01380b0000029555047b15491108fc3f97b93097b82884baff0098993898883895ac9f98b718510c3095aa65ff520a44959952ff52093d958863ff5208369577a2520730641750101a3dfd8477ff005217021a281e00959911ff5209179588825208119577c252070b50101c63fd2842fd33080133070133000828defd9511e87b10107b15087b166475827710c89706ac7623825a08ac6a1d825ac8a70750101e78fa7b561082101082150882169511183200009511f07b1008481104951804330904501020ba8210089511103200495228a994922449949424492a93a4944992d294a449929294aa24299924256592943449292999949292a44a29292949499214429a24499224244992a42499a42449922449922425493229c92429a9a4d494922685907a921412929024499214922449aa246992a196124a08c9146a928408851087249224894444a222121119129290a42449524d8a2409114949924408254a2649122a4992105108110e292491248944224921a29124094992249524292149699224920000",
+    "build_info": {
+      "build_mode": "Release",
+      "cargo_contract_version": "6.0.0-alpha",
+      "rust_toolchain": "stable-aarch64-apple-darwin"
+    }
+  },
+  "contract": {
+    "name": "flipper",
+    "version": "6.0.0-alpha",
+    "authors": [
+      "Use Ink <ink@use.ink>"
+    ]
+  },
+  "image": null,
+  "spec": {
+    "constructors": [
+      {
+        "args": [
+          {
+            "label": "init_value",
+            "type": {
+              "displayName": [
+                "bool"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [
+          "Creates a new flipper smart contract initialized with the given value."
+        ],
+        "label": "new",
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink_primitives",
+            "ConstructorResult"
+          ],
+          "type": 2
+        },
+        "selector": "0x9bae9d5e"
+      },
+      {
+        "args": [],
+        "default": false,
+        "docs": [
+          "Creates a new flipper smart contract initialized to `false`."
+        ],
+        "label": "new_default",
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink_primitives",
+            "ConstructorResult"
+          ],
+          "type": 2
+        },
+        "selector": "0x61ef7e3e"
+      }
+    ],
+    "docs": [],
+    "environment": {
+      "accountId": {
+        "displayName": [
+          "AccountId"
+        ],
+        "type": 6
+      },
+      "balance": {
+        "displayName": [
+          "Balance"
+        ],
+        "type": 9
+      },
+      "blockNumber": {
+        "displayName": [
+          "BlockNumber"
+        ],
+        "type": 12
+      },
+      "chainExtension": {
+        "displayName": [
+          "ChainExtension"
+        ],
+        "type": 13
+      },
+      "hash": {
+        "displayName": [
+          "Hash"
+        ],
+        "type": 10
+      },
+      "maxEventTopics": 4,
+      "staticBufferSize": 16384,
+      "timestamp": {
+        "displayName": [
+          "Timestamp"
+        ],
+        "type": 11
+      }
+    },
+    "events": [],
+    "lang_error": {
+      "displayName": [
+        "ink",
+        "LangError"
+      ],
+      "type": 4
+    },
+    "messages": [
+      {
+        "args": [],
+        "default": false,
+        "docs": [
+          " Flips the current value of the Flipper's boolean."
+        ],
+        "label": "flip",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 2
+        },
+        "selector": "0x633aa551"
+      },
+      {
+        "args": [],
+        "default": false,
+        "docs": [
+          " Returns the current value of the Flipper's boolean."
+        ],
+        "label": "get",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 5
+        },
+        "selector": "0x2f865bd9"
+      }
+    ]
+  },
+  "storage": {
+    "root": {
+      "layout": {
+        "struct": {
+          "fields": [
+            {
+              "layout": {
+                "leaf": {
+                  "key": "0x00000000",
+                  "ty": 0
+                }
+              },
+              "name": "value"
+            }
+          ],
+          "name": "Flipper"
+        }
+      },
+      "root_key": "0x00000000",
+      "ty": 1
+    }
+  },
+  "types": [
+    {
+      "id": 0,
+      "type": {
+        "def": {
+          "primitive": "bool"
+        }
+      }
+    },
+    {
+      "id": 1,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "name": "value",
+                "type": 0,
+                "typeName": "<bool as::ink::storage::traits::AutoStorableHint<::ink::storage\n::traits::ManualKey<2054318728u32, ()>,>>::Type"
+              }
+            ]
+          }
+        },
+        "path": [
+          "flipper",
+          "flipper",
+          "Flipper"
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 3
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 4
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 3
+          },
+          {
+            "name": "E",
+            "type": 4
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "type": {
+        "def": {
+          "tuple": []
+        }
+      }
+    },
+    {
+      "id": 4,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 1,
+                "name": "CouldNotReadInput"
+              }
+            ]
+          }
+        },
+        "path": [
+          "ink_primitives",
+          "LangError"
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 0
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 4
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 0
+          },
+          {
+            "name": "E",
+            "type": 4
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 6,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "type": 7,
+                "typeName": "[u8; 32]"
+              }
+            ]
+          }
+        },
+        "path": [
+          "ink_primitives",
+          "types",
+          "AccountId"
+        ]
+      }
+    },
+    {
+      "id": 7,
+      "type": {
+        "def": {
+          "array": {
+            "len": 32,
+            "type": 8
+          }
+        }
+      }
+    },
+    {
+      "id": 8,
+      "type": {
+        "def": {
+          "primitive": "u8"
+        }
+      }
+    },
+    {
+      "id": 9,
+      "type": {
+        "def": {
+          "primitive": "u128"
+        }
+      }
+    },
+    {
+      "id": 10,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "type": 7,
+                "typeName": "[u8; 32]"
+              }
+            ]
+          }
+        },
+        "path": [
+          "ink_primitives",
+          "types",
+          "Hash"
+        ]
+      }
+    },
+    {
+      "id": 11,
+      "type": {
+        "def": {
+          "primitive": "u64"
+        }
+      }
+    },
+    {
+      "id": 12,
+      "type": {
+        "def": {
+          "primitive": "u32"
+        }
+      }
+    },
+    {
+      "id": 13,
+      "type": {
+        "def": {
+          "variant": {}
+        },
+        "path": [
+          "ink_primitives",
+          "types",
+          "NoChainExtension"
+        ]
+      }
+    }
+  ],
+  "version": 5
+}

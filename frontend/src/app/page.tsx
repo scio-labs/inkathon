@@ -1,40 +1,21 @@
-'use client'
+"use client"
 
-import { useEffect } from 'react'
+import { ReactiveDotProvider } from "@reactive-dot/react"
+import { Footer } from "@/components/layout/footer"
+import { Header } from "@/components/layout/header"
+import { config } from "@/lib/reactive-dot/config"
+import { App } from "./app"
 
-import { useInkathon } from '@scio-labs/use-inkathon'
-import { toast } from 'react-hot-toast'
-
-import { HomePageTitle } from '@/app/components/home-page-title'
-import { ChainInfo } from '@/components/web3/chain-info'
-import { ConnectButton } from '@/components/web3/connect-button'
-import { GreeterContractInteractions } from '@/components/web3/greeter-contract-interactions'
-
-export default function HomePage() {
-  // Display `useInkathon` error messages (optional)
-  const { error } = useInkathon()
-  useEffect(() => {
-    if (!error) return
-    toast.error(error.message)
-  }, [error])
-
+export default function Home() {
   return (
-    <>
-      <div className="container relative flex grow flex-col items-center justify-center py-10">
-        {/* Title */}
-        <HomePageTitle />
+    <div className="flex grow flex-col items-center justify-center py-8">
+      <Header />
 
-        {/* Connect Wallet Button */}
-        <ConnectButton />
+      <ReactiveDotProvider config={config}>
+        <App />
+      </ReactiveDotProvider>
 
-        <div className="mt-12 flex w-full flex-wrap items-start justify-center gap-4">
-          {/* Chain Metadata Information */}
-          <ChainInfo />
-
-          {/* Greeter Read/Write Contract Interactions */}
-          <GreeterContractInteractions />
-        </div>
-      </div>
-    </>
+      <Footer />
+    </div>
   )
 }

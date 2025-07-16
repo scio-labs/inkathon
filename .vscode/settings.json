@@ -1,46 +1,46 @@
 {
   "search.exclude": {
-    "**/*.{jpg,jpeg,png,svg,webm,mp4,ttf,woff,woff2}": true
+    "contracts/.node-data/**": true,
+    "contracts/.papi/*/**": true
   },
   "search.useIgnoreFiles": true,
-  "search.useGlobalIgnoreFiles": true,
   "search.useParentIgnoreFiles": true,
+  "biome.enabled": true,
+  "eslint.enable": false,
+  "prettier.enable": true,
   "editor.formatOnSave": true,
+  "editor.formatOnType": false,
   "editor.codeActionsOnSave": {
-    "source.organizeImports": "always",
-    "source.fixAll.eslint": "always"
+    "source.fixAll.eslint": "never",
+    "source.fixAll.biome": "explicit",
+    "source.organizeImports": "never",
+    "source.organizeImports.biome": "explicit"
   },
-  "files.associations": {
-    "*.css": "tailwindcss"
+  "[javascriptreact][typescriptreact][javascript][typescript][json][jsonc][tailwindcss][html]": {
+    "editor.defaultFormatter": "biomejs.biome"
   },
-  "[javascriptreact][typescriptreact][javascript][typescript][markdown][html][css][scss][sass][json][jsonc][yaml]": {
+  "[markdown][mdx][yml][yaml][sass][scss][css][tailwindcss]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "[javascriptreact][typescriptreact][javascript][typescript]": {
-    "tailwindCSS.experimental.classRegex": [
-      ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
-      ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
-    ]
+  "[markdown][mdx]": {
+    "editor.wordWrap": "on"
   },
   "typescript.updateImportsOnFileMove.enabled": "always",
   "javascript.updateImportsOnFileMove.enabled": "always",
-  "javascript.preferences.importModuleSpecifier": "shortest",
-  "typescript.preferences.importModuleSpecifier": "shortest",
-  "[toml]": {
-    "editor.defaultFormatter": "tamasfe.even-better-toml"
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "typescript.preferences.autoImportSpecifierExcludeRegexes": [
+    "@radix-ui",
+    "next/router",
+    "next/dist",
+    "react-aria-components"
+  ],
+  "files.associations": {
+    "*.css": "tailwindcss"
   },
-  "evenBetterToml.formatter.indentString": "    ",
-  "evenBetterToml.formatter.columnWidth": 120,
-  "[rust]": {
-    "editor.defaultFormatter": "rust-lang.rust-analyzer"
-  },
-  "peacock.color": "#8758FF",
-  "workbench.colorCustomizations": {
-    "sash.hoverBorder": "#ac8bff",
-    "statusBar.background": "#8758ff",
-    "statusBar.foreground": "#e7e7e7",
-    "statusBarItem.hoverBackground": "#ac8bff",
-    "statusBarItem.remoteBackground": "#8758ff",
-    "statusBarItem.remoteForeground": "#e7e7e7"
-  }
+  "tailwindCSS.experimental.classRegex": [
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+  ],
+  "github-actions.use-enterprise": true
 }

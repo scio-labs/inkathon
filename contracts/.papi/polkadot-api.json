@@ -1,0 +1,21 @@
+{
+  "version": 0,
+  "descriptorPath": ".papi/descriptors",
+  "entries": {
+    "dev": {
+      "wsUrl": "ws://127.0.0.1:9944",
+      "metadata": ".papi/metadata/dev.scale",
+      "genesis": "0x4545454545454545454545454545454545454545454545454545454545454545",
+      "codeHash": "0x5071bddba9e3ded215c7009351923c87196674d87f5be4efed16d8c7d6d29e35"
+    },
+    "pop": {
+      "wsUrl": "wss://rpc1.paseo.popnetwork.xyz",
+      "metadata": ".papi/metadata/pop.scale",
+      "genesis": "0xe8b2d197b82a0da1fffca832c050894ebe343b289c61ef439aa694bdcef78aa1",
+      "codeHash": "0x7fb1a967a98f40aa39622e3e3fa39f9325c10940cd6767ef3f1250463cb76264"
+    }
+  },
+  "ink": {
+    "flipper": ".papi/contracts/flipper.json"
+  }
+}

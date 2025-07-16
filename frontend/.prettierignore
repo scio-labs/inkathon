@@ -1,10 +1,23 @@
+node_modules
 package-lock.json
 pnpm-lock.yaml
-node_modules
+bun.lockb
+bun.lock
+yarn.lock
+
 LICENSE
 
+*.ts
+*.js
+*.tsx
+*.jsx
+*.cjs
+*.mjs
+*.json
+*.jsonc
+*.html
+
+# Frontend-specific
 out
 .next
 public
-
-src/components/ui

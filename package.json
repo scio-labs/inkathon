@@ -1,38 +1,48 @@
 {
-  "name": "@inkathon/monorepo",
+  "name": "@inkathon",
   "description": "Full-Stack DApp Boilerplate for ink! Smart Contracts",
   "homepage": "https://inkathon.xyz",
   "author": "Scio Labs <hello@scio.xyz> (https://scio.xyz)",
   "private": true,
+  "type": "module",
   "workspaces": [
     "frontend",
     "contracts"
   ],
   "engines": {
-    "node": ">=18 <=22",
-    "pnpm": ">=8"
+    "node": ">=20 <=22"
   },
-  "packageManager": "pnpm@9.14.4",
+  "engineStrict": true,
+  "packageManager": "bun@1.2.18",
   "scripts": {
-    "dev": "pnpm run -F frontend dev",
-    "build": "pnpm run -F frontend build",
-    "start": "pnpm run -F frontend start",
-    "node": "pnpm run -F contracts node",
-    "type-check": "pnpm run -F '*' type-check",
-    "sync-types": "pnpm run -F '*' sync-types && pnpm install",
-    "lint": "pnpm run -F '*' lint",
-    "lint:fix": "pnpm run -F '*' lint:fix",
-    "lint:format": "pnpm run -F '*' lint:format",
+    "dev": "bun run -F @inkathon/frontend dev",
+    "node": "bun run -F @inkathon/contracts node",
+    "dev-and-node": "concurrently \"bun run dev\" \"bun run node\" --names \"next,node\" --kill-others",
+    "codegen": "bun run -F @inkathon/contracts codegen",
+    "build": "bun run -F @inkathon/frontend build",
+    "start": "bun run -F @inkathon/frontend start",
+    "typecheck": "bun run -F @inkathon/* typecheck",
+    "clean": "bun run -F @inkathon/* clean",
+    "clean-install": "find . -type d -name 'node_modules' -prune -exec rm -rf '{}' + && find . -name 'bun.lock' -delete && bun install",
+    "lint": "bun run -F @inkathon/* lint",
+    "lint:fix": "bun run -F @inkathon/* lint:fix",
     "changeset:version": "changeset version",
-    "changeset:publish": "changeset publish"
+    "changeset:publish": "changeset publish",
+    "update": "bunx taze minor --interactive --recursive --write --install --includeLocked"
   },
   "devDependencies": {
-    "@changesets/changelog-github": "^0.5.0",
-    "@changesets/cli": "^2.27.10",
-    "lint-staged": "^15.2.10",
-    "next": "^14.2.19",
-    "simple-git-hooks": "^2.11.1",
-    "typescript": "^5.7.2",
-    "typesync": "^0.14.0"
-  }
+    "@biomejs/biome": "^2.1.1",
+    "@changesets/changelog-github": "^0.5.1",
+    "@changesets/cli": "^2.29.5",
+    "concurrently": "^9.2.0",
+    "nano-staged": "^0.8.0",
+    "prettier": "^3.6.2",
+    "simple-git-hooks": "^2.13.0",
+    "taze": "^19.1.0",
+    "typescript": "^5.8.3"
+  },
+  "trustedDependencies": [
+    "@inkathon/contracts",
+    "@tailwindcss/oxide"
+  ]
 }

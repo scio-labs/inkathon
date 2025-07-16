@@ -1,8 +1,8 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "nextjs",
-  "buildCommand": "pnpm build",
-  "devCommand": "pnpm dev",
+  "buildCommand": "bun run codegen && bun run build",
+  "devCommand": "bun run dev",
   "outputDirectory": "./frontend/.next",
-  "installCommand": "pnpm install --no-frozen-lockfile"
+  "installCommand": "bun install"
 }
