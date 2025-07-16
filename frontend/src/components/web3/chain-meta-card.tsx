@@ -1,5 +1,5 @@
-import { CardSkeleton } from "@/app/app"
 import { useChainMeta } from "@/hooks/use-chain-meta"
+import { CardSkeleton } from "../layout/skeletons"
 import { Card, CardHeader, CardTitle } from "../ui/card"
 import { Table, TableBody, TableCell, TableRow } from "../ui/table"
 

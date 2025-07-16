@@ -1,6 +1,7 @@
 import { type ChainProvider, useChainSpecData } from "@reactive-dot/react"
 import type { ComponentProps } from "react"
 import { config } from "@/lib/reactive-dot/config"
+import { buttonVariants } from "../ui/button-extended"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select"
 
 type ChainId = ComponentProps<typeof ChainProvider>["chainId"]
@@ -14,7 +15,13 @@ export function ChainSelect({ chainId, setChainId }: ChainSelectProps) {
 
   return (
     <Select value={chainId} onValueChange={setChainId}>
-      <SelectTrigger className="!h-11 w-[200px] select-none rounded-xl ring-1 ring-foreground/10 ring-offset-2 ring-offset-background transition-all hover:ring-2 hover:ring-foreground/20">
+      <SelectTrigger
+        className={buttonVariants({
+          size: "lg",
+          variant: "glass",
+          className: "!h-11 min-w-[200px]",
+        })}
+      >
         <SelectValue placeholder="Select a chain" />
       </SelectTrigger>
       <SelectContent>

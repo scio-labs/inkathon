@@ -2,13 +2,12 @@ import { createReviveSdk } from "@polkadot-api/sdk-ink"
 import { useAccounts, useChainId, useTypedApi } from "@reactive-dot/react"
 import { useCallback, useEffect, useState } from "react"
 import { toast } from "sonner"
-import { CardSkeleton } from "@/app/app"
+import { ALICE } from "@/lib/inkathon/constants"
 import { flipper } from "@/lib/inkathon/deployments"
+import { CardSkeleton } from "../layout/skeletons"
 import { Button } from "../ui/button-extended"
 import { Card, CardHeader, CardTitle } from "../ui/card"
 import { Table, TableBody, TableCell, TableRow } from "../ui/table"
-
-const ALICE = "5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY"
 
 export function ContractCard() {
   const [queryIsLoading, setQueryIsLoading] = useState(true)

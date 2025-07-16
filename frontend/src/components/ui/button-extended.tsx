@@ -22,7 +22,7 @@ const buttonOuterVariants = cva(
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary decoration-inherit underline-offset-2 hover:underline",
         glass:
-          "border border-foreground/10 bg-foreground/25 shadow-lg ring-1 ring-foreground/10 ring-offset-2 ring-offset-background hover:bg-foreground/30 hover:ring-2 hover:ring-foreground/20",
+          "!bg-foreground/25 hover:!bg-foreground/30 border border-foreground/10 shadow-lg ring-1 ring-foreground/10 ring-offset-2 ring-offset-background hover:ring-2 hover:ring-foreground/20",
       },
       size: {
         sm: "h-8 rounded-lg px-3",

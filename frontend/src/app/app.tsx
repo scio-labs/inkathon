@@ -2,8 +2,9 @@
 
 import { ChainProvider } from "@reactive-dot/react"
 import { type ComponentProps, Suspense, useState } from "react"
+import { ButtonSkeleton, CardSkeleton } from "@/components/layout/skeletons"
 import { Wrapper } from "@/components/layout/wrapper"
-import { Button, type ButtonProps } from "@/components/ui/button-extended"
+import { AccountBalance } from "@/components/web3/account-balance"
 import { ChainMetaCard } from "@/components/web3/chain-meta-card"
 import { ChainSelect } from "@/components/web3/chain-select"
 import { ConnectButton } from "@/components/web3/connect-button"
@@ -21,7 +22,16 @@ export function App() {
           {/* Chain Selector */}
           <Suspense fallback={<ButtonSkeleton />}>
             <ChainSelect chainId={chainId} setChainId={setChainId} />
+          </Suspense>
+
+          {/* Connect Button */}
+          <Suspense fallback={<ButtonSkeleton />}>
             <ConnectButton />
+          </Suspense>
+
+          {/* Account Balance */}
+          <Suspense>
+            <AccountBalance />
           </Suspense>
         </div>
 
@@ -38,35 +48,5 @@ export function App() {
         </div>
       </Wrapper>
     </ChainProvider>
-  )
-}
-
-export function AppSkeleton() {
-  return (
-    <Wrapper size="md" className="flex flex-col items-center gap-8">
-      <ButtonSkeleton />
-
-      <div className="flex w-full flex-col gap-8">
-        <CardSkeleton />
-        <CardSkeleton />
-      </div>
-    </Wrapper>
-  )
-}
-
-export function CardSkeleton() {
-  return <div className="glass-card h-[250px] animate-pulse" />
-}
-
-export function ButtonSkeleton(props: ButtonProps) {
-  return (
-    <Button
-      size="lg"
-      variant="glass"
-      className="w-[200px]"
-      isLoading
-      loadingText="Initializing..."
-      {...props}
-    />
   )
 }

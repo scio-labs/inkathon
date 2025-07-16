@@ -132,10 +132,11 @@ CHAIN=<chain-name> bun run deploy
 >
 > This is an alpha release. Use it at your own risk.
 
-- [ ] Dockerfile for self-hosting
-- [ ] Show Balance in UI
-- [ ] Shortcut for Mapping Accounts
+- [x] Network Selector
+- [x] Show Balance in UI
 - [ ] Account/Address Switcher
+- [ ] Shortcut for Mapping Accounts
+- [ ] Dockerfile for self-hosting
 - [ ] Claude & Cursor Rules
 - [ ] Rust & `ink-analyzer` VSCode setup
 - [ ] New `init.sh` script for setting up the boilerplate (e.g. update name)

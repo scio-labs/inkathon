@@ -54,7 +54,12 @@ export function ConnectButton() {
 
   if (connectedWallets?.length > 0) {
     return (
-      <Button size="lg" variant="glass" className="w-[200px]" onClick={() => handleDisconnect()}>
+      <Button
+        size="lg"
+        variant="glass"
+        className="min-w-[200px]"
+        onClick={() => handleDisconnect()}
+      >
         <UnlinkIcon /> Disconnect Wallet
       </Button>
     )
