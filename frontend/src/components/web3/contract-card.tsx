@@ -35,10 +35,19 @@ export function ContractCard() {
       const isMapped = await sdk.addressIsMapped(ALICE)
       if (!isMapped) throw new Error(`Account '${ALICE}' (//Alice) not mapped`)
 
-      // Query contract
-      const result = await contract.query("get", { origin: ALICE })
-      const newState = result.success ? result.value.response : undefined
+      // Option 1: Query storage directly
+      const storageResult = await contract.getStorage().getRoot()
+      const newState = storageResult.success ? storageResult.value : undefined
       setFlipperState(newState)
+
+      // Option 2: Query contract
+      // NOTE: Unfortunately, as `origin` is mandatory, every passed accounts needs
+      //       to be mapped in an extra transaction first before it can be used for querying.
+      // WORKAROUNDS: Use pre-mapped `//Alice` or use `getStorage` directly as shown above.
+      //
+      // const result = await contract.query("get", { origin: ALICE })
+      // const newState = result.success ? result.value.response : undefined
+      // setFlipperState(newState)
     } catch (error) {
       console.error(error)
     } finally {
