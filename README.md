@@ -42,7 +42,7 @@ The inkathon boilerplate is almost as old as ink! itself. With accumulated over 
 
 ```bash
 # Executed from the root directory
-bun run install
+bun install
 
 # Executed from the root or /frontend directory
 bun run dev
@@ -55,8 +55,9 @@ bun run dev
 > [!IMPORTANT]
 >
 > - Setup your environment with Pop CLI: [Guide](https://learn.onpop.io/welcome/install-pop-cli)
+> - Install `cargo-contract` with `cargo install cargo-contract@6.0.0-alpha --locked`
 > - Install `ink-node` by [downloading it's binary](https://github.com/use-ink/ink-node/releases)
-> - Make `ink-node` available globally by moving it to `/usr/local/bin`
+> - Make `ink-node` available globally by moving it to `/usr/local/bin` with `sudo mv ink-node /usr/local/bin/`
 
 1. Add your contract (or just continue with the provided `flipper` example)
 2. Build your contract
