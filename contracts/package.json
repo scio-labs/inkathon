@@ -16,11 +16,11 @@
   },
   "dependencies": {
     "@polkadot-api/descriptors": "file:.papi/descriptors",
-    "@polkadot-api/sdk-ink": "^0.3.1",
-    "@polkadot-labs/hdkd": "^0.0.19",
-    "@types/bun": "^1.2.18",
+    "@polkadot-api/sdk-ink": "^0.3.2",
+    "@polkadot-labs/hdkd": "^0.0.20",
+    "@types/bun": "^1.2.19",
     "dedent": "^1.6.0",
-    "dotenv": "^17.2.0",
+    "dotenv": "^17.2.1",
     "yocto-spinner": "^1.0.0"
   }
 }
