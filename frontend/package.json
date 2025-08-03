@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "next dev --turbo",
     "build": "next build --turbo",
+    "build:standalone": "NEXT_OUTPUT=standalone next build --turbo",
     "start": "next start",
     "clean": "rm -rf .next tsconfig.tsbuildinfo",
     "lint": "biome check . && prettier . --check",

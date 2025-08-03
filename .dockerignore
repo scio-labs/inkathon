@@ -1,0 +1,11 @@
+.env.local.example
+.github
+.gitignore
+.prettierignore
+.vscode
+README.md
+biome.json
+components.json
+prettier.config.js
+traefik.ini
+vercel.json
