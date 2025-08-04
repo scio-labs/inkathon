@@ -127,6 +127,24 @@ CHAIN=<chain-name> bun run deploy
 
 3. Add the new network to the frontend under `frontend/src/lib/reactive-dot/config.ts`
 
+## Hosting 📡
+
+### Self-hosting
+
+This new version of the boilerplates treats self-hosting as a first-class citizen. The boilerplate comes with a state-of-the-art Dockerfile configuration for Next.js self-hosting. We even have a self-hosted version of inkathon.xyz running under `https://inkathon.scio.xyz`.
+
+Try to build & run the Docker image locally:
+
+```bash
+# Executed from the root directory
+docker build -t inkathon .
+docker run -p 3000:3000 inkathon
+```
+
+### Vercel
+
+The boilerplate is also ready to be deployed to Vercel using the `vercel.json` configuration file at the root of the project.
+
 ## To-Dos
 
 > [!IMPORTANT]
@@ -138,7 +156,7 @@ CHAIN=<chain-name> bun run deploy
 - [x] Account/Address Switcher
 - [x] Indicator & Action to map accounts
 - [x] Faucet Direct Links
-- [ ] Dockerfile for self-hosting
+- [x] Dockerfile for self-hosting
 - [ ] Claude & Cursor Rules
 - [ ] Rust & `ink-analyzer` VSCode setup
 - [ ] New `init.sh` script for setting up the boilerplate (e.g. update name)
