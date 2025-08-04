@@ -14,6 +14,7 @@ export const siteBanner = {
 export const siteMetadata: Metadata = {
   title: siteTitle,
   description: siteDescription,
+  metadataBase: new URL("https://inkathon.xyz"),
   openGraph: {
     images: [siteBanner],
   },
