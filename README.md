@@ -157,8 +157,8 @@ The boilerplate is also ready to be deployed to Vercel using the `vercel.json` c
 - [x] Indicator & Action to map accounts
 - [x] Faucet Direct Links
 - [x] Dockerfile for self-hosting
+- [x] Rust VSCode setup
 - [ ] Claude & Cursor Rules
-- [ ] Rust & `ink-analyzer` VSCode setup
 - [ ] New `init.sh` script for setting up the boilerplate (e.g. update name)
 - [ ] More contract examples
 - [ ] Chain configuration via environment
