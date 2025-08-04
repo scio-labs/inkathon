@@ -18,7 +18,7 @@ The boilerplate rebuild features:
 
 - Full ink! v6 support & type-safety
 - Revamped build, deployment, and address management scripts
-- Updated stack with Bun, Next.js v15, TailwindCSS & shadcn/ui v4
+- Updated stack with Bun, Next.js v15, Tailwind CSS v4 & shadcn/ui
 
 The inkathon boilerplate is almost as old as ink! itself. With accumulated over 200 stars, more than 250 public projects depending on it and the most active [ink! Telegram group](https://t.me/inkathon).
 
@@ -88,7 +88,7 @@ Put your signers `ACCOUNT_URI` in `.env.<chain>` (e.g. `.env.pop`). By default, 
 ```bash
 # Executed from the /contracts directory
 # If `CHAIN` is not set, it will default to `dev`
-CHAIN=pop bun run deploy
+CHAIN=dev bun run deploy
 ```
 
 > [!NOTE]
@@ -158,7 +158,6 @@ The boilerplate is also ready to be deployed to Vercel using the `vercel.json` c
 - [x] Faucet Direct Links
 - [x] Dockerfile for self-hosting
 - [x] Rust VSCode setup
-- [ ] Claude & Cursor Rules
-- [ ] New `init.sh` script for setting up the boilerplate (e.g. update name)
-- [ ] More contract examples
+- [x] Claude & Cursor Rules
 - [ ] Chain configuration via environment
+- [ ] New `init.sh` script for setting up the boilerplate (e.g. update name)
