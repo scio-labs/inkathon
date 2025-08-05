@@ -1,26 +1,19 @@
-# Ignore macOS system files
-.DS_Store
-
-# Ignore private keys
-*.pem
-
-# Ignore build artifacts from the local tests sub-crate.
+# Build
 target/
-
-# Ignore backup files creates by cargo fmt.
-**/*.rs.bk
-
-# Remove Cargo.lock when creating an executable, leave it for libraries
-# More information here http://doc.crates.io/guide.html#cargotoml-vs-cargolock
 Cargo.lock
 
-# Persistence cache of `ink-node`
-.node-data
-
-# Local deployments
-deployments/**/dev.json
-deployments/**/dev.ts
-
-# Environment files
+# Environment
 *.env*
 !.env*.example
+
+# OS
+.DS_Store
+
+# Security
+*.pem
+
+# Development
+**/*.rs.bk
+.node-data
+deployments/**/dev.json
+deployments/**/dev.ts

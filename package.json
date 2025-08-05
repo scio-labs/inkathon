@@ -7,7 +7,8 @@
   "type": "module",
   "workspaces": [
     "frontend",
-    "contracts"
+    "contracts",
+    "create-inkathon-app"
   ],
   "engines": {
     "node": ">=20 <=22"
@@ -22,11 +23,11 @@
     "build": "bun run codegen && bun run -F @inkathon/frontend build",
     "build:standalone": "bun run codegen && bun run -F @inkathon/frontend build:standalone",
     "start": "bun run -F @inkathon/frontend start",
-    "typecheck": "bun run -F @inkathon/* typecheck",
-    "clean": "bun run -F @inkathon/* clean",
+    "typecheck": "bun run -F '*' typecheck",
+    "clean": "bun run -F '*' clean",
     "clean-install": "find . -type d -name 'node_modules' -prune -exec rm -rf '{}' + && find . -name 'bun.lock' -delete && bun install",
-    "lint": "bun run -F @inkathon/* lint",
-    "lint:fix": "bun run -F @inkathon/* lint:fix",
+    "lint": "bun run -F '*' lint",
+    "lint:fix": "bun run -F '*' lint:fix",
     "changeset:version": "changeset version",
     "changeset:publish": "changeset publish",
     "update": "bunx taze minor --interactive --recursive --write --install --includeLocked"

@@ -2,7 +2,13 @@
   "$schema": "https://biomejs.dev/schemas/2.1.3/schema.json",
   "files": {
     "ignoreUnknown": true,
-    "includes": ["**", "!**/contracts/deployments/**", "!**/contracts/.papi/**"]
+    "includes": [
+      "**",
+      "!**/contracts/deployments/**",
+      "!**/contracts/.papi/**",
+      "!**/node_modules/**",
+      "!**/dist/**"
+    ]
   },
   "vcs": {
     "enabled": true,
@@ -56,13 +62,16 @@
         "useNumberNamespace": "error",
         "noInferrableTypes": "error",
         "useExponentiationOperator": "error",
-        "useTemplate": "error",
         "noParameterAssign": "off",
         "noNonNullAssertion": "error",
         "useDefaultParameterLast": "error",
         "useExportType": "error",
         "noUselessElse": "error",
         "useShorthandFunctionType": "error",
+        "useTemplate": {
+          "level": "warn",
+          "fix": "safe"
+        },
         "noRestrictedImports": {
           "level": "error",
           "options": {

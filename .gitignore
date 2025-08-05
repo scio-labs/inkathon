@@ -1,4 +1,4 @@
-# package management
+# Dependencies
 **/node_modules
 **/.pnp
 .pnp.js
@@ -10,34 +10,34 @@
 !.yarn/sdks
 !.yarn/versions
 
-# misc
-.DS_Store
-*.pem
+# Build
+dist
+*.tsbuildinfo
+.turbo
 
-# debug
+# Environment
+.env
+.env*.local
+
+# Logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# local env files
-.env
-.env*.local
+# OS
+.DS_Store
 
-# vercel
-.vercel
-.gitsigners
+# Security
+*.pem
 
-# typescript
-*.tsbuildinfo
-dist
-
-# turbo
-.turbo
-
-# coverage
+# Testing
 coverage
 coverage.json
 
-# VSCode
+# IDE
 .history/
+
+# Platform
+.vercel
+.gitsigners

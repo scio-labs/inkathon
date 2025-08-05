@@ -1,0 +1,12 @@
+# Dependencies
+node_modules
+
+# Build
+dist
+tsconfig.tsbuildinfo
+
+# Logs
+*.log
+
+# OS
+.DS_Store

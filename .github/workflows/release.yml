@@ -43,3 +43,4 @@ jobs:
           publish: bunx changeset publish
         env:
           GITHUB_TOKEN: ${{ secrets.CHANGESETS_PAT }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

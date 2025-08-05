@@ -1,0 +1,50 @@
+{
+  "name": "create-inkathon-app",
+  "version": "5.0.0",
+  "description": "Create ink! smart contract dApps with one command",
+  "author": "Scio Labs <hello@scio.xyz> (https://scio.xyz)",
+  "license": "GPL-3.0",
+  "type": "module",
+  "bin": {
+    "create-inkathon-app": "./bin/create-inkathon-app"
+  },
+  "files": [
+    "bin",
+    "dist"
+  ],
+  "scripts": {
+    "build": "bun build ./src/index.ts --outdir ./dist --target node",
+    "dev": "bun run src/index.ts",
+    "lint": "biome check . && prettier . --check",
+    "lint:fix": "biome check . --write && prettier . --write",
+    "typecheck": "tsc --pretty --noEmit",
+    "clean": "rm -rf dist tsconfig.tsbuildinfo",
+    "prepublishOnly": "bun run build"
+  },
+  "dependencies": {
+    "@inquirer/prompts": "^7.2.0",
+    "commander": "^12.1.0",
+    "picocolors": "^1.1.1",
+    "snakecase-keys": "^8.0.1",
+    "yocto-spinner": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "typescript": "^5.8.3"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "ink",
+    "smart-contracts",
+    "polkadot",
+    "substrate",
+    "blockchain",
+    "web3",
+    "dapp",
+    "create-app",
+    "scaffold",
+    "boilerplate"
+  ]
+}
