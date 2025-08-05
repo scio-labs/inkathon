@@ -1,5 +1,11 @@
 # create-inkathon-app
 
+## 6.0.4
+
+### Patch Changes
+
+- [`ed175d6`](https://github.com/scio-labs/inkathon/commit/ed175d6435084bea9e251f567f21e85fa7d2a91e) Thanks [@wottpal](https://github.com/wottpal)! - Ensure Node.js version compatibility
+
 ## 6.0.3
 
 ### Patch Changes
