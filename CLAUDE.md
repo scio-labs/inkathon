@@ -1,10 +1,6 @@
-# inkathon Boilerplate
-
-This file provides guidance when working with this repository.
-
 ## Project Overview
 
-Full-stack boilerplate for ink! smart contracts on Polkadot using PolkaVM
+Full-stack project for ink! smart contracts on Polkadot using PolkaVM and a Next.js frontend.
 
 ## Tech Stack
 
@@ -29,36 +25,36 @@ Full-stack boilerplate for ink! smart contracts on Polkadot using PolkaVM
 
 ### Development
 
-- `bun dev` - Start frontend development server
-- `bun node` - Run local ink-node
-- `bun dev-and-node` - Run both frontend and node concurrently
+- `bun run dev` - Start frontend development server
+- `bun run node` - Run local ink-node
+- `bun run dev-and-node` - Run both frontend and node concurrently
 
 ### Smart Contracts
 
 - `bun run -F contracts build` - Build all contracts
-- `bun codegen` - Generate TypeScript types from contracts
+- `bun run codegen` - Generate TypeScript types from contracts
 - `bun run -F contracts deploy` - Deploy contracts
 
 ### Code Quality
 
-- `bun lint` - Run linter (Biome + Prettier)
-- `bun lint:fix` - Auto-fix linting issues
-- `bun typecheck` - Run TypeScript type checking
+- `bun run lint` - Run linter (Biome + Prettier)
+- `bun run lint:fix` - Auto-fix linting issues
+- `bun run typecheck` - Run TypeScript type checking
 
 ### Build & Clean
 
-- `bun build` - Build production frontend
-- `bun clean` - Clean build artifacts
-- `bun clean-install` - Remove all node_modules and reinstall
+- `bun run build` - Build production frontend
+- `bun run clean` - Clean build artifacts
+- `bun run clean-install` - Remove all node_modules and reinstall
 
 ## Development Workflow
 
 ### Quick Start
 
-1. Run `bun node` to start local chain
-2. Run `bun dev` for frontend development
+1. Run `bun run node` to start local chain
+2. Run `bun run dev` for frontend development
 3. After contract changes: `bun run -F contracts build` then `bun codegen`
-4. **IMPORTANT**: Always run `bun lint` and `bun typecheck` before committing
+4. **IMPORTANT**: Always run `bun run lint` and `bun run typecheck` before committing
 
 ### Writing Smart Contracts
 
@@ -75,7 +71,7 @@ Full-stack boilerplate for ink! smart contracts on Polkadot using PolkaVM
 
 ### Type Generation (PAPI)
 
-1. After building contracts, run `bun codegen` to generate TypeScript types
+1. After building contracts, run `bun run codegen` to generate TypeScript types
 2. PAPI reads contract metadata from `/contracts/deployments/`
 3. Generated types are available via `@polkadot-api/descriptors`
 4. Contract descriptors accessible as `contracts.<contract-name>`
@@ -132,7 +128,7 @@ Deployment addresses are automatically exported to `/contracts/deployments/<cont
 
 1. Write/modify contract in `/contracts/src/`
 2. Build: `bun run -F contracts build`
-3. Generate types: `bun codegen`
+3. Generate types: `bun run codegen`
 4. Deploy: `CHAIN=<chain> bun run -F contracts deploy`
 5. Update frontend imports in `deployments.ts`
 6. Use contract in frontend components with full type safety

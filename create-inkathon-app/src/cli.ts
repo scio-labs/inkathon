@@ -8,24 +8,27 @@ import { installDependencies, runCodegen } from "./installer.ts"
 import { getProjectNames } from "./prompts.ts"
 import { updateTemplate } from "./template.ts"
 import { logger } from "./utils/logger.ts"
+import { displayIntro, displaySuccess } from "./utils/messages.ts"
+import { getPackageVersion } from "./utils/package.ts"
 import { checkBunInstalled, checkGitInstalled, checkUnixShell } from "./utils/system.ts"
 
 const pc = picocolors
 
 export async function run(): Promise<void> {
   const program = new Command()
+
+  program
     .name("create-inkathon-app")
     .description("Create ink! smart contract dApps with one command")
-    .version("6.0.0")
+    .version(getPackageVersion())
     .argument("[project-name]", "Name of your project")
     .option("-y, --yes", "Skip prompts and use defaults")
-    .option("--use-npm", "Use npm instead of bun (not recommended)")
     .parse()
 
   const options = program.opts()
   const args = program.args
 
-  console.log(`\n${pc.magenta("🦑")} ${pc.bold("Welcome to create-inkathon-app!")}\n`)
+  displayIntro()
 
   // Check system requirements
   if (!checkUnixShell()) {
@@ -41,7 +44,7 @@ export async function run(): Promise<void> {
   }
 
   // Check Bun installation
-  if (!options.useNpm && !checkBunInstalled()) {
+  if (!checkBunInstalled()) {
     logger.error("Bun is not installed. Please install Bun to continue.")
     logger.info("Visit https://bun.sh for installation instructions.")
     process.exit(1)
@@ -102,9 +105,7 @@ export async function run(): Promise<void> {
   }
 
   // Install dependencies
-  const installSpinner = logger
-    .spinner(`Installing dependencies with ${options.useNpm ? "npm" : "Bun"}...`)
-    .start()
+  const installSpinner = logger.spinner("Installing dependencies...").start()
   try {
     await installDependencies(projectPath)
     installSpinner.success("Dependencies installed successfully")
@@ -115,12 +116,12 @@ export async function run(): Promise<void> {
   }
 
   // Run codegen
-  const codegenSpinner = logger.spinner("Generating TypeScript types...").start()
+  const codegenSpinner = logger.spinner("Generating types with PAPI...").start()
   try {
     await runCodegen(projectPath)
-    codegenSpinner.success("Types generated successfully")
+    codegenSpinner.success("PAPI types generated successfully")
   } catch (error) {
-    codegenSpinner.error("Failed to generate types")
+    codegenSpinner.error("Failed to generate PAPI types")
     logger.warn((error as Error).message)
     // Don't exit here, codegen might fail if no contracts are deployed yet
   }
@@ -137,19 +138,5 @@ export async function run(): Promise<void> {
   }
 
   // Success message
-  console.log(
-    `\n${pc.green("Success!")} Created ${pc.bold(projectNames.displayName)} at ${pc.cyan(projectPath)}\n`,
-  )
-
-  console.log("Inside that directory, you can run:\n")
-  console.log(`  ${pc.cyan("bun dev")}`)
-  console.log("    Starts the development server\n")
-  console.log(`  ${pc.cyan("bun node")}`)
-  console.log("    Starts the local ink! node\n")
-  console.log(`  ${pc.cyan("bun dev-and-node")}`)
-  console.log("    Runs both in parallel\n")
-
-  console.log("Get started by running:\n")
-  console.log(pc.cyan(`  cd ${projectNames.directory}`))
-  console.log(pc.cyan("  bun dev-and-node\n"))
+  displaySuccess(projectNames.displayName, projectPath, projectNames.directory)
 }

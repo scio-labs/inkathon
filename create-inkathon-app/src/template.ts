@@ -7,29 +7,43 @@ export async function updateTemplate(
   packageName: string,
 ): Promise<void> {
   // Update root package.json
-  await updatePackageJson(join(projectPath, "package.json"), packageName)
+  await updatePackageJson(join(projectPath, "package.json"), true, packageName)
 
   // Update frontend package.json
-  await updatePackageJson(join(projectPath, "frontend", "package.json"), "frontend")
+  await updatePackageJson(join(projectPath, "frontend", "package.json"), false)
 
   // Update contracts package.json
-  await updatePackageJson(join(projectPath, "contracts", "package.json"), "contracts")
+  await updatePackageJson(join(projectPath, "contracts", "package.json"), false)
 
   // Update README.md
   await updateReadme(join(projectPath, "README.md"), displayName)
 }
 
-async function updatePackageJson(filePath: string, name: string): Promise<void> {
+async function updatePackageJson(filePath: string, isRoot: boolean, name?: string): Promise<void> {
   const content = await readFile(filePath, "utf-8")
   const pkg = JSON.parse(content)
 
-  // Update the name of the package
-  pkg.name = name
+  if (isRoot) {
+    // Update the name of the package only for root
+    if (name) {
+      pkg.name = name
+    }
 
-  // Update workspaces array in root package.json
-  if (pkg.workspaces && Array.isArray(pkg.workspaces)) {
     // Remove create-inkathon-app from workspaces
-    pkg.workspaces = pkg.workspaces.filter((ws: string) => ws !== "create-inkathon-app")
+    if (pkg.workspaces && Array.isArray(pkg.workspaces)) {
+      pkg.workspaces = pkg.workspaces.filter((ws: string) => ws !== "create-inkathon-app")
+    }
+
+    // Clean up changeset-related items from root package.json
+    if (pkg.scripts) {
+      delete pkg.scripts["changeset:version"]
+      delete pkg.scripts["changeset:publish"]
+    }
+
+    if (pkg.devDependencies) {
+      delete pkg.devDependencies["@changesets/changelog-github"]
+      delete pkg.devDependencies["@changesets/cli"]
+    }
   }
 
   await writeFile(filePath, `${JSON.stringify(pkg, null, 2)}\n`)
