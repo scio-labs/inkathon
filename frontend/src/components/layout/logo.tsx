@@ -1,5 +1,5 @@
 import Image from "next/image"
-import logoSrc from "@/public/inkathon-logo--white.svg"
+import logoSrc from "@/public/inkathon-logo-with-version--white.svg"
 
 export function Logo() {
   return (
