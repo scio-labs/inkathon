@@ -1,5 +1,5 @@
 {
-  "name": "@inkathon/frontend",
+  "name": "frontend",
   "version": "6.0.0",
   "private": true,
   "type": "module",
@@ -14,7 +14,7 @@
     "typecheck": "tsc --pretty --noEmit"
   },
   "dependencies": {
-    "@inkathon/contracts": "workspace:*",
+    "contracts": "workspace:*",
     "@polkadot-api/descriptors": "file:../contracts/.papi/descriptors",
     "@polkadot-api/sdk-ink": "^0.3.2",
     "@radix-ui/react-dialog": "^1.1.14",

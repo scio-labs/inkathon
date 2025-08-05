@@ -4,6 +4,18 @@ import createSpinner from "yocto-spinner"
 
 const pc = picocolors
 
+const isUnicodeSupported =
+  process.platform !== "win32" ||
+  Boolean(process.env.WT_SESSION) || // Windows Terminal
+  process.env.TERM_PROGRAM === "vscode"
+
+const symbols = {
+  info: isUnicodeSupported ? "ℹ" : "i",
+  success: isUnicodeSupported ? "✔" : "√",
+  error: isUnicodeSupported ? "✖" : "×",
+  warn: isUnicodeSupported ? "⚠" : "‼",
+}
+
 interface SpinnerInstance {
   success: (msg?: string) => void
   error: (msg?: string) => void
@@ -11,10 +23,10 @@ interface SpinnerInstance {
 }
 
 export const logger = {
-  info: (msg: string) => console.log(`${pc.cyan("ℹ")}  ${msg}`),
-  success: (msg: string) => console.log(`${pc.green("✓")}  ${msg}`),
-  error: (msg: string) => console.log(`${pc.red("✗")}  ${msg}`),
-  warn: (msg: string) => console.log(`${pc.yellow("⚠")}  ${msg}`),
+  info: (msg: string) => console.log(`${pc.cyan(symbols.info)}  ${msg}`),
+  success: (msg: string) => console.log(`${pc.green(symbols.success)}  ${msg}`),
+  error: (msg: string) => console.log(`${pc.red(symbols.error)}  ${msg}`),
+  warn: (msg: string) => console.log(`${pc.yellow(symbols.warn)}  ${msg}`),
 
   spinner: (text: string) => {
     let spinner: Spinner | null = null

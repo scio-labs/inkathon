@@ -10,13 +10,10 @@ export async function updateTemplate(
   await updatePackageJson(join(projectPath, "package.json"), packageName)
 
   // Update frontend package.json
-  await updatePackageJson(join(projectPath, "frontend", "package.json"), `@${packageName}/frontend`)
+  await updatePackageJson(join(projectPath, "frontend", "package.json"), "frontend")
 
   // Update contracts package.json
-  await updatePackageJson(
-    join(projectPath, "contracts", "package.json"),
-    `@${packageName}/contracts`,
-  )
+  await updatePackageJson(join(projectPath, "contracts", "package.json"), "contracts")
 
   // Update README.md
   await updateReadme(join(projectPath, "README.md"), displayName)
@@ -25,31 +22,11 @@ export async function updateTemplate(
 async function updatePackageJson(filePath: string, name: string): Promise<void> {
   const content = await readFile(filePath, "utf-8")
   const pkg = JSON.parse(content)
+
+  // Update the name of the package
   pkg.name = name
 
-  // Update workspace dependencies to use the new namespace
-  const basePackageName = name.startsWith("@")
-    ? name.split("/")[0]?.slice(1)
-    : name.split("/")[0] || name
-
-  if (pkg.dependencies) {
-    for (const [key, value] of Object.entries(pkg.dependencies)) {
-      if (typeof value === "string") {
-        if (
-          value === "@inkathon/contracts" ||
-          value === "workspace:*" ||
-          value.includes("workspace:")
-        ) {
-          // Keep workspace dependencies as is
-          pkg.dependencies[key] = "workspace:*"
-        } else if (value.startsWith("@inkathon/")) {
-          pkg.dependencies[key] = value.replace("@inkathon/", `@${basePackageName}/`)
-        }
-      }
-    }
-  }
-
-  // Also update workspaces array in root package.json
+  // Update workspaces array in root package.json
   if (pkg.workspaces && Array.isArray(pkg.workspaces)) {
     // Remove create-inkathon-app from workspaces
     pkg.workspaces = pkg.workspaces.filter((ws: string) => ws !== "create-inkathon-app")

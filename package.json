@@ -1,5 +1,5 @@
 {
-  "name": "@inkathon",
+  "name": "inkathon",
   "description": "Full-Stack DApp Boilerplate for ink! Smart Contracts",
   "homepage": "https://inkathon.xyz",
   "author": "Scio Labs <hello@scio.xyz> (https://scio.xyz)",
@@ -16,13 +16,13 @@
   "engineStrict": true,
   "packageManager": "bun@1.2.19",
   "scripts": {
-    "dev": "bun run -F @inkathon/frontend dev",
-    "node": "bun run -F @inkathon/contracts node",
+    "dev": "bun run -F frontend dev",
+    "node": "bun run -F contracts node",
     "dev-and-node": "concurrently \"bun run dev\" \"bun run node\" --names \"next,node\" --kill-others",
-    "codegen": "bun run -F @inkathon/contracts codegen",
-    "build": "bun run codegen && bun run -F @inkathon/frontend build",
-    "build:standalone": "bun run codegen && bun run -F @inkathon/frontend build:standalone",
-    "start": "bun run -F @inkathon/frontend start",
+    "codegen": "bun run -F contracts codegen",
+    "build": "bun run codegen && bun run -F frontend build",
+    "build:standalone": "bun run codegen && bun run -F frontend build:standalone",
+    "start": "bun run -F frontend start",
     "typecheck": "bun run -F '*' typecheck",
     "clean": "bun run -F '*' clean",
     "clean-install": "find . -type d -name 'node_modules' -prune -exec rm -rf '{}' + && find . -name 'bun.lock' -delete && bun install",
@@ -44,7 +44,7 @@
     "typescript": "^5.8.3"
   },
   "trustedDependencies": [
-    "@inkathon/contracts",
+    "contracts",
     "@tailwindcss/oxide"
   ]
 }

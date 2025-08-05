@@ -2,12 +2,13 @@ import { existsSync } from "node:fs"
 import { resolve } from "node:path"
 import { Command } from "commander"
 import picocolors from "picocolors"
+import { cleanupRepository } from "./cleanup.ts"
 import { cloneRepository, initializeGit } from "./git.ts"
 import { installDependencies, runCodegen } from "./installer.ts"
 import { getProjectNames } from "./prompts.ts"
 import { updateTemplate } from "./template.ts"
 import { logger } from "./utils/logger.ts"
-import { checkBunInstalled, checkUnixShell, installBun } from "./utils/system.ts"
+import { checkBunInstalled, checkGitInstalled, checkUnixShell } from "./utils/system.ts"
 
 const pc = picocolors
 
@@ -24,7 +25,7 @@ export async function run(): Promise<void> {
   const options = program.opts()
   const args = program.args
 
-  console.log(`\n${pc.magenta("🎨")} ${pc.bold("Welcome to create-inkathon-app!")}\n`)
+  console.log(`\n${pc.magenta("🦑")} ${pc.bold("Welcome to create-inkathon-app!")}\n`)
 
   // Check system requirements
   if (!checkUnixShell()) {
@@ -32,15 +33,18 @@ export async function run(): Promise<void> {
     process.exit(1)
   }
 
-  // Check/Install Bun
+  // Check Git installation
+  if (!checkGitInstalled()) {
+    logger.error("Git is not installed. Please install Git to continue.")
+    logger.info("Visit https://git-scm.com/downloads for installation instructions.")
+    process.exit(1)
+  }
+
+  // Check Bun installation
   if (!options.useNpm && !checkBunInstalled()) {
-    try {
-      await installBun()
-      logger.success("Bun installed successfully\n")
-    } catch (error) {
-      logger.error((error as Error).message)
-      process.exit(1)
-    }
+    logger.error("Bun is not installed. Please install Bun to continue.")
+    logger.info("Visit https://bun.sh for installation instructions.")
+    process.exit(1)
   }
 
   // Get project names
@@ -73,6 +77,17 @@ export async function run(): Promise<void> {
     cloneSpinner.error("Failed to clone repository")
     logger.error((error as Error).message)
     process.exit(1)
+  }
+
+  // Cleanup repository
+  const cleanupSpinner = logger.spinner("Cleaning up repository...").start()
+  try {
+    await cleanupRepository(projectPath)
+    cleanupSpinner.success("Repository cleaned up successfully")
+  } catch (error) {
+    cleanupSpinner.error("Failed to clean up repository")
+    logger.warn((error as Error).message)
+    // Don't exit here, cleanup is not critical
   }
 
   // Update template

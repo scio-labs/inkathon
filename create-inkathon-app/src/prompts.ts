@@ -20,7 +20,7 @@ export async function getProjectNames(defaultName?: string): Promise<ProjectName
 
   // Second prompt - package name (optional)
   const packageName = await input({
-    message: "Package name (npm-compatible):",
+    message: "Package name:",
     default: defaultPackageName,
     validate: validatePackageName,
   })

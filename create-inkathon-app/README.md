@@ -27,8 +27,9 @@ This CLI tool helps you scaffold a new inkathon project by:
 ## Requirements
 
 - Unix shell (Linux or macOS)
-- Node.js >= 18
-- Bun (will be installed automatically if not present)
+- Node.js >= 20
+- Bun
+- Git
 
 ## Options
 
@@ -41,21 +42,7 @@ This CLI tool helps you scaffold a new inkathon project by:
 
 ## Development
 
-To work on this CLI locally:
-
-```bash
-# Install dependencies
-bun install
-
-# Run in development
-bun run dev
-
-# Type check
-bun run typecheck
-
-# Build for production
-bun run build
-```
+Check out the [inkathon repository](https://github.com/scio-labs/inkathon) for more information.
 
 ## License
 

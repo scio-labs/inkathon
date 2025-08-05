@@ -1,4 +1,4 @@
-# @inkathon/contracts
+# contracts
 
 ## 6.0.0
 

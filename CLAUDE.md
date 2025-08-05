@@ -35,9 +35,9 @@ Full-stack boilerplate for ink! smart contracts on Polkadot using PolkaVM
 
 ### Smart Contracts
 
-- `bun run -F @inkathon/contracts build` - Build all contracts
+- `bun run -F contracts build` - Build all contracts
 - `bun codegen` - Generate TypeScript types from contracts
-- `bun run -F @inkathon/contracts deploy` - Deploy contracts
+- `bun run -F contracts deploy` - Deploy contracts
 
 ### Code Quality
 
@@ -57,7 +57,7 @@ Full-stack boilerplate for ink! smart contracts on Polkadot using PolkaVM
 
 1. Run `bun node` to start local chain
 2. Run `bun dev` for frontend development
-3. After contract changes: `bun run -F @inkathon/contracts build` then `bun codegen`
+3. After contract changes: `bun run -F contracts build` then `bun codegen`
 4. **IMPORTANT**: Always run `bun lint` and `bun typecheck` before committing
 
 ### Writing Smart Contracts
@@ -69,7 +69,7 @@ Full-stack boilerplate for ink! smart contracts on Polkadot using PolkaVM
 
 ### Building Contracts
 
-- `bun run -F @inkathon/contracts build` - Builds all contracts in `/contracts/src/`
+- `bun run -F contracts build` - Builds all contracts in `/contracts/src/`
 - Build outputs: `.contract`, `.json`, and `.polkavm` files in `/contracts/deployments/<contract-name>/`
 - Uses `cargo contract build --release` under the hood
 
@@ -84,13 +84,13 @@ Full-stack boilerplate for ink! smart contracts on Polkadot using PolkaVM
 
 ```bash
 # Deploy to local dev chain (default)
-bun run -F @inkathon/contracts deploy
+bun run -F contracts deploy
 
 # Deploy to specific chain
-CHAIN=pop bun run -F @inkathon/contracts deploy
+CHAIN=pop bun run -F contracts deploy
 
 # Custom account (default: //Alice)
-ACCOUNT_URI="//Bob" CHAIN=pop bun run -F @inkathon/contracts deploy
+ACCOUNT_URI="//Bob" CHAIN=pop bun run -F contracts deploy
 ```
 
 Deployment addresses are automatically exported to `/contracts/deployments/<contract>/<chain>.ts`
@@ -112,7 +112,7 @@ Deployment addresses are automatically exported to `/contracts/deployments/<cont
    ```
 3. Deploy contracts to the new chain:
    ```bash
-   CHAIN=<chain-name> bun run -F @inkathon/contracts deploy
+   CHAIN=<chain-name> bun run -F contracts deploy
    ```
 
 ### Frontend Integration
@@ -120,7 +120,7 @@ Deployment addresses are automatically exported to `/contracts/deployments/<cont
 1. Import contract deployments in `/frontend/src/lib/inkathon/deployments.ts`
 2. Add contract addresses for each chain:
    ```typescript
-   import { evmAddress, ss58Address } from '@inkathon/contracts/deployments/<contract>/<chain>'
+   import { evmAddress, ss58Address } from 'contracts/deployments/<contract>/<chain>'
    ```
 3. Use contracts in components with generated types:
    ```typescript
@@ -131,9 +131,9 @@ Deployment addresses are automatically exported to `/contracts/deployments/<cont
 ### Complete Development Flow
 
 1. Write/modify contract in `/contracts/src/`
-2. Build: `bun run -F @inkathon/contracts build`
+2. Build: `bun run -F contracts build`
 3. Generate types: `bun codegen`
-4. Deploy: `CHAIN=<chain> bun run -F @inkathon/contracts deploy`
+4. Deploy: `CHAIN=<chain> bun run -F contracts deploy`
 5. Update frontend imports in `deployments.ts`
 6. Use contract in frontend components with full type safety
 
