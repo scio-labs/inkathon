@@ -1,5 +1,11 @@
 # contracts
 
+## 6.0.1
+
+### Patch Changes
+
+- [`17cfc50`](https://github.com/scio-labs/inkathon/commit/17cfc50aaec65a9e52e664eb6ba40ac5f1fb04d4) Thanks [@wottpal](https://github.com/wottpal)! - Remove `@inkathon/` package name prefix for simplicity
+
 ## 6.0.0
 
 ### Major Changes
