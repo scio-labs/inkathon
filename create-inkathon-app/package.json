@@ -1,6 +1,6 @@
 {
   "name": "create-inkathon-app",
-  "version": "6.0.4",
+  "version": "6.0.5",
   "description": "Create ink! smart contract dApps with one command",
   "author": "Scio Labs <hello@scio.xyz> (https://scio.xyz)",
   "license": "GPL-3.0",

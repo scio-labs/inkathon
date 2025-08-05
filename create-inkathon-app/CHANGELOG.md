@@ -1,5 +1,11 @@
 # create-inkathon-app
 
+## 6.0.5
+
+### Patch Changes
+
+- [`069d669`](https://github.com/scio-labs/inkathon/commit/069d6698e5d8d28c652790d68fcea3cd8e52b4ef) Thanks [@wottpal](https://github.com/wottpal)! - Remove new `docs` monorepo package
+
 ## 6.0.4
 
 ### Patch Changes
