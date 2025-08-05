@@ -24,15 +24,12 @@ async function updatePackageJson(filePath: string, isRoot: boolean, name?: strin
   const pkg = JSON.parse(content)
 
   if (isRoot) {
-    // Update the name of the package only for root
-    if (name) {
-      pkg.name = name
-    }
+    // Update the name of the package
+    if (!name) throw new Error("Project name is required for root package.json")
+    pkg.name = name
 
-    // Remove create-inkathon-app from workspaces
-    if (pkg.workspaces && Array.isArray(pkg.workspaces)) {
-      pkg.workspaces = pkg.workspaces.filter((ws: string) => ws !== "create-inkathon-app")
-    }
+    // Only keep `frontend` & `contracts` workspaces
+    pkg.workspaces = ["frontend", "contracts"]
 
     // Clean up changeset-related items from root package.json
     if (pkg.scripts) {

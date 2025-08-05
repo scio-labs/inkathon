@@ -8,7 +8,8 @@
   "workspaces": [
     "frontend",
     "contracts",
-    "create-inkathon-app"
+    "create-inkathon-app",
+    "docs"
   ],
   "engines": {
     "node": ">=20 <=22"
@@ -30,7 +31,7 @@
     "lint:fix": "bun run -F '*' lint:fix",
     "changeset:version": "changeset version",
     "changeset:publish": "changeset publish",
-    "update": "bunx taze minor --interactive --recursive --write --install --includeLocked"
+    "update": "bunx taze minor --interactive --recursive --write --install --includeLocked --exclude '@types/node'"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.1.3",

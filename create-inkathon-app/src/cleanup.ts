@@ -1,7 +1,7 @@
 import { readdir, rm } from "node:fs/promises"
 import { join } from "node:path"
 
-const DIRECTORIES_TO_REMOVE = [".changeset", ".github", "create-inkathon-app"]
+const DIRECTORIES_TO_REMOVE = [".changeset", ".github", "create-inkathon-app", "docs"]
 
 async function cleanupDirectories(projectPath: string): Promise<void> {
   for (const dir of DIRECTORIES_TO_REMOVE) {
