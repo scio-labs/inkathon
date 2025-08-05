@@ -3,6 +3,10 @@
   "version": "6.0.1",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": ">=20 <=22"
+  },
+  "engineStrict": true,
   "scripts": {
     "dev": "next dev --turbo",
     "build": "next build --turbo",

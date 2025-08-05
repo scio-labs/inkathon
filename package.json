@@ -44,7 +44,10 @@
     "typescript": "^5.9.2"
   },
   "trustedDependencies": [
+    "@tailwindcss/oxide",
     "contracts",
-    "@tailwindcss/oxide"
+    "esbuild",
+    "sharp",
+    "simple-git-hooks"
   ]
 }

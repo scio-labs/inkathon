@@ -32,7 +32,7 @@ export function displaySuccess(projectName: string, projectPath: string, directo
     `${pc.green("Success!")} Created ${pc.bold(projectName)} at ${pc.cyan(projectPath)}\n`,
   )
 
-  console.log("Get started by running:\n")
+  console.log("Get started by running the frontend:\n")
   console.log(pc.cyan(`  cd ${directory}`))
   console.log(pc.cyan("  bun run dev"))
 

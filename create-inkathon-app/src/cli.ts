@@ -9,8 +9,13 @@ import { getProjectNames } from "./prompts.ts"
 import { updateTemplate } from "./template.ts"
 import { logger } from "./utils/logger.ts"
 import { displayIntro, displaySuccess } from "./utils/messages.ts"
-import { getPackageVersion } from "./utils/package.ts"
-import { checkBunInstalled, checkGitInstalled, checkUnixShell } from "./utils/system.ts"
+import { getEngineRequirements, getPackageVersion } from "./utils/package.ts"
+import {
+  checkBunInstalled,
+  checkGitInstalled,
+  checkNodeVersion,
+  checkUnixShell,
+} from "./utils/system.ts"
 
 const pc = picocolors
 
@@ -34,6 +39,24 @@ export async function run(): Promise<void> {
   if (!checkUnixShell()) {
     logger.error("This tool requires a Unix shell (Linux or macOS). Windows is not supported yet.")
     process.exit(1)
+  }
+
+  // Check Node.js version
+  const engines = getEngineRequirements()
+  if (engines?.node) {
+    const nodeCheck = checkNodeVersion(engines.node)
+    if (!nodeCheck.isValid) {
+      logger.error(
+        `Node.js version ${pc.bold(nodeCheck.currentVersion)} does not satisfy the required version ${pc.bold(
+          nodeCheck.requiredVersion,
+        )}.`,
+      )
+      logger.info("Please update Node.js to continue.")
+      logger.info(
+        "Visit https://github.com/nvm-sh/nvm (recommended) or https://nodejs.org for installation instructions.",
+      )
+      process.exit(1)
+    }
   }
 
   // Check Git installation

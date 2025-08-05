@@ -19,6 +19,7 @@ The boilerplate rebuild features:
 - Full ink! v6 support & type-safety
 - Revamped build, deployment, and address management scripts
 - Updated stack with Bun, Next.js v15, Tailwind CSS v4 & shadcn/ui
+- New `create-inkathon-app` CLI for setting up the boilerplate in seconds
 
 The inkathon boilerplate is almost as old as ink! itself. With accumulated over 200 stars, more than 250 public projects depending on it and the most active [ink! Telegram group](https://t.me/inkathon).
 
@@ -38,11 +39,13 @@ The inkathon boilerplate is almost as old as ink! itself. With accumulated over 
 >
 > - Setup Node.js v22 (recommended via [nvm](https://github.com/nvm-sh/nvm))
 > - Install [Bun](https://bun.sh/)
-> - Clone this repository
+
+Use the new `create-inkathon-app` CLI to set up the boilerplate:
 
 ```bash
-# Executed from the root directory
-bun install
+bunx create-inkathon-app@latest
+
+cd <project-name>
 
 # Executed from the root or /frontend directory
 bun run dev
@@ -159,5 +162,5 @@ The boilerplate is also ready to be deployed to Vercel using the `vercel.json` c
 - [x] Dockerfile for self-hosting
 - [x] Rust VSCode setup
 - [x] Claude & Cursor Rules
+- [x] New `create-inkathon-app` CLI for setting up the boilerplate
 - [ ] Chain configuration via environment
-- [ ] New `init.sh` script for setting up the boilerplate (e.g. update name)

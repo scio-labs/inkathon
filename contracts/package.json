@@ -3,6 +3,10 @@
   "private": true,
   "version": "6.0.1",
   "type": "module",
+  "engines": {
+    "node": ">=20 <=22"
+  },
+  "engineStrict": true,
   "scripts": {
     "node": "ink-node --dev --base-path ./.node-data",
     "build": "bash build.sh",
