@@ -6,7 +6,7 @@
   "license": "GPL-3.0",
   "type": "module",
   "bin": {
-    "create-inkathon-app": "./bin/create-inkathon-app"
+    "create-inkathon-app": "bin/create-inkathon-app"
   },
   "files": [
     "bin",
