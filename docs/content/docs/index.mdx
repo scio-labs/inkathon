@@ -1,13 +1,70 @@
 ---
-title: Hello World
-description: Your first document
+title: Quickstart
+description: Kickstart your ink! hackathon projects and production dApps.
 ---
 
-Welcome to the docs! You can start writing documents in `/content/docs`.
+import { Accordion, Accordions } from 'fumadocs-ui/components/accordion'
+import { Steps, Step } from 'fumadocs-ui/components/steps'
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs'
+import Image from 'next/image'
 
-## What is Next?
+<Image
+  src="https://inkathon.xyz/inkathon-readme-banner.png"
+  alt="inkathon Banner"
+  width={2000}
+  height={750}
+/>
+
+Welcome to **inkathon v6** – the next generation full-stack boilerplate for ink! smart contracts running on PolkaVM. Powered by Papi, ReactiveDOT, Pop CLI, and more.
+
+Get up and running in seconds:
+
+<Steps>
+<Step>
+
+### Install Prerequisites
+
+- Node.js v20 or v22 (recommended via [nvm](https://github.com/nvm-sh/nvm))
+- [Bun](https://bun.sh/) package manager
+
+</Step>
+
+<Step>
+
+### Create Your Project
+
+```npm
+npx create-inkathon-app@latest
+```
+
+</Step>
+
+<Step>
+
+### Start Frontend
+
+```bash
+cd <project>
+
+bun run dev
+```
+
+Congrats 🎉 Now open `localhost:3000` in your browser and play with your first ink! dApp.
+
+</Step>
+</Steps>
+
+## Next Steps
 
 <Cards>
-  <Card title="Learn more about Next.js" href="https://nextjs.org/docs" />
-  <Card title="Learn more about Fumadocs" href="https://fumadocs.vercel.app" />
+  <Card
+    title="Setup Contract Development"
+    description="Setup your local ink! development environment"
+    href="/guides/contract-development"
+  />
+  <Card
+    title="Project Structure"
+    description="Learn about the monorepo architecture and stack"
+    href="/learn/structure"
+  />
 </Cards>

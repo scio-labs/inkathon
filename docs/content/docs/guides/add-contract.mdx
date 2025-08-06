@@ -1,0 +1,543 @@
+---
+title: Adding a New Contract
+description: Create and integrate new ink! smart contracts in your project
+---
+
+import { Steps, Step } from 'fumadocs-ui/components/steps';
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+import { File, Folder, Files } from 'fumadocs-ui/components/files';
+
+## Overview
+
+This guide walks you through creating a new ink! smart contract and integrating it with your inkathon frontend. We'll build a simple token contract as an example.
+
+## Contract Development Flow
+
+<Steps>
+<Step>
+
+### Create Contract Directory
+
+Create a new directory for your contract:
+
+```bash
+# From contracts/src directory
+mkdir contracts/src/token
+cd contracts/src/token
+```
+
+</Step>
+
+<Step>
+
+### Write the Contract
+
+Create `lib.rs` with your contract code:
+
+<Tabs items={['Basic Token', 'Advanced Token']}>
+  <Tab value="Basic Token">
+```rust
+#![cfg_attr(not(feature = "std"), no_std, no_main)]
+
+#[ink::contract]
+mod token {
+    use ink::storage::Mapping;
+
+    #[ink(storage)]
+    pub struct Token {
+        total_supply: Balance,
+        balances: Mapping<AccountId, Balance>,
+        owner: AccountId,
+    }
+
+    #[ink(event)]
+    pub struct Transfer {
+        from: Option<AccountId>,
+        to: AccountId,
+        value: Balance,
+    }
+
+    #[derive(Debug, PartialEq, Eq)]
+    #[ink::scale_derive(Encode, Decode, TypeInfo)]
+    pub enum Error {
+        InsufficientBalance,
+    }
+
+    pub type Result<T> = core::result::Result<T, Error>;
+
+    impl Token {
+        #[ink(constructor)]
+        pub fn new(total_supply: Balance) -> Self {
+            let mut balances = Mapping::default();
+            let caller = Self::env().caller();
+            balances.insert(caller, &total_supply);
+            
+            Self::env().emit_event(Transfer {
+                from: None,
+                to: caller,
+                value: total_supply,
+            });
+
+            Self {
+                total_supply,
+                balances,
+                owner: caller,
+            }
+        }
+
+        #[ink(message)]
+        pub fn total_supply(&self) -> Balance {
+            self.total_supply
+        }
+
+        #[ink(message)]
+        pub fn balance_of(&self, account: AccountId) -> Balance {
+            self.balances.get(account).unwrap_or(0)
+        }
+
+        #[ink(message)]
+        pub fn transfer(&mut self, to: AccountId, value: Balance) -> Result<()> {
+            let from = self.env().caller();
+            let from_balance = self.balance_of(from);
+            
+            if from_balance < value {
+                return Err(Error::InsufficientBalance);
+            }
+
+            self.balances.insert(from, &(from_balance - value));
+            let to_balance = self.balance_of(to);
+            self.balances.insert(to, &(to_balance + value));
+
+            self.env().emit_event(Transfer {
+                from: Some(from),
+                to,
+                value,
+            });
+
+            Ok(())
+        }
+    }
+
+    #[cfg(test)]
+    mod tests {
+        use super::*;
+
+        #[test]
+        fn new_works() {
+            let token = Token::new(1000);
+            assert_eq!(token.total_supply(), 1000);
+        }
+
+        #[test]
+        fn transfer_works() {
+            let mut token = Token::new(1000);
+            assert!(token.transfer(AccountId::from([0x01; 32]), 100).is_ok());
+        }
+    }
+}
+```
+  </Tab>
+  <Tab value="Advanced Token">
+```rust
+#![cfg_attr(not(feature = "std"), no_std, no_main)]
+
+#[ink::contract]
+mod token {
+    use ink::storage::Mapping;
+
+    #[ink(storage)]
+    pub struct Token {
+        name: String,
+        symbol: String,
+        decimals: u8,
+        total_supply: Balance,
+        balances: Mapping<AccountId, Balance>,
+        allowances: Mapping<(AccountId, AccountId), Balance>,
+        owner: AccountId,
+    }
+
+    // Events and implementation...
+    // (Extended version with approve, transferFrom, mint, burn)
+}
+```
+  </Tab>
+</Tabs>
+
+</Step>
+
+<Step>
+
+### Create Cargo.toml
+
+Configure the contract build settings:
+
+```toml
+[package]
+name = "token"
+version = "0.1.0"
+authors = ["Your Name"]
+edition = "2021"
+
+[dependencies]
+ink = { version = "6.0.0-alpha", default-features = false }
+
+[lib]
+crate-type = ["cdylib"]
+
+[features]
+default = ["std"]
+std = [
+    "ink/std",
+]
+ink-as-dependency = []
+
+[profile.release]
+overflow-checks = false
+lto = true
+opt-level = "z"
+strip = true
+```
+
+</Step>
+
+<Step>
+
+### Build the Contract
+
+Build your new contract:
+
+```bash
+# From project root
+bun run -F contracts build
+
+# Verify the build
+ls contracts/deployments/token/
+# Should see: token.contract, token.json, token.polkavm
+```
+
+</Step>
+
+<Step>
+
+### Generate TypeScript Types
+
+Update PAPI types to include your new contract:
+
+```bash
+# From project root
+bun run codegen
+```
+
+This reads the contract metadata and generates TypeScript interfaces.
+
+</Step>
+
+<Step>
+
+### Deploy the Contract
+
+Deploy to your target network:
+
+<Tabs items={['Local Development', 'Testnet']}>
+  <Tab value="Local Development">
+```bash
+# Make sure ink-node is running
+bun run node
+
+# Deploy
+CHAIN=dev bun run -F contracts deploy
+```
+  </Tab>
+  <Tab value="Testnet">
+```bash
+# Set your account in .env.pop
+echo 'ACCOUNT_URI="your seed phrase"' > contracts/.env.pop
+
+# Deploy to Pop Network
+CHAIN=pop bun run -F contracts deploy
+```
+  </Tab>
+</Tabs>
+
+The deployment script will:
+1. Instantiate the contract
+2. Export addresses to `deployments/token/<chain>.ts`
+
+</Step>
+
+<Step>
+
+### Update Frontend Deployments
+
+Add your contract to the frontend deployments:
+
+```typescript
+// frontend/src/lib/inkathon/deployments.ts
+
+// Import token deployments
+import { 
+  evmAddress as tokenEvmDev, 
+  ss58Address as tokenSs58Dev 
+} from 'contracts/deployments/token/dev'
+import { 
+  evmAddress as tokenEvmPop, 
+  ss58Address as tokenSs58Pop 
+} from 'contracts/deployments/token/pop'
+
+export const contractDeployments = {
+  // ... existing contracts
+  token: {
+    dev: { evmAddress: tokenEvmDev, ss58Address: tokenSs58Dev },
+    pop: { evmAddress: tokenEvmPop, ss58Address: tokenSs58Pop },
+  },
+}
+```
+
+</Step>
+
+<Step>
+
+### Create Frontend Component
+
+Create a component to interact with your contract:
+
+```tsx
+// frontend/src/components/web3/token-card.tsx
+'use client'
+
+import { useState } from 'react'
+import { contracts } from '@polkadot-api/descriptors'
+import { useContract } from '@/lib/hooks/use-contract'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+
+export function TokenCard() {
+  const [recipient, setRecipient] = useState('')
+  const [amount, setAmount] = useState('')
+  const { contract, isLoading } = useContract('token')
+
+  const handleTransfer = async () => {
+    if (!contract) return
+    
+    try {
+      await contract.tx.transfer(recipient, BigInt(amount))
+      // Handle success
+    } catch (error) {
+      // Handle error
+    }
+  }
+
+  const getBalance = async (account: string) => {
+    if (!contract) return
+    const balance = await contract.query.balanceOf(account)
+    return balance
+  }
+
+  return (
+    <div className="p-6 border rounded-lg">
+      <h3 className="text-lg font-semibold mb-4">Token Contract</h3>
+      
+      <div className="space-y-4">
+        <Input
+          placeholder="Recipient address"
+          value={recipient}
+          onChange={(e) => setRecipient(e.target.value)}
+        />
+        
+        <Input
+          type="number"
+          placeholder="Amount"
+          value={amount}
+          onChange={(e) => setAmount(e.target.value)}
+        />
+        
+        <Button 
+          onClick={handleTransfer}
+          disabled={isLoading || !recipient || !amount}
+        >
+          Transfer
+        </Button>
+      </div>
+    </div>
+  )
+}
+```
+
+</Step>
+
+<Step>
+
+### Test Your Contract
+
+Write integration tests for your contract:
+
+```typescript
+// frontend/src/tests/token.test.ts
+import { contracts } from '@polkadot-api/descriptors'
+import { contractDeployments } from '@/lib/inkathon/deployments'
+
+describe('Token Contract', () => {
+  it('should transfer tokens', async () => {
+    const address = contractDeployments.token.dev.ss58Address
+    // Test implementation
+  })
+})
+```
+
+</Step>
+</Steps>
+
+## Project Structure After Adding Contract
+
+<Files>
+  <Folder name="contracts" defaultOpen>
+    <Folder name="src" defaultOpen>
+      <Folder name="token">
+        <File name="lib.rs" />
+        <File name="Cargo.toml" />
+      </Folder>
+      <Folder name="flipper">
+        <File name="lib.rs" />
+        <File name="Cargo.toml" />
+      </Folder>
+    </Folder>
+    <Folder name="deployments">
+      <Folder name="token">
+        <File name="token.contract" />
+        <File name="token.json" />
+        <File name="token.polkavm" />
+        <File name="dev.ts" />
+        <File name="pop.ts" />
+      </Folder>
+    </Folder>
+  </Folder>
+  <Folder name="frontend">
+    <Folder name="src">
+      <Folder name="components/web3">
+        <File name="token-card.tsx" />
+      </Folder>
+      <Folder name="lib/inkathon">
+        <File name="deployments.ts" />
+      </Folder>
+    </Folder>
+  </Folder>
+</Files>
+
+## Contract Best Practices
+
+### Storage Optimization
+
+```rust
+// Use Mapping for large collections
+balances: Mapping<AccountId, Balance>,
+
+// Pack structs efficiently
+#[ink(storage)]
+pub struct Packed {
+    // Group same-size fields
+    field1: u32,
+    field2: u32,
+    field3: bool,
+    field4: bool,
+}
+```
+
+### Error Handling
+
+```rust
+#[derive(Debug, PartialEq, Eq)]
+#[ink::scale_derive(Encode, Decode, TypeInfo)]
+pub enum Error {
+    InsufficientBalance,
+    Unauthorized,
+    InvalidInput,
+}
+
+// Use Result type for fallible operations
+pub type Result<T> = core::result::Result<T, Error>;
+```
+
+### Event Emission
+
+```rust
+#[ink(event)]
+pub struct Transfer {
+    #[ink(topic)]
+    from: Option<AccountId>,
+    #[ink(topic)]
+    to: AccountId,
+    value: Balance,
+}
+
+// Emit events for important state changes
+self.env().emit_event(Transfer { from, to, value });
+```
+
+### Testing
+
+```rust
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use ink::env::test;
+
+    #[test]
+    fn constructor_works() {
+        let accounts = test::default_accounts::<Environment>();
+        test::set_caller::<Environment>(accounts.alice);
+        
+        let token = Token::new(1000);
+        assert_eq!(token.balance_of(accounts.alice), 1000);
+    }
+}
+```
+
+## Common Patterns
+
+### Access Control
+
+```rust
+impl Token {
+    fn ensure_owner(&self) -> Result<()> {
+        if self.env().caller() != self.owner {
+            return Err(Error::Unauthorized);
+        }
+        Ok(())
+    }
+
+    #[ink(message)]
+    pub fn mint(&mut self, to: AccountId, amount: Balance) -> Result<()> {
+        self.ensure_owner()?;
+        // Mint logic
+        Ok(())
+    }
+}
+```
+
+### Upgradeable Contracts
+
+```rust
+#[ink(message)]
+pub fn set_code(&mut self, code_hash: Hash) -> Result<()> {
+    self.ensure_owner()?;
+    self.env().set_code_hash(&code_hash)?;
+    Ok(())
+}
+```
+
+## Troubleshooting
+
+| Issue | Solution |
+|-------|----------|
+| **Build fails** | Check Rust version and wasm32 target installation |
+| **Types not generated** | Ensure contract builds successfully first |
+| **Deployment fails** | Verify account has funds and network is accessible |
+| **Frontend can't find contract** | Check deployment imports and exports |
+
+## Next Steps
+
+- Implement more complex contract logic
+- Add comprehensive test coverage
+- Create UI components for all contract functions
+- Set up automated testing in CI/CD
+- Document your contract's API

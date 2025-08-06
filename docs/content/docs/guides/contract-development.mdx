@@ -1,0 +1,325 @@
+---
+title: Setup Contract Development
+description: Complete guide to set up your local ink! development environment
+---
+
+import { Steps, Step } from 'fumadocs-ui/components/steps'
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs'
+import { Accordion, Accordions } from 'fumadocs-ui/components/accordion'
+
+## Prerequisites
+
+Before starting, ensure you have the following installed on your system.
+
+<Steps>
+<Step>
+
+### Install Node.js v22
+
+We recommend using nvm (Node Version Manager) for easy version management:
+
+<Tabs items={['macOS/Linux', 'Windows']}>
+  <Tab value="macOS/Linux">
+```bash
+# Install nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+
+# Install Node.js v22
+
+nvm install 22
+nvm use 22
+
+````
+  </Tab>
+  <Tab value="Windows">
+```powershell
+# Install nvm-windows from:
+# https://github.com/coreybutler/nvm-windows
+
+# Then install Node.js v22
+nvm install 22.0.0
+nvm use 22.0.0
+````
+
+  </Tab>
+</Tabs>
+
+</Step>
+
+<Step>
+
+### Install Bun
+
+Bun is our package manager of choice for its speed and reliability:
+
+<Tabs items={['macOS/Linux', 'Windows']}>
+  <Tab value="macOS/Linux">```bash curl -fsSL https://bun.sh/install | bash ```</Tab>
+  <Tab value="Windows">```powershell powershell -c "irm bun.sh/install.ps1 | iex" ```</Tab>
+</Tabs>
+
+Verify installation:
+
+```bash
+bun --version
+```
+
+</Step>
+
+<Step>
+
+### Install Rust & cargo-contract
+
+Install Rust and the ink! contract build tool:
+
+```bash
+# Install Rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+# Add wasm32 target
+rustup target add wasm32-unknown-unknown
+
+# Install cargo-contract v6 (alpha)
+cargo install cargo-contract@6.0.0-alpha --locked
+```
+
+</Step>
+
+<Step>
+
+### Install Pop CLI
+
+Pop CLI provides enhanced developer experience for ink! contracts:
+
+<Tabs items={['macOS', 'Linux', 'Build from Source']}>
+  <Tab value="macOS">```bash brew install r0gue-io/pop/pop ```</Tab>
+  <Tab value="Linux">```bash wget -q -O - https://sh.pop.r0gue.io/ | bash ```</Tab>
+  <Tab value="Build from Source">
+    ```bash cargo install --git https://github.com/r0gue-io/pop --branch main ```
+  </Tab>
+</Tabs>
+
+</Step>
+
+<Step>
+
+### Install ink-node
+
+Download and install the local development node:
+
+```bash
+# Download the latest release
+# Visit: https://github.com/use-ink/ink-node/releases
+
+# Example for macOS (adjust for your platform)
+curl -L https://github.com/use-ink/ink-node/releases/latest/download/ink-node-mac-universal.tar.gz | tar xz
+
+# Move to global bin directory
+sudo mv ink-node /usr/local/bin/
+
+# Verify installation
+ink-node --version
+```
+
+</Step>
+</Steps>
+
+## Project Setup
+
+<Steps>
+<Step>
+
+### Create New Project
+
+Use the inkathon CLI to scaffold your project:
+
+```bash
+bunx create-inkathon-app@latest
+
+# Follow the prompts:
+# ✔ Project name: my-dapp
+# ✔ Initialize git? Yes
+# ✔ Install dependencies? Yes
+
+cd my-dapp
+```
+
+</Step>
+
+<Step>
+
+### Project Structure
+
+Your new project has the following structure:
+
+```
+my-dapp/
+├── frontend/          # Next.js application
+├── contracts/         # ink! smart contracts
+├── docs/             # Documentation
+├── package.json      # Root package configuration
+└── bun.lock         # Lock file
+```
+
+</Step>
+
+<Step>
+
+### Install Dependencies
+
+If you didn't install during setup:
+
+```bash
+bun install
+```
+
+</Step>
+</Steps>
+
+## Running the Development Environment
+
+<Steps>
+<Step>
+
+### Start the Local Node
+
+Open a terminal and run the local ink-node:
+
+```bash
+# From project root
+bun run node
+
+# Or from contracts directory
+cd contracts && bun run node
+```
+
+The node will start at `ws://127.0.0.1:9944`
+
+</Step>
+
+<Step>
+
+### Build & Deploy Contracts
+
+In a new terminal, build and deploy the example contract:
+
+```bash
+# Build contracts
+bun run -F contracts build
+
+# Generate TypeScript types
+bun run codegen
+
+# Deploy to local node
+CHAIN=dev bun run -F contracts deploy
+```
+
+</Step>
+
+<Step>
+
+### Configure Frontend
+
+Update the frontend to connect to your local node:
+
+1. Open `frontend/src/lib/reactive-dot/config.ts`
+2. Uncomment the `dev` chain configuration
+3. Open `frontend/src/lib/inkathon/deployments.ts`
+4. Uncomment the `dev` imports and exports
+
+</Step>
+
+<Step>
+
+### Start Frontend Development
+
+```bash
+# From project root
+bun run dev
+
+# Or run both frontend and node together
+bun run dev-and-node
+```
+
+Visit [http://localhost:3000](http://localhost:3000) to see your dApp!
+
+</Step>
+</Steps>
+
+## Verifying Your Setup
+
+### Check Contract Deployment
+
+1. Open the frontend at [http://localhost:3000](http://localhost:3000)
+2. Connect your wallet (or use development accounts)
+3. Select "Local Development" network
+4. You should see the deployed Flipper contract
+
+### Test Contract Interaction
+
+1. Click on the Flipper contract card
+2. Read the current value
+3. Click "Flip" to change the value
+4. Verify the value changed
+
+## Troubleshooting
+
+<Accordions type="single">
+  <Accordion title="ink-node fails to start" id="node-fails">
+    **Problem**: Port 9944 is already in use
+    
+    **Solution**: Kill the existing process or use a different port:
+    ```bash
+    # Find and kill process on port 9944
+    lsof -i :9944
+    kill -9 <PID>
+    
+    # Or use different port
+    ink-node --dev --port 9945
+    ```
+  </Accordion>
+  
+  <Accordion title="Contract build fails" id="build-fails">
+    **Problem**: Missing wasm target or cargo-contract
+    
+    **Solution**: Reinstall dependencies:
+    ```bash
+    rustup target add wasm32-unknown-unknown
+    cargo install cargo-contract@6.0.0-alpha --locked --force
+    ```
+  </Accordion>
+  
+  <Accordion title="Type generation fails" id="codegen-fails">
+    **Problem**: PAPI can't find contract metadata
+    
+    **Solution**: Ensure contracts are built first:
+    ```bash
+    bun run -F contracts build
+    bun run codegen
+    ```
+  </Accordion>
+  
+  <Accordion title="Frontend can't connect to node" id="connect-fails">
+    **Problem**: WebSocket connection refused
+    
+    **Solution**: 
+    1. Ensure ink-node is running
+    2. Check the WebSocket URL in config
+    3. Try `ws://127.0.0.1:9944` instead of `localhost`
+  </Accordion>
+</Accordions>
+
+## Next Steps
+
+Now that your local environment is set up:
+
+- [Add a custom network](/docs/guides/add-network) to deploy on testnets
+- [Create a new contract](/docs/guides/add-contract) beyond the flipper example
+- Explore the [frontend components](/docs/about/frontend) for building your UI
+
+## Development Tips
+
+1. **Use separate terminals**: One for the node, one for the frontend
+2. **Watch mode**: The frontend auto-reloads on changes
+3. **Check logs**: Both node and frontend provide detailed logs
+4. **Use development accounts**: Alice, Bob, etc. are pre-funded
+5. **Reset node data**: Delete `.node-data` folder to start fresh

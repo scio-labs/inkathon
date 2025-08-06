@@ -1,0 +1,240 @@
+---
+title: Frontend Architecture
+description: Deep dive into the Next.js frontend structure and libraries
+---
+
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+import { File, Folder, Files } from 'fumadocs-ui/components/files';
+
+## Tech Stack
+
+The frontend is built with modern, production-ready technologies:
+
+| Technology | Version | Purpose |
+|------------|---------|---------|
+| **Next.js** | 15 | React framework with App Router |
+| **React** | 19 | UI library with latest features |
+| **TypeScript** | 5.9 | Type safety and better DX |
+| **Tailwind CSS** | v4 | Utility-first styling |
+| **shadcn/ui** | Latest | High-quality UI components |
+| **PAPI** | 1.15 | Type-safe Polkadot API |
+| **ReactiveDOT** | 0.45 | Reactive Web3 state management |
+
+## Project Structure
+
+<Files>
+  <Folder name="frontend" defaultOpen>
+    <Folder name="src" defaultOpen>
+      <Folder name="app">
+        <File name="layout.tsx" />
+        <File name="page.tsx" />
+        <File name="globals.css" />
+      </Folder>
+      <Folder name="components">
+        <Folder name="ui">
+          <File name="button.tsx" />
+          <File name="dialog.tsx" />
+          <File name="toast.tsx" />
+        </Folder>
+        <Folder name="web3">
+          <File name="account-balance.tsx" />
+          <File name="account-select.tsx" />
+          <File name="chain-meta-card.tsx" />
+          <File name="chain-select.tsx" />
+          <File name="contract-card.tsx" />
+        </Folder>
+        <Folder name="layout">
+          <File name="header.tsx" />
+          <File name="logo.tsx" />
+          <File name="wrapper.tsx" />
+        </Folder>
+      </Folder>
+      <Folder name="lib">
+        <Folder name="inkathon">
+          <File name="constants.ts" />
+          <File name="deployments.ts" />
+        </Folder>
+        <Folder name="reactive-dot">
+          <File name="config.ts" />
+          <File name="providers.tsx" />
+        </Folder>
+        <File name="metadata.ts" />
+        <File name="utils.ts" />
+      </Folder>
+    </Folder>
+    <File name="package.json" />
+    <File name="next.config.ts" />
+    <File name="tailwind.config.ts" />
+    <File name="tsconfig.json" />
+  </Folder>
+</Files>
+
+## Available Commands
+
+Run these commands from the frontend directory or root with `-F frontend`:
+
+```bash
+# Development
+bun run dev          # Start dev server with Turbo
+bun run build        # Build for production
+bun run start        # Start production server
+
+# Code Quality
+bun run lint         # Run Biome + Prettier checks
+bun run lint:fix     # Auto-fix linting issues
+bun run typecheck    # TypeScript type checking
+
+# Maintenance
+bun run clean        # Remove build artifacts
+```
+
+## Key Components
+
+### Web3 Components
+
+<Tabs items={['Account Select', 'Chain Select', 'Contract Card']}>
+  <Tab value="Account Select">
+```tsx
+// Wallet connection and account selection
+import { AccountSelect } from '@/components/web3/account-select'
+
+<AccountSelect />
+```
+  </Tab>
+  <Tab value="Chain Select">
+```tsx
+// Network switching component
+import { ChainSelect } from '@/components/web3/chain-select'
+
+<ChainSelect />
+```
+  </Tab>
+  <Tab value="Contract Card">
+```tsx
+// Smart contract interaction UI
+import { ContractCard } from '@/components/web3/contract-card'
+
+<ContractCard contractAddress="..." />
+```
+  </Tab>
+</Tabs>
+
+### ReactiveDOT Configuration
+
+The chain configuration is centralized in `/src/lib/reactive-dot/config.ts`:
+
+```typescript
+export const config = {
+  chains: {
+    dev: {
+      descriptor: dev,
+      provider: getWsProvider("ws://127.0.0.1:9944"),
+    },
+    pop: {
+      descriptor: pop,
+      provider: getWsProvider("wss://rpc1.paseo.popnetwork.xyz"),
+    },
+    // Add more chains here
+  },
+  wallets: [walletconnect()],
+}
+```
+
+### Contract Integration
+
+Contract deployments are managed in `/src/lib/inkathon/deployments.ts`:
+
+```typescript
+import { evmAddress as flipperEvmDev, ss58Address as flipperSs58Dev } from 'contracts/deployments/flipper/dev'
+import { evmAddress as flipperEvmPop, ss58Address as flipperSs58Pop } from 'contracts/deployments/flipper/pop'
+
+export const contractDeployments = {
+  flipper: {
+    dev: { evmAddress: flipperEvmDev, ss58Address: flipperSs58Dev },
+    pop: { evmAddress: flipperEvmPop, ss58Address: flipperSs58Pop },
+  },
+}
+```
+
+## Styling with Tailwind CSS v4
+
+The project uses the latest Tailwind CSS v4 with several enhancements:
+
+- **CSS-in-JS**: Direct CSS variable usage
+- **Mobile-first**: Responsive design by default
+- **Dark mode**: Built-in theme switching
+- **Custom utilities**: Extended with tw-animate
+
+### Theme Configuration
+
+```css
+/* globals.css */
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #e6007a;
+  --color-background: #1a1a1a;
+  /* Custom theme variables */
+}
+```
+
+## Component Patterns
+
+### Server Components by Default
+
+```tsx
+// Prefer server components
+export function Header() {
+  return <header>...</header>
+}
+```
+
+### Client Components When Needed
+
+```tsx
+'use client'
+
+// Only for interactive components
+export function WalletButton() {
+  const [connected, setConnected] = useState(false)
+  // ...
+}
+```
+
+### Suspense Boundaries
+
+```tsx
+import { Suspense } from 'react'
+import { AccountSelectSkeleton } from './skeletons'
+
+<Suspense fallback={<AccountSelectSkeleton />}>
+  <AccountSelect />
+</Suspense>
+```
+
+## Environment Variables
+
+Configure the frontend with these environment variables:
+
+| Variable | Description | Example |
+|----------|-------------|---------|
+| `NEXT_PUBLIC_CHAIN` | Default chain | `pop` |
+| `NEXT_PUBLIC_RPC_URL` | Custom RPC endpoint | `wss://...` |
+
+## Performance Optimizations
+
+1. **Turbo Mode**: Enabled by default for faster builds
+2. **App Router**: Leverages React Server Components
+3. **Code Splitting**: Automatic with Next.js
+4. **Image Optimization**: Built-in Next.js Image component
+5. **Font Optimization**: Geist font with `next/font`
+
+## Best Practices
+
+1. **Use functional components** with the `function` keyword
+2. **Prefer named exports** over default exports
+3. **Keep components small** and focused
+4. **Use TypeScript strictly** for better type safety
+5. **Minimize 'use client'** directives
+6. **Wrap async components** in Suspense boundaries
+7. **Follow kebab-case** for file naming

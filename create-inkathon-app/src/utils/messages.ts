@@ -15,7 +15,8 @@ export function displayIntro(): void {
   console.log("Next generation full-stack boilerplate for ink! smart contracts")
   console.log("running on PolkaVM. Powered by Papi, ReactiveDOT, Pop CLI, and more.")
   console.log()
-  console.log(`• Demo: ${pc.cyan("https://inkathon.xyz")}`)
+  console.log(`• Live Demo: ${pc.cyan("https://inkathon.xyz")}`)
+  console.log(`• Docs: ${pc.cyan("https://docs.inkathon.xyz")}`)
   console.log(`• Repository: ${pc.cyan("https://github.com/scio-labs/inkathon")}`)
 
   console.log()

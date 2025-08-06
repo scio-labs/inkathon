@@ -1,0 +1,19 @@
+{
+  "title": "inkathon",
+  "pages": [
+    "---Introduction---",
+    "[Quickstart](/)",
+    "about",
+    "---Learn---",
+    "learn/structure",
+    "learn/frontend",
+    "learn/contracts",
+    "learn/hosting",
+    "---Guides---",
+    "guides/contract-development",
+    "guides/add-network",
+    "guides/add-contract",
+    "---Resources---",
+    "resources/ecosystem"
+  ]
+}

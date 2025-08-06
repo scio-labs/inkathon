@@ -1,0 +1,306 @@
+---
+title: Adding a Custom Network
+description: Integrate new Polkadot/Substrate chains into your inkathon project
+---
+
+import { Steps, Step } from 'fumadocs-ui/components/steps';
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+import { File, Folder, Files } from 'fumadocs-ui/components/files';
+
+## Overview
+
+This guide walks you through adding support for a new Polkadot/Substrate network to your inkathon project. You'll learn how to generate types, configure the connection, and deploy contracts to the new chain.
+
+## Prerequisites
+
+- Working inkathon project
+- Access to the network's RPC endpoint
+- Account with funds on the target network (for deployments)
+
+## Step-by-Step Guide
+
+<Steps>
+<Step>
+
+### Find Network RPC Endpoint
+
+First, you need the WebSocket RPC endpoint for your target network. Common networks:
+
+| Network | RPC Endpoint |
+|---------|-------------|
+| Polkadot | `wss://rpc.polkadot.io` |
+| Kusama | `wss://kusama-rpc.polkadot.io` |
+| Astar | `wss://rpc.astar.network` |
+| Moonbeam | `wss://wss.api.moonbeam.network` |
+| Pop Network | `wss://rpc1.paseo.popnetwork.xyz` |
+
+For other networks, check their documentation or use [Polkadot.js Apps](https://polkadot.js.org/apps/).
+
+</Step>
+
+<Step>
+
+### Generate PAPI Types
+
+Generate TypeScript types for the network using PAPI:
+
+```bash
+# From the contracts directory
+cd contracts
+
+# Add the network (replace with your network details)
+bunx papi add -w wss://your-rpc-endpoint.com yournetwork
+
+# Example for Astar
+bunx papi add -w wss://rpc.astar.network astar
+```
+
+This creates type definitions in `.papi/descriptors/` that enable type-safe interactions.
+
+</Step>
+
+<Step>
+
+### Configure ReactiveDOT
+
+Add the network configuration to your frontend:
+
+```typescript
+// frontend/src/lib/reactive-dot/config.ts
+
+import { yournetwork } from '@polkadot-api/descriptors'
+import { getWsProvider } from 'polkadot-api/ws-provider/web'
+
+export const config = {
+  chains: {
+    // ... existing chains
+    yournetwork: {
+      descriptor: yournetwork,
+      provider: getWsProvider("wss://your-rpc-endpoint.com"),
+    },
+  },
+  // ... rest of config
+}
+```
+
+</Step>
+
+<Step>
+
+### Add Network Constants
+
+Update the constants file with network-specific information:
+
+```typescript
+// frontend/src/lib/inkathon/constants.ts
+
+export const FAUCET_URLS: { [key: string]: string } = {
+  // ... existing faucets
+  yournetwork: "https://your-faucet-url.com",
+}
+```
+
+</Step>
+
+<Step>
+
+### Deploy Contracts to New Network
+
+Set up deployment configuration:
+
+<Tabs items={['Environment Setup', 'Deploy Command']}>
+  <Tab value="Environment Setup">
+Create `.env.yournetwork` in the contracts directory:
+
+```bash
+# contracts/.env.yournetwork
+ACCOUNT_URI="your seed phrase or //Alice for dev"
+```
+
+⚠️ **Security**: Never commit `.env` files with real seed phrases!
+  </Tab>
+  <Tab value="Deploy Command">
+Deploy your contracts:
+
+```bash
+# From contracts directory
+CHAIN=yournetwork bun run deploy
+```
+
+This will:
+1. Build contracts if needed
+2. Deploy to the specified network
+3. Export addresses to `deployments/<contract>/yournetwork.ts`
+  </Tab>
+</Tabs>
+
+</Step>
+
+<Step>
+
+### Update Frontend Deployments
+
+Import the new deployment addresses:
+
+```typescript
+// frontend/src/lib/inkathon/deployments.ts
+
+import { 
+  evmAddress as flipperEvmYourNetwork, 
+  ss58Address as flipperSs58YourNetwork 
+} from 'contracts/deployments/flipper/yournetwork'
+
+export const contractDeployments = {
+  flipper: {
+    // ... existing deployments
+    yournetwork: { 
+      evmAddress: flipperEvmYourNetwork, 
+      ss58Address: flipperSs58YourNetwork 
+    },
+  },
+}
+```
+
+</Step>
+
+<Step>
+
+### Test the Integration
+
+1. Start your frontend: `bun run dev`
+2. Open the network selector
+3. Choose your new network
+4. Verify contract interactions work
+
+</Step>
+</Steps>
+
+## Advanced Configuration
+
+### Custom Chain Properties
+
+For chains with non-standard properties:
+
+```typescript
+// frontend/src/lib/reactive-dot/config.ts
+
+yournetwork: {
+  descriptor: yournetwork,
+  provider: getWsProvider("wss://your-rpc-endpoint.com"),
+  // Optional: Custom SS58 prefix
+  ss58Format: 42,
+  // Optional: Custom token info
+  tokenSymbol: "TOKEN",
+  tokenDecimals: 18,
+}
+```
+
+### Multiple Endpoints
+
+For redundancy, you can configure multiple endpoints:
+
+```typescript
+const endpoints = [
+  "wss://primary-rpc.example.com",
+  "wss://backup-rpc.example.com",
+]
+
+yournetwork: {
+  descriptor: yournetwork,
+  provider: getWsProvider(endpoints[0]),
+  // Fallback logic can be implemented
+}
+```
+
+### Network-Specific Features
+
+Some networks may require special handling:
+
+```typescript
+// Check if network supports contracts
+const supportsContracts = (network: string): boolean => {
+  const contractNetworks = ['pop', 'astar', 'shiden']
+  return contractNetworks.includes(network)
+}
+```
+
+## File Structure After Adding Network
+
+<Files>
+  <Folder name="project-root" defaultOpen>
+    <Folder name="contracts">
+      <Folder name=".papi">
+        <Folder name="descriptors">
+          <File name="yournetwork.d.ts" />
+        </Folder>
+      </Folder>
+      <Folder name="deployments">
+        <Folder name="flipper">
+          <File name="yournetwork.ts" />
+        </Folder>
+      </Folder>
+      <File name=".env.yournetwork" />
+    </Folder>
+    <Folder name="frontend">
+      <Folder name="src/lib">
+        <Folder name="reactive-dot">
+          <File name="config.ts" />
+        </Folder>
+        <Folder name="inkathon">
+          <File name="constants.ts" />
+          <File name="deployments.ts" />
+        </Folder>
+      </Folder>
+    </Folder>
+  </Folder>
+</Files>
+
+## Troubleshooting
+
+### Common Issues
+
+| Issue | Solution |
+|-------|----------|
+| **PAPI type generation fails** | Ensure the RPC endpoint is accessible and supports required APIs |
+| **Deployment fails** | Check account balance and ensure it has funds for gas |
+| **Frontend can't connect** | Verify WebSocket URL and check browser console for errors |
+| **Types not found** | Run `bun run codegen` after adding the network |
+
+### Verifying Network Support
+
+Check if a network supports ink! contracts:
+
+```bash
+# Using Polkadot.js Apps
+# 1. Connect to your network
+# 2. Go to Developer > Chain State
+# 3. Look for "contracts" pallet
+```
+
+## Example: Adding Astar Network
+
+Here's a complete example for adding Astar:
+
+```bash
+# 1. Generate types
+bunx papi add -w wss://rpc.astar.network astar
+
+# 2. Configure frontend
+# Add to config.ts:
+# astar: {
+#   descriptor: astar,
+#   provider: getWsProvider("wss://rpc.astar.network"),
+# }
+
+# 3. Deploy contracts
+CHAIN=astar bun run deploy
+
+# 4. Update deployments
+# Import and export Astar addresses
+```
+
+## Next Steps
+
+- [Add a new contract](/docs/guides/add-contract) to your project
+- Configure [environment variables](/docs/about/frontend#environment-variables) for production
+- Set up [CI/CD pipelines](https://github.com/scio-labs/inkathon/blob/main/.github/workflows) for automated deployments

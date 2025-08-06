@@ -1,7 +1,8 @@
 import { readdir, rm } from "node:fs/promises"
 import { join } from "node:path"
 
-const DIRECTORIES_TO_REMOVE = [".changeset", ".github", "create-inkathon-app", "docs"]
+const DIRECTORIES_TO_REMOVE: string[] = [".changeset", ".github", "create-inkathon-app", "docs"]
+const FILES_TO_REMOVE: string[] = []
 
 async function cleanupDirectories(projectPath: string): Promise<void> {
   for (const dir of DIRECTORIES_TO_REMOVE) {
@@ -9,6 +10,16 @@ async function cleanupDirectories(projectPath: string): Promise<void> {
       await rm(join(projectPath, dir), { recursive: true, force: true })
     } catch (error) {
       // Silently continue if directory doesn't exist
+    }
+  }
+}
+
+async function cleanupFiles(projectPath: string): Promise<void> {
+  for (const file of FILES_TO_REMOVE) {
+    try {
+      await rm(join(projectPath, file), { force: true })
+    } catch (error) {
+      // Silently continue if file doesn't exist
     }
   }
 }
@@ -41,5 +52,6 @@ async function cleanupChangelogFiles(projectPath: string): Promise<void> {
 
 export async function cleanupRepository(projectPath: string): Promise<void> {
   await cleanupDirectories(projectPath)
+  await cleanupFiles(projectPath)
   await cleanupChangelogFiles(projectPath)
 }

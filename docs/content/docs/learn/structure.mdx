@@ -1,0 +1,162 @@
+---
+title: Project Structure
+description: Understanding the inkathon monorepo architecture
+---
+
+import { File, Folder, Files } from 'fumadocs-ui/components/files';
+import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
+
+## Monorepo Architecture
+
+inkathon uses a monorepo structure powered by Bun workspaces, providing clear separation between different parts of the stack while maintaining easy cross-package imports and shared configurations.
+
+<Files>
+  <Folder name="inkathon" defaultOpen>
+    <Folder name="frontend" defaultOpen>
+      <Folder name="src">
+        <Folder name="app">
+          <File name="page.tsx" />
+          <File name="layout.tsx" />
+        </Folder>
+        <Folder name="components">
+          <Folder name="web3">
+            <File name="account-select.tsx" />
+            <File name="chain-select.tsx" />
+            <File name="contract-card.tsx" />
+          </Folder>
+        </Folder>
+        <Folder name="lib">
+          <Folder name="inkathon">
+            <File name="constants.ts" />
+            <File name="deployments.ts" />
+          </Folder>
+          <Folder name="reactive-dot">
+            <File name="config.ts" />
+          </Folder>
+        </Folder>
+      </Folder>
+      <File name="package.json" />
+      <File name="next.config.ts" />
+    </Folder>
+    <Folder name="contracts">
+      <Folder name="src">
+        <Folder name="flipper">
+          <File name="lib.rs" />
+          <File name="Cargo.toml" />
+        </Folder>
+      </Folder>
+      <Folder name="deployments">
+        <Folder name="flipper">
+          <File name="flipper.contract" />
+          <File name="dev.ts" />
+          <File name="pop.ts" />
+        </Folder>
+      </Folder>
+      <File name="package.json" />
+      <File name="build.sh" />
+      <File name="deploy.sh" />
+    </Folder>
+    <Folder name="docs">
+      <Folder name="content">
+        <Folder name="docs">
+          <File name="index.mdx" />
+        </Folder>
+      </Folder>
+      <File name="package.json" />
+    </Folder>
+    <Folder name="create-inkathon-app">
+      <File name="package.json" />
+      <File name="cli.ts" />
+    </Folder>
+    <File name="package.json" />
+    <File name="bun.lock" />
+    <File name="CLAUDE.md" />
+    <File name="README.md" />
+    <File name="Dockerfile" />
+  </Folder>
+</Files>
+
+## Why Monorepo?
+
+<Accordions type="single">
+  <Accordion title="Shared Dependencies" id="shared-deps">
+    All packages share common dependencies like TypeScript, Biome, and Prettier, ensuring consistency across the codebase and reducing duplication.
+  </Accordion>
+  <Accordion title="Cross-Package Imports" id="cross-imports">
+    The frontend can directly import contract deployments and types from the contracts package, enabling seamless type-safe integration.
+  </Accordion>
+  <Accordion title="Unified Development" id="unified-dev">
+    Run the entire stack with a single command, making development and testing more efficient.
+  </Accordion>
+  <Accordion title="Atomic Changes" id="atomic-changes">
+    Changes that affect multiple packages can be committed together, maintaining consistency and preventing version mismatches.
+  </Accordion>
+</Accordions>
+
+## Workspace Structure
+
+### Root Directory
+- **Configuration Files**: Shared configs for TypeScript, Biome, Prettier
+- **Scripts**: Global commands that orchestrate across workspaces
+- **Docker**: Production deployment configuration
+
+### Frontend Workspace (`/frontend`)
+The Next.js application containing:
+- **UI Components**: Reusable React components
+- **Web3 Integration**: Wallet and contract interaction logic
+- **Styling**: Tailwind CSS configuration
+- **Type Definitions**: Generated from contracts
+
+### Contracts Workspace (`/contracts`)
+The ink! smart contracts containing:
+- **Source Code**: Rust contract implementations
+- **Build Artifacts**: Compiled contracts and metadata
+- **Deployment Scripts**: Automated deployment tooling
+- **Type Generation**: PAPI descriptor generation
+
+### Documentation Workspace (`/docs`)
+The Fumadocs-powered documentation site:
+- **Content**: MDX documentation files
+- **Components**: Custom documentation components
+- **Configuration**: Fumadocs setup
+
+### CLI Workspace (`/create-inkathon-app`)
+The project scaffolding tool:
+- **Templates**: Boilerplate generation
+- **Scripts**: Project initialization logic
+
+## Development Workflow
+
+### Commands Structure
+
+All commands follow a consistent pattern:
+
+```bash
+# Run command in specific workspace
+bun run -F <workspace> <command>
+
+# Run command in all workspaces
+bun run -F '*' <command>
+
+# Examples
+bun run -F frontend dev
+bun run -F contracts build
+bun run -F '*' typecheck
+```
+
+### Key Paths
+
+| Path | Description |
+|------|------------|
+| `/frontend/src/lib/inkathon/` | Constants and deployment configurations |
+| `/frontend/src/lib/reactive-dot/` | Chain and wallet configuration |
+| `/contracts/deployments/` | Built contracts and addresses |
+| `/contracts/src/` | Contract source code |
+
+## Best Practices
+
+1. **Keep workspaces independent**: Each workspace should be able to build independently
+2. **Use workspace protocol**: Reference local packages with `workspace:*`
+3. **Centralize shared configs**: Keep common configurations at the root
+4. **Document cross-dependencies**: Make it clear when packages depend on each other
+5. **Version together**: Use changesets to version all packages together
