@@ -15,7 +15,7 @@
     "node": ">=20 <=22"
   },
   "engineStrict": true,
-  "packageManager": "bun@1.2.19",
+  "packageManager": "bun@1.2.20",
   "scripts": {
     "dev": "bun run -F frontend dev",
     "node": "bun run -F contracts node",
@@ -34,7 +34,7 @@
     "update": "bunx taze minor --interactive --recursive --write --install --includeLocked --exclude '@types/node'"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.1.3",
+    "@biomejs/biome": "^2.1.4",
     "@changesets/changelog-github": "^0.5.1",
     "@changesets/cli": "^2.29.5",
     "concurrently": "^9.2.0",
