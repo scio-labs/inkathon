@@ -1,5 +1,11 @@
 # create-inkathon-app
 
+## 6.0.7
+
+### Patch Changes
+
+- [`7e7336b`](https://github.com/scio-labs/inkathon/commit/7e7336b2395798e5c4b183ba44c12027e545dbbb) Thanks [@wottpal](https://github.com/wottpal)! - Updated dependencies
+
 ## 6.0.6
 
 ### Patch Changes
