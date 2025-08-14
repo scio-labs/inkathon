@@ -1,5 +1,18 @@
 # frontend
 
+## 6.1.0
+
+### Minor Changes
+
+- [`f88dcec`](https://github.com/scio-labs/inkathon/commit/f88dcece84adb61a60a218a307f2de0697be5d88) Thanks [@wottpal](https://github.com/wottpal)! - Release new standalone documentation with learning resources & guides to get started. Check out https://docs.inkathon.xyz! 🚀
+
+### Patch Changes
+
+- [`8024758`](https://github.com/scio-labs/inkathon/commit/8024758a0ed26a1d64dbe084121f8d3cff1766fc) Thanks [@wottpal](https://github.com/wottpal)! - Support Node.js v24
+
+- Updated dependencies [[`8024758`](https://github.com/scio-labs/inkathon/commit/8024758a0ed26a1d64dbe084121f8d3cff1766fc), [`f88dcec`](https://github.com/scio-labs/inkathon/commit/f88dcece84adb61a60a218a307f2de0697be5d88)]:
+  - contracts@6.1.0
+
 ## 6.0.1
 
 ### Patch Changes
