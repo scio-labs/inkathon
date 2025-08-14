@@ -122,7 +122,7 @@ const contract = sdk.getContract(flipper.evmAddresses[chain])
 
 ## Deployment Management
 
-The template `deploy.ts` script handles:
+The highly customizable `deploy.ts` script handles:
 
 - Account & chain management (defaults to `//Alice`)
 - Contract instantiation
@@ -130,10 +130,16 @@ The template `deploy.ts` script handles:
 
 ### Environment
 
-<Tabs items={['.env.dev', '.env.pop']}>
-  <Tab value=".env.dev">```bash # Local development ACCOUNT_URI="//Alice" ```</Tab>
-  <Tab value=".env.pop">```bash # Pop Network ACCOUNT_URI="your seed phrase here" ```</Tab>
-</Tabs>
+Depending on the `CHAIN` variable (default: `dev`), the script will read secret environment variables (i.e. `ACCOUNT_URI`) from the `.env.<chain>` file dynamically (e.g. `.env.dev` or `.env.pop`).
+
+This is useful for deploying to different networks from different accounts.
+
+<Callout title="Deployment Gas Fees">
+  When setting `ACCOUNT_URI` to a custom account while using the local development node, make sure
+  to fund your account first. – The most convenient way to do this is using the [Polkadot-JS
+  UI](https://polkadot.js.org/apps/#/explorer). Connect it to your local node and send some funds
+  from `Alice` via the **Accounts** tab.
+</Callout>
 
 ### Output Structure
 
