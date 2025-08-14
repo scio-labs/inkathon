@@ -12,7 +12,7 @@
     "docs"
   ],
   "engines": {
-    "node": ">=20 <=22"
+    "node": ">=20 <=24"
   },
   "engineStrict": true,
   "packageManager": "bun@1.2.20",

@@ -18,7 +18,7 @@
 
 > [!IMPORTANT]
 >
-> - Setup Node.js v20 or v22 (recommended via [nvm](https://github.com/nvm-sh/nvm))
+> - Setup Node.js v20+ (recommended via [nvm](https://github.com/nvm-sh/nvm))
 > - Install [Bun](https://bun.sh/)
 
 Use the new `create-inkathon-app` CLI to set up the boilerplate:
