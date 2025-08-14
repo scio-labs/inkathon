@@ -46,12 +46,14 @@ export const baseOptions: BaseLayoutProps = {
       text: "Live Demo",
       url: "https://inkathon.xyz",
       secondary: false,
+      external: true,
     },
     {
       icon: <MessagesSquareIcon />,
       text: "Telegram",
       url: "https://t.me/inkathon",
       secondary: false,
+      external: true,
     },
   ],
 }

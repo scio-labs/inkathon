@@ -1,28 +1,25 @@
-// import {
-//   evmAddress as evmAddressDev,
-//   ss58Address as ss58AddressDev,
-// } from "contracts/deployments/flipper/dev"
-
 import { contracts } from "@polkadot-api/descriptors"
-import {
-  evmAddress as evmAddressPassethub,
-  ss58Address as ss58AddressPassethub,
-} from "contracts/deployments/flipper/passethub"
-import {
-  evmAddress as evmAddressPop,
-  ss58Address as ss58AddressPop,
-} from "contracts/deployments/flipper/pop"
+import * as flipperPassethub from "contracts/deployments/flipper/passethub"
+import * as flipperPop from "contracts/deployments/flipper/pop"
+// import * as flipperDev from "contracts/deployments/flipper/dev"
 
 export const flipper = {
   contract: contracts.flipper,
   evmAddresses: {
-    // dev: evmAddressDev,
-    pop: evmAddressPop,
-    passethub: evmAddressPassethub,
+    // dev: flipperDev.evmAddress,
+    pop: flipperPop.evmAddress,
+    passethub: flipperPassethub.evmAddress,
+    // Add more deployments here
   },
   ss58Addresses: {
-    // dev: ss58AddressDev,
-    pop: ss58AddressPop,
-    passethub: ss58AddressPassethub,
+    // dev: flipperDev.ss58Address,
+    pop: flipperPop.ss58Address,
+    passethub: flipperPassethub.ss58Address,
+    // Add more deployments here
   },
+}
+
+export const deployments = {
+  flipper,
+  // Add more contracts here
 }

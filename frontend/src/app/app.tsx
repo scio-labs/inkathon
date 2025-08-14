@@ -6,7 +6,7 @@ import { ButtonSkeleton, CardSkeleton } from "@/components/layout/skeletons"
 import { Wrapper } from "@/components/layout/wrapper"
 import { AccountBalance } from "@/components/web3/account-balance"
 import { AccountSelect } from "@/components/web3/account-select"
-import { ChainMetaCard } from "@/components/web3/chain-meta-card"
+import { ChainInfoCard } from "@/components/web3/chain-info-card"
 import { ChainSelect } from "@/components/web3/chain-select"
 import { ContractCard } from "@/components/web3/contract-card"
 import { MapAccountButton } from "@/components/web3/map-account-button"
@@ -45,7 +45,7 @@ export function App() {
           <div className="flex w-full flex-col gap-8">
             {/* Chain Metadata */}
             <Suspense fallback={<CardSkeleton />}>
-              <ChainMetaCard />
+              <ChainInfoCard />
             </Suspense>
 
             {/* Contract Read & Write */}

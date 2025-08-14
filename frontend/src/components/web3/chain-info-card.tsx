@@ -3,7 +3,7 @@ import { CardSkeleton } from "../layout/skeletons"
 import { Card, CardHeader, CardTitle } from "../ui/card"
 import { Table, TableBody, TableCell, TableRow } from "../ui/table"
 
-export function ChainMetaCard() {
+export function ChainInfoCard() {
   const { chainMeta, isLoading } = useChainMeta()
 
   if (isLoading) return <CardSkeleton />

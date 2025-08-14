@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.1.3/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.2.0/schema.json",
   "files": {
     "ignoreUnknown": true,
     "includes": [
@@ -107,8 +107,6 @@
         "noUnusedVariables": "off"
       },
       "nursery": {
-        "useUniqueElementIds": "off",
-        "noNestedComponentDefinitions": "off",
         "useSortedClasses": {
           "level": "info",
           "fix": "safe",
@@ -120,6 +118,7 @@
       "complexity": {
         "noForEach": "off",
         "noBannedTypes": "off",
+        "noImportantStyles": "off",
         "noUselessFragments": {
           "fix": "safe"
         }
@@ -127,7 +126,8 @@
       "suspicious": {
         "noArrayIndexKey": "off",
         "noDocumentCookie": "off",
-        "noExplicitAny": "error"
+        "noExplicitAny": "error",
+        "noUnknownAtRules": "off"
       },
       "security": {
         "noDangerouslySetInnerHtml": "off"

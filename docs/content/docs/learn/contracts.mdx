@@ -1,22 +1,27 @@
 ---
-title: Contracts Architecture
+title: Contracts
 description: Understanding ink! smart contract development in inkathon
 ---
 
-import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
-import { File, Folder, Files } from 'fumadocs-ui/components/files';
-import { Steps, Step } from 'fumadocs-ui/components/steps';
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs'
+import { File, Folder, Files } from 'fumadocs-ui/components/files'
+import { Steps, Step } from 'fumadocs-ui/components/steps'
 
-## ink! v6 Overview
+## Tech Stack
 
-inkathon uses ink! v6, the latest version of Parity's smart contract language for Polkadot. Key features include:
+| Package                 | Description                                     | Scope     |
+| ----------------------- | ----------------------------------------------- | --------- |
+| 🥟 **Bun**              | Performant workspace & script manager           | Contracts |
+| 🚢 **Cargo**            | Rust package manager                            | Contracts |
+| 🦑 **ink!**             | Rust-based smart contract language for Polkadot | Contracts |
+| ⚙️ **TypeScript**       | Type-safe programming language                  | Scripts   |
+| 🛠️ **Biome**            | Modern Linter & Formatter for TypeScript        | Scripts   |
+| ⛓️ **Papi**             | Contract Type Generation                        | Scripts   |
+| 💥 **Pop CLI**          | Setup environment and manage smart contracts    | Scripts   |
+| 📦 **`cargo contract`** | Build smart contracts                           | Scripts   |
+| 📦 **`ink-node`**       | Local ink! node for development                 | Scripts   |
 
-- **PolkaVM Support**: Next-generation virtual machine compatibility
-- **Improved Performance**: Optimized contract execution
-- **Enhanced Developer Experience**: Better error messages and tooling
-- **Type Safety**: Rust's type system for secure contracts
-
-## Project Structure
+## File Structure
 
 <Files>
   <Folder name="contracts" defaultOpen>
@@ -57,6 +62,11 @@ inkathon uses ink! v6, the latest version of Parity's smart contract language fo
 
 ## Available Commands
 
+<Callout title="Setup Environment">
+  Make sure to follow our [contract setup guide](/guides/contract-development) first, before running
+  any commands.
+</Callout>
+
 Execute from the contracts directory or root with `-F contracts`:
 
 ```bash
@@ -66,7 +76,7 @@ bun run build        # Build all contracts
 bun run codegen      # Generate TypeScript types
 bun run deploy       # Deploy contracts
 
-# Code Quality
+# Code Quality (Scripts)
 bun run lint         # Run linting checks
 bun run lint:fix     # Auto-fix issues
 bun run typecheck    # TypeScript checking
@@ -75,295 +85,104 @@ bun run typecheck    # TypeScript checking
 bun run clean        # Remove build artifacts
 ```
 
-## Contract Development Workflow
-
-<Steps>
-<Step>
-
-### Create Contract Structure
-
-Create a new directory in `/contracts/src/`:
-
-```bash
-mkdir contracts/src/my-contract
-cd contracts/src/my-contract
-```
-
-</Step>
-
-<Step>
-
-### Write Contract Code
-
-Create `lib.rs` with your contract logic:
-
-```rust
-#![cfg_attr(not(feature = "std"), no_std, no_main)]
-
-#[ink::contract]
-mod my_contract {
-    #[ink(storage)]
-    pub struct MyContract {
-        value: u32,
-    }
-
-    impl MyContract {
-        #[ink(constructor)]
-        pub fn new(init_value: u32) -> Self {
-            Self { value: init_value }
-        }
-
-        #[ink(message)]
-        pub fn get(&self) -> u32 {
-            self.value
-        }
-
-        #[ink(message)]
-        pub fn set(&mut self, new_value: u32) {
-            self.value = new_value;
-        }
-    }
-}
-```
-
-</Step>
-
-<Step>
-
-### Configure Cargo.toml
-
-```toml
-[package]
-name = "my-contract"
-version = "0.1.0"
-edition = "2021"
-
-[dependencies]
-ink = { version = "6.0.0-alpha", default-features = false }
-
-[lib]
-crate-type = ["cdylib"]
-
-[features]
-default = ["std"]
-std = ["ink/std"]
-```
-
-</Step>
-
-<Step>
-
-### Build Contract
-
-```bash
-bun run build
-```
-
-This generates:
-- `.contract` - Complete contract bundle
-- `.json` - Metadata for interactions
-- `.polkavm` - PolkaVM bytecode
-
-</Step>
-
-<Step>
-
-### Generate Types
-
-```bash
-bun run codegen
-```
-
-Creates TypeScript types from contract metadata.
-
-</Step>
-
-<Step>
-
-### Deploy Contract
-
-<Tabs items={['Local Dev', 'Testnet']}>
-  <Tab value="Local Dev">
-```bash
-# Uses //Alice by default
-CHAIN=dev bun run deploy
-```
-  </Tab>
-  <Tab value="Testnet">
-```bash
-# Set your account in .env.pop
-CHAIN=pop bun run deploy
-```
-  </Tab>
-</Tabs>
-
-</Step>
-</Steps>
-
 ## Build System
 
-### Build Script (`build.sh`)
+The build script (`build.sh`) which runs on `bun run build` automatically:
 
-The build script automatically:
 1. Detects all contracts in `/src`
 2. Builds each with `cargo contract build --release`
-3. Copies artifacts to `/deployments`
+3. Copies artifacts to `/deployments` (under version control)
 4. Organizes by contract name
 
 ### Output Structure
 
-```
-deployments/
-└── my-contract/
-    ├── my-contract.contract  # Full bundle
-    ├── my-contract.json      # Metadata
-    ├── my-contract.polkavm   # PolkaVM code
-    ├── dev.ts               # Dev chain addresses
-    └── pop.ts               # Pop chain addresses
-```
+<Files>
+  <Folder name="deployments" defaultOpen>
+    <Folder name="<contract-name>" defaultOpen>
+      <File name="<contract-name>.contract" />
+      <File name="<contract-name>.json" />
+      <File name="<contract-name>.polkavm" />
+    </Folder>
+  </Folder>
+</Files>
 
-## Type Generation (PAPI)
-
-### How It Works
+## Type Generation
 
 1. **Build contracts** to generate metadata
-2. **Run codegen** to create TypeScript descriptors
+2. **Run `bun run codegen`** to create TypeScript descriptors with Papi under `contracts/.papi/` (partially under version control)
 3. **Import types** in frontend code
 
-### Generated Types
+```typescript title="Frontend"
+import { contracts } from '@polkadot-api/descriptors'
 
-```typescript
-// In frontend code
-import { contracts } from "@polkadot-api/descriptors"
-
-// Fully typed contract interface
-const flipper = contracts.flipper
+// Create fully-typed contract SDK
+const sdk = createReviveSdk(api, contracts.flipper)
+const contract = sdk.getContract(flipper.evmAddresses[chain])
 ```
 
 ## Deployment Management
 
-### Deployment Script
+The template `deploy.ts` script handles:
 
-The `deploy.ts` script handles:
-- Account management (defaults to //Alice)
-- Gas estimation
+- Account & chain management (defaults to `//Alice`)
 - Contract instantiation
 - Address export to TypeScript files
 
-### Environment Configuration
+### Environment
 
 <Tabs items={['.env.dev', '.env.pop']}>
-  <Tab value=".env.dev">
-```bash
-# Local development
-ACCOUNT_URI="//Alice"
-```
-  </Tab>
-  <Tab value=".env.pop">
-```bash
-# Pop Network
-ACCOUNT_URI="your seed phrase here"
-```
-  </Tab>
+  <Tab value=".env.dev">```bash # Local development ACCOUNT_URI="//Alice" ```</Tab>
+  <Tab value=".env.pop">```bash # Pop Network ACCOUNT_URI="your seed phrase here" ```</Tab>
 </Tabs>
+
+### Output Structure
+
+Deployments create TypeScript files for each chain co-located with the contract metadata:
+
+<Files>
+  <Folder name="deployments" defaultOpen>
+    <Folder name="<contract-name>" defaultOpen>
+      <File name="<chain-name>.ts" />
+    </Folder>
+  </Folder>
+</Files>
 
 ### Exported Addresses
 
-Deployments create TypeScript files:
-
-```typescript
-// deployments/my-contract/dev.ts
-export const evmAddress = "0x..."
-export const ss58Address = "5..."
+```typescript title="deployments/<contract-name>/<chain-name>.ts"
+export const evmAddress = '0x...'
+export const ss58Address = '5...'
 ```
 
-## Testing Contracts
+```typescript title="Frontend"
+import { evmAddress, ss58Address } from "contracts/deployments/<contract-name>/<chain-name>"
 
-### Unit Tests
-
-Add tests in your contract:
-
-```rust
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn default_works() {
-        let contract = MyContract::new(42);
-        assert_eq!(contract.get(), 42);
-    }
-}
+// Create fully-typed contract SDK & instance
+const sdk = createReviveSdk(api, contracts.<contract-name>)
+const contract = sdk.getContract(evmAddress)
 ```
 
-Run with:
-```bash
-cargo test
-```
+## Learn More
 
-### Integration Tests
-
-Use the deployed contract in frontend tests:
-
-```typescript
-import { contracts } from "@polkadot-api/descriptors"
-import { contractDeployments } from "@/lib/inkathon/deployments"
-
-test("contract interaction", async () => {
-  const address = contractDeployments.myContract.dev.ss58Address
-  // Test contract calls
-})
-```
-
-## Best Practices
-
-1. **Follow ink! conventions**: Use standard patterns from examples
-2. **Keep contracts simple**: Minimize on-chain logic
-3. **Test thoroughly**: Unit and integration tests
-4. **Document messages**: Clear names and comments
-5. **Version carefully**: Contracts are immutable once deployed
-6. **Optimize for size**: Use `--release` builds
-7. **Handle errors gracefully**: Use Result types
-
-## Common Patterns
-
-### Storage Patterns
-
-```rust
-#[ink(storage)]
-pub struct Contract {
-    // Simple value
-    owner: AccountId,
-    // Mapping
-    balances: Mapping<AccountId, Balance>,
-    // Vector
-    items: Vec<Item>,
-}
-```
-
-### Event Emission
-
-```rust
-#[ink(event)]
-pub struct Transfer {
-    from: AccountId,
-    to: AccountId,
-    value: Balance,
-}
-
-// In message
-self.env().emit_event(Transfer { from, to, value });
-```
-
-### Access Control
-
-```rust
-#[ink(message)]
-pub fn admin_only(&mut self) -> Result<(), Error> {
-    if self.env().caller() != self.owner {
-        return Err(Error::Unauthorized);
-    }
-    // Admin logic
-    Ok(())
-}
-```
+<Cards>
+  <Card
+    title="Project Structure"
+    description="Learn more about the project structure"
+    href="/learn/structure"
+  />
+  <Card
+    title="Frontend Architecture"
+    description="Learn more about the Next.js frontend"
+    href="/learn/frontend"
+  />
+  <Card
+    title="Command Cheat Sheet"
+    description="Learn all commands for the perfect workflow"
+    href="/resources/commands"
+  />
+  <Card
+    title="Setup Contract Development"
+    description="Setup your local ink! development environment"
+    href="/guides/contract-development"
+  />
+</Cards>

@@ -29,7 +29,7 @@
     "prepublishOnly": "bun run build"
   },
   "dependencies": {
-    "@inquirer/prompts": "^7.8.1",
+    "@inquirer/prompts": "^7.8.2",
     "commander": "^14.0.0",
     "picocolors": "^1.1.1",
     "semver": "^7.7.2",

@@ -1,0 +1,62 @@
+---
+title: Command Cheat Sheet
+description: Comprehensive list of commands for the perfect development workflow for inkathon projects
+---
+
+## Project Setup
+
+| Command                                 | Description                 |
+| --------------------------------------- | --------------------------- |
+| `npx create-inkathon-app@latest{:bash}` | Create new inkathon project |
+
+## Global Commands
+
+Execute from the project root:
+
+| Command                           | Description                                 | Category     |
+| --------------------------------- | ------------------------------------------- | ------------ |
+| `bun run dev{:bash}`              | Start frontend development server           | Development  |
+| `bun run node{:bash}`             | Run local ink-node                          | Development  |
+| `bun run dev-and-node{:bash}`     | Run frontend and node concurrently          | Development  |
+| `bun run codegen{:bash}`          | Generate TypeScript types from contracts    | Production   |
+| `bun run build{:bash}`            | Build production frontend with codegen      | Production   |
+| `bun run build:standalone{:bash}` | Build self-hosted production frontend       | Production   |
+| `bun run start{:bash}`            | Start production server                     | Production   |
+| `bun run lint{:bash}`             | Run linter checks across all workspaces     | Code Quality |
+| `bun run lint:fix{:bash}`         | Auto-fix linting issues in all workspaces   | Code Quality |
+| `bun run typecheck{:bash}`        | TypeScript type checking for all workspaces | Code Quality |
+| `bun run clean{:bash}`            | Remove build artifacts from all workspaces  | Maintenance  |
+| `bun run clean-install{:bash}`    | Remove all node_modules and reinstall       | Maintenance  |
+| `bun run update{:bash}`           | Interactive dependency updates              | Maintenance  |
+
+## Frontend Commands
+
+Execute from `/frontend` directory or from root with `bun run -F frontend <command>`:
+
+| Command                           | Description                         | Category     |
+| --------------------------------- | ----------------------------------- | ------------ |
+| `bun run dev{:bash}`              | Start Next.js dev server with Turbo | Development  |
+| `bun run build{:bash}`            | Build for production with Turbo     | Production   |
+| `bun run build:standalone{:bash}` | Build self-hosted production build  | Production   |
+| `bun run start{:bash}`            | Start production server             | Production   |
+| `bun run lint{:bash}`             | Run Biome & Prettier checks         | Code Quality |
+| `bun run lint:fix{:bash}`         | Auto-fix Biome & Prettier issues    | Code Quality |
+| `bun run typecheck{:bash}`        | TypeScript type checking            | Code Quality |
+| `bun run clean{:bash}`            | Remove .next and build artifacts    | Maintenance  |
+
+## Contract Commands
+
+Execute from `/contracts` directory or from root with `bun run -F contracts <command>`:
+
+| Command                                    | Description                         | Category     |
+| ------------------------------------------ | ----------------------------------- | ------------ |
+| `bun run node{:bash}`                      | Start local ink-node with dev chain | Development  |
+| `bun run build{:bash}`                     | Build all contracts in `/src`       | Build        |
+| `bun run codegen{:bash}`                   | Generate TypeScript types with Papi | Build        |
+| `bun run deploy{:bash}`                    | Deploy on local dev chain (default) | Deployment   |
+| `CHAIN=<chain> bun run deploy{:bash}`      | Deploy contract on `<chain>`        | Deployment   |
+| `ACCOUNT_URI=<seed> bun run deploy{:bash}` | Deploy contract with `<seed>`       | Deployment   |
+| `bun run lint{:bash}`                      | Run Biome & Prettier checks         | Code Quality |
+| `bun run lint:fix{:bash}`                  | Auto-fix Biome & Prettier issues    | Code Quality |
+| `bun run typecheck{:bash}`                 | TypeScript type checking            | Code Quality |
+| `bun run clean{:bash}`                     | Remove target and build artifacts   | Maintenance  |

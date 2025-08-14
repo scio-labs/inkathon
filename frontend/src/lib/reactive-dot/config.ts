@@ -20,6 +20,7 @@ export const config = defineConfig({
       descriptor: passethub,
       provider: getWsProvider("wss://testnet-passet-hub.polkadot.io"),
     },
+    // Add more chains here
   },
   ssr: true,
   wallets: [new InjectedWalletProvider()],

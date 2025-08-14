@@ -1,70 +1,45 @@
 ---
-title: Frontend Architecture
+title: Frontend
 description: Deep dive into the Next.js frontend structure and libraries
 ---
 
-import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
-import { File, Folder, Files } from 'fumadocs-ui/components/files';
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs'
+import { File, Folder, Files } from 'fumadocs-ui/components/files'
 
 ## Tech Stack
 
-The frontend is built with modern, production-ready technologies:
+| Package                               | Description                                            |
+| ------------------------------------- | ------------------------------------------------------ |
+| 🥟 **Bun**                            | Performant package & workspace manager                 |
+| ⚙️ **TypeScript**                     | Type-safe programming language                         |
+| 🛠️ **Biome**                          | Modern Linter & Formatter                              |
+| ⚛️ **Next.js**                        | Production-grade React framework                       |
+| 🎨 **shadcn/ui with Tailwind CSS v4** | Unopinionated UI components with utility-first styling |
+| ⛓️ **Papi**                           | Type-safe Polkadot API                                 |
+| ⛓️ **ReactiveDOT**                    | Reactive state management using Papi                   |
 
-| Technology | Version | Purpose |
-|------------|---------|---------|
-| **Next.js** | 15 | React framework with App Router |
-| **React** | 19 | UI library with latest features |
-| **TypeScript** | 5.9 | Type safety and better DX |
-| **Tailwind CSS** | v4 | Utility-first styling |
-| **shadcn/ui** | Latest | High-quality UI components |
-| **PAPI** | 1.15 | Type-safe Polkadot API |
-| **ReactiveDOT** | 0.45 | Reactive Web3 state management |
-
-## Project Structure
+## File Structure
 
 <Files>
   <Folder name="frontend" defaultOpen>
     <Folder name="src" defaultOpen>
       <Folder name="app">
+        <File name="app.tsx" />
         <File name="layout.tsx" />
         <File name="page.tsx" />
-        <File name="globals.css" />
       </Folder>
       <Folder name="components">
-        <Folder name="ui">
-          <File name="button.tsx" />
-          <File name="dialog.tsx" />
-          <File name="toast.tsx" />
-        </Folder>
-        <Folder name="web3">
-          <File name="account-balance.tsx" />
-          <File name="account-select.tsx" />
-          <File name="chain-meta-card.tsx" />
-          <File name="chain-select.tsx" />
-          <File name="contract-card.tsx" />
-        </Folder>
-        <Folder name="layout">
-          <File name="header.tsx" />
-          <File name="logo.tsx" />
-          <File name="wrapper.tsx" />
-        </Folder>
+        <Folder name="ui" disabled />
+        <Folder name="web3" disabled />
+        <Folder name="layout" disabled />
       </Folder>
-      <Folder name="lib">
-        <Folder name="inkathon">
-          <File name="constants.ts" />
-          <File name="deployments.ts" />
-        </Folder>
-        <Folder name="reactive-dot">
-          <File name="config.ts" />
-          <File name="providers.tsx" />
-        </Folder>
-        <File name="metadata.ts" />
-        <File name="utils.ts" />
-      </Folder>
+      <Folder name="hooks" disabled />
+      <Folder name="lib" disabled />
+      <Folder name="styles" disabled />
     </Folder>
-    <File name="package.json" />
+    <File name="components.json" />
     <File name="next.config.ts" />
-    <File name="tailwind.config.ts" />
+    <File name="package.json" />
     <File name="tsconfig.json" />
   </Folder>
 </Files>
@@ -75,64 +50,107 @@ Run these commands from the frontend directory or root with `-F frontend`:
 
 ```bash
 # Development
-bun run dev          # Start dev server with Turbo
-bun run build        # Build for production
-bun run start        # Start production server
+bun run dev               # Start dev server
+
+# Production Builds
+bun run build             # Build for production
+bun run start             # Start production server
+bun run build:standalone  # Build for production (self-hosting)
 
 # Code Quality
-bun run lint         # Run Biome + Prettier checks
-bun run lint:fix     # Auto-fix linting issues
-bun run typecheck    # TypeScript type checking
+bun run lint              # Run linter & formatter checks
+bun run lint:fix          # Auto-fix issues
+bun run typecheck         # TypeScript type checking
 
 # Maintenance
-bun run clean        # Remove build artifacts
+bun run clean             # Remove build artifacts
 ```
 
-## Key Components
+## Web3 Base Components
 
-### Web3 Components
+<Tabs items={['Connect Button', 'Account Select', 'Account Balance', 'Chain Select', 'Map Account Button']}>
+  <Tab value="Connect Button">
+```tsx
+// Wallet connection with dropdown for multiple wallets
+import { ConnectButton } from '@/components/web3/connect-button'
 
-<Tabs items={['Account Select', 'Chain Select', 'Contract Card']}>
+<ConnectButton />
+```
+
+Shows "Connect Wallet" button that opens a dropdown with available wallets. Automatically switches to "Disconnect Wallet" when connected.
+
+  </Tab>
   <Tab value="Account Select">
 ```tsx
-// Wallet connection and account selection
+// Account selection dropdown with disconnect option
 import { AccountSelect } from '@/components/web3/account-select'
 
-<AccountSelect />
-```
+function MyComponent() {
+const [account, setAccount] = useState<WalletAccount>()
+
+return <AccountSelect account={account} setAccount={setAccount} />
+}
+
+````
+
+Displays connected accounts in a dropdown. Falls back to `ConnectButton` when no account is selected.
+  </Tab>
+  <Tab value="Account Balance">
+```tsx
+// Display account balance with faucet link
+import { AccountBalance } from '@/components/web3/account-balance'
+
+<AccountBalance />
+````
+
+Shows the spendable balance of the connected account. Includes a faucet button for testnet chains.
+
   </Tab>
   <Tab value="Chain Select">
 ```tsx
 // Network switching component
 import { ChainSelect } from '@/components/web3/chain-select'
 
-<ChainSelect />
-```
-  </Tab>
-  <Tab value="Contract Card">
-```tsx
-// Smart contract interaction UI
-import { ContractCard } from '@/components/web3/contract-card'
+function MyComponent() {
+const [chainId, setChainId] = useState<ChainId>('dev')
 
-<ContractCard contractAddress="..." />
+return <ChainSelect chainId={chainId} setChainId={setChainId} />
+}
+
+````
+
+Dropdown for switching between configured blockchain networks.
+  </Tab>
+  <Tab value="Map Account Button">
+```tsx
+// Account mapping for contract interactions
+import { MapAccountButton } from '@/components/web3/map-account-button'
+
+<MapAccountButton />
 ```
+
+Button to map Substrate accounts to EVM addresses. Required before interacting with contracts. Only shows when account is not mapped.
+
   </Tab>
 </Tabs>
 
-### ReactiveDOT Configuration
 
-The chain configuration is centralized in `/src/lib/reactive-dot/config.ts`:
+## Configuration
+
+### Chains
+
+The chain configuration is centralized in `/src/lib/reactive-dot/config.ts`.
 
 ```typescript
 export const config = {
   chains: {
     dev: {
       descriptor: dev,
-      provider: getWsProvider("ws://127.0.0.1:9944"),
+      provider: getWsProvider('ws://127.0.0.1:9944'),
     },
     pop: {
       descriptor: pop,
-      provider: getWsProvider("wss://rpc1.paseo.popnetwork.xyz"),
+      provider: getWsProvider('wss://rpc1.paseo.popnetwork.xyz'),
     },
     // Add more chains here
   },
@@ -140,101 +158,57 @@ export const config = {
 }
 ```
 
-### Contract Integration
+### Contracts
 
-Contract deployments are managed in `/src/lib/inkathon/deployments.ts`:
+Contract deployments are managed in `/src/lib/inkathon/deployments.ts`. They are cross-imported from the `deployments/` folder in the [contracts workspace](/learn/contracts).
 
 ```typescript
-import { evmAddress as flipperEvmDev, ss58Address as flipperSs58Dev } from 'contracts/deployments/flipper/dev'
-import { evmAddress as flipperEvmPop, ss58Address as flipperSs58Pop } from 'contracts/deployments/flipper/pop'
+// Imports from the contracts workspace
+import { contracts } from '@polkadot-api/descriptors'
+import * as flipperPassethub from 'contracts/deployments/flipper/passethub'
+import * as flipperPop from 'contracts/deployments/flipper/pop'
 
-export const contractDeployments = {
-  flipper: {
-    dev: { evmAddress: flipperEvmDev, ss58Address: flipperSs58Dev },
-    pop: { evmAddress: flipperEvmPop, ss58Address: flipperSs58Pop },
+export const flipper = {
+  contract: contracts.flipper,
+  evmAddresses: {
+    pop: flipperPop.evmAddress,
+    passethub: flipperPassethub.evmAddress,
+    // Add more deployments here
+  },
+  ss58Addresses: {
+    pop: flipperPop.ss58Address,
+    passethub: flipperPassethub.ss58Address,
+    // Add more deployments here
   },
 }
-```
 
-## Styling with Tailwind CSS v4
-
-The project uses the latest Tailwind CSS v4 with several enhancements:
-
-- **CSS-in-JS**: Direct CSS variable usage
-- **Mobile-first**: Responsive design by default
-- **Dark mode**: Built-in theme switching
-- **Custom utilities**: Extended with tw-animate
-
-### Theme Configuration
-
-```css
-/* globals.css */
-@import "tailwindcss";
-
-@theme {
-  --color-primary: #e6007a;
-  --color-background: #1a1a1a;
-  /* Custom theme variables */
+export const deployments = {
+  flipper,
+  // Add more contracts here
 }
-```
+````
 
-## Component Patterns
+## Learn More
 
-### Server Components by Default
-
-```tsx
-// Prefer server components
-export function Header() {
-  return <header>...</header>
-}
-```
-
-### Client Components When Needed
-
-```tsx
-'use client'
-
-// Only for interactive components
-export function WalletButton() {
-  const [connected, setConnected] = useState(false)
-  // ...
-}
-```
-
-### Suspense Boundaries
-
-```tsx
-import { Suspense } from 'react'
-import { AccountSelectSkeleton } from './skeletons'
-
-<Suspense fallback={<AccountSelectSkeleton />}>
-  <AccountSelect />
-</Suspense>
-```
-
-## Environment Variables
-
-Configure the frontend with these environment variables:
-
-| Variable | Description | Example |
-|----------|-------------|---------|
-| `NEXT_PUBLIC_CHAIN` | Default chain | `pop` |
-| `NEXT_PUBLIC_RPC_URL` | Custom RPC endpoint | `wss://...` |
-
-## Performance Optimizations
-
-1. **Turbo Mode**: Enabled by default for faster builds
-2. **App Router**: Leverages React Server Components
-3. **Code Splitting**: Automatic with Next.js
-4. **Image Optimization**: Built-in Next.js Image component
-5. **Font Optimization**: Geist font with `next/font`
-
-## Best Practices
-
-1. **Use functional components** with the `function` keyword
-2. **Prefer named exports** over default exports
-3. **Keep components small** and focused
-4. **Use TypeScript strictly** for better type safety
-5. **Minimize 'use client'** directives
-6. **Wrap async components** in Suspense boundaries
-7. **Follow kebab-case** for file naming
+<Cards>
+  <Card
+    title="Project Structure"
+    description="Learn more about the project structure"
+    href="/learn/structure"
+  />
+  <Card
+    title="Contracts Architecture"
+    description="Learn more about the ink! smart contracts"
+    href="/learn/contracts"
+  />
+  <Card
+    title="Command Cheat Sheet"
+    description="Learn all commands for the perfect workflow"
+    href="/resources/commands"
+  />
+  <Card
+    title="Setup Contract Development"
+    description="Setup your local ink! development environment"
+    href="/guides/contract-development"
+  />
+</Cards>

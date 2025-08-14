@@ -1,3 +1,10 @@
 @import 'tailwindcss';
 @import 'fumadocs-ui/css/neutral.css';
 @import 'fumadocs-ui/css/preset.css';
+
+@layer base {
+  /* Increase spacing before first sidebar item */
+  #nd-sidebar > div:nth-child(2) > div:first-of-type > div:first-of-type > p:first-of-type {
+    margin-top: 0.5rem;
+  }
+}

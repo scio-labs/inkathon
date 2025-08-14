@@ -1,17 +1,37 @@
 ---
 title: Project Structure
-description: Understanding the inkathon monorepo architecture
+description: Understanding the inkathon approach
 ---
 
-import { File, Folder, Files } from 'fumadocs-ui/components/files';
-import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
+import { File, Folder, Files } from 'fumadocs-ui/components/files'
+import { Accordion, Accordions } from 'fumadocs-ui/components/accordion'
 
 ## Monorepo Architecture
 
-inkathon uses a monorepo structure powered by Bun workspaces, providing clear separation between different parts of the stack while maintaining easy cross-package imports and shared configurations.
+Projects set up with inkathon use a monorepo structure splitting your [frontend](/learn/frontend) and [smart contracts](/learn/contracts) into separate workspaces.
+
+This provides clear separation between different parts of the application while maintaining easy cross-package imports, shared configurations, and a single source of truth for contract metadata.
 
 <Files>
-  <Folder name="inkathon" defaultOpen>
+  <Folder name="inkathon-project" defaultOpen>
+    <Folder name="contracts" defaultOpen>
+      <Folder name="src">
+        <Folder name="flipper">
+          <File name="lib.rs" />
+          <File name="Cargo.toml" />
+        </Folder>
+      </Folder>
+      <Folder name="deployments">
+        <Folder name="flipper">
+          <File name="flipper.contract" />
+          <File name="flipper.json" />
+          <File name="flipper.polkavm" />
+          <File name="dev.ts" />
+          <File name="pop.ts" />
+        </Folder>
+      </Folder>
+      <File name="package.json" />
+    </Folder>
     <Folder name="frontend" defaultOpen>
       <Folder name="src">
         <Folder name="app">
@@ -36,127 +56,108 @@ inkathon uses a monorepo structure powered by Bun workspaces, providing clear se
         </Folder>
       </Folder>
       <File name="package.json" />
-      <File name="next.config.ts" />
-    </Folder>
-    <Folder name="contracts">
-      <Folder name="src">
-        <Folder name="flipper">
-          <File name="lib.rs" />
-          <File name="Cargo.toml" />
-        </Folder>
-      </Folder>
-      <Folder name="deployments">
-        <Folder name="flipper">
-          <File name="flipper.contract" />
-          <File name="dev.ts" />
-          <File name="pop.ts" />
-        </Folder>
-      </Folder>
-      <File name="package.json" />
-      <File name="build.sh" />
-      <File name="deploy.sh" />
-    </Folder>
-    <Folder name="docs">
-      <Folder name="content">
-        <Folder name="docs">
-          <File name="index.mdx" />
-        </Folder>
-      </Folder>
-      <File name="package.json" />
-    </Folder>
-    <Folder name="create-inkathon-app">
-      <File name="package.json" />
-      <File name="cli.ts" />
     </Folder>
     <File name="package.json" />
-    <File name="bun.lock" />
-    <File name="CLAUDE.md" />
-    <File name="README.md" />
-    <File name="Dockerfile" />
   </Folder>
 </Files>
 
-## Why Monorepo?
+<Callout title="Never used a monorepo before?">
+  Don't be afraid, it's really just a fancy term for having nested folders with multiple
+  `package.json` files. The package manager (Bun) takes care of installing the correct dependencies
+  for each workspace and executing scripts where you need them.
+</Callout>
+
+### Why Monorepo?
 
 <Accordions type="single">
   <Accordion title="Shared Dependencies" id="shared-deps">
-    All packages share common dependencies like TypeScript, Biome, and Prettier, ensuring consistency across the codebase and reducing duplication.
+    All packages share common dependencies like TypeScript, Biome, and Prettier, ensuring
+    consistency across the codebase and reducing duplication or multiple sources of truth.
   </Accordion>
   <Accordion title="Cross-Package Imports" id="cross-imports">
-    The frontend can directly import contract deployments and types from the contracts package, enabling seamless type-safe integration.
+    The frontend can directly import contract deployments and types from the contracts package,
+    enabling seamless type-safe integration. No more manually copying and pasting contract addresses
+    and metadata files.
   </Accordion>
   <Accordion title="Unified Development" id="unified-dev">
     Run the entire stack with a single command, making development and testing more efficient.
   </Accordion>
   <Accordion title="Atomic Changes" id="atomic-changes">
-    Changes that affect multiple packages can be committed together, maintaining consistency and preventing version mismatches.
+    Changes that affect multiple packages can be committed together, maintaining consistency and
+    preventing version mismatches.
   </Accordion>
 </Accordions>
 
-## Workspace Structure
+## Workspaces
 
-### Root Directory
-- **Configuration Files**: Shared configs for TypeScript, Biome, Prettier
+### `/` – Root Directory
+
+- **Configuration Files**: Configs for VSCode, TypeScript, Biome, Prettier
 - **Scripts**: Global commands that orchestrate across workspaces
-- **Docker**: Production deployment configuration
+- **Hosting**: Deployment configs for self-hosting and Vercel
+- **AI Rules**: Tailored development rules for Cursor and Claude
 
-### Frontend Workspace (`/frontend`)
-The Next.js application containing:
-- **UI Components**: Reusable React components
-- **Web3 Integration**: Wallet and contract interaction logic
-- **Styling**: Tailwind CSS configuration
-- **Type Definitions**: Generated from contracts
+### `/contracts` – ink! Smart Contracts
 
-### Contracts Workspace (`/contracts`)
-The ink! smart contracts containing:
 - **Source Code**: Rust contract implementations
 - **Build Artifacts**: Compiled contracts and metadata
-- **Deployment Scripts**: Automated deployment tooling
-- **Type Generation**: PAPI descriptor generation
+- **Deployments**: Multichain deployment addresses
+- **Tooling**: Advanced build & deployment scripts using Pop CLI, `cargo contract`, and `ink-node`
+- **Type Generation**: Generated Papi type descriptors for contracts & chains
 
-### Documentation Workspace (`/docs`)
-The Fumadocs-powered documentation site:
-- **Content**: MDX documentation files
-- **Components**: Custom documentation components
-- **Configuration**: Fumadocs setup
+### `/frontend` – Next.js Frontend
 
-### CLI Workspace (`/create-inkathon-app`)
-The project scaffolding tool:
-- **Templates**: Boilerplate generation
-- **Scripts**: Project initialization logic
+- **Styling**: Tailwind CSS v4 & shadcn/ui components
+- **React Components**: Reusable Web3 components for wallet connection, chain selection, and contract interaction, and more
+- **Web3 Integration**: Type-safe multichain wallet connection and contract interaction with Papi and ReactiveDOT
 
-## Development Workflow
+## Available Commands
 
-### Commands Structure
-
-All commands follow a consistent pattern:
+Execute from the root directory only:
 
 ```bash
-# Run command in specific workspace
-bun run -F <workspace> <command>
+# Development
+bun run dev          # Start frontend development server
+bun run node         # Start local ink-node
+bun run dev-and-node # Run both frontend and node concurrently
+bun run codegen      # Generate TypeScript types from contracts
+bun run build        # Build frontend (includes codegen)
+bun run start        # Start production frontend server
 
-# Run command in all workspaces
-bun run -F '*' <command>
+# Code Quality
+bun run lint         # Run linting checks across all workspaces
+bun run lint:fix     # Auto-fix linting issues
+bun run typecheck    # TypeScript checking across all workspaces
 
-# Examples
-bun run -F frontend dev
-bun run -F contracts build
-bun run -F '*' typecheck
+# Maintenance
+bun run clean        # Remove build artifacts from all workspaces
+bun run clean-install # Remove node_modules and reinstall dependencies
+bun run update       # Update dependencies interactively
 ```
 
-### Key Paths
+<Callout>Find all available commands in the [command cheat sheet](/resources/commands).</Callout>
 
-| Path | Description |
-|------|------------|
-| `/frontend/src/lib/inkathon/` | Constants and deployment configurations |
-| `/frontend/src/lib/reactive-dot/` | Chain and wallet configuration |
-| `/contracts/deployments/` | Built contracts and addresses |
-| `/contracts/src/` | Contract source code |
+## Learn More
 
-## Best Practices
-
-1. **Keep workspaces independent**: Each workspace should be able to build independently
-2. **Use workspace protocol**: Reference local packages with `workspace:*`
-3. **Centralize shared configs**: Keep common configurations at the root
-4. **Document cross-dependencies**: Make it clear when packages depend on each other
-5. **Version together**: Use changesets to version all packages together
+<Cards>
+  <Card
+    title="Contracts Architecture"
+    description="Learn more about the ink! smart contracts"
+    href="/learn/contracts"
+  />
+  <Card
+    title="Frontend Architecture"
+    description="Learn more about the Next.js frontend"
+    href="/learn/frontend"
+  />
+  <Card
+    title="Command Cheat Sheet"
+    description="Learn all commands for the perfect workflow"
+    href="/resources/commands"
+  />
+  <Card
+    title="Setup Contract Development"
+    description="Setup your local ink! development environment"
+    href="/guides/contract-development"
+  />
+</Cards>
