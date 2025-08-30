@@ -24,6 +24,7 @@
     "build": "bun run codegen && bun run -F frontend build",
     "build:standalone": "bun run codegen && bun run -F frontend build:standalone",
     "start": "bun run -F frontend start",
+    "test": "bun run -F contracts test",
     "typecheck": "bun run -F '*' typecheck",
     "clean": "bun run -F '*' clean",
     "clean-install": "find . -type d -name 'node_modules' -prune -exec rm -rf '{}' + && find . -name 'bun.lock' -delete && bun install",

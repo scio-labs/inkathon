@@ -12,7 +12,9 @@
   "contract": {
     "name": "flipper",
     "version": "6.0.0-alpha",
-    "authors": ["Use Ink <ink@use.ink>"]
+    "authors": [
+      "Use Ink <ink@use.ink>"
+    ]
   },
   "image": null,
   "spec": {
@@ -22,17 +24,24 @@
           {
             "label": "init_value",
             "type": {
-              "displayName": ["bool"],
+              "displayName": [
+                "bool"
+              ],
               "type": 0
             }
           }
         ],
         "default": false,
-        "docs": ["Creates a new flipper smart contract initialized with the given value."],
+        "docs": [
+          "Creates a new flipper smart contract initialized with the given value."
+        ],
         "label": "new",
         "payable": false,
         "returnType": {
-          "displayName": ["ink_primitives", "ConstructorResult"],
+          "displayName": [
+            "ink_primitives",
+            "ConstructorResult"
+          ],
           "type": 2
         },
         "selector": "0x9bae9d5e"
@@ -40,11 +49,16 @@
       {
         "args": [],
         "default": false,
-        "docs": ["Creates a new flipper smart contract initialized to `false`."],
+        "docs": [
+          "Creates a new flipper smart contract initialized to `false`."
+        ],
         "label": "new_default",
         "payable": false,
         "returnType": {
-          "displayName": ["ink_primitives", "ConstructorResult"],
+          "displayName": [
+            "ink_primitives",
+            "ConstructorResult"
+          ],
           "type": 2
         },
         "selector": "0x61ef7e3e"
@@ -53,47 +67,67 @@
     "docs": [],
     "environment": {
       "accountId": {
-        "displayName": ["AccountId"],
+        "displayName": [
+          "AccountId"
+        ],
         "type": 6
       },
       "balance": {
-        "displayName": ["Balance"],
+        "displayName": [
+          "Balance"
+        ],
         "type": 9
       },
       "blockNumber": {
-        "displayName": ["BlockNumber"],
+        "displayName": [
+          "BlockNumber"
+        ],
         "type": 12
       },
       "chainExtension": {
-        "displayName": ["ChainExtension"],
+        "displayName": [
+          "ChainExtension"
+        ],
         "type": 13
       },
       "hash": {
-        "displayName": ["Hash"],
+        "displayName": [
+          "Hash"
+        ],
         "type": 10
       },
       "maxEventTopics": 4,
       "staticBufferSize": 16384,
       "timestamp": {
-        "displayName": ["Timestamp"],
+        "displayName": [
+          "Timestamp"
+        ],
         "type": 11
       }
     },
     "events": [],
     "lang_error": {
-      "displayName": ["ink", "LangError"],
+      "displayName": [
+        "ink",
+        "LangError"
+      ],
       "type": 4
     },
     "messages": [
       {
         "args": [],
         "default": false,
-        "docs": [" Flips the current value of the Flipper's boolean."],
+        "docs": [
+          " Flips the current value of the Flipper's boolean."
+        ],
         "label": "flip",
         "mutates": true,
         "payable": false,
         "returnType": {
-          "displayName": ["ink", "MessageResult"],
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
           "type": 2
         },
         "selector": "0x633aa551"
@@ -101,12 +135,17 @@
       {
         "args": [],
         "default": false,
-        "docs": [" Returns the current value of the Flipper's boolean."],
+        "docs": [
+          " Returns the current value of the Flipper's boolean."
+        ],
         "label": "get",
         "mutates": false,
         "payable": false,
         "returnType": {
-          "displayName": ["ink", "MessageResult"],
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
           "type": 5
         },
         "selector": "0x2f865bd9"
@@ -158,7 +197,11 @@
             ]
           }
         },
-        "path": ["flipper", "flipper", "Flipper"]
+        "path": [
+          "flipper",
+          "flipper",
+          "Flipper"
+        ]
       }
     },
     {
@@ -198,7 +241,9 @@
             "type": 4
           }
         ],
-        "path": ["Result"]
+        "path": [
+          "Result"
+        ]
       }
     },
     {
@@ -222,7 +267,10 @@
             ]
           }
         },
-        "path": ["ink_primitives", "LangError"]
+        "path": [
+          "ink_primitives",
+          "LangError"
+        ]
       }
     },
     {
@@ -262,7 +310,9 @@
             "type": 4
           }
         ],
-        "path": ["Result"]
+        "path": [
+          "Result"
+        ]
       }
     },
     {
@@ -278,7 +328,11 @@
             ]
           }
         },
-        "path": ["ink_primitives", "types", "AccountId"]
+        "path": [
+          "ink_primitives",
+          "types",
+          "AccountId"
+        ]
       }
     },
     {
@@ -321,7 +375,11 @@
             ]
           }
         },
-        "path": ["ink_primitives", "types", "Hash"]
+        "path": [
+          "ink_primitives",
+          "types",
+          "Hash"
+        ]
       }
     },
     {
@@ -346,7 +404,11 @@
         "def": {
           "variant": {}
         },
-        "path": ["ink_primitives", "types", "NoChainExtension"]
+        "path": [
+          "ink_primitives",
+          "types",
+          "NoChainExtension"
+        ]
       }
     }
   ],

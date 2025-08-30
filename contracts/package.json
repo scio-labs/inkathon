@@ -10,6 +10,7 @@
   "scripts": {
     "node": "ink-node --dev --base-path ./.node-data",
     "build": "bash build.sh",
+    "test": "bash test.sh",
     "codegen": "bash codegen.sh",
     "deploy": "bun run scripts/deploy.ts",
     "clean": "rm -rf target tsconfig.tsbuildinfo",
