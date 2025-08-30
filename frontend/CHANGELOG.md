@@ -1,5 +1,12 @@
 # frontend
 
+## 6.1.1
+
+### Patch Changes
+
+- Updated dependencies [[`1498e99`](https://github.com/scio-labs/inkathon/commit/1498e99e082e0356975ef9df468e157b45cf883d)]:
+  - contracts@6.1.1
+
 ## 6.1.0
 
 ### Minor Changes
