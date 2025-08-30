@@ -1,5 +1,11 @@
 # contracts
 
+## 6.1.1
+
+### Patch Changes
+
+- [`1498e99`](https://github.com/scio-labs/inkathon/commit/1498e99e082e0356975ef9df468e157b45cf883d) Thanks [@wottpal](https://github.com/wottpal)! - Added new contract test utility scripts using Pop CLI. Add sections about testing contracts in the docs accordingly.
+
 ## 6.1.0
 
 ### Minor Changes
