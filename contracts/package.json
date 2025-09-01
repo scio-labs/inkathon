@@ -22,8 +22,8 @@
   "dependencies": {
     "@polkadot-api/descriptors": "file:.papi/descriptors",
     "@polkadot-api/sdk-ink": "^0.4.0",
-    "@polkadot-labs/hdkd": "^0.0.21",
-    "@types/bun": "^1.2.20",
+    "@polkadot-labs/hdkd": "^0.0.23",
+    "@types/bun": "^1.2.21",
     "dedent": "^1.6.0",
     "dotenv": "^17.2.1",
     "yocto-spinner": "^1.0.0"
