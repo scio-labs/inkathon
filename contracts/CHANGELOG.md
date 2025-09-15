@@ -1,5 +1,13 @@
 # contracts
 
+## 6.1.2
+
+### Patch Changes
+
+- [#84](https://github.com/scio-labs/inkathon/pull/84) [`cb8ed40`](https://github.com/scio-labs/inkathon/commit/cb8ed40324892032d95e5952c23a0a21d6086044) Thanks [@voliva](https://github.com/voliva)! - update ink sdk dependencies
+
+  fixes compatibility issues with newer runtimes
+
 ## 6.1.1
 
 ### Patch Changes
