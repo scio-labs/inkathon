@@ -42,8 +42,8 @@
     "nano-staged": "^0.8.0",
     "prettier": "^3.6.2",
     "simple-git-hooks": "^2.13.1",
-    "taze": "^19.6.0",
-    "typescript": "^5.9.2"
+    "taze": "^19.7.0",
+    "typescript": "^5.9.3"
   },
   "trustedDependencies": [
     "@tailwindcss/oxide",

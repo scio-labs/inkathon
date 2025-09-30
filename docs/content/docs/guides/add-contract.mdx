@@ -156,24 +156,26 @@ Create components to interact with your contract:
 ```tsx title="frontend/src/components/web3/contract-card.tsx"
 'use client'
 
-import { createReviveSdk } from '@polkadot-api/sdk-ink'
+import { createInkSdk } from '@polkadot-api/sdk-ink'
 import { deployments } from '@/lib/inkathon/deployments'
-import { useChainId, useApi } from '@reactive-dot/react'
+import { useChainId, useClient } from '@reactive-dot/react'
 
 export function ContractCard() {
   const chainId = useChainId()
-  const api = useApi()
+  const client = useClient()
 
   const queryContract = useCallback(async () => {
-    if (!api || !chainId) return
+    if (!chainId) return
+
+    const { contract, evmAddresses } = deployments.newContract;
 
     // Create SDK & contract instance
-    const sdk = createReviveSdk(api, deployments.newContract.contract)
-    const contract = sdk.getContract(deployments.newContract.evmAddresses[chainId])
+    const sdk = createInkSdk(client)
+    const contract = sdk.getContract(contract, evmAddresses[chainId])
 
     // Interact with your contract
     // ...
-  }, [api, chainId])
+  }, [client, chainId])
 }
 ```
 
