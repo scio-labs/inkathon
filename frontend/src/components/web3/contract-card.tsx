@@ -1,5 +1,5 @@
-import { createReviveSdk, type ReviveSdkTypedApi } from "@polkadot-api/sdk-ink"
-import { useChainId, useTypedApi } from "@reactive-dot/react"
+import { createInkSdk } from "@polkadot-api/sdk-ink"
+import { useChainId, useClient } from "@reactive-dot/react"
 import { useCallback, useEffect, useState } from "react"
 import { toast } from "sonner"
 import { useSignerAndAddress } from "@/hooks/use-signer-and-address"
@@ -12,7 +12,7 @@ import { Table, TableBody, TableCell, TableRow } from "../ui/table"
 export function ContractCard() {
   const [queryIsLoading, setQueryIsLoading] = useState(true)
 
-  const api = useTypedApi()
+  const client = useClient()
   const chain = useChainId()
   const { signer, signerAddress } = useSignerAndAddress()
 
@@ -24,11 +24,11 @@ export function ContractCard() {
   const queryContract = useCallback(async () => {
     setQueryIsLoading(true)
     try {
-      if (!api || !chain) return
+      if (!chain) return
 
       // Create SDK & contract instance
-      const sdk = createReviveSdk(api as ReviveSdkTypedApi, flipper.contract)
-      const contract = sdk.getContract(flipper.evmAddresses[chain])
+      const sdk = createInkSdk(client)
+      const contract = sdk.getContract(flipper.contract, flipper.evmAddresses[chain])
 
       // Option 1: Query storage directly
       const storageResult = await contract.getStorage().getRoot()
@@ -51,7 +51,7 @@ export function ContractCard() {
     } finally {
       setQueryIsLoading(false)
     }
-  }, [api, chain])
+  }, [client, chain])
 
   useEffect(() => {
     queryContract()
@@ -61,10 +61,10 @@ export function ContractCard() {
    * Contract Write (Transaction)
    */
   const handleFlip = useCallback(async () => {
-    if (!api || !chain || !signer) return
+    if (!chain || !signer) return
 
-    const sdk = createReviveSdk(api as ReviveSdkTypedApi, flipper.contract)
-    const contract = sdk.getContract(flipper.evmAddresses[chain])
+    const sdk = createInkSdk(client)
+    const contract = sdk.getContract(flipper.contract, flipper.evmAddresses[chain])
 
     // Map account if not mapped
     const isMapped = await sdk.addressIsMapped(signerAddress)
@@ -87,7 +87,7 @@ export function ContractCard() {
       success: "Successfully flipped",
       error: "Failed to send transaction",
     })
-  }, [signer, api, chain])
+  }, [signer, client, chain])
 
   if (queryIsLoading) return <CardSkeleton />
 
@@ -122,12 +122,12 @@ export function ContractCard() {
 
           <TableRow>
             <TableCell>Language</TableCell>
-            <TableCell>{flipper.contract.metadata.source.language}</TableCell>
+            <TableCell>{flipper.contract.metadata!.source.language}</TableCell>
           </TableRow>
 
           <TableRow>
             <TableCell>Compiler</TableCell>
-            <TableCell>{flipper.contract.metadata.source.compiler}</TableCell>
+            <TableCell>{flipper.contract.metadata!.source.compiler}</TableCell>
           </TableRow>
         </TableBody>
       </Table>

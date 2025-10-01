@@ -1,4 +1,4 @@
-import { createReviveSdk, type GenericInkDescriptors } from "@polkadot-api/sdk-ink"
+import { createInkSdk, type GenericInkDescriptors } from "@polkadot-api/sdk-ink"
 import { Binary } from "polkadot-api"
 import yoctoSpinner from "yocto-spinner"
 import type { initApi } from "./init-api"
@@ -20,14 +20,14 @@ export async function deployContract<
   const spinner = yoctoSpinner({ text: "Deploying contract…" }).start()
 
   try {
-    const { api, ss58Address: ss58SignerAddress, signer } = initResult
+    const { api, client, ss58Address: ss58SignerAddress, signer } = initResult
 
     // Load contract binary code
     const path = `./deployments/${name}/${name}.polkavm`
     const file = Bun.file(path)
     const blob = await file.bytes()
     const code = Binary.fromBytes(blob)
-    const contractSdk = createReviveSdk(api, descriptors)
+    const contractSdk = createInkSdk(client)
 
     // Check if account is mapped
     const isMapped = await contractSdk.addressIsMapped(ss58SignerAddress)
@@ -44,7 +44,7 @@ export async function deployContract<
       origin: ss58SignerAddress,
       data: constructorArgs,
     }
-    const deployer = contractSdk.getDeployer(code)
+    const deployer = contractSdk.getDeployer(descriptors, code)
 
     // Determine deployment address
     const evmAddress = await deployer.estimateAddress(constructorName, constructorPayload)
@@ -62,7 +62,7 @@ export async function deployContract<
       throw new Error("Failed to deploy contract")
     }
 
-    const contract = contractSdk.getContract(evmAddress)
+    const contract = contractSdk.getContract(descriptors, evmAddress)
     const ss58Address = contract.accountId.toString()
 
     spinner.success(`📜 Deployed contract '${name}' at address '${ss58Address}' (${evmAddress})`)
