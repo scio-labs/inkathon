@@ -116,8 +116,8 @@ The build script (`build.sh`) which runs on `bun run build` automatically:
 import { contracts } from '@polkadot-api/descriptors'
 
 // Create fully-typed contract SDK
-const sdk = createReviveSdk(api, contracts.flipper)
-const contract = sdk.getContract(flipper.evmAddresses[chain])
+const sdk = createInkSdk(client)
+const contract = sdk.getContract(contracts.flipper, flipper.evmAddresses[chain])
 ```
 
 ## Deployment Management
@@ -164,8 +164,8 @@ export const ss58Address = '5...'
 import { evmAddress, ss58Address } from "contracts/deployments/<contract-name>/<chain-name>"
 
 // Create fully-typed contract SDK & instance
-const sdk = createReviveSdk(api, contracts.<contract-name>)
-const contract = sdk.getContract(evmAddress)
+const sdk = createInkSdk(client)
+const contract = sdk.getContract(contracts.<contract-name>, evmAddress)
 ```
 
 ## Learn More

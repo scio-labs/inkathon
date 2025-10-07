@@ -1,25 +1,25 @@
-import { ss58ToEthereum } from "@polkadot-api/sdk-ink"
-import { useTypedApi } from "@reactive-dot/react"
+import { createInkSdk } from "@polkadot-api/sdk-ink"
+import { useClient } from "@reactive-dot/react"
 import { useCallback, useEffect, useState } from "react"
 import { useSignerAndAddress } from "./use-signer-and-address"
 
 export function useIsMapped() {
-  const api = useTypedApi()
+  const client = useClient()
   const { signerAddress } = useSignerAndAddress()
 
   const [isMapped, setIsMapped] = useState<boolean>()
 
   const updateIsMapped = useCallback(async () => {
-    if (!api || !signerAddress) {
+    if (!signerAddress) {
       setIsMapped(undefined)
       return
     }
 
-    const evmSignerAddress = ss58ToEthereum(signerAddress)
-    const isMapped = !!(await api.query.Revive.OriginalAccount.getValue(evmSignerAddress))
+    const sdk = createInkSdk(client)
+    const isMapped = await sdk.addressIsMapped(signerAddress)
 
     setIsMapped(isMapped)
-  }, [api, signerAddress])
+  }, [client, signerAddress])
 
   useEffect(() => {
     updateIsMapped()
