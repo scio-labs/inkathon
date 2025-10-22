@@ -1,119 +1,28 @@
-import { createInkSdk } from "@polkadot-api/sdk-ink"
-import { useChainId, useClient } from "@reactive-dot/react"
-import { useCallback, useEffect, useState } from "react"
-import { toast } from "sonner"
-import { useSignerAndAddress } from "@/hooks/use-signer-and-address"
-import { flipper } from "@/lib/inkathon/deployments"
-import { CardSkeleton } from "../layout/skeletons"
-import { Button } from "../ui/button-extended"
-import { Card, CardHeader, CardTitle } from "../ui/card"
-import { Table, TableBody, TableCell, TableRow } from "../ui/table"
+import { useChainId, useContractMutation, useLazyLoadQuery, useStore } from '@reactive-dot/react'
+import { startTransition, use } from 'react'
+import { finalize } from 'rxjs'
+import { useIsMapped } from '@/hooks/use-is-mapped'
+import { flipper } from '@/lib/inkathon/deployments'
+import { flipperContract } from '@/lib/reactive-dot/contracts'
+import { submitTxAndToast } from '@/lib/reactive-dot/submit-tx-and-toast'
+import { Button } from '../ui/button-extended'
+import { Card, CardHeader, CardTitle } from '../ui/card'
+import { Table, TableBody, TableCell, TableRow } from '../ui/table'
+import { accountContext } from './account-provider'
 
 export function ContractCard() {
-  const [queryIsLoading, setQueryIsLoading] = useState(true)
-
-  const client = useClient()
   const chain = useChainId()
-  const { signer, signerAddress } = useSignerAndAddress()
-
-  /**
-   * Contract Read (Query)
-   */
-  const [flipperState, setFlipperState] = useState<boolean>()
-
-  const queryContract = useCallback(async () => {
-    setQueryIsLoading(true)
-    try {
-      if (!chain) return
-
-      // Create SDK & contract instance
-      const sdk = createInkSdk(client)
-      const contract = sdk.getContract(flipper.contract, flipper.evmAddresses[chain])
-
-      // Option 1: Query storage directly
-      const storageResult = await contract.getStorage().getRoot()
-      const newState = storageResult.success ? storageResult.value : undefined
-      setFlipperState(newState)
-
-      // Option 2: Query contract
-      // NOTE: Unfortunately, as `origin` is mandatory, every passed accounts needs
-      //       to be mapped in an extra transaction first before it can be used for querying.
-      // WORKAROUNDS: Use pre-mapped `//Alice` or use `getStorage` directly as shown above.
-      //
-      // const isMapped = await sdk.addressIsMapped(ALICE)
-      // if (!isMapped) throw new Error(`Account '${ALICE}' (//Alice) not mapped`)
-      //
-      // const result = await contract.query("get", { origin: ALICE })
-      // const newState = result.success ? result.value.response : undefined
-      // setFlipperState(newState)
-    } catch (error) {
-      console.error(error)
-    } finally {
-      setQueryIsLoading(false)
-    }
-  }, [client, chain])
-
-  useEffect(() => {
-    queryContract()
-  }, [queryContract])
-
-  /**
-   * Contract Write (Transaction)
-   */
-  const handleFlip = useCallback(async () => {
-    if (!chain || !signer) return
-
-    const sdk = createInkSdk(client)
-    const contract = sdk.getContract(flipper.contract, flipper.evmAddresses[chain])
-
-    // Map account if not mapped
-    const isMapped = await sdk.addressIsMapped(signerAddress)
-    if (!isMapped) {
-      toast.error("Account not mapped. Please map your account first.")
-      return
-    }
-
-    // Send transaction
-    const tx = contract
-      .send("flip", { origin: signerAddress })
-      .signAndSubmit(signer)
-      .then((tx) => {
-        queryContract()
-        if (!tx.ok) throw new Error("Failed to send transaction", { cause: tx.dispatchError })
-      })
-
-    toast.promise(tx, {
-      loading: "Sending transaction...",
-      success: "Successfully flipped",
-      error: "Failed to send transaction",
-    })
-  }, [signer, client, chain])
-
-  if (queryIsLoading) return <CardSkeleton />
 
   return (
     <Card className="inkathon-card">
       <CardHeader className="relative">
         <CardTitle>Flipper Contract</CardTitle>
-
-        <Button
-          variant="default"
-          size="sm"
-          className="-top-2 absolute right-6"
-          onClick={() => handleFlip()}
-        >
-          Call Flip
-        </Button>
+        {use(accountContext) !== undefined && <FlipTx />}
       </CardHeader>
 
       <Table className="inkathon-card-table">
         <TableBody>
-          <TableRow>
-            <TableCell>Flip State</TableCell>
-            <TableCell>
-              {flipperState === true ? "True" : flipperState === false ? "False" : "Unknown"}
-            </TableCell>
-          </TableRow>
+          <FlipStatus />
 
           <TableRow>
             <TableCell>Address</TableCell>
@@ -122,15 +31,70 @@ export function ContractCard() {
 
           <TableRow>
             <TableCell>Language</TableCell>
-            <TableCell>{flipper.contract.metadata!.source.language}</TableCell>
+            <TableCell>{flipper.contract.metadata?.source.language}</TableCell>
           </TableRow>
 
           <TableRow>
             <TableCell>Compiler</TableCell>
-            <TableCell>{flipper.contract.metadata!.source.compiler}</TableCell>
+            <TableCell>{flipper.contract.metadata?.source.compiler}</TableCell>
           </TableRow>
         </TableBody>
       </Table>
     </Card>
+  )
+}
+
+function FlipStatus() {
+  const chain = useChainId()
+  const state = useLazyLoadQuery((query) =>
+    query.contract(flipperContract, flipper.evmAddresses[chain], (query) => query.message('get')),
+  )
+
+  return (
+    <TableRow>
+      <TableCell>Flip State</TableCell>
+      <TableCell>{state ? 'True' : 'False'}</TableCell>
+    </TableRow>
+  )
+}
+
+function FlipTx() {
+  const chain = useChainId()
+  const isMapped = useIsMapped()
+
+  const store = useStore()
+  const [_, flip] = useContractMutation((mutate) =>
+    mutate(flipperContract, flipper.evmAddresses[chain], 'flip'),
+  )
+
+  return (
+    <Button
+      variant="default"
+      size="sm"
+      className="-top-2 absolute right-6"
+      onClick={() =>
+        submitTxAndToast(
+          () =>
+            flip().pipe(
+              finalize(() =>
+                startTransition(() =>
+                  store.invalidateContractQueries(
+                    (x) =>
+                      x.contract === flipperContract && x.address === flipper.evmAddresses[chain],
+                  ),
+                ),
+              ),
+            ),
+          {
+            loading: 'Sending transaction...',
+            success: 'Successfully flipped',
+            error: 'Failed to send transaction',
+          },
+        )
+      }
+      disabled={!isMapped}
+    >
+      {isMapped ? 'Call Flip' : 'Map account to flip'}
+    </Button>
   )
 }

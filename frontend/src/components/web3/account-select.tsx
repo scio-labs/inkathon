@@ -1,10 +1,10 @@
-"use client"
+'use client'
 
-import { useAccounts, useConnectedWallets, useWalletDisconnector } from "@reactive-dot/react"
-import { useCallback, useEffect } from "react"
-import { toast } from "sonner"
-import type { WalletAccount } from "@/lib/reactive-dot/custom-types"
-import { buttonVariants } from "../ui/button-extended"
+import type { WalletAccount } from '@reactive-dot/core/wallets.js'
+import { useAccounts, useConnectedWallets, useWalletDisconnector } from '@reactive-dot/react'
+import { useCallback, useEffect } from 'react'
+import { toast } from 'sonner'
+import { buttonVariants } from '../ui/button-extended'
 import {
   Select,
   SelectContent,
@@ -14,8 +14,8 @@ import {
   SelectSeparator,
   SelectTrigger,
   SelectValue,
-} from "../ui/select"
-import { ConnectButton } from "./connect-button"
+} from '../ui/select'
+import { ConnectButton } from './connect-button'
 
 interface AccountSelectProps {
   account?: WalletAccount
@@ -38,15 +38,15 @@ export function AccountSelect({ account, setAccount }: AccountSelectProps) {
       connectedWallets.map((wallet) => disconnectWallet(wallet)),
     )
     toast.promise(disconnectAllWallets, {
-      loading: "Disconnecting from wallet...",
-      success: "Wallet disconnected",
-      error: "Failed to disconnect from wallet",
+      loading: 'Disconnecting from wallet...',
+      success: 'Wallet disconnected',
+      error: 'Failed to disconnect from wallet',
     })
   }, [disconnectWallet, connectedWallets])
 
   const handleValueChange = useCallback(
-    async (value: "disconnect" | string) => {
-      if (value === "disconnect") {
+    async (value: 'disconnect' | string) => {
+      if (value === 'disconnect') {
         await handleDisconnect()
         setAccount(undefined)
         return
@@ -66,9 +66,9 @@ export function AccountSelect({ account, setAccount }: AccountSelectProps) {
     <Select value={account.address} onValueChange={handleValueChange}>
       <SelectTrigger
         className={buttonVariants({
-          size: "lg",
-          variant: "glass",
-          className: "inkathon-select",
+          size: 'lg',
+          variant: 'glass',
+          className: 'inkathon-select',
         })}
       >
         <SelectValue placeholder="Select a chain" />
