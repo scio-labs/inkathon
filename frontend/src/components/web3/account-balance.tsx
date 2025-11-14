@@ -1,18 +1,28 @@
-"use client"
+'use client'
 
-import { useChainId, useSpendableBalance } from "@reactive-dot/react"
-import { FuelIcon } from "lucide-react"
-import { useSignerAndAddress } from "@/hooks/use-signer-and-address"
-import { ALICE, FAUCET_URLS } from "@/lib/inkathon/constants"
-import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip"
+import type { WalletAccount } from '@reactive-dot/core/wallets.js'
+import { useChainId, useSpendableBalance } from '@reactive-dot/react'
+import { FuelIcon } from 'lucide-react'
+import { use } from 'react'
+import { FAUCET_URLS } from '@/lib/inkathon/constants'
+import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip'
+import { accountContext } from './account-provider'
 
 export function AccountBalance() {
+  const account = use(accountContext)
+
+  if (account === undefined) return null
+
+  return <InnerAccountBalance account={account} />
+}
+
+type AccountBalanceProps = {
+  account: WalletAccount
+}
+
+function InnerAccountBalance({ account }: AccountBalanceProps) {
   const chainId = useChainId()
-  const { signerAddress } = useSignerAndAddress()
-  const spendableBalance = useSpendableBalance(signerAddress || ALICE)
-
-  if (!signerAddress) return null
-
+  const spendableBalance = useSpendableBalance(account.address)
   const faucetUrl = FAUCET_URLS[chainId]
 
   return (

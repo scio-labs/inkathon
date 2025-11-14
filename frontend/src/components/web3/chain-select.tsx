@@ -1,7 +1,7 @@
-import { useChainSpecData } from "@reactive-dot/react"
-import { config } from "@/lib/reactive-dot/config"
-import type { ChainId } from "@/lib/reactive-dot/custom-types"
-import { buttonVariants } from "../ui/button-extended"
+import type { ChainId } from '@reactive-dot/core'
+import { useChainSpecData } from '@reactive-dot/react'
+import { config } from '@/lib/reactive-dot/config'
+import { buttonVariants } from '../ui/button-extended'
 import {
   Select,
   SelectContent,
@@ -10,7 +10,7 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "../ui/select"
+} from '../ui/select'
 
 interface ChainSelectProps {
   chainId: ChainId
@@ -23,9 +23,9 @@ export function ChainSelect({ chainId, setChainId }: ChainSelectProps) {
     <Select value={chainId} onValueChange={setChainId}>
       <SelectTrigger
         className={buttonVariants({
-          size: "lg",
-          variant: "glass",
-          className: "inkathon-select",
+          size: 'lg',
+          variant: 'glass',
+          className: 'inkathon-select',
         })}
       >
         <SelectValue placeholder="Select a chain" />
@@ -45,7 +45,7 @@ export function ChainSelect({ chainId, setChainId }: ChainSelectProps) {
 function ChainSelectItem({ chainId }: { chainId: keyof typeof config.chains }) {
   const { name } = useChainSpecData({ chainId })
 
-  const formattedName = name === "passet-hub" ? "Passet Hub Testnet" : name
+  const formattedName = name === 'passet-hub' ? 'Passet Hub Testnet' : name
 
   return <SelectItem value={chainId}>{formattedName}</SelectItem>
 }

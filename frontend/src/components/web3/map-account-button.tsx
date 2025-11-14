@@ -1,44 +1,40 @@
-"use client"
+'use client'
 
-import { useTypedApi } from "@reactive-dot/react"
-import { useCallback, useState } from "react"
-import { toast } from "sonner"
-import { useIsMapped } from "@/hooks/use-is-mapped"
-import { useSignerAndAddress } from "@/hooks/use-signer-and-address"
-import { Button } from "../ui/button-extended"
-import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip"
+import { useMutation } from '@reactive-dot/react'
+import { useIsMapped } from '@/hooks/use-is-mapped'
+import { isTxLoading } from '@/lib/reactive-dot/is-tx-loading'
+import { submitTxAndToast } from '@/lib/reactive-dot/submit-tx-and-toast'
+import { Button } from '../ui/button-extended'
+import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip'
 
 export function MapAccountButton() {
-  const [isLoading, setIsLoading] = useState(false)
-  const api = useTypedApi()
-  const { signer, signerAddress } = useSignerAndAddress()
   const isMapped = useIsMapped()
 
-  const handleMapAccount = useCallback(async () => {
-    if (!api || !signer) return
+  if (isMapped !== false) {
+    return null
+  }
 
-    setIsLoading(true)
+  return <MapAccountTx />
+}
 
-    const tx = api.tx.Revive.map_account()
-      .signAndSubmit(signer)
-      .then((tx) => {
-        if (!tx.ok) throw tx.dispatchError
-      })
-      .finally(() => setIsLoading(false))
-
-    toast.promise(tx, {
-      loading: "Mapping account...",
-      success: "Account mapped",
-      error: "Failed to map account. Do you have enough funds?",
-    })
-  }, [api, signer])
-
-  if (isMapped !== false) return null
+export function MapAccountTx() {
+  const [mapAccountStatus, mapAccount] = useMutation((tx) => tx.Revive.map_account())
 
   return (
     <Tooltip>
       <TooltipTrigger asChild>
-        <Button variant="glass" size="lg" onClick={handleMapAccount} isLoading={isLoading}>
+        <Button
+          variant="glass"
+          size="lg"
+          onClick={() =>
+            submitTxAndToast(() => mapAccount(), {
+              loading: 'Mapping account...',
+              success: 'Account mapped',
+              error: 'Failed to map account. Do you have enough funds?',
+            })
+          }
+          isLoading={isTxLoading(mapAccountStatus)}
+        >
           Map
           <div className="size-4 rounded-full bg-yellow-400 font-bold font-mono text-black text-xs">
             !

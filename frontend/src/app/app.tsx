@@ -1,23 +1,25 @@
-"use client"
+'use client'
 
-import { ChainProvider, SignerProvider } from "@reactive-dot/react"
-import { Suspense, useState } from "react"
-import { ButtonSkeleton, CardSkeleton } from "@/components/layout/skeletons"
-import { Wrapper } from "@/components/layout/wrapper"
-import { AccountBalance } from "@/components/web3/account-balance"
-import { AccountSelect } from "@/components/web3/account-select"
-import { ChainInfoCard } from "@/components/web3/chain-info-card"
-import { ChainSelect } from "@/components/web3/chain-select"
-import { ContractCard } from "@/components/web3/contract-card"
-import { MapAccountButton } from "@/components/web3/map-account-button"
-import type { ChainId, WalletAccount } from "@/lib/reactive-dot/custom-types"
+import type { ChainId } from '@reactive-dot/core'
+import type { WalletAccount } from '@reactive-dot/core/wallets.js'
+import { ChainProvider } from '@reactive-dot/react'
+import { Suspense, useState } from 'react'
+import { ButtonSkeleton, CardSkeleton } from '@/components/layout/skeletons'
+import { Wrapper } from '@/components/layout/wrapper'
+import { AccountBalance } from '@/components/web3/account-balance'
+import { AccountProvider } from '@/components/web3/account-provider'
+import { AccountSelect } from '@/components/web3/account-select'
+import { ChainInfoCard } from '@/components/web3/chain-info-card'
+import { ChainSelect } from '@/components/web3/chain-select'
+import { ContractCard } from '@/components/web3/contract-card'
+import { MapAccountButton } from '@/components/web3/map-account-button'
 
 export function App() {
   const [account, setAccount] = useState<WalletAccount>()
-  const [chainId, setChainId] = useState<ChainId>("passethub")
+  const [chainId, setChainId] = useState<ChainId>('pop')
 
   return (
-    <SignerProvider signer={account?.polkadotSigner}>
+    <AccountProvider account={account}>
       <ChainProvider chainId={chainId}>
         <Wrapper className="flex flex-col items-center gap-8">
           <div className="flex max-w-full flex-wrap items-center justify-center gap-4">
@@ -55,6 +57,6 @@ export function App() {
           </div>
         </Wrapper>
       </ChainProvider>
-    </SignerProvider>
+    </AccountProvider>
   )
 }
