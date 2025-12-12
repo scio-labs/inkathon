@@ -35,10 +35,10 @@ Generate type definitions for the new network using Papi:
 cd contracts
 
 # Add the network (replace with your network details)
-bunx papi add -w <network-wss-endpoint> <network-name>
+bunx polkadot-api add -w <network-wss-endpoint> <network-name>
 
 # Example for Pop Network
-bunx papi add -w wss://rpc1.paseo.popnetwork.xyz pop
+bunx polkadot-api add -w wss://rpc1.paseo.popnetwork.xyz pop
 ```
 
 This creates type definitions in `contracts/.papi/descriptors/` that enable type-safe interactions.

@@ -29,7 +29,7 @@ export const baseOptions: BaseLayoutProps = {
       </>
     ),
   },
-  githubUrl: "https://github.com/scio-labs/inkathon",
+
   links: [
     {
       type: "custom",
@@ -56,4 +56,8 @@ export const baseOptions: BaseLayoutProps = {
       external: true,
     },
   ],
+  githubUrl: "https://github.com/scio-labs/inkathon",
+  themeSwitch: {
+    enabled: false,
+  },
 }

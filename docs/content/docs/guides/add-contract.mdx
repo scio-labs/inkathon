@@ -167,7 +167,7 @@ export function ContractCard() {
   const queryContract = useCallback(async () => {
     if (!chainId) return
 
-    const { contract, evmAddresses } = deployments.newContract;
+    const { contract, evmAddresses } = deployments.newContract
 
     // Create SDK & contract instance
     const sdk = createInkSdk(client)

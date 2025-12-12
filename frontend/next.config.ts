@@ -1,11 +1,16 @@
 import type { NextConfig } from "next"
 
 const nextConfig: NextConfig = {
+  // DEBUG
+  // logging: {
+  //   fetches: { fullUrl: process.env.NEXT_PUBLIC_PRODUCTION_MODE !== "true" },
+  // },
+  // turbopack: {
+  //   debugIds: true,
+  // },
+  // React Strict Mode
   reactStrictMode: true,
   // Biome
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   typescript: {
     ignoreBuildErrors: true,
   },

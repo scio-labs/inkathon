@@ -1,23 +1,23 @@
-'use client'
+"use client"
 
-import type { Wallet } from '@reactive-dot/core/wallets.js'
+import type { Wallet } from "@reactive-dot/core/wallets.js"
 import {
   useAccounts,
   useConnectedWallets,
   useWalletConnector,
   useWalletDisconnector,
   useWallets,
-} from '@reactive-dot/react'
-import { LinkIcon, UnlinkIcon, WalletIcon } from 'lucide-react'
-import { useCallback } from 'react'
-import { toast } from 'sonner'
-import { Button } from '../ui/button-extended'
+} from "@reactive-dot/react"
+import { LinkIcon, UnlinkIcon, WalletIcon } from "lucide-react"
+import { useCallback } from "react"
+import { toast } from "sonner"
+import { Button } from "../ui/button-extended"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '../ui/dropdown-menu'
+} from "../ui/dropdown-menu"
 
 export function ConnectButton() {
   const accounts = useAccounts()
@@ -32,9 +32,9 @@ export function ConnectButton() {
       if (!wallets?.length) return
 
       toast.promise(connectWallet(wallet ?? wallets[0]), {
-        loading: 'Connecting to wallet...',
-        success: 'Wallet connected',
-        error: 'Failed to connect to wallet',
+        loading: "Connecting to wallet...",
+        success: "Wallet connected",
+        error: "Failed to connect to wallet",
       })
     },
     [connectWallet, wallets],
@@ -47,9 +47,9 @@ export function ConnectButton() {
       connectedWallets.map((wallet) => disconnectWallet(wallet)),
     )
     toast.promise(disconnectAllWallets, {
-      loading: 'Disconnecting from wallet...',
-      success: 'Wallet disconnected',
-      error: 'Failed to disconnect from wallet',
+      loading: "Disconnecting from wallet...",
+      success: "Wallet disconnected",
+      error: "Failed to disconnect from wallet",
     })
   }, [disconnectWallet, connectedWallets])
 

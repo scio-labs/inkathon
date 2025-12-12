@@ -1,6 +1,6 @@
-import type { WalletAccount } from '@reactive-dot/core/wallets.js'
-import { SignerProvider } from '@reactive-dot/react'
-import { createContext, type PropsWithChildren } from 'react'
+import type { WalletAccount } from "@reactive-dot/core/wallets.js"
+import { SignerProvider } from "@reactive-dot/react"
+import { createContext, type PropsWithChildren } from "react"
 
 export const accountContext = createContext<WalletAccount | undefined>(undefined)
 

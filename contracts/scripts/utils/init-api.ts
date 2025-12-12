@@ -17,7 +17,7 @@ dotenv.config({ path: `.env.${chainId}`, quiet: true })
  *
  * @options
  *  Environment variables:
- *    CHAIN         - Target chain to deploy the contract to (must be initialized with `bunx papi add <chain>`). Default: `dev`
+ *    CHAIN         - Target chain to deploy the contract to (must be initialized with `bunx polkadot-api add <chain>`). Default: `dev`
  *    ACCOUNT_URI   - Account to deploy the contract from. If not set, uses `.env.{CHAIN}` or defaults to `//Alice`
  */
 export async function initApi() {
@@ -30,7 +30,7 @@ export async function initApi() {
     const wsUrl = papiJson.entries[chainId as keyof typeof papiJson.entries]?.wsUrl
     if (!chain || !wsUrl) {
       throw new Error(
-        `Chain '${chainId}' not found. Make sure to initialize with 'bunx papi add …' first!`,
+        `Chain '${chainId}' not found. Make sure to initialize with 'bunx polkadot-api add …' first!`,
       )
     }
 

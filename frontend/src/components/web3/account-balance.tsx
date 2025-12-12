@@ -1,12 +1,12 @@
-'use client'
+"use client"
 
-import type { WalletAccount } from '@reactive-dot/core/wallets.js'
-import { useChainId, useSpendableBalance } from '@reactive-dot/react'
-import { FuelIcon } from 'lucide-react'
-import { use } from 'react'
-import { FAUCET_URLS } from '@/lib/inkathon/constants'
-import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip'
-import { accountContext } from './account-provider'
+import type { WalletAccount } from "@reactive-dot/core/wallets.js"
+import { useChainId, useSpendableBalance } from "@reactive-dot/react"
+import { FuelIcon } from "lucide-react"
+import { use } from "react"
+import { FAUCET_URLS } from "@/lib/inkathon/constants"
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip"
+import { accountContext } from "./account-provider"
 
 export function AccountBalance() {
   const account = use(accountContext)

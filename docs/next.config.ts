@@ -2,11 +2,16 @@ import { createMDX } from "fumadocs-mdx/next"
 import type { NextConfig } from "next"
 
 let nextConfig: NextConfig = {
+  // DEBUG
+  // logging: {
+  //   fetches: { fullUrl: process.env.NEXT_PUBLIC_PRODUCTION_MODE !== "true" },
+  // },
+  // turbopack: {
+  //   debugIds: true,
+  // },
+  // React Strict Mode
   reactStrictMode: true,
   // Biome
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   typescript: {
     ignoreBuildErrors: true,
   },

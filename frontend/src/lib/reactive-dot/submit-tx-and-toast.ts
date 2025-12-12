@@ -1,6 +1,6 @@
-import type { TxEvent } from 'polkadot-api'
-import { catchError, type Observable, tap } from 'rxjs'
-import { toast } from 'sonner'
+import type { TxEvent } from "polkadot-api"
+import { catchError, type Observable, tap } from "rxjs"
+import { toast } from "sonner"
 
 export function submitTxAndToast(
   submit: () => Observable<TxEvent>,
@@ -14,7 +14,7 @@ export function submitTxAndToast(
     return submit()
       .pipe(
         tap((event) => {
-          if (event.type === 'finalized') {
+          if (event.type === "finalized") {
             toast.success(messages.success, { id })
           }
         }),
@@ -25,6 +25,6 @@ export function submitTxAndToast(
       )
       .subscribe()
   } catch (error) {
-    toast.error('Failed to submit transaction', { id })
+    toast.error("Failed to submit transaction", { id })
   }
 }

@@ -9,7 +9,7 @@ import { writeAddresses } from "./utils/write-addresses"
  *
  * @options
  *  Environment variables:
- *    CHAIN         - Target chain to deploy the contract to (must be initialized with `bunx papi add <chain>`). Default: `dev`
+ *    CHAIN         - Target chain to deploy the contract to (must be initialized with `bunx polkadot-api add <chain>`). Default: `dev`
  *    ACCOUNT_URI   - Account to deploy the contract from. If not set, uses `.env.{CHAIN}` or defaults to `//Alice`
  *    DIR           - Directory to write the contract addresses to. Default: `./deployments`
  *

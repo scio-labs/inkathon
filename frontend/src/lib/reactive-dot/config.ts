@@ -1,7 +1,7 @@
-import { passethub, pop } from '@polkadot-api/descriptors'
-import { defineConfig } from '@reactive-dot/core'
-import { InjectedWalletProvider } from '@reactive-dot/core/wallets.js'
-import { getWsProvider } from 'polkadot-api/ws-provider'
+import { passethub, pop } from "@polkadot-api/descriptors"
+import { defineConfig } from "@reactive-dot/core"
+import { InjectedWalletProvider } from "@reactive-dot/core/wallets.js"
+import { getWsProvider } from "polkadot-api/ws-provider"
 
 // Light Client Provider
 // const lightClientProvider = createLightClientProvider()
@@ -14,11 +14,11 @@ export const config = defineConfig({
     // },
     pop: {
       descriptor: pop,
-      provider: getWsProvider('wss://rpc1.paseo.popnetwork.xyz'),
+      provider: getWsProvider("wss://rpc1.paseo.popnetwork.xyz"),
     },
     passethub: {
       descriptor: passethub,
-      provider: getWsProvider('wss://testnet-passet-hub.polkadot.io'),
+      provider: getWsProvider("wss://testnet-passet-hub.polkadot.io"),
     },
     // Add more chains here
   },

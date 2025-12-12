@@ -11,5 +11,5 @@ contracts=($(find $DIR -maxdepth 1 -mindepth 1 -type d -print | xargs -n 1 basen
 for i in "${contracts[@]}"
 do
   echo -e "\nGenerating types for '$DIR/$i'…"
-  bunx papi ink add $DIR/$i/$i.contract
+  bunx polkadot-api ink add $DIR/$i/$i.contract
 done

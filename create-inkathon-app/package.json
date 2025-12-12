@@ -29,17 +29,17 @@
     "prepublishOnly": "bun run build"
   },
   "dependencies": {
-    "@inquirer/prompts": "^7.8.6",
-    "commander": "^14.0.1",
+    "@inquirer/prompts": "^8.0.2",
+    "commander": "^14.0.2",
     "picocolors": "^1.1.1",
-    "semver": "^7.7.2",
+    "semver": "^7.7.3",
     "snakecase-keys": "^9.0.2",
     "yocto-spinner": "^1.0.0"
   },
   "devDependencies": {
-    "@types/node": "^22.0.0",
+    "@types/node": "^24.10.3",
     "@types/semver": "^7.7.1",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.3"
   },
   "keywords": [
     "ink",

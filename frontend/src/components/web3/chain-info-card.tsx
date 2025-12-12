@@ -1,14 +1,14 @@
-import { useChainSpecData, useLazyLoadQuery } from '@reactive-dot/react'
-import { Card, CardHeader, CardTitle } from '../ui/card'
-import { Table, TableBody, TableCell, TableRow } from '../ui/table'
+import { useChainSpecData, useLazyLoadQuery } from "@reactive-dot/react"
+import { Card, CardHeader, CardTitle } from "../ui/card"
+import { Table, TableBody, TableCell, TableRow } from "../ui/table"
 
 export function ChainInfoCard() {
   const chainSpec = useChainSpecData()
   const [chainId, ss58Prefix, version] = useLazyLoadQuery((query) =>
     query
-      .constant('Revive', 'ChainId')
-      .constant('System', 'SS58Prefix')
-      .constant('System', 'Version'),
+      .constant("Revive", "ChainId")
+      .constant("System", "SS58Prefix")
+      .constant("System", "Version"),
   )
 
   return (
@@ -38,7 +38,7 @@ export function ChainInfoCard() {
 
           <TableRow>
             <TableCell>Pallet Revive</TableCell>
-            <TableCell>{chainId ? 'Yes' : 'No'}</TableCell>
+            <TableCell>{chainId ? "Yes" : "No"}</TableCell>
           </TableRow>
         </TableBody>
       </Table>

@@ -101,7 +101,7 @@ Deployment addresses are automatically exported to `/contracts/deployments/<cont
 
 1. Generate PAPI types for the chain:
    ```bash
-   bunx papi add -w <websocket-url> <chain-name>
+   bunx polkadot-api add -w <websocket-url> <chain-name>
    ```
 2. Add chain configuration in `/frontend/src/lib/reactive-dot/config.ts`:
    ```typescript

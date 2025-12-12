@@ -1,5 +1,5 @@
-import dynamic from 'next/dynamic'
-import type { PropsWithChildren } from 'react'
+import dynamic from "next/dynamic"
+import type { PropsWithChildren } from "react"
 
 function NoSsrComponent({ children }: PropsWithChildren) {
   return <>{children}</>
